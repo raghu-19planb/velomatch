@@ -138,8 +138,6 @@ document.querySelectorAll('.category-card').forEach(card => {
     const target = this.getAttribute('href');
     if (!target) return;
     e.preventDefault();
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) { window.location.href = target; return; }
     pageTransition.classList.add('active');
     setTimeout(() => { window.location.href = target; }, 2400);
   });
