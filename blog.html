@@ -101,6 +101,23 @@
   </div>
 </section>
 
+<section class="game-section">
+  <div class="wrap">
+    <div class="fig-tag"><span>Fig. 008</span><span class="chip-div"></span><span>Take a spin</span></div>
+    <h2>How steady is your hand?</h2>
+    <p class="lede">Move your mouse to steer. The lane never ends, and it never stops narrowing — don't touch the edges.</p>
+    <div class="game-card">
+      <canvas id="rideGame" width="640" height="340" aria-label="A steering mini-game: move your mouse or use the arrow keys to keep a bike inside a winding, narrowing lane"></canvas>
+      <div class="game-hud"><span id="gameScore">0.0s</span><span id="gameBest">Best: 0.0s</span></div>
+      <div class="game-overlay" id="gameOverlay">
+        <p class="game-overlay-title" id="gameOverlayTitle">Ready?</p>
+        <p class="game-overlay-sub" id="gameOverlaySub">Move your mouse over the lane to steer, or use the arrow keys.</p>
+        <button type="button" class="submit-btn game-btn" id="gameStartBtn">Start riding</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
@@ -123,7 +140,7 @@
       <path d="M9 17 L56 15 L55 46 L7 45 Z"/>
       <path d="M9 17 L32 35 L55 15"/>
     </svg>
-    <p class="letter-fig">Fig. 006 — where this is headed</p>
+    <p class="letter-fig">Fig. 009 — where this is headed</p>
     <h3 id="letterTitle">To everyone who's stood in a bike aisle guessing,</h3>
     <p>Buying a bike usually comes down to a guess: a size sticker on a rack, a salesperson pointing at whatever's in stock, or a color you liked in a catalog. Get it wrong and it's money spent on something that never quite fits.</p>
     <p>We think fit should come from geometry, not guesswork — reach, stack, standover, all measured and matched to the rider, whoever that rider is.</p>
@@ -156,6 +173,183 @@ openLetterBtn.addEventListener('click', openLetter);
 closeLetterBtn.addEventListener('click', closeLetter);
 letterOverlay.addEventListener('click', e => { if (e.target === letterOverlay) closeLetter(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOverlay.classList.contains('open')) closeLetter(); });
+</script>
+
+<script>
+(function(){
+  const canvas = document.getElementById('rideGame');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const overlay = document.getElementById('gameOverlay');
+  const overlayTitle = document.getElementById('gameOverlayTitle');
+  const overlaySub = document.getElementById('gameOverlaySub');
+  const startBtn = document.getElementById('gameStartBtn');
+  const scoreEl = document.getElementById('gameScore');
+  const bestEl = document.getElementById('gameBest');
+
+  const W = canvas.width, H = canvas.height;
+  const START_HALF_WIDTH = 105, MIN_HALF_WIDTH = 50, NARROW_DURATION = 75;
+  const AMPLITUDE = 85, FREQUENCY = 0.01;
+  const SPEED = 130;
+  const BIKE_ROW_OFFSET = 70;
+  const BIKE_RADIUS = 14;
+
+  let best = 0;
+  try { best = Number(localStorage.getItem('velomatch_ride_best')) || 0; } catch(e){}
+  bestEl.textContent = 'Best: ' + best.toFixed(1) + 's';
+
+  let running = false;
+  let dist = 0;
+  let elapsed = 0;
+  let bikeX = W / 2;
+  let targetX = W / 2;
+  let lastTime = null;
+  let crashed = false;
+  let pedalAngle = 0;
+
+  function pathCenter(worldPos){
+    return W / 2 + AMPLITUDE * Math.sin(worldPos * FREQUENCY);
+  }
+  function currentHalfWidth(){
+    const frac = Math.min(1, elapsed / NARROW_DURATION);
+    return START_HALF_WIDTH - (START_HALF_WIDTH - MIN_HALF_WIDTH) * frac;
+  }
+
+  function setTargetFromClientX(clientX){
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = W / rect.width;
+    targetX = Math.max(0, Math.min(W, (clientX - rect.left) * scaleX));
+  }
+  canvas.addEventListener('mousemove', e => setTargetFromClientX(e.clientX));
+  canvas.addEventListener('touchmove', e => {
+    if (e.touches[0]) setTargetFromClientX(e.touches[0].clientX);
+    e.preventDefault();
+  }, {passive:false});
+  document.addEventListener('keydown', e => {
+    if (!running) return;
+    if (e.key === 'ArrowLeft') targetX = Math.max(0, targetX - 30);
+    else if (e.key === 'ArrowRight') targetX = Math.min(W, targetX + 30);
+  });
+
+  function reset(){
+    dist = 0; elapsed = 0; bikeX = W / 2; targetX = W / 2; crashed = false; lastTime = null; pedalAngle = 0;
+  }
+
+  function endGame(){
+    running = false;
+    crashed = true;
+    if (elapsed > best) {
+      best = elapsed;
+      try { localStorage.setItem('velomatch_ride_best', String(best)); } catch(e){}
+      bestEl.textContent = 'Best: ' + best.toFixed(1) + 's';
+    }
+    overlayTitle.textContent = 'You hit the edge!';
+    overlaySub.textContent = 'Survived ' + elapsed.toFixed(1) + 's. Give it another go?';
+    startBtn.textContent = 'Ride again';
+    overlay.hidden = false;
+  }
+
+  function drawBike(x, y, angle, isCrashed){
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.strokeStyle = isCrashed ? '#B8410F' : '#E2551D';
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.lineWidth = 2.4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    ctx.beginPath(); ctx.arc(-11, 6, 9, 0, Math.PI * 2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(11, 6, 9, 0, Math.PI * 2); ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(-11, 6); ctx.lineTo(-2, -8); ctx.lineTo(11, 6);
+    ctx.lineTo(0, 0); ctx.lineTo(-11, 6);
+    ctx.moveTo(-2, -8); ctx.lineTo(4, -8);
+    ctx.stroke();
+
+    const r = 5;
+    const px = Math.cos(angle) * r, py = Math.sin(angle) * r;
+    ctx.beginPath();
+    ctx.moveTo(0, 6); ctx.lineTo(px, 6 + py);
+    ctx.moveTo(0, 6); ctx.lineTo(-px, 6 - py);
+    ctx.stroke();
+    ctx.beginPath(); ctx.arc(0, 6, 2.5, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#0F3630';
+    ctx.fillRect(0, 0, W, H);
+
+    const hw = currentHalfWidth();
+    const step = 8;
+    const leftPts = [], rightPts = [];
+    for (let y = H; y >= 0; y -= step) {
+      const worldPos = dist + (H - y);
+      const c = pathCenter(worldPos);
+      leftPts.push([c - hw, y]);
+      rightPts.push([c + hw, y]);
+    }
+
+    ctx.beginPath();
+    ctx.moveTo(leftPts[0][0], leftPts[0][1]);
+    for (const p of leftPts) ctx.lineTo(p[0], p[1]);
+    for (let i = rightPts.length - 1; i >= 0; i--) ctx.lineTo(rightPts[i][0], rightPts[i][1]);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(242,236,221,0.05)';
+    ctx.fill();
+
+    ctx.strokeStyle = '#7ED7BE';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    leftPts.forEach((p, i) => i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]));
+    ctx.stroke();
+    ctx.beginPath();
+    rightPts.forEach((p, i) => i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]));
+    ctx.stroke();
+
+    drawBike(bikeX, H - BIKE_ROW_OFFSET, pedalAngle, crashed);
+  }
+
+  function loop(ts){
+    if (!running) return;
+    if (lastTime === null) lastTime = ts;
+    const dt = Math.min(0.05, (ts - lastTime) / 1000);
+    lastTime = ts;
+
+    elapsed += dt;
+    dist += SPEED * dt;
+    bikeX += (targetX - bikeX) * Math.min(1, dt * 10);
+    pedalAngle += dt * (6 + SPEED / 40);
+
+    const bikeWorldPos = dist + BIKE_ROW_OFFSET;
+    const centerAtBike = pathCenter(bikeWorldPos);
+    const hw = currentHalfWidth();
+    const leftEdge = centerAtBike - hw;
+    const rightEdge = centerAtBike + hw;
+
+    if (bikeX - BIKE_RADIUS < leftEdge || bikeX + BIKE_RADIUS > rightEdge) {
+      draw();
+      endGame();
+      return;
+    }
+
+    draw();
+    scoreEl.textContent = elapsed.toFixed(1) + 's';
+    requestAnimationFrame(loop);
+  }
+
+  function start(){
+    reset();
+    running = true;
+    overlay.hidden = true;
+    requestAnimationFrame(loop);
+  }
+  startBtn.addEventListener('click', start);
+
+  draw();
+})();
 </script>
 
 </body>
