@@ -349,12 +349,28 @@ function parseSheetRow(row){
     barAdjust: String(row.barAdjust).trim().toUpperCase() === "TRUE",
     trainWheel: String(row.trainWheel).trim().toUpperCase() === "TRUE",
     resale: row.resale,
-    image: row.image || ""
+    image: row.image || "",
+    retailerUrl: row.retailerUrl || ""
   };
 }
 
 function escapeHtml(str){
   return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// Price and stock are the least stable facts in this catalog — rather than
+// cache a number that will go stale, link out to wherever it can actually be
+// checked live: a specific page only when a human has verified that exact
+// URL shows this bike, otherwise a plain web search for the model name.
+function priceCheckLink(b){
+  if (b.retailerUrl) {
+    let host = '';
+    try { host = new URL(b.retailerUrl).hostname.replace(/^www\./, ''); } catch(e){}
+    return `<a href="${escapeHtml(b.retailerUrl)}" target="_blank" rel="noopener" class="result-link">Check current price${host ? ' at ' + escapeHtml(host) : ''} →</a>`;
+  }
+  const searchText = b.name.toLowerCase().includes(b.brand.toLowerCase()) ? b.name : `${b.brand} ${b.name}`;
+  const query = encodeURIComponent(searchText + ' bike');
+  return `<a href="https://www.google.com/search?q=${query}" target="_blank" rel="noopener" class="result-link">Search for current price →</a>`;
 }
 
 async function loadBikeData(){
@@ -483,6 +499,7 @@ document.getElementById('submit').addEventListener('click', () => {
         <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
       </div>
       <p class="result-meta">${b.wheel}in wheels · fits ${b.minH}–${b.maxH}cm · ${b.brake} brakes · ${b.origin}<br>Grows with them for roughly ${b.years} years</p>
+      ${priceCheckLink(b)}
     </div>
   `).join('');
 

@@ -25,7 +25,8 @@
       "brakeType": "'rim' | 'disc'",
       "tireProfile": "'standard' | 'wide' — wide covers gravel/adventure and semi-fat e-bike tires, matched against the flat-tire-worry question",
       "suspensionFork": "boolean — has a front suspension fork for rough pavement/potholes",
-      "image": "string — relative path (e.g. images/commute/trek-fx2.jpg) or full URL to a product photo; leave empty to show the sketch placeholder"
+      "image": "string — relative path (e.g. images/commute/trek-fx2.jpg) or full URL to a product photo; leave empty to show the sketch placeholder",
+      "retailerUrl": "optional string — a specific product page URL, set ONLY when a human has actually opened that exact URL and confirmed it shows this bike (e.g. a page the user shared). Never guessed or constructed. When absent, the result card links to a live web search for the bike's name instead of a specific (possibly wrong or dead) product page — price/stock are the least stable part of any catalog entry, so we point to a live source rather than caching a number that will go stale."
     }
   },
   "bikes": [
