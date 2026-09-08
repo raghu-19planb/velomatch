@@ -420,10 +420,9 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .page-transition.active{visibility:visible; pointer-events:auto;}
 .transition-panel{
   position:absolute; top:0; left:0; height:100%; width:0; overflow:visible;
-  background:rgba(27,35,31,0.8);
-  backdrop-filter:blur(7px);
-  -webkit-backdrop-filter:blur(7px);
+  background:rgba(27,35,31,0.86);
   transition:width 2.4s cubic-bezier(.45,0,.55,1);
+  will-change:width;
 }
 .page-transition.active .transition-panel{width:100%;}
 .transition-rider{position:absolute; top:50%; right:0; width:104px; height:auto; transform:translate(50%,-50%);}
