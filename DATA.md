@@ -4,6 +4,7 @@ Each quiz category has its own catalog file under `data/`:
 
 - `data/kids-bikes.json` — used by `index.html` (kids' first bike)
 - `data/commute-bikes.json` — used by `commute.html` (daily commute)
+- `data/bikepacking-bikes.json` — used by `bikepacking.html` (bikepacking), 28 bikes, grounded in bikepacking.com's own route/bike taxonomy (terrain and bike-type categories) plus domain knowledge. First category with a real known-frame-size question (asks the number, e.g. 54cm, before falling back to height) and an `availability` field that defaults scoring toward mainstream/widely-sold brands unless the rider says they're open to boutique builders — both added per direct user feedback while building it. Validated against the user's own real trip: "mixed terrain (Iceland Ring Road) + adventure + carbon" correctly surfaces the Specialized Diverge Comp, which is the bike they actually rode.
 
 These files are the **single source of truth** for what each quiz can recommend. When you add a new category page (a third use case, a fourth, etc.), give it its own `data/<category>-bikes.json` following the same pattern.
 
