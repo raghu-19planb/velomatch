@@ -7,6 +7,17 @@ Each quiz category has its own catalog file under `data/`:
 
 These files are the **single source of truth** for what each quiz can recommend. When you add a new category page (a third use case, a fourth, etc.), give it its own `data/<category>-bikes.json` following the same pattern.
 
+## Catalog scope — what "23 commute bikes" actually means
+
+The commute catalog (23 models as of this writing, including real Canadian brands — Norco, Opus, Kona, Devinci, Batch Bicycles) is a **curated, well-researched set**, not a scrape of every Canadian retailer. Each entry's specs come from real-world product knowledge of that actual model, but nothing here is live-verified against a current manufacturer spec sheet or checked for this exact model year's availability.
+
+That distinction matters more now that the quiz asks purchase-influencing questions (frame material, brakes, groupset). Two things this catalog deliberately does **not** do, and why:
+
+- **It doesn't invent model-year variants.** A bike doesn't get separate 2022/2023/2024/2025/2026 entries unless there's a real, known difference between them — most models don't change every year, and fabricating "the 2025 version" of a bike down to specific spec differences would risk misleading someone who's about to actually spend money.
+- **It isn't a scrape of every Canadian bike shop.** A truly exhaustive retailer-level catalog (every SKU, every store, every year) needs either a real data feed/API from retailers, or manually extracting listings from pages you point me at. Both are realistic next steps — just not something to fabricate wholesale in one pass.
+
+**To grow this responsibly:** send me links to specific store/category pages (e.g. a Norco or MEC bike listing) and I'll extract real entries from them, or hand me a spec sheet/spreadsheet you already have. I can also do a browsing pass to verify or refresh specific existing entries if something looks off.
+
 ## How to update a catalog
 
 1. Open the relevant file in `data/`.
@@ -44,8 +55,8 @@ The weights aren't arbitrary — they're sized by how much getting that dimensio
 |---|---|---|
 | Heaviest (~16–20 pts) | power type (pedal/e-assist), distance fit | Get these wrong and the bike is functionally unusable for the commute — not a comfort issue, a can't-do-it issue. |
 | Heavy (~12 pts/level, scales with gap) | cargo capacity | A bike with no rack mounts literally cannot carry groceries, however good it is otherwise — this used to be underweighted (see below) and let a zero-cargo bike outrank real cargo bikes. |
-| Moderate (~10–15 pts) | frame material, groupset, foldability-for-portability | Real quality/ride-feel/convenience factors, but rarely a dealbreaker on their own. |
-| Light (~6 pts, small penalty) | color, brand origin | Pure preference — should only ever break a tie, never beat a functionally-better bike. |
+| Moderate (~8–12 pts) | frame material, groupset, foldability-for-portability, riding position, weather/fenders, disc brakes | Real quality/comfort/convenience factors, but rarely a dealbreaker on their own — a rider can live with the "wrong" answer here. |
+| Light (~5–8 pts) | color, brand origin, flat-tire worry, rough-road suspension, new-rider low-maintenance nudge | Pure preference or a soft nudge for people who don't know what to ask for — should only ever break a tie, never beat a functionally-better bike. Suspension in particular stays light because almost nothing in the catalog has one; weighting it heavily would make most riders see near-random results instead of their best real option. |
 
 When you add a new preference question, ask "if this is wrong, does the bike become unusable, annoying, or just not-ideal?" and weight it in that tier. That one judgment call is most of what makes the ranking feel right.
 

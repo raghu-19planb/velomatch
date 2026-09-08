@@ -155,7 +155,7 @@
       <div>
         <div class="fig-tag"><span>Fig. 003</span><span class="chip-div"></span><span>The fit quiz</span></div>
         <h2>Let's find your commute bike.</h2>
-        <p class="lede">This prototype covers daily commuting by bike. Every field below feeds the match on the right.</p>
+        <p class="lede">This prototype covers daily commuting by bike. It's a longer quiz than the essentials — every field feeds the match on the right, and none of it requires knowing bike jargon going in.</p>
       </div>
       <svg class="sketch-icon on-dark quiz-sketch" viewBox="0 0 64 64" aria-hidden="true">
         <path d="M20 30 L44 30 L44 50 L20 50 Z"/>
@@ -167,6 +167,8 @@
 
     <div class="quiz-grid">
       <div>
+        <p class="q-section-label first">Your commute</p>
+
         <div class="q-group">
           <label class="q-label">Commute distance (one-way)</label>
           <div class="range-row">
@@ -205,29 +207,44 @@
           </div>
         </div>
 
-        <div class="q-group">
-          <label class="q-label">Budget</label>
-          <div class="range-row">
-            <input type="range" id="budget" min="300" max="3000" value="900" step="50">
-            <span class="range-out" id="budget-out">$900</span>
-          </div>
-        </div>
+        <p class="q-section-label">Comfort &amp; conditions</p>
+        <p class="q-section-hint">Not sure about the terms? Just answer how it feels — we translate it into the right spec.</p>
 
         <div class="q-group">
-          <label class="q-label">Brand origin</label>
+          <label class="q-label">How do you like to sit while riding?</label>
           <div class="opt-row">
-            <button type="button" class="opt" data-group="origin" data-value="canadian">Prefer Canadian</button>
-            <button type="button" class="opt" data-group="origin" data-value="none">No preference</button>
+            <button type="button" class="opt" data-group="position" data-value="upright">Upright &amp; relaxed</button>
+            <button type="button" class="opt" data-group="position" data-value="relaxed">A bit leaned forward</button>
+            <button type="button" class="opt" data-group="position" data-value="sporty">Sporty &amp; low</button>
           </div>
         </div>
 
         <div class="q-group">
-          <label class="q-label">How much does portability/storage matter?</label>
-          <div class="range-row">
-            <input type="range" id="portability" min="0" max="10" value="5" step="1">
-            <span class="range-out" id="portability-out" style="min-width:110px;">Somewhat</span>
+          <label class="q-label">Will you ride in the rain?</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="weather" data-value="rarely">Rarely</button>
+            <button type="button" class="opt" data-group="weather" data-value="sometimes">Sometimes</button>
+            <button type="button" class="opt" data-group="weather" data-value="always">Rain or shine</button>
           </div>
         </div>
+
+        <div class="q-group">
+          <label class="q-label">Are your streets rough or full of potholes?</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="roughness" data-value="rough">Pretty rough</button>
+            <button type="button" class="opt" data-group="roughness" data-value="smooth">Mostly smooth</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">How much do flat tires worry you?</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="flats" data-value="worried">A lot — give me tough, wide tires</button>
+            <button type="button" class="opt" data-group="flats" data-value="unworried">Not really</button>
+          </div>
+        </div>
+
+        <p class="q-section-label">The bike itself</p>
 
         <div class="q-group">
           <label class="q-label">Frame material</label>
@@ -250,6 +267,14 @@
         </div>
 
         <div class="q-group">
+          <label class="q-label">Want the extra stopping power of disc brakes?</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="brakepower" data-value="disc">Yes, disc brakes</button>
+            <button type="button" class="opt" data-group="brakepower" data-value="either">Doesn't matter</button>
+          </div>
+        </div>
+
+        <div class="q-group">
           <label class="q-label">Preferred color</label>
           <div class="opt-row">
             <button type="button" class="opt" data-group="color" data-value="none">No preference</button>
@@ -259,6 +284,42 @@
             <button type="button" class="opt" data-group="color" data-value="Red">Red</button>
             <button type="button" class="opt" data-group="color" data-value="Green">Green</button>
             <button type="button" class="opt" data-group="color" data-value="Charcoal">Charcoal</button>
+          </div>
+        </div>
+
+        <p class="q-section-label">You &amp; your budget</p>
+
+        <div class="q-group">
+          <label class="q-label">How experienced a cyclist are you?</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="experience" data-value="new">New to regular riding</button>
+            <button type="button" class="opt" data-group="experience" data-value="some">Ride sometimes</button>
+            <button type="button" class="opt" data-group="experience" data-value="experienced">Very experienced</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Where will you keep it?</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="storage" data-value="garage">Garage or shed — space isn't tight</button>
+            <button type="button" class="opt" data-group="storage" data-value="apartment">Apartment or office, some carrying involved</button>
+            <button type="button" class="opt" data-group="storage" data-value="stairs">I'll carry it up stairs or on transit often</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Budget</label>
+          <div class="range-row">
+            <input type="range" id="budget" min="300" max="3000" value="900" step="50">
+            <span class="range-out" id="budget-out">$900</span>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Brand origin</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="origin" data-value="canadian">Prefer Canadian</button>
+            <button type="button" class="opt" data-group="origin" data-value="none">No preference</button>
           </div>
         </div>
 
@@ -353,9 +414,9 @@
 // This is only an emergency fallback for the rare case the fetch below fails
 // (e.g. the page opened as a local file:// instead of through a real server).
 const emergencyFallbackBikes = [
-  {name:"Trek FX 2 Disc", brand:"Trek", origin:"USA", wheel:700, minH:160, maxH:180, price:750, gearing:"derailleur", type:"city_streets", powerType:"pedal", cargoCapacity:1, weight:11.5, foldable:false, maxComfortDistance:15, frameMaterial:"aluminum", groupset:"Shimano Altus", colors:["Black","Blue","Silver"], image:""},
-  {name:"Rad Power RadCity 5 Plus", brand:"Rad Power Bikes", origin:"USA", wheel:660, minH:155, maxH:193, price:1999, gearing:"derailleur", type:"hilly_assist", powerType:"ebike", cargoCapacity:2, weight:29, foldable:false, maxComfortDistance:40, frameMaterial:"aluminum", groupset:"Shimano Tourney", colors:["Black","Silver"], image:""},
-  {name:"Brompton C Line", brand:"Brompton", origin:"UK", wheel:406, minH:155, maxH:195, price:1650, gearing:"internal", type:"mixed_paths", powerType:"pedal", cargoCapacity:1, weight:12.3, foldable:true, maxComfortDistance:12, frameMaterial:"steel", groupset:"Shimano Nexus 3", colors:["Black","Red","Green"], image:""}
+  {name:"Trek FX 2 Disc", brand:"Trek", origin:"USA", wheel:700, minH:160, maxH:180, price:750, gearing:"derailleur", type:"city_streets", powerType:"pedal", cargoCapacity:1, weight:11.5, foldable:false, maxComfortDistance:15, frameMaterial:"aluminum", groupset:"Shimano Altus", colors:["Black","Blue","Silver"], ridingPosition:"relaxed", fendersIncluded:false, brakeType:"disc", tireProfile:"standard", suspensionFork:false, image:""},
+  {name:"Rad Power RadCity 5 Plus", brand:"Rad Power Bikes", origin:"USA", wheel:660, minH:155, maxH:193, price:1999, gearing:"derailleur", type:"hilly_assist", powerType:"ebike", cargoCapacity:2, weight:29, foldable:false, maxComfortDistance:40, frameMaterial:"aluminum", groupset:"Shimano Tourney", colors:["Black","Silver"], ridingPosition:"upright", fendersIncluded:true, brakeType:"disc", tireProfile:"wide", suspensionFork:false, image:""},
+  {name:"Brompton C Line", brand:"Brompton", origin:"UK", wheel:406, minH:155, maxH:195, price:1650, gearing:"internal", type:"mixed_paths", powerType:"pedal", cargoCapacity:1, weight:12.3, foldable:true, maxComfortDistance:12, frameMaterial:"steel", groupset:"Shimano Nexus 3", colors:["Black","Red","Green"], ridingPosition:"upright", fendersIncluded:true, brakeType:"rim", tireProfile:"standard", suspensionFork:false, image:""}
 ];
 
 let bikes = [];
@@ -384,6 +445,11 @@ function parseSheetRow(row){
     frameMaterial: row.frameMaterial,
     groupset: row.groupset,
     colors: (row.colors || "").split(";").map(s => s.trim()).filter(Boolean),
+    ridingPosition: row.ridingPosition,
+    fendersIncluded: String(row.fendersIncluded).trim().toUpperCase() === "TRUE",
+    brakeType: row.brakeType,
+    tireProfile: row.tireProfile,
+    suspensionFork: String(row.suspensionFork).trim().toUpperCase() === "TRUE",
     image: row.image || ""
   };
 }
@@ -430,22 +496,25 @@ async function loadBikeData(){
 }
 loadBikeData();
 
-const state = {power:null, route:null, cargo:null, origin:null, frame:null, groupset:null, color:null};
-const importanceLabels = ["Not important","Not important","A little","A little","Somewhat","Somewhat","Somewhat","Important","Important","Very important","Very important"];
+const state = {
+  power:null, route:null, cargo:null, origin:null, frame:null, groupset:null, color:null,
+  position:null, weather:null, roughness:null, flats:null, brakepower:null, experience:null, storage:null
+};
 
 // Route options sit on one approximate spectrum so a bike built for one route
 // still scores reasonably for a neighboring one, instead of an all-or-nothing match.
 const routePosition = {city_streets:0, mixed_paths:1, long_flat:2, hilly_assist:3};
 const cargoPosition = {none:0, light:1, rack:2, heavy:3};
 
+// Storage answers translate to the same 0-1 portability weight the old abstract
+// slider used, but as a concrete plain-language scenario instead of a number.
+const storageWeight = {garage:0.15, apartment:0.55, stairs:1};
+
 document.getElementById('distance').addEventListener('input', e => {
   document.getElementById('distance-out').textContent = e.target.value + ' km';
 });
 document.getElementById('budget').addEventListener('input', e => {
   document.getElementById('budget-out').textContent = '$' + e.target.value;
-});
-document.getElementById('portability').addEventListener('input', e => {
-  document.getElementById('portability-out').textContent = importanceLabels[Number(e.target.value)];
 });
 
 document.querySelectorAll('.opt').forEach(btn => {
@@ -477,7 +546,7 @@ document.getElementById('submit').addEventListener('click', () => {
 
   const distance = Number(document.getElementById('distance').value);
   const budget = Number(document.getElementById('budget').value);
-  const portabilityWeight = Number(document.getElementById('portability').value) / 10;
+  const portabilityWeight = storageWeight[state.storage] ?? 0.55;
   const originPref = state.origin || 'none';
   const neededCargo = cargoPosition[state.cargo];
 
@@ -530,6 +599,33 @@ document.getElementById('submit').addEventListener('click', () => {
     const colorPref = state.color || 'none';
     if (colorPref !== 'none') score += b.colors.includes(colorPref) ? 6 : -2;
 
+    // Riding position is a real comfort factor (how far forward you lean) —
+    // translated from a plain-language question into the bike's geometry style.
+    if (state.position) score += b.ridingPosition === state.position ? 10 : -4;
+
+    // "Will you ride in the rain" only matters if the bike doesn't already
+    // ship with fenders — riders who rarely see rain shouldn't be steered
+    // away from an otherwise great bike just because it lacks them.
+    if (state.weather === 'always') score += b.fendersIncluded ? 10 : -6;
+    else if (state.weather === 'sometimes') score += b.fendersIncluded ? 5 : -2;
+
+    // Rough streets: a front suspension fork smooths potholes. Very few
+    // catalog bikes have one, so this stays a preference, not a filter —
+    // otherwise most riders would see zero results.
+    if (state.roughness === 'rough') score += b.suspensionFork ? 10 : -3;
+
+    // Flat-tire anxiety maps directly to tire width/toughness.
+    if (state.flats === 'worried') score += b.tireProfile === 'wide' ? 8 : -3;
+
+    if (state.brakepower === 'disc') score += b.brakeType === 'disc' ? 8 : -4;
+
+    // New riders benefit from low-maintenance drivetrains even if they don't
+    // know to ask for one by name — a gentle nudge, not a groupset override.
+    // Riders with an explicit groupset preference already dominated above.
+    if (state.experience === 'new' && groupsetPref === 'none') {
+      score += b.gearing === 'internal' || b.gearing === 'single' ? 5 : 0;
+    }
+
     return {...b, score};
   }).sort((a,b) => b.score - a.score).slice(0,3);
 
@@ -546,7 +642,7 @@ document.getElementById('submit').addEventListener('click', () => {
         <span class="result-name">${escapeHtml(b.name)}</span>
         <span class="result-price">$${b.price}</span>
       </div>
-      <p class="result-meta">${b.wheel}mm wheels${b.foldable ? ' · folds' : ''} · fits ${b.minH}–${b.maxH}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)} · ${b.origin}<br>Comfortable up to ${b.maxComfortDistance}km one-way · ${cargoLabel(b.cargoCapacity)} cargo · ${b.colors.map(escapeHtml).join(', ')}</p>
+      <p class="result-meta">${b.wheel}mm wheels${b.foldable ? ' · folds' : ''} · fits ${b.minH}–${b.maxH}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)} · ${b.brakeType} brakes · ${b.origin}<br>Comfortable up to ${b.maxComfortDistance}km one-way · ${cargoLabel(b.cargoCapacity)} cargo · ${b.ridingPosition} position<br>${b.fendersIncluded ? 'Fenders included' : 'No fenders'} · ${b.tireProfile} tires${b.suspensionFork ? ' · front suspension' : ''} · ${b.colors.map(escapeHtml).join(', ')}</p>
     </div>
   `).join('');
 
