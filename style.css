@@ -399,8 +399,8 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .chooser-hero h1{font-size:clamp(32px,4.6vw,50px); font-weight:700; letter-spacing:-0.015em; line-height:1.12; margin:0 0 18px; max-width:680px;}
 .chooser-hero .lede{margin-bottom:8px;}
 
-.category-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; padding-top:16px;}
-@media (max-width:900px){ .category-grid{grid-template-columns:1fr; gap:20px;} }
+.category-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:26px; padding-top:16px;}
+@media (max-width:640px){ .category-grid{grid-template-columns:1fr; gap:20px;} }
 
 .category-card{
   display:block; text-decoration:none; color:inherit; position:relative;
