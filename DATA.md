@@ -34,6 +34,12 @@ I tried pulling a real listing from a major Canadian retailer's site directly. T
 
 **To grow this responsibly:** send me links to specific store/category pages, a spec sheet, or a spreadsheet you already have, and I'll extract real entries from them — that's more reliable than me navigating retailer sites blind. I can also do a browsing pass to verify or refresh specific existing entries if something looks off.
 
+**Kids catalog:** the same approach applies — the Hyper Bicycles 20" Spinner BMX (Walmart.ca) was added this way, with `_verified` marking exactly what the page confirmed (name, brand, wheel size, frame material, height/age range, brake type, price) versus what's estimated (origin, terrain type, experience fit, seat range).
+
+### Currency
+
+Both catalogs' `price` field is face-value in whatever `currency` says; a bare number with no `currency` field means USD (every entry added before this field existed). **The budget slider does not convert between currencies** — a $198 CAD entry and a $198 USD entry look identically "within budget" to the scoring, even though they aren't really the same price. This is an accepted, disclosed limitation for now (per the user's choice: label honestly rather than guess an exchange rate or silently blend). If the catalog ends up with a meaningful mix of currencies, revisit this — either add real conversion, or split budget questions per currency/region.
+
 ## How to update a catalog
 
 1. Open the relevant file in `data/`.

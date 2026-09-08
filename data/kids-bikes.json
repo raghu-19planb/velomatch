@@ -8,7 +8,8 @@
       "wheel": "number — wheel diameter in inches (16 or 20 typically)",
       "minH": "number — cm, lower bound of the height this bike fits",
       "maxH": "number — cm, upper bound of the height this bike fits",
-      "price": "number — USD",
+      "price": "number — face-value price in whatever 'currency' says (see below); the budget slider compares this number as-is and does not convert between currencies",
+      "currency": "optional string, 3-letter code (e.g. 'CAD') — omit to mean USD, the default for every entry added before this field existed",
       "brake": "'coaster' | 'hand'",
       "type": "'pavement' | 'road_gravel' | 'park' | 'trail_road_gravel' | 'trail' — best-fit terrain, scored by proximity",
       "exp": "array of 'none' | 'balance' | 'training' | 'confident' — rider experience levels this bike suits",
@@ -40,6 +41,7 @@
     {"name":"Schwinn Aerostar 16-in", "brand":"Schwinn", "origin":"USA", "wheel":16, "minH":100, "maxH":115, "price":106, "brake":"coaster", "type":"pavement", "exp":["training","none"], "seatRange":6, "barAdjust":false, "trainWheel":true, "resale":"medium", "image":""},
     {"name":"Btwin Inuit 100 16\"", "brand":"Decathlon", "origin":"France", "wheel":16, "minH":100, "maxH":120, "price":99, "brake":"hand", "type":"pavement", "exp":["training","confident"], "seatRange":7, "barAdjust":false, "trainWheel":false, "resale":"medium", "image":""},
     {"name":"Btwin HYC500 16\"", "brand":"Decathlon", "origin":"France", "wheel":16, "minH":100, "maxH":120, "price":99, "brake":"hand", "type":"park", "exp":["training","confident"], "seatRange":7, "barAdjust":false, "trainWheel":false, "resale":"medium", "image":""},
-    {"name":"Supercycle Valley 16-in", "brand":"Supercycle", "origin":"Canada", "wheel":16, "minH":100, "maxH":120, "price":130, "brake":"hand", "type":"trail", "exp":["training","confident"], "seatRange":7, "barAdjust":false, "trainWheel":false, "resale":"low", "image":""}
+    {"name":"Supercycle Valley 16-in", "brand":"Supercycle", "origin":"Canada", "wheel":16, "minH":100, "maxH":120, "price":130, "brake":"hand", "type":"trail", "exp":["training","confident"], "seatRange":7, "barAdjust":false, "trainWheel":false, "resale":"low", "image":""},
+    {"name":"Hyper Spinner BMX 20\"", "brand":"Hyper Bicycles", "origin":"USA", "wheel":20, "minH":127, "maxH":152, "price":198, "currency":"CAD", "brake":"hand", "type":"park", "exp":["confident","training"], "seatRange":10, "barAdjust":false, "trainWheel":false, "resale":"medium", "image":"", "_verified":"name, brand, wheel size, frame material (steel), height range (4'2\"-5'), age range (8-13), brake description, single-speed, price ($198.00 CAD), and max rider weight (220lb) confirmed live at walmart.ca on 2026-09-08 (user-supplied link). origin, type, exp, seatRange, barAdjust, and resale were not stated on the page and are estimated from typical 20in BMX bikes."}
   ]
 }

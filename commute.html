@@ -435,6 +435,7 @@ function parseSheetRow(row){
     minH: Number(row.minH),
     maxH: Number(row.maxH),
     price: Number(row.price),
+    currency: row.currency || "USD",
     gearing: row.gearing,
     type: row.type,
     powerType: row.powerType,
@@ -640,7 +641,7 @@ document.getElementById('submit').addEventListener('click', () => {
       </div>
       <div class="result-top">
         <span class="result-name">${escapeHtml(b.name)}</span>
-        <span class="result-price">$${b.price}</span>
+        <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
       </div>
       <p class="result-meta">${b.wheel}mm wheels${b.foldable ? ' · folds' : ''} · fits ${b.minH}–${b.maxH}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)} · ${b.brakeType} brakes · ${b.origin}<br>Comfortable up to ${b.maxComfortDistance}km one-way · ${cargoLabel(b.cargoCapacity)} cargo · ${b.ridingPosition} position<br>${b.fendersIncluded ? 'Fenders included' : 'No fenders'} · ${b.tireProfile} tires${b.suspensionFork ? ' · front suspension' : ''} · ${b.colors.map(escapeHtml).join(', ')}</p>
     </div>
