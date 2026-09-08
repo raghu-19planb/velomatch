@@ -459,17 +459,18 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .transition-rider .pedal-leg{animation:pedal-cycle .42s ease-in-out infinite; transform-box:fill-box; transform-origin:center;}
 @keyframes pedal-cycle{ 0%,100%{transform:rotate(6deg);} 50%{transform:rotate(-30deg);} }
 
-/* Arrival reveal — plays once on load for each category page, continuing the same motion */
+/* Arrival — the rider's crossing already played on the previous page; this just
+   masks page-load flash with a quick curtain fade, so the ride reads as one pass. */
 .page-reveal{
   position:fixed; inset:0; z-index:300; pointer-events:none; visibility:visible;
-  animation:reveal-hide 0s linear 2.5s forwards;
+  animation:reveal-hide 0s linear .5s forwards;
 }
 .page-reveal .transition-panel{
   left:auto; right:0; width:100%;
-  animation:reveal-wipe 2.4s cubic-bezier(.45,0,.55,1) .05s forwards;
+  animation:reveal-fade .45s ease .05s forwards;
 }
-.page-reveal .transition-rider{right:auto; left:0; transform:translate(-50%,-50%);}
-@keyframes reveal-wipe{ to{ width:0%; } }
+.page-reveal .transition-rider{display:none;}
+@keyframes reveal-fade{ to{ opacity:0; } }
 @keyframes reveal-hide{ to{ visibility:hidden; } }
 
 
