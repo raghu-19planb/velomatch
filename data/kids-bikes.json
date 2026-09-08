@@ -1,0 +1,45 @@
+{
+  "_schema": {
+    "note": "Canonical catalog for the kids' first-bike quiz (index.html). Edit this file directly and push — Netlify redeploys automatically. Optional live override: set SHEET_CSV_URL in index.html to a published Google Sheet CSV with the same column names; when set, it replaces this file's data at load time without a redeploy.",
+    "fields": {
+      "name": "string — model name shown to users",
+      "brand": "string",
+      "origin": "string — country of the brand, used for the 'prefer Canadian' filter",
+      "wheel": "number — wheel diameter in inches (16 or 20 typically)",
+      "minH": "number — cm, lower bound of the height this bike fits",
+      "maxH": "number — cm, upper bound of the height this bike fits",
+      "price": "number — USD",
+      "brake": "'coaster' | 'hand'",
+      "type": "'pavement' | 'road_gravel' | 'park' | 'trail_road_gravel' | 'trail' — best-fit terrain, scored by proximity",
+      "exp": "array of 'none' | 'balance' | 'training' | 'confident' — rider experience levels this bike suits",
+      "seatRange": "number — cm of seatpost height adjustment, used to estimate years of growth",
+      "barAdjust": "boolean — handlebar height/reach is adjustable",
+      "trainWheel": "boolean — compatible with training wheels",
+      "resale": "'low' | 'medium' | 'high' — informational only, not currently scored",
+      "image": "string — relative path (e.g. images/kids/cleary-gecko.jpg) or full URL to a product photo; leave empty to show the sketch placeholder"
+    }
+  },
+  "bikes": [
+    {"name":"Cleary Gecko", "brand":"Cleary", "origin":"USA", "wheel":16, "minH":98, "maxH":117, "price":280, "brake":"coaster", "type":"pavement", "exp":["balance","training"], "seatRange":9, "barAdjust":false, "trainWheel":false, "resale":"medium", "image":""},
+    {"name":"Guardian Original 16\"", "brand":"Guardian", "origin":"USA", "wheel":16, "minH":100, "maxH":120, "price":230, "brake":"hand", "type":"pavement", "exp":["training","none"], "seatRange":7, "barAdjust":false, "trainWheel":true, "resale":"low", "image":""},
+    {"name":"Priority Start 16", "brand":"Priority", "origin":"USA", "wheel":16, "minH":100, "maxH":120, "price":250, "brake":"hand", "type":"pavement", "exp":["training","balance"], "seatRange":8, "barAdjust":true, "trainWheel":true, "resale":"medium", "image":""},
+    {"name":"Woom 3", "brand":"Woom", "origin":"Austria", "wheel":16, "minH":103, "maxH":120, "price":290, "brake":"hand", "type":"park", "exp":["confident","training"], "seatRange":9, "barAdjust":true, "trainWheel":false, "resale":"high", "image":""},
+    {"name":"Cleary Owl", "brand":"Cleary", "origin":"USA", "wheel":20, "minH":112, "maxH":135, "price":380, "brake":"hand", "type":"park", "exp":["confident","training"], "seatRange":11, "barAdjust":true, "trainWheel":false, "resale":"medium", "image":""},
+    {"name":"Frog 48", "brand":"Frog Bikes", "origin":"UK", "wheel":16, "minH":98, "maxH":112, "price":300, "brake":"hand", "type":"trail", "exp":["training","confident"], "seatRange":7, "barAdjust":false, "trainWheel":false, "resale":"medium", "image":""},
+    {"name":"Woom Off 4", "brand":"Woom", "origin":"Austria", "wheel":20, "minH":118, "maxH":135, "price":420, "brake":"hand", "type":"trail", "exp":["confident"], "seatRange":10, "barAdjust":true, "trainWheel":false, "resale":"high", "image":""},
+    {"name":"REI Co-op Cycles REV 16", "brand":"REI Co-op", "origin":"USA", "wheel":16, "minH":100, "maxH":118, "price":180, "brake":"hand", "type":"pavement", "exp":["training","balance"], "seatRange":6, "barAdjust":false, "trainWheel":true, "resale":"low", "image":""},
+    {"name":"Trek Precaliber 16", "brand":"Trek", "origin":"USA", "wheel":16, "minH":100, "maxH":119, "price":200, "brake":"coaster", "type":"park", "exp":["training","none"], "seatRange":7, "barAdjust":false, "trainWheel":true, "resale":"medium", "image":""},
+    {"name":"Islabikes CNOC 16", "brand":"Islabikes", "origin":"UK", "wheel":16, "minH":98, "maxH":114, "price":330, "brake":"hand", "type":"trail", "exp":["confident","training"], "seatRange":8, "barAdjust":true, "trainWheel":false, "resale":"high", "image":""},
+    {"name":"Specialized Riprock 16", "brand":"Specialized", "origin":"USA", "wheel":16, "minH":102, "maxH":120, "price":260, "brake":"hand", "type":"trail", "exp":["confident","training"], "seatRange":9, "barAdjust":false, "trainWheel":false, "resale":"medium", "image":""},
+    {"name":"Norco Roller 16", "brand":"Norco", "origin":"Canada", "wheel":16, "minH":99, "maxH":118, "price":240, "brake":"coaster", "type":"pavement", "exp":["training","balance"], "seatRange":8, "barAdjust":true, "trainWheel":true, "resale":"medium", "image":""},
+    {"name":"Miele Alba Junior 16", "brand":"Miele", "origin":"Canada", "wheel":16, "minH":100, "maxH":119, "price":255, "brake":"hand", "type":"park", "exp":["training","confident"], "seatRange":9, "barAdjust":true, "trainWheel":false, "resale":"low", "image":""},
+    {"name":"Woom 4", "brand":"Woom", "origin":"Austria", "wheel":20, "minH":113, "maxH":130, "price":340, "brake":"hand", "type":"park", "exp":["confident","training"], "seatRange":10, "barAdjust":true, "trainWheel":false, "resale":"high", "image":""},
+    {"name":"Trek Precaliber 20", "brand":"Trek", "origin":"USA", "wheel":20, "minH":115, "maxH":135, "price":260, "brake":"hand", "type":"trail", "exp":["confident","training"], "seatRange":9, "barAdjust":false, "trainWheel":false, "resale":"medium", "image":""},
+    {"name":"Huffy 16\" GRM", "brand":"Huffy", "origin":"USA", "wheel":16, "minH":99, "maxH":117, "price":160, "brake":"hand", "type":"pavement", "exp":["balance","training","none"], "seatRange":9, "barAdjust":true, "trainWheel":true, "resale":"medium", "image":""},
+    {"name":"Huffy 16\" Rock It", "brand":"Huffy", "origin":"USA", "wheel":16, "minH":107, "maxH":122, "price":78, "brake":"coaster", "type":"pavement", "exp":["training","none"], "seatRange":6, "barAdjust":false, "trainWheel":true, "resale":"low", "image":""},
+    {"name":"Schwinn Aerostar 16-in", "brand":"Schwinn", "origin":"USA", "wheel":16, "minH":100, "maxH":115, "price":106, "brake":"coaster", "type":"pavement", "exp":["training","none"], "seatRange":6, "barAdjust":false, "trainWheel":true, "resale":"medium", "image":""},
+    {"name":"Btwin Inuit 100 16\"", "brand":"Decathlon", "origin":"France", "wheel":16, "minH":100, "maxH":120, "price":99, "brake":"hand", "type":"pavement", "exp":["training","confident"], "seatRange":7, "barAdjust":false, "trainWheel":false, "resale":"medium", "image":""},
+    {"name":"Btwin HYC500 16\"", "brand":"Decathlon", "origin":"France", "wheel":16, "minH":100, "maxH":120, "price":99, "brake":"hand", "type":"park", "exp":["training","confident"], "seatRange":7, "barAdjust":false, "trainWheel":false, "resale":"medium", "image":""},
+    {"name":"Supercycle Valley 16-in", "brand":"Supercycle", "origin":"Canada", "wheel":16, "minH":100, "maxH":120, "price":130, "brake":"hand", "type":"trail", "exp":["training","confident"], "seatRange":7, "barAdjust":false, "trainWheel":false, "resale":"low", "image":""}
+  ]
+}

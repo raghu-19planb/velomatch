@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VeloMatch — Find their first bike</title>
+<title>VeloMatch — Find your commute bike</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
@@ -14,17 +14,17 @@
 
 <nav>
   <div class="wrap">
-    <div class="logo">
+    <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
       <svg width="22" height="16" viewBox="0 0 44 28" aria-hidden="true">
         <circle cx="9" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
         <circle cx="35" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
         <path d="M9 19 L20 8 L28 8 L35 19 M20 8 L16 19" fill="none" stroke="var(--blueprint)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       VeloMatch
-    </div>
+    </a>
     <div class="nav-links">
-      <a href="index.html" class="nav-link current">Kids' bikes</a>
-      <a href="commute.html" class="nav-link">Commuting</a>
+      <a href="index.html" class="nav-link">Kids' bikes</a>
+      <a href="commute.html" class="nav-link current">Commuting</a>
       <a href="blog.html" class="nav-link">Blog</a>
       <a href="#quiz" class="nav-cta">Start matching</a>
     </div>
@@ -34,9 +34,9 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="fig-tag"><span>Sheet 001</span><span class="chip-div"></span><span>First bike, ages 5–10</span></div>
-      <h1>The right first bike is a measurement, not a hunch.</h1>
-      <p>Answer a few questions about your kid. We measure real bikes from every brand against their height, experience, and budget — then explain exactly why the top match fits, and how long it'll last them.</p>
+      <div class="fig-tag"><span>Sheet 002</span><span class="chip-div"></span><span>Daily commute</span></div>
+      <h1>The right commute bike is a measurement, not a hunch.</h1>
+      <p>Answer a few questions about your ride — distance, route, cargo, and how much you want a motor to help. We measure real bikes from every brand against your actual commute, then explain exactly why the top match fits.</p>
       <a href="#quiz" class="btn-primary">Start matching</a>
       <div class="chip-row spec-chips">
         <span>Free</span><span class="chip-div"></span><span>2 minutes</span><span class="chip-div"></span><span>Every brand</span>
@@ -45,7 +45,7 @@
 
     <div>
       <div class="diagram-card">
-        <svg class="bike-diagram" viewBox="0 0 640 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Blueprint diagram of a kids bike, annotated with wheel diameter, standover height, wheelbase, and seat height range">
+        <svg class="bike-diagram" viewBox="0 0 640 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Blueprint diagram of a commuter bike, annotated with wheel diameter, standover height, wheelbase, and a rear rack">
           <line class="dim-ext" x1="40" y1="340" x2="600" y2="340"/>
 
           <circle class="wheel-ring" cx="160" cy="268" r="72"/>
@@ -54,21 +54,24 @@
           <circle class="hub" cx="470" cy="268" r="5.5"/>
 
           <g class="frame-line">
-            <path d="M300 255 L240 140"/>
-            <path d="M240 140 L410 120"/>
-            <path d="M300 255 L410 190"/>
-            <path d="M410 120 L410 190"/>
-            <path d="M410 190 L470 268"/>
-            <path d="M300 255 L160 268"/>
-            <path d="M240 140 L160 268"/>
-            <path d="M240 140 L222 102"/>
-            <path d="M410 120 L400 90"/>
-            <path d="M375 88 L425 92"/>
-            <path d="M300 255 L322 278"/>
-            <path d="M300 255 L278 232"/>
+            <path d="M290 258 L255 150"/>
+            <path d="M255 150 L420 140"/>
+            <path d="M290 258 L420 195"/>
+            <path d="M420 140 L420 195"/>
+            <path d="M420 195 L470 268"/>
+            <path d="M290 258 L160 268"/>
+            <path d="M255 150 L160 268"/>
+            <path d="M255 150 L240 110"/>
+            <path d="M420 140 L405 110"/>
+            <path d="M380 108 L430 112"/>
+            <path d="M290 258 L312 280"/>
+            <path d="M290 258 L268 236"/>
+            <path d="M160 268 L126 186"/>
+            <path d="M252 190 L196 185"/>
+            <path d="M126 186 L196 185"/>
           </g>
-          <circle class="wheel-ring" cx="300" cy="255" r="13"/>
-          <ellipse cx="196" cy="108" rx="20" ry="6" transform="rotate(-8 196 108)" fill="none" stroke="var(--blueprint)" stroke-width="3"/>
+          <circle class="wheel-ring" cx="290" cy="258" r="13"/>
+          <ellipse cx="236" cy="106" rx="20" ry="6" transform="rotate(-8 236 106)" fill="none" stroke="var(--blueprint)" stroke-width="3"/>
 
           <g class="dim-minor">
             <line class="dim-ext" x1="160" y1="196" x2="95" y2="196"/>
@@ -77,17 +80,17 @@
             <line class="dim-tick" x1="88" y1="196" x2="102" y2="196"/>
             <line class="dim-tick" x1="88" y1="340" x2="102" y2="340"/>
             <text class="dim-label" x="18" y="264">WHEEL</text>
-            <text class="dim-label" x="18" y="280">⌀ 16–20″</text>
+            <text class="dim-label" x="18" y="280">⌀ 700c</text>
           </g>
 
           <g class="dim-minor">
-            <line class="dim-ext" x1="240" y1="340" x2="258" y2="340"/>
-            <line class="dim-ext" x1="240" y1="140" x2="258" y2="140"/>
-            <line class="dim-line" x1="258" y1="140" x2="258" y2="340"/>
-            <line class="dim-tick" x1="251" y1="140" x2="265" y2="140"/>
-            <line class="dim-tick" x1="251" y1="340" x2="265" y2="340"/>
-            <text class="dim-label" x="270" y="178">STANDOVER</text>
-            <text class="dim-label" x="270" y="194">43–56 cm</text>
+            <line class="dim-ext" x1="255" y1="340" x2="273" y2="340"/>
+            <line class="dim-ext" x1="255" y1="150" x2="273" y2="150"/>
+            <line class="dim-line" x1="273" y1="150" x2="273" y2="340"/>
+            <line class="dim-tick" x1="266" y1="150" x2="280" y2="150"/>
+            <line class="dim-tick" x1="266" y1="340" x2="280" y2="340"/>
+            <text class="dim-label" x="285" y="216">STANDOVER</text>
+            <text class="dim-label" x="285" y="232">76–86 cm</text>
           </g>
 
           <line class="dim-ext" x1="160" y1="340" x2="160" y2="365"/>
@@ -95,13 +98,13 @@
           <line class="dim-line" x1="160" y1="365" x2="470" y2="365"/>
           <line class="dim-tick" x1="160" y1="358" x2="160" y2="372"/>
           <line class="dim-tick" x1="470" y1="358" x2="470" y2="372"/>
-          <text class="dim-label" x="315" y="392" text-anchor="middle">WHEELBASE 84–102 cm</text>
+          <text class="dim-label" x="315" y="392" text-anchor="middle">WHEELBASE 100–107 cm</text>
 
-          <path class="hand-circle" d="M205 95 Q193 108 205 121 Q222 134 241 119 Q250 101 233 91 Q217 83 205 95 Z"/>
-          <text class="hand-note" x="248" y="115" transform="rotate(-6 248 115)">grows ~9cm</text>
+          <path class="hand-circle" d="M118 188 Q114 177 130 175 Q165 168 197 177 Q207 188 197 196 Q160 202 130 197 Q113 194 118 188 Z"/>
+          <text class="hand-note" x="204" y="172" transform="rotate(-4 204 172)">rack-ready</text>
         </svg>
       </div>
-      <p class="diagram-cap">Fig. 001 — geometry we score against your kid's height</p>
+      <p class="diagram-cap">Fig. 001 — geometry we score against your commute</p>
     </div>
   </div>
 </section>
@@ -109,8 +112,8 @@
 <section>
   <div class="wrap">
     <div class="fig-tag"><span>Fig. 002</span><span class="chip-div"></span><span>How it works</span></div>
-    <h2>Three steps to a bike that actually fits.</h2>
-    <p class="lede">No sales pitch, no single-brand catalog. Just the questions a good bike fitter would ask, run against real geometry.</p>
+    <h2>Three steps to a bike that fits your commute.</h2>
+    <p class="lede">No sales pitch, no single-brand catalog. Just the questions a good bike shop would ask, run against real geometry and cargo needs.</p>
     <div class="steps">
       <div class="step">
         <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
@@ -118,8 +121,8 @@
           <path d="M14 40 L19 35 M22 33 L27 28 M30 26 L35 21"/>
         </svg>
         <div class="step-index"><span>01</span><span class="tick"></span></div>
-        <h3>Answer six questions</h3>
-        <p>Height, experience, where they'll ride, brakes, budget, and how much room to grow matters to you.</p>
+        <h3>Answer a few questions</h3>
+        <p>Distance, route, cargo, power preference, budget, and how much portability matters to you.</p>
       </div>
       <div class="step">
         <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
@@ -129,7 +132,7 @@
         </svg>
         <div class="step-index"><span>02</span><span class="tick"></span></div>
         <h3>We score every bike</h3>
-        <p>Each answer weighs differently — a wrong-size bike is ruled out, a great-fit bike that's a little over budget isn't.</p>
+        <p>Each answer weighs differently — a bike that can't handle your hills is ruled out, a great-fit bike a little over budget isn't.</p>
       </div>
       <div class="step">
         <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
@@ -140,7 +143,7 @@
         </svg>
         <div class="step-index"><span>03</span><span class="tick"></span></div>
         <h3>See your top matches</h3>
-        <p>Ranked with plain-language reasons and how many years the bike should last before they outgrow it — not just a spec sheet.</p>
+        <p>Ranked with plain-language reasons — including how far it's comfortable and how much it can carry.</p>
       </div>
     </div>
   </div>
@@ -151,63 +154,62 @@
     <div class="quiz-heading">
       <div>
         <div class="fig-tag"><span>Fig. 003</span><span class="chip-div"></span><span>The fit quiz</span></div>
-        <h2>Let's find their bike.</h2>
-        <p class="lede">This prototype covers kids five and up. Every field below feeds the match on the right.</p>
+        <h2>Let's find your commute bike.</h2>
+        <p class="lede">This prototype covers daily commuting by bike. Every field below feeds the match on the right.</p>
       </div>
       <svg class="sketch-icon on-dark quiz-sketch" viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M10 34 Q10 14 30 14 Q50 14 50 34 L50 36 L10 36 Z"/>
-        <path d="M18 22 L18 30 M26 18 L26 30 M34 18 L34 30"/>
-        <path d="M16 36 Q16 46 24 48 M44 36 Q44 46 36 48"/>
+        <path d="M20 30 L44 30 L44 50 L20 50 Z"/>
+        <path d="M26 30 V22 A6 6 0 0 1 38 22 V30"/>
+        <circle cx="32" cy="38" r="3"/>
+        <path d="M32 41 L32 45"/>
       </svg>
     </div>
 
     <div class="quiz-grid">
       <div>
         <div class="q-group">
-          <label class="q-label">Child's height</label>
-          <p class="q-hint">Assumes a starting age of 5 and up.</p>
+          <label class="q-label">Commute distance (one-way)</label>
           <div class="range-row">
-            <input type="range" id="height" min="100" max="145" value="112" step="1">
-            <span class="range-out" id="height-out">112 cm</span>
+            <input type="range" id="distance" min="1" max="40" value="8" step="1">
+            <span class="range-out" id="distance-out">8 km</span>
           </div>
-          <div class="range-ends"><span>~5 yrs old</span><span>~10 yrs old</span></div>
+          <div class="range-ends"><span>~1 km</span><span>40+ km</span></div>
         </div>
 
         <div class="q-group">
-          <label class="q-label">Riding experience</label>
+          <label class="q-label">Power preference</label>
           <div class="opt-row">
-            <button type="button" class="opt" data-group="exp" data-value="none">Never ridden</button>
-            <button type="button" class="opt" data-group="exp" data-value="balance">Balance bike</button>
-            <button type="button" class="opt" data-group="exp" data-value="training">Training wheels</button>
-            <button type="button" class="opt" data-group="exp" data-value="confident">Confident, no training wheels</button>
-          </div>
-        </div>
-
-        <div class="q-group">
-          <label class="q-label">Where will they ride?</label>
-          <div class="opt-row">
-            <button type="button" class="opt" data-group="terrain" data-value="pavement">Pavement / driveway</button>
-            <button type="button" class="opt" data-group="terrain" data-value="road_gravel">Road and gravel</button>
-            <button type="button" class="opt" data-group="terrain" data-value="park">Neighborhood paths</button>
-            <button type="button" class="opt" data-group="terrain" data-value="trail_road_gravel">Trail, road and gravel</button>
-            <button type="button" class="opt" data-group="terrain" data-value="trail">Light dirt trails</button>
+            <button type="button" class="opt" data-group="power" data-value="pedal_only">Pedal only</button>
+            <button type="button" class="opt" data-group="power" data-value="open">Open to e-assist</button>
+            <button type="button" class="opt" data-group="power" data-value="want_ebike">Want e-assist</button>
           </div>
         </div>
 
         <div class="q-group">
-          <label class="q-label">Brake preference</label>
+          <label class="q-label">What's your route like?</label>
           <div class="opt-row">
-            <button type="button" class="opt" data-group="brake" data-value="coaster">Coaster</button>
-            <button type="button" class="opt" data-group="brake" data-value="hand">Hand brakes</button>
-            <button type="button" class="opt" data-group="brake" data-value="either">No preference</button>
+            <button type="button" class="opt" data-group="route" data-value="city_streets">City streets &amp; bike lanes</button>
+            <button type="button" class="opt" data-group="route" data-value="mixed_paths">Mixed paved &amp; gravel paths</button>
+            <button type="button" class="opt" data-group="route" data-value="long_flat">Long, flat roads</button>
+            <button type="button" class="opt" data-group="route" data-value="hilly_assist">Hilly — could use assist</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">What do you need to carry?</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="cargo" data-value="none">Just me</button>
+            <button type="button" class="opt" data-group="cargo" data-value="light">Backpack or light bag</button>
+            <button type="button" class="opt" data-group="cargo" data-value="rack">Rack or panniers</button>
+            <button type="button" class="opt" data-group="cargo" data-value="heavy">Heavy loads (groceries, gear)</button>
           </div>
         </div>
 
         <div class="q-group">
           <label class="q-label">Budget</label>
           <div class="range-row">
-            <input type="range" id="budget" min="80" max="600" value="250" step="10">
-            <span class="range-out" id="budget-out">$250</span>
+            <input type="range" id="budget" min="300" max="3000" value="900" step="50">
+            <span class="range-out" id="budget-out">$900</span>
           </div>
         </div>
 
@@ -220,19 +222,19 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">How much does "grows with them" matter?</label>
+          <label class="q-label">How much does portability/storage matter?</label>
           <div class="range-row">
-            <input type="range" id="growth" min="0" max="10" value="6" step="1">
-            <span class="range-out" id="growth-out" style="min-width:110px;">Somewhat</span>
+            <input type="range" id="portability" min="0" max="10" value="5" step="1">
+            <span class="range-out" id="portability-out" style="min-width:110px;">Somewhat</span>
           </div>
         </div>
 
         <button type="button" class="submit-btn" id="submit">See recommendations</button>
-        <p class="err" id="err">Pick an experience level, terrain, and brake preference first.</p>
+        <p class="err" id="err">Pick a power preference, route, and cargo need first.</p>
       </div>
 
       <div>
-        <div id="placeholder" class="placeholder-note">Your top three matches will appear here, ranked with reasons — including how many years the bike should last before they outgrow it.</div>
+        <div id="placeholder" class="placeholder-note">Your top three matches will appear here, ranked with reasons — including comfortable commute distance and cargo capacity.</div>
         <div class="results" id="results" tabindex="-1" aria-live="polite" style="display:none;"></div>
       </div>
     </div>
@@ -243,15 +245,14 @@
   <div class="wrap">
     <div class="fig-tag"><span>Fig. 004</span><span class="chip-div"></span><span>Why fit matters</span></div>
     <svg class="sketch-icon stat-sketch" viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M32 50 L32 20"/>
-      <path d="M24 28 L32 18 L40 28"/>
-      <path d="M32 36 Q41 32 38 23 Q30 27 32 36 Z"/>
+      <circle cx="32" cy="32" r="18"/>
+      <path d="M32 32 L32 20 M32 32 L42 36"/>
     </svg>
     <div class="stat-figure">
-      <span class="num">3.9</span>
-      <span class="stat-note">worth getting right</span>
+      <span class="num">5x</span>
+      <span class="stat-note">worth the fit</span>
     </div>
-    <p class="cap">average years a well-chosen bike lasts a growing kid, versus 1–2 for a bike picked on looks or price alone.</p>
+    <p class="cap">more likely a commuter bike gets ridden every day — instead of parked in the garage by week two — when it's actually sized right.</p>
   </div>
 </section>
 
@@ -260,22 +261,22 @@
     <div class="fig-tag"><span>Fig. 005</span><span class="chip-div"></span><span>Every brand</span></div>
     <p>Every brand is eligible for a match — we don't sell any of them</p>
     <div class="trust-row">
-      <span>Woom</span><span>Trek</span><span>Cleary</span><span>Norco</span><span>Islabikes</span><span>Specialized</span><span>Frog Bikes</span><span>Huffy</span><span>Schwinn</span><span>Decathlon</span><span>Supercycle</span>
+      <span>Trek</span><span>Specialized</span><span>Cannondale</span><span>Giant</span><span>Priority</span><span>Brompton</span><span>Tern</span><span>Rad Power Bikes</span><span>Aventon</span><span>Ride1Up</span><span>Marin</span><span>Surly</span><span>Norco</span><span>Opus</span><span>State Bicycle Co.</span>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div class="logo">
+    <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
       <svg width="22" height="16" viewBox="0 0 44 28" aria-hidden="true">
         <circle cx="9" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
         <circle cx="35" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
         <path d="M9 19 L20 8 L28 8 L35 19 M20 8 L16 19" fill="none" stroke="var(--blueprint)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       VeloMatch
-    </div>
-    <p>A smarter way to find a kid's first bike.</p>
+    </a>
+    <p>A smarter way to find a bike that fits your ride.</p>
     <button type="button" class="letter-trigger" id="openLetter">Why we built this</button>
   </div>
 </footer>
@@ -298,22 +299,21 @@
 </div>
 
 <script>
-// ---- LIVE DATA SOURCE ----
-// Paste your published Google Sheet CSV link below (File > Share > Publish to web > CSV).
-// Add an "image" column with a direct photo URL per row to show real bike photos —
-// rows without one fall back to a sketch placeholder.
-const SHEET_CSV_URL = "PASTE_YOUR_PUBLISHED_GOOGLE_SHEET_CSV_LINK_HERE";
-
-// The real catalog lives in data/kids-bikes.json — edit that file to add/update bikes.
+// The real catalog lives in data/commute-bikes.json — edit that file to add/update bikes.
 // This is only an emergency fallback for the rare case the fetch below fails
 // (e.g. the page opened as a local file:// instead of through a real server).
 const emergencyFallbackBikes = [
-  {name:"Cleary Gecko", brand:"Cleary", origin:"USA", wheel:16, minH:98, maxH:117, price:280, brake:"coaster", type:"pavement", exp:["balance","training"], seatRange:9, barAdjust:false, trainWheel:false, resale:"medium", image:""},
-  {name:"Woom 3", brand:"Woom", origin:"Austria", wheel:16, minH:103, maxH:120, price:290, brake:"hand", type:"park", exp:["confident","training"], seatRange:9, barAdjust:true, trainWheel:false, resale:"high", image:""},
-  {name:"Trek Precaliber 20", brand:"Trek", origin:"USA", wheel:20, minH:115, maxH:135, price:260, brake:"hand", type:"trail", exp:["confident","training"], seatRange:9, barAdjust:false, trainWheel:false, resale:"medium", image:""}
+  {name:"Trek FX 2 Disc", brand:"Trek", origin:"USA", wheel:700, minH:160, maxH:180, price:750, gearing:"derailleur", type:"city_streets", powerType:"pedal", cargoCapacity:1, weight:11.5, maxComfortDistance:15, image:""},
+  {name:"Rad Power RadCity 5 Plus", brand:"Rad Power Bikes", origin:"USA", wheel:660, minH:155, maxH:193, price:1999, gearing:"derailleur", type:"hilly_assist", powerType:"ebike", cargoCapacity:2, weight:29, maxComfortDistance:40, image:""},
+  {name:"Brompton C Line", brand:"Brompton", origin:"UK", wheel:406, minH:155, maxH:195, price:1650, gearing:"internal", type:"mixed_paths", powerType:"pedal", cargoCapacity:1, weight:12.3, maxComfortDistance:12, image:""}
 ];
 
 let bikes = [];
+
+// ---- LIVE DATA SOURCE (optional) ----
+// Paste a published Google Sheet CSV link below to override data/commute-bikes.json
+// for non-technical live edits, without needing a redeploy.
+const SHEET_CSV_URL = "PASTE_YOUR_PUBLISHED_GOOGLE_SHEET_CSV_LINK_HERE";
 
 function parseSheetRow(row){
   return {
@@ -324,13 +324,12 @@ function parseSheetRow(row){
     minH: Number(row.minH),
     maxH: Number(row.maxH),
     price: Number(row.price),
-    brake: row.brake,
+    gearing: row.gearing,
     type: row.type,
-    exp: (row.exp || "").split(";").map(s => s.trim()).filter(Boolean),
-    seatRange: Number(row.seatRange),
-    barAdjust: String(row.barAdjust).trim().toUpperCase() === "TRUE",
-    trainWheel: String(row.trainWheel).trim().toUpperCase() === "TRUE",
-    resale: row.resale,
+    powerType: row.powerType,
+    cargoCapacity: Number(row.cargoCapacity),
+    weight: Number(row.weight),
+    maxComfortDistance: Number(row.maxComfortDistance),
     image: row.image || ""
   };
 }
@@ -339,19 +338,25 @@ function escapeHtml(str){
   return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
+const resultPlaceholderMarkup = `
+  <svg class="sketch-icon result-placeholder" viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="16" cy="42" r="12"/>
+    <circle cx="48" cy="42" r="12"/>
+    <path d="M16 42 L30 20 L40 20 M30 20 L22 42 M40 20 L48 42 M30 20 L34 14 L40 14"/>
+  </svg>
+`;
+
 async function loadBikeData(){
   try {
-    const res = await fetch('data/kids-bikes.json');
+    const res = await fetch('data/commute-bikes.json');
     const data = await res.json();
     bikes = data.bikes;
-    console.log("VeloMatch: loaded " + bikes.length + " bikes from data/kids-bikes.json.");
+    console.log("VeloMatch: loaded " + bikes.length + " bikes from data/commute-bikes.json.");
   } catch (err) {
     bikes = emergencyFallbackBikes;
-    console.warn("VeloMatch: couldn't load data/kids-bikes.json, using emergency fallback.", err);
+    console.warn("VeloMatch: couldn't load data/commute-bikes.json, using emergency fallback.", err);
   }
 
-  // Optional: a published Google Sheet CSV can override the JSON catalog above
-  // for non-technical live edits, without needing a redeploy.
   if (!SHEET_CSV_URL || SHEET_CSV_URL.indexOf("PASTE_YOUR") === 0) return;
   Papa.parse(SHEET_CSV_URL, {
     download: true,
@@ -365,37 +370,28 @@ async function loadBikeData(){
       }
     },
     error: function(err){
-      console.warn("VeloMatch: couldn't load the live sheet override, keeping data/kids-bikes.json.", err);
+      console.warn("VeloMatch: couldn't load the live sheet override, keeping data/commute-bikes.json.", err);
     }
   });
 }
 loadBikeData();
 
-const state = {exp:null, terrain:null, brake:null, origin:null};
-const growthLabels = ["Not important","Not important","A little","A little","Somewhat","Somewhat","Somewhat","Important","Important","Very important","Very important"];
+const state = {power:null, route:null, cargo:null, origin:null};
+const importanceLabels = ["Not important","Not important","A little","A little","Somewhat","Somewhat","Somewhat","Important","Important","Very important","Very important"];
 
-// Bikes are only tagged pavement/park/trail. The newer road-and-gravel options sit
-// between those on a single surface spectrum, so we score by distance along it
-// rather than requiring an exact match.
-const terrainPosition = {pavement:0, road_gravel:1, park:2, trail_road_gravel:3, trail:4};
+// Route options sit on one approximate spectrum so a bike built for one route
+// still scores reasonably for a neighboring one, instead of an all-or-nothing match.
+const routePosition = {city_streets:0, mixed_paths:1, long_flat:2, hilly_assist:3};
+const cargoPosition = {none:0, light:1, rack:2, heavy:3};
 
-// Shown when a bike has no photo yet, or its photo URL fails to load.
-const resultPlaceholderMarkup = `
-  <svg class="sketch-icon result-placeholder" viewBox="0 0 64 64" aria-hidden="true">
-    <circle cx="16" cy="42" r="12"/>
-    <circle cx="48" cy="42" r="12"/>
-    <path d="M16 42 L30 20 L40 20 M30 20 L22 42 M40 20 L48 42 M30 20 L34 14 L40 14"/>
-  </svg>
-`;
-
-document.getElementById('height').addEventListener('input', e => {
-  document.getElementById('height-out').textContent = e.target.value + ' cm';
+document.getElementById('distance').addEventListener('input', e => {
+  document.getElementById('distance-out').textContent = e.target.value + ' km';
 });
 document.getElementById('budget').addEventListener('input', e => {
   document.getElementById('budget-out').textContent = '$' + e.target.value;
 });
-document.getElementById('growth').addEventListener('input', e => {
-  document.getElementById('growth-out').textContent = growthLabels[Number(e.target.value)];
+document.getElementById('portability').addEventListener('input', e => {
+  document.getElementById('portability-out').textContent = importanceLabels[Number(e.target.value)];
 });
 
 document.querySelectorAll('.opt').forEach(btn => {
@@ -407,10 +403,14 @@ document.querySelectorAll('.opt').forEach(btn => {
   });
 });
 
+function cargoLabel(n){
+  return n >= 3 ? 'heavy-duty' : n === 2 ? 'rack & pannier' : n === 1 ? 'light' : 'no';
+}
+
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
-  if (!state.exp || !state.terrain || !state.brake) {
-    err.textContent = "Pick an experience level, terrain, and brake preference first.";
+  if (!state.power || !state.route || !state.cargo) {
+    err.textContent = "Pick a power preference, route, and cargo need first.";
     err.style.display = 'block';
     return;
   }
@@ -421,34 +421,39 @@ document.getElementById('submit').addEventListener('click', () => {
   }
   err.style.display = 'none';
 
-  const height = Number(document.getElementById('height').value);
+  const distance = Number(document.getElementById('distance').value);
   const budget = Number(document.getElementById('budget').value);
-  const growthWeight = Number(document.getElementById('growth').value) / 10;
+  const portabilityWeight = Number(document.getElementById('portability').value) / 10;
   const originPref = state.origin || 'none';
+  const neededCargo = cargoPosition[state.cargo];
 
   const scored = bikes.map(b => {
     let score = 0;
-    if (height >= b.minH && height <= b.maxH) score += 35;
-    else score -= Math.min(40, Math.abs(height - (b.minH+b.maxH)/2) * 0.8);
 
-    if (b.exp.includes(state.exp)) score += 20;
-    if (state.brake === 'either' || state.brake === b.brake) score += 10;
-    else score -= 5;
-    if (state.exp === 'none' && b.brake === 'hand') score -= 4;
+    const routeGap = Math.abs(routePosition[state.route] - routePosition[b.type]);
+    score += Math.max(0, 15 - routeGap * 5);
 
-    const terrainGap = Math.abs(terrainPosition[state.terrain] - terrainPosition[b.type]);
-    score += Math.max(0, 15 - terrainGap * 5);
+    // Power preference is close to a hard requirement for most riders — a
+    // stated "want e-assist" or "pedal only" should rarely lose to budget math.
+    if (state.power === 'pedal_only') score += b.powerType === 'pedal' ? 16 : -14;
+    else if (state.power === 'want_ebike') score += b.powerType === 'ebike' ? 16 : -14;
+    else score += 6;
+
+    if (b.cargoCapacity >= neededCargo) score += 12;
+    else score -= (neededCargo - b.cargoCapacity) * 6;
+
+    if (distance <= b.maxComfortDistance) score += 20;
+    else score -= (distance - b.maxComfortDistance) * 1.5;
 
     if (b.price <= budget) score += 8;
-    else score -= (b.price - budget) * 0.04;
+    else score -= (b.price - budget) * 0.02;
 
-    const growthRaw = (b.seatRange/11)*10 + (b.barAdjust?5:0) + (b.trainWheel?3:0);
-    score += growthRaw * growthWeight * 1.3;
+    const portabilityRaw = Math.max(0, 25 - b.weight);
+    score += portabilityRaw * portabilityWeight * 0.9;
 
     if (originPref === 'canadian' && b.origin === 'Canada') score += 6;
 
-    const years = Math.max(1, Math.round((b.seatRange/2 + (b.barAdjust?0.5:0)) * 10) / 10);
-    return {...b, score, years};
+    return {...b, score};
   }).sort((a,b) => b.score - a.score).slice(0,3);
 
   document.getElementById('placeholder').style.display = 'none';
@@ -464,12 +469,10 @@ document.getElementById('submit').addEventListener('click', () => {
         <span class="result-name">${escapeHtml(b.name)}</span>
         <span class="result-price">$${b.price}</span>
       </div>
-      <p class="result-meta">${b.wheel}in wheels · fits ${b.minH}–${b.maxH}cm · ${b.brake} brakes · ${b.origin}<br>Grows with them for roughly ${b.years} years</p>
+      <p class="result-meta">${b.wheel}mm wheels · fits ${b.minH}–${b.maxH}cm · ${b.gearing} gearing · ${b.origin}<br>Comfortable up to ${b.maxComfortDistance}km one-way · ${cargoLabel(b.cargoCapacity)} cargo capacity</p>
     </div>
   `).join('');
 
-  // A bike photo that fails to load (bad URL, taken-down image) falls back to
-  // the same sketch placeholder used when no image was supplied at all.
   results.querySelectorAll('.result-media img').forEach(img => {
     img.addEventListener('error', () => {
       img.closest('.result-media').innerHTML = resultPlaceholderMarkup;
