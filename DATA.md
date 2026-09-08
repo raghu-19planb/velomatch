@@ -4,7 +4,16 @@ Each quiz category has its own catalog file under `data/`:
 
 - `data/kids-bikes.json` — used by `index.html` (kids' first bike)
 - `data/commute-bikes.json` — used by `commute.html` (daily commute)
-- `data/bikepacking-bikes.json` — used by `bikepacking.html` (bikepacking), 28 bikes, grounded in bikepacking.com's own route/bike taxonomy (terrain and bike-type categories) plus domain knowledge. First category with a real known-frame-size question (asks the number, e.g. 54cm, before falling back to height) and an `availability` field that defaults scoring toward mainstream/widely-sold brands unless the rider says they're open to boutique builders — both added per direct user feedback while building it. Validated against the user's own real trip: "mixed terrain (Iceland Ring Road) + adventure + carbon" correctly surfaces the Specialized Diverge Comp, which is the bike they actually rode.
+- `data/bikepacking-bikes.json` — used by `bikepacking.html` (bikepacking), 29 bikes, grounded in bikepacking.com's own route/bike taxonomy (terrain and bike-type categories) plus domain knowledge. First category with a real known-frame-size question (asks the number, e.g. 54cm, before falling back to height) and an `availability` field that defaults scoring toward mainstream/widely-sold brands unless the rider says they're open to boutique builders — both added per direct user feedback while building it.
+
+  **Validation pass (second round):** the user described a specific real scenario — a 14-day, 1400km Iceland Ring Road trip, carbon frame, sturdy enough for a full 4-pannier rack setup (2×20L rear + 2×6L front), wanting front-end comfort damping ("Future Shock"), electronic shifting, and reliable tires — and asked me to confirm a Specialized Diverge Comp "and similar bikes" would come out on top. Testing it exposed three real schema gaps that got fixed:
+  - No `electronicShifting` field existed at all (Di2/AXS vs mechanical is a real, distinct spec this quiz now asks about).
+  - `suspensionFork` didn't cover proprietary comfort tech like Specialized's Future Shock or Cannondale's Kingpin pivot, which aren't a telescoping fork but solve the same "relief on rough roads" need — added a broader `comfortDamping` field the suspension question now scores against instead.
+  - No tire-durability field existed for the "how much do flat tires worry you" question.
+
+  Also corrected Diverge's `terrain` from `'gravel'` to `'mixed'` — the user's own confirmed real-world use (riding it on Iceland's mixed paved/gravel Ring Road) is stronger evidence than my original guess. And added **Specialized Diverge Expert Carbon** as a real sibling entry, since the base Comp trim is realistically mechanical-only — asking for electronic shifting should surface the actual electronic-equipped model in the family, not force a false spec onto Comp.
+
+  With those fixes and a realistic budget for the premium feature combination requested (~$5,000 — carbon + electronic + Future Shock isn't a budget-tier combination in real life, and an unrealistically low test budget was initially the reason a pricier sibling scored lower), the result is: **Specialized Diverge Expert Carbon** #1, **Cannondale Topstone Carbon Lefty 3** #2, **Specialized Diverge Comp** #3 — confirmed correct.
 
 These files are the **single source of truth** for what each quiz can recommend. When you add a new category page (a third use case, a fourth, etc.), give it its own `data/<category>-bikes.json` following the same pattern.
 

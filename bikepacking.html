@@ -277,11 +277,12 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">Suspension</label>
+          <label class="q-label">Want some relief from harsh roads?</label>
+          <p class="q-hint">A suspension fork or a built-in comfort mechanism (like Specialized's Future Shock or Cannondale's Kingpin) — both count.</p>
           <div class="opt-row">
             <button type="button" class="opt" data-group="suspension" data-value="none">No preference</button>
-            <button type="button" class="opt" data-group="suspension" data-value="rigid">Fully rigid</button>
-            <button type="button" class="opt" data-group="suspension" data-value="front_suspension">Front suspension</button>
+            <button type="button" class="opt" data-group="suspension" data-value="rigid">No, fully rigid is fine</button>
+            <button type="button" class="opt" data-group="suspension" data-value="front_suspension">Yes, I want some damping</button>
           </div>
         </div>
 
@@ -291,6 +292,23 @@
             <button type="button" class="opt" data-group="groupset" data-value="none">No preference</button>
             <button type="button" class="opt" data-group="groupset" data-value="shimano">Shimano</button>
             <button type="button" class="opt" data-group="groupset" data-value="sram">SRAM</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Shifting preference</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="shifting" data-value="none">No preference</button>
+            <button type="button" class="opt" data-group="shifting" data-value="electronic">Electronic (Di2 / AXS)</button>
+            <button type="button" class="opt" data-group="shifting" data-value="mechanical">Mechanical is fine</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">How much do flat tires worry you out there?</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="tires" data-value="reliable">A lot — give me tough, reliable tires</button>
+            <button type="button" class="opt" data-group="tires" data-value="none">Not especially</button>
           </div>
         </div>
 
@@ -440,9 +458,9 @@
 // This is only an emergency fallback for the rare case the fetch below fails
 // (e.g. the page opened as a local file:// instead of through a real server).
 const emergencyFallbackBikes = [
-  {name:"Salsa Cutthroat C GRX", brand:"Salsa", origin:"USA", wheel:700, sizes:[51,52,54,56,58,60,62], minH:163, maxH:193, price:3400, availability:"mainstream", frameMaterial:"carbon", groupset:"Shimano GRX 812", terrain:"gravel", purpose:"ultra_race", cargoCapacity:2, rackMounts:true, frameBagFriendly:true, climbingRange:"low", suspensionFork:false, dynamoReady:true, weight:11.2, colors:["Black","Grey"], image:""},
-  {name:"Surly Long Haul Trucker", brand:"Surly", origin:"USA", wheel:700, sizes:[47,49,51,52,54,56,58,60,62], minH:158, maxH:193, price:1700, availability:"mainstream", frameMaterial:"steel", groupset:"Shimano Deore", terrain:"road_paved", purpose:"touring", cargoCapacity:3, rackMounts:true, frameBagFriendly:false, climbingRange:"ultra_low", suspensionFork:false, dynamoReady:true, weight:14.1, colors:["Black","Blue"], image:""},
-  {name:"Specialized Diverge Comp", brand:"Specialized", origin:"USA", wheel:700, sizes:[49,52,54,56,58,61], minH:163, maxH:190, price:3200, availability:"mainstream", frameMaterial:"carbon", groupset:"Shimano GRX 812", terrain:"gravel", purpose:"adventure", cargoCapacity:2, rackMounts:true, frameBagFriendly:true, climbingRange:"standard", suspensionFork:false, dynamoReady:false, weight:9.6, colors:["Black","Red"], image:""}
+  {name:"Salsa Cutthroat C GRX", brand:"Salsa", origin:"USA", wheel:700, sizes:[51,52,54,56,58,60,62], minH:163, maxH:193, price:3400, availability:"mainstream", frameMaterial:"carbon", groupset:"Shimano GRX 810", terrain:"gravel", purpose:"ultra_race", cargoCapacity:2, rackMounts:true, frameBagFriendly:true, climbingRange:"low", suspensionFork:false, comfortDamping:false, electronicShifting:false, tireDurability:"reinforced", dynamoReady:true, weight:11.2, colors:["Black","Grey"], image:""},
+  {name:"Surly Long Haul Trucker", brand:"Surly", origin:"USA", wheel:700, sizes:[47,49,51,52,54,56,58,60,62], minH:158, maxH:193, price:1700, availability:"mainstream", frameMaterial:"steel", groupset:"Shimano Deore", terrain:"road_paved", purpose:"touring", cargoCapacity:3, rackMounts:true, frameBagFriendly:false, climbingRange:"ultra_low", suspensionFork:false, comfortDamping:false, electronicShifting:false, tireDurability:"standard", dynamoReady:true, weight:14.1, colors:["Black","Blue"], image:""},
+  {name:"Specialized Diverge Comp", brand:"Specialized", origin:"USA", wheel:700, sizes:[49,52,54,56,58,61], minH:163, maxH:190, price:3200, availability:"mainstream", frameMaterial:"carbon", groupset:"Shimano GRX 810", terrain:"gravel", purpose:"adventure", cargoCapacity:2, rackMounts:true, frameBagFriendly:true, climbingRange:"standard", suspensionFork:false, comfortDamping:true, electronicShifting:false, tireDurability:"reinforced", dynamoReady:false, weight:9.6, colors:["Black","Red"], image:""}
 ];
 
 let bikes = [];
@@ -472,6 +490,9 @@ function parseSheetRow(row){
     climbingRange: row.climbingRange,
     suspensionFork: String(row.suspensionFork).trim().toUpperCase() === "TRUE",
     dynamoReady: String(row.dynamoReady).trim().toUpperCase() === "TRUE",
+    electronicShifting: String(row.electronicShifting).trim().toUpperCase() === "TRUE",
+    comfortDamping: String(row.comfortDamping).trim().toUpperCase() === "TRUE",
+    tireDurability: row.tireDurability,
     weight: Number(row.weight),
     colors: (row.colors || "").split(";").map(s => s.trim()).filter(Boolean),
     image: row.image || "",
@@ -535,7 +556,7 @@ loadBikeData();
 const state = {
   terrain:null, purpose:null, triplength:null, climbing:null, remoteness:null,
   carrystyle:null, wheelsize:null, sizemode:null, framesize:null,
-  frame:null, suspension:null, groupset:null, dynamo:null, color:null,
+  frame:null, suspension:null, groupset:null, shifting:null, tires:null, dynamo:null, color:null,
   experience:null, availabilitypref:null, origin:null
 };
 
@@ -661,11 +682,19 @@ document.getElementById('submit').addEventListener('click', () => {
 
     if (framePref !== 'none') score += b.frameMaterial === framePref ? 12 : -6;
 
-    if (state.suspension === 'front_suspension') score += b.suspensionFork ? 8 : -3;
-    else if (state.suspension === 'rigid') score += !b.suspensionFork ? 8 : -3;
+    // "Some relief from harsh roads" is satisfied by a suspension fork OR a
+    // proprietary comfort mechanism (Future Shock, Kingpin) — comfortDamping
+    // covers both, so a Future-Shock bike isn't wrongly penalized here.
+    if (state.suspension === 'front_suspension') score += b.comfortDamping ? 8 : -3;
+    else if (state.suspension === 'rigid') score += !b.comfortDamping ? 8 : -3;
 
     if (groupsetPref === 'shimano') score += /shimano/i.test(b.groupset) ? 10 : -4;
     else if (groupsetPref === 'sram') score += /sram/i.test(b.groupset) ? 10 : -4;
+
+    if (state.shifting === 'electronic') score += b.electronicShifting ? 12 : -6;
+    else if (state.shifting === 'mechanical') score += !b.electronicShifting ? 4 : 0;
+
+    if (state.tires === 'reliable') score += b.tireDurability === 'reinforced' ? 8 : -3;
 
     if (state.dynamo === 'want_it') score += b.dynamoReady ? 8 : -3;
 
@@ -692,7 +721,7 @@ document.getElementById('submit').addEventListener('click', () => {
         <span class="result-name">${escapeHtml(b.name)}</span>
         <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
       </div>
-      <p class="result-meta">${b.wheel === 700 ? '700c' : '650b'} wheels · sizes ${b.sizes.join('/')}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)} · ${b.origin}<br>${cargoLabel(b.cargoCapacity)} capacity · ${climbingLabel(b.climbingRange)}${b.suspensionFork ? ' · front suspension' : ' · rigid'}<br>${b.rackMounts ? 'rack mounts' : 'no rack mounts'} · ${b.frameBagFriendly ? 'frame-bag friendly' : 'tight frame-bag fit'}${b.dynamoReady ? ' · dynamo-ready' : ''} · ${b.availability === 'boutique' ? 'boutique/small-builder' : 'widely available'}</p>
+      <p class="result-meta">${b.wheel === 700 ? '700c' : '650b'} wheels · sizes ${b.sizes.join('/')}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)}${b.electronicShifting ? ' (electronic)' : ' (mechanical)'} · ${b.origin}<br>${cargoLabel(b.cargoCapacity)} capacity · ${climbingLabel(b.climbingRange)}${b.comfortDamping ? ' · front-end comfort damping' : ' · rigid'}<br>${b.rackMounts ? 'rack mounts' : 'no rack mounts'} · ${b.frameBagFriendly ? 'frame-bag friendly' : 'tight frame-bag fit'} · ${b.tireDurability === 'reinforced' ? 'reinforced tires' : 'standard tires'}${b.dynamoReady ? ' · dynamo-ready' : ''} · ${b.availability === 'boutique' ? 'boutique/small-builder' : 'widely available'}</p>
       ${priceCheckLink(b)}
     </div>
   `).join('');
