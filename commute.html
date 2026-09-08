@@ -229,6 +229,39 @@
           </div>
         </div>
 
+        <div class="q-group">
+          <label class="q-label">Frame material</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="frame" data-value="none">No preference</button>
+            <button type="button" class="opt" data-group="frame" data-value="aluminum">Aluminum</button>
+            <button type="button" class="opt" data-group="frame" data-value="steel">Steel</button>
+            <button type="button" class="opt" data-group="frame" data-value="carbon">Carbon</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Groupset preference</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="groupset" data-value="none">No preference</button>
+            <button type="button" class="opt" data-group="groupset" data-value="shimano">Shimano</button>
+            <button type="button" class="opt" data-group="groupset" data-value="sram">SRAM</button>
+            <button type="button" class="opt" data-group="groupset" data-value="low_maintenance">Low-maintenance (belt/internal hub)</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Preferred color</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="color" data-value="none">No preference</button>
+            <button type="button" class="opt" data-group="color" data-value="Black">Black</button>
+            <button type="button" class="opt" data-group="color" data-value="Silver">Silver</button>
+            <button type="button" class="opt" data-group="color" data-value="Blue">Blue</button>
+            <button type="button" class="opt" data-group="color" data-value="Red">Red</button>
+            <button type="button" class="opt" data-group="color" data-value="Green">Green</button>
+            <button type="button" class="opt" data-group="color" data-value="Charcoal">Charcoal</button>
+          </div>
+        </div>
+
         <button type="button" class="submit-btn" id="submit">See recommendations</button>
         <p class="err" id="err">Pick a power preference, route, and cargo need first.</p>
       </div>
@@ -320,9 +353,9 @@
 // This is only an emergency fallback for the rare case the fetch below fails
 // (e.g. the page opened as a local file:// instead of through a real server).
 const emergencyFallbackBikes = [
-  {name:"Trek FX 2 Disc", brand:"Trek", origin:"USA", wheel:700, minH:160, maxH:180, price:750, gearing:"derailleur", type:"city_streets", powerType:"pedal", cargoCapacity:1, weight:11.5, maxComfortDistance:15, image:""},
-  {name:"Rad Power RadCity 5 Plus", brand:"Rad Power Bikes", origin:"USA", wheel:660, minH:155, maxH:193, price:1999, gearing:"derailleur", type:"hilly_assist", powerType:"ebike", cargoCapacity:2, weight:29, maxComfortDistance:40, image:""},
-  {name:"Brompton C Line", brand:"Brompton", origin:"UK", wheel:406, minH:155, maxH:195, price:1650, gearing:"internal", type:"mixed_paths", powerType:"pedal", cargoCapacity:1, weight:12.3, maxComfortDistance:12, image:""}
+  {name:"Trek FX 2 Disc", brand:"Trek", origin:"USA", wheel:700, minH:160, maxH:180, price:750, gearing:"derailleur", type:"city_streets", powerType:"pedal", cargoCapacity:1, weight:11.5, foldable:false, maxComfortDistance:15, frameMaterial:"aluminum", groupset:"Shimano Altus", colors:["Black","Blue","Silver"], image:""},
+  {name:"Rad Power RadCity 5 Plus", brand:"Rad Power Bikes", origin:"USA", wheel:660, minH:155, maxH:193, price:1999, gearing:"derailleur", type:"hilly_assist", powerType:"ebike", cargoCapacity:2, weight:29, foldable:false, maxComfortDistance:40, frameMaterial:"aluminum", groupset:"Shimano Tourney", colors:["Black","Silver"], image:""},
+  {name:"Brompton C Line", brand:"Brompton", origin:"UK", wheel:406, minH:155, maxH:195, price:1650, gearing:"internal", type:"mixed_paths", powerType:"pedal", cargoCapacity:1, weight:12.3, foldable:true, maxComfortDistance:12, frameMaterial:"steel", groupset:"Shimano Nexus 3", colors:["Black","Red","Green"], image:""}
 ];
 
 let bikes = [];
@@ -346,7 +379,11 @@ function parseSheetRow(row){
     powerType: row.powerType,
     cargoCapacity: Number(row.cargoCapacity),
     weight: Number(row.weight),
+    foldable: String(row.foldable).trim().toUpperCase() === "TRUE",
     maxComfortDistance: Number(row.maxComfortDistance),
+    frameMaterial: row.frameMaterial,
+    groupset: row.groupset,
+    colors: (row.colors || "").split(";").map(s => s.trim()).filter(Boolean),
     image: row.image || ""
   };
 }
@@ -393,7 +430,7 @@ async function loadBikeData(){
 }
 loadBikeData();
 
-const state = {power:null, route:null, cargo:null, origin:null};
+const state = {power:null, route:null, cargo:null, origin:null, frame:null, groupset:null, color:null};
 const importanceLabels = ["Not important","Not important","A little","A little","Somewhat","Somewhat","Somewhat","Important","Important","Very important","Very important"];
 
 // Route options sit on one approximate spectrum so a bike built for one route
@@ -456,8 +493,11 @@ document.getElementById('submit').addEventListener('click', () => {
     else if (state.power === 'want_ebike') score += b.powerType === 'ebike' ? 16 : -14;
     else score += 6;
 
+    // A bike that physically can't carry what you need (no rack mounts for
+    // "heavy loads") should rarely win just for being cheap or light — the
+    // gap is weighted heavily, not as a mild tiebreaker.
     if (b.cargoCapacity >= neededCargo) score += 12;
-    else score -= (neededCargo - b.cargoCapacity) * 6;
+    else score -= (neededCargo - b.cargoCapacity) * 12;
 
     if (distance <= b.maxComfortDistance) score += 20;
     else score -= (distance - b.maxComfortDistance) * 1.5;
@@ -465,10 +505,30 @@ document.getElementById('submit').addEventListener('click', () => {
     if (b.price <= budget) score += 8;
     else score -= (b.price - budget) * 0.02;
 
-    const portabilityRaw = Math.max(0, 25 - b.weight);
+    // Folding matters more than a kilogram or two for actually carrying a
+    // bike upstairs or fitting it in a closet — weight alone underrates it.
+    const portabilityRaw = Math.max(0, 25 - b.weight) + (b.foldable ? 15 : 0);
     score += portabilityRaw * portabilityWeight * 0.9;
 
     if (originPref === 'canadian' && b.origin === 'Canada') score += 6;
+
+    // Frame material changes ride feel and weight enough to matter, but it's
+    // a preference to weigh, not a requirement — no bike gets excluded for it.
+    const framePref = state.frame || 'none';
+    if (framePref !== 'none') score += b.frameMaterial === framePref ? 12 : -6;
+
+    // Groupset preference: match by manufacturer keyword, or by drivetrain
+    // structure for the "low-maintenance" option (belt/internal-hub bikes,
+    // regardless of which brand's internal hub they use).
+    const groupsetPref = state.groupset || 'none';
+    if (groupsetPref === 'shimano') score += /shimano/i.test(b.groupset) ? 10 : -4;
+    else if (groupsetPref === 'sram') score += /sram/i.test(b.groupset) ? 10 : -4;
+    else if (groupsetPref === 'low_maintenance') score += b.gearing === 'internal' ? 10 : -4;
+
+    // Color is purely cosmetic — a light tie-breaker, never worth overriding
+    // an otherwise better-fitting bike.
+    const colorPref = state.color || 'none';
+    if (colorPref !== 'none') score += b.colors.includes(colorPref) ? 6 : -2;
 
     return {...b, score};
   }).sort((a,b) => b.score - a.score).slice(0,3);
@@ -486,7 +546,7 @@ document.getElementById('submit').addEventListener('click', () => {
         <span class="result-name">${escapeHtml(b.name)}</span>
         <span class="result-price">$${b.price}</span>
       </div>
-      <p class="result-meta">${b.wheel}mm wheels · fits ${b.minH}–${b.maxH}cm · ${b.gearing} gearing · ${b.origin}<br>Comfortable up to ${b.maxComfortDistance}km one-way · ${cargoLabel(b.cargoCapacity)} cargo capacity</p>
+      <p class="result-meta">${b.wheel}mm wheels${b.foldable ? ' · folds' : ''} · fits ${b.minH}–${b.maxH}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)} · ${b.origin}<br>Comfortable up to ${b.maxComfortDistance}km one-way · ${cargoLabel(b.cargoCapacity)} cargo · ${b.colors.map(escapeHtml).join(', ')}</p>
     </div>
   `).join('');
 
@@ -541,7 +601,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
   const AMPLITUDE = 85, FREQUENCY = 0.01;
   const SPEED = 130;
   const BIKE_ROW_OFFSET = 70;
-  const BIKE_RADIUS = 14;
+  const BIKE_RADIUS = 20;
 
   let best = 0;
   try { best = Number(localStorage.getItem('velomatch_ride_best')) || 0; } catch(e){}

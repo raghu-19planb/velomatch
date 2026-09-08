@@ -33,3 +33,26 @@ Each quiz page also has a `SHEET_CSV_URL` constant near the top of its `<script>
 ## On "AI picking the right bike"
 
 Today the matching is a transparent scoring formula (in each page's `<script>` block) — not a live AI call. It's fast, free, fully explainable ("why did this bike win?" always has a traceable answer), and needs no API key or backend. The documented JSON schema above is exactly the kind of clean, structured data you'd want if you later swap in a real AI-based ranking step (e.g. an LLM call from a serverless function) — that's a bigger change (it needs somewhere to run server-side, since a static site can't safely hold an API key), so it's worth doing deliberately if/when you want it, rather than folding into this data cleanup.
+
+### How it always finds the *closest* bike, even when nothing matches perfectly
+
+Every quiz question adds or subtracts points — nothing ever excludes a bike outright. That's deliberate: real preferences conflict (someone wants a carbon frame **and** a $500 budget; someone wants heavy-cargo capacity **and** an e-bike, but the only e-bikes in stock top out at rack-and-panniers). A hard filter would return zero results in exactly those cases. Weighted scoring instead always ranks *every* bike and returns the top 3 — so the "closest available alternative" falls out of the math automatically, with no special-case code needed for the no-perfect-match scenario.
+
+The weights aren't arbitrary — they're sized by how much getting that dimension wrong actually costs the rider in practice:
+
+| Weight | Question | Why |
+|---|---|---|
+| Heaviest (~16–20 pts) | power type (pedal/e-assist), distance fit | Get these wrong and the bike is functionally unusable for the commute — not a comfort issue, a can't-do-it issue. |
+| Heavy (~12 pts/level, scales with gap) | cargo capacity | A bike with no rack mounts literally cannot carry groceries, however good it is otherwise — this used to be underweighted (see below) and let a zero-cargo bike outrank real cargo bikes. |
+| Moderate (~10–15 pts) | frame material, groupset, foldability-for-portability | Real quality/ride-feel/convenience factors, but rarely a dealbreaker on their own. |
+| Light (~6 pts, small penalty) | color, brand origin | Pure preference — should only ever break a tie, never beat a functionally-better bike. |
+
+When you add a new preference question, ask "if this is wrong, does the bike become unusable, annoying, or just not-ideal?" and weight it in that tier. That one judgment call is most of what makes the ranking feel right.
+
+### Bugs this review caught (fixed 2025 data/scoring pass)
+
+- **Cargo capacity was underweighted.** A rider who selected "heavy loads" could still get a zero-cargo-capacity bike as the #1 pick, because a modest price/weight advantage outweighed a cargo mismatch that should have been disqualifying in practice. Fixed by doubling the per-level penalty.
+- **Portability only looked at weight.** An actual folding bike (Brompton, Tern) could lose to a non-folding hybrid that was merely a kilogram lighter, even at maximum "portability matters" — but foldability is what actually determines whether a bike fits up a stairwell or in a closet. Added a `foldable` field and weighted it directly, separate from raw weight.
+- **E-bike preference was too soft.** A rider who explicitly chose "want e-assist" could still get a pedal-only bike as the top pick if it was cheaper. Fixed by roughly doubling the power-type weight.
+
+The lesson in all three: when a preference is close to a hard requirement in real life, its weight needs to be large enough that budget/weight/other soft factors can't casually overrule it. Worth re-checking with real quiz answers any time a new question or a new bike is added — a quick way is to script a handful of representative answer combinations and eyeball whether the #1 result actually makes sense for that rider.
