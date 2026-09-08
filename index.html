@@ -3,298 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VeloMatch — Find their first bike</title>
+<title>VeloMatch — Find the right bike, measured</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <div class="logo">
+    <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
       <svg width="22" height="16" viewBox="0 0 44 28" aria-hidden="true">
         <circle cx="9" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
         <circle cx="35" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
         <path d="M9 19 L20 8 L28 8 L35 19 M20 8 L16 19" fill="none" stroke="var(--blueprint)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       VeloMatch
-    </div>
+    </a>
     <div class="nav-links">
-      <a href="index.html" class="nav-link current">Kids' bikes</a>
+      <a href="kids.html" class="nav-link">Kids' bikes</a>
       <a href="commute.html" class="nav-link">Commuting</a>
       <a href="bikepacking.html" class="nav-link">Bikepacking</a>
       <a href="blog.html" class="nav-link">Blog</a>
-      <a href="#quiz" class="nav-cta">Start matching</a>
     </div>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="fig-tag"><span>Sheet 001</span><span class="chip-div"></span><span>First bike, ages 5–10</span></div>
-      <h1>The right <span class="pencil-mark">kid's</span> bike is a measurement, not a hunch.</h1>
-      <p>Answer a few questions about your kid. We measure real bikes from every brand against their height, experience, and budget — then explain exactly why the top match fits, and how long it'll last them.</p>
-      <a href="#quiz" class="btn-primary">Start matching</a>
-      <div class="chip-row spec-chips">
-        <span>Free</span><span class="chip-div"></span><span>2 minutes</span><span class="chip-div"></span><span>Every brand</span>
-      </div>
-    </div>
-
-    <div>
-      <div class="diagram-card">
-        <svg class="bike-diagram" viewBox="0 0 640 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Blueprint diagram of a kids bike, annotated with wheel diameter, standover height, wheelbase, and seat height range">
-          <line class="dim-ext" x1="40" y1="340" x2="600" y2="340"/>
-
-          <circle class="wheel-ring" cx="160" cy="268" r="72"/>
-          <circle class="wheel-ring" cx="470" cy="268" r="72"/>
-          <circle class="hub" cx="160" cy="268" r="5.5"/>
-          <circle class="hub" cx="470" cy="268" r="5.5"/>
-
-          <g class="frame-line">
-            <path d="M300 255 L240 140"/>
-            <path d="M240 140 L410 120"/>
-            <path d="M300 255 L410 190"/>
-            <path d="M410 120 L410 190"/>
-            <path d="M410 190 L470 268"/>
-            <path d="M300 255 L160 268"/>
-            <path d="M240 140 L160 268"/>
-            <path d="M240 140 L222 102"/>
-            <path d="M410 120 L400 90"/>
-            <path d="M375 88 L425 92"/>
-            <path d="M300 255 L322 278"/>
-            <path d="M300 255 L278 232"/>
-          </g>
-          <circle class="wheel-ring" cx="300" cy="255" r="13"/>
-          <ellipse cx="196" cy="108" rx="20" ry="6" transform="rotate(-8 196 108)" fill="none" stroke="var(--blueprint)" stroke-width="3"/>
-
-          <g class="dim-minor">
-            <line class="dim-ext" x1="160" y1="196" x2="95" y2="196"/>
-            <line class="dim-ext" x1="160" y1="340" x2="95" y2="340"/>
-            <line class="dim-line" x1="95" y1="196" x2="95" y2="340"/>
-            <line class="dim-tick" x1="88" y1="196" x2="102" y2="196"/>
-            <line class="dim-tick" x1="88" y1="340" x2="102" y2="340"/>
-            <text class="dim-label" x="18" y="264">WHEEL</text>
-            <text class="dim-label" x="18" y="280">⌀ 16–20″</text>
-          </g>
-
-          <g class="dim-minor">
-            <line class="dim-ext" x1="240" y1="340" x2="258" y2="340"/>
-            <line class="dim-ext" x1="240" y1="140" x2="258" y2="140"/>
-            <line class="dim-line" x1="258" y1="140" x2="258" y2="340"/>
-            <line class="dim-tick" x1="251" y1="140" x2="265" y2="140"/>
-            <line class="dim-tick" x1="251" y1="340" x2="265" y2="340"/>
-            <text class="dim-label" x="270" y="178">STANDOVER</text>
-            <text class="dim-label" x="270" y="194">43–56 cm</text>
-          </g>
-
-          <line class="dim-ext" x1="160" y1="340" x2="160" y2="365"/>
-          <line class="dim-ext" x1="470" y1="340" x2="470" y2="365"/>
-          <line class="dim-line" x1="160" y1="365" x2="470" y2="365"/>
-          <line class="dim-tick" x1="160" y1="358" x2="160" y2="372"/>
-          <line class="dim-tick" x1="470" y1="358" x2="470" y2="372"/>
-          <text class="dim-label" x="315" y="392" text-anchor="middle">WHEELBASE 84–102 cm</text>
-
-          <path class="hand-circle" d="M205 95 Q193 108 205 121 Q222 134 241 119 Q250 101 233 91 Q217 83 205 95 Z"/>
-          <text class="hand-note" x="248" y="115" transform="rotate(-6 248 115)">grows ~9cm</text>
-        </svg>
-      </div>
-      <p class="diagram-cap">Fig. 001 — geometry we score against your kid's height</p>
-    </div>
+<section class="chooser-hero">
+  <div class="wrap">
+    <div class="fig-tag"><span>Sheet 000</span><span class="chip-div"></span><span>Choose your ride</span></div>
+    <h1>Every <span class="pencil-mark">rider</span> gets the same honest measurement.</h1>
+    <p class="lede">No sales pitch, no single brand, no guessing. Pick what you're actually buying a bike for, answer a few real questions, and we'll score every model against real geometry — then show our work.</p>
   </div>
 </section>
 
-<section>
+<section style="padding-top:0;">
   <div class="wrap">
-    <div class="fig-tag"><span>Fig. 002</span><span class="chip-div"></span><span>How it works</span></div>
-    <h2>Three steps to a bike that actually fits.</h2>
-    <p class="lede">No sales pitch, no single-brand catalog. Just the questions a good bike fitter would ask, run against real geometry.</p>
-    <div class="steps">
-      <div class="step">
+    <div class="category-grid">
+      <a href="kids.html" class="category-card">
         <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
           <path d="M8 44 L42 18 L47 24 L13 50 Z"/>
           <path d="M14 40 L19 35 M22 33 L27 28 M30 26 L35 21"/>
         </svg>
-        <div class="step-index"><span>01</span><span class="tick"></span></div>
-        <h3>Answer six questions</h3>
-        <p>Height, experience, where they'll ride, brakes, budget, and how much room to grow matters to you.</p>
-      </div>
-      <div class="step">
+        <div class="fig-tag"><span>Sheet 001</span></div>
+        <h3>Kids' first bike</h3>
+        <p>Height, experience, and budget — matched against real kids' bike geometry, not a size sticker on a rack.</p>
+        <span class="card-cta">Start matching</span>
+      </a>
+
+      <a href="commute.html" class="category-card">
         <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
-          <circle cx="26" cy="26" r="14"/>
-          <path d="M36 36 L48 48"/>
-          <path d="M19 27 L23 31 L33 19"/>
+          <path d="M10 34 Q10 14 30 14 Q50 14 50 34 L50 36 L10 36 Z"/>
+          <path d="M18 22 L18 30 M26 18 L26 30 M34 18 L34 30"/>
+          <path d="M16 36 Q16 46 24 48 M44 36 Q44 46 36 48"/>
         </svg>
-        <div class="step-index"><span>02</span><span class="tick"></span></div>
-        <h3>We score every bike</h3>
-        <p>Each answer weighs differently — a wrong-size bike is ruled out, a great-fit bike that's a little over budget isn't.</p>
-      </div>
-      <div class="step">
+        <div class="fig-tag"><span>Sheet 002</span></div>
+        <h3>Commuting</h3>
+        <p>Distance, route, cargo, and power preference — matched to a bike built for your actual ride to work or school.</p>
+        <span class="card-cta">Start matching</span>
+      </a>
+
+      <a href="bikepacking.html" class="category-card">
         <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
-          <circle cx="26" cy="19" r="11"/>
-          <path d="M21 19 L25 23 L32 14"/>
-          <path d="M18 29 L14 48 L22 42 Z"/>
-          <path d="M34 29 L38 48 L30 42 Z"/>
+          <path d="M6 48 L22 22 L31 35 L40 24 L58 48 Z"/>
+          <circle cx="20" cy="16" r="4"/>
         </svg>
-        <div class="step-index"><span>03</span><span class="tick"></span></div>
-        <h3>See your top matches</h3>
-        <p>Ranked with plain-language reasons and how many years the bike should last before they outgrow it — not just a spec sheet.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="quiz-section" id="quiz">
-  <div class="wrap">
-    <div class="quiz-heading">
-      <div>
-        <div class="fig-tag"><span>Fig. 003</span><span class="chip-div"></span><span>The fit quiz</span></div>
-        <h2>Let's find their bike.</h2>
-        <p class="lede">This prototype covers kids five and up. Every field below feeds the match on the right.</p>
-      </div>
-      <svg class="sketch-icon on-dark quiz-sketch" viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M10 34 Q10 14 30 14 Q50 14 50 34 L50 36 L10 36 Z"/>
-        <path d="M18 22 L18 30 M26 18 L26 30 M34 18 L34 30"/>
-        <path d="M16 36 Q16 46 24 48 M44 36 Q44 46 36 48"/>
-      </svg>
-    </div>
-
-    <div class="quiz-grid">
-      <div>
-        <div class="q-group">
-          <label class="q-label">Child's height</label>
-          <p class="q-hint">Assumes a starting age of 5 and up.</p>
-          <div class="range-row">
-            <input type="range" id="height" min="100" max="145" value="112" step="1">
-            <span class="range-out" id="height-out">112 cm</span>
-          </div>
-          <div class="range-ends"><span>~5 yrs old</span><span>~10 yrs old</span></div>
-        </div>
-
-        <div class="q-group">
-          <label class="q-label">Riding experience</label>
-          <div class="opt-row">
-            <button type="button" class="opt" data-group="exp" data-value="none">Never ridden</button>
-            <button type="button" class="opt" data-group="exp" data-value="balance">Balance bike</button>
-            <button type="button" class="opt" data-group="exp" data-value="training">Training wheels</button>
-            <button type="button" class="opt" data-group="exp" data-value="confident">Confident, no training wheels</button>
-          </div>
-        </div>
-
-        <div class="q-group">
-          <label class="q-label">Where will they ride?</label>
-          <div class="opt-row">
-            <button type="button" class="opt" data-group="terrain" data-value="pavement">Pavement / driveway</button>
-            <button type="button" class="opt" data-group="terrain" data-value="road_gravel">Road and gravel</button>
-            <button type="button" class="opt" data-group="terrain" data-value="park">Neighborhood paths</button>
-            <button type="button" class="opt" data-group="terrain" data-value="trail_road_gravel">Trail, road and gravel</button>
-            <button type="button" class="opt" data-group="terrain" data-value="trail">Light dirt trails</button>
-          </div>
-        </div>
-
-        <div class="q-group">
-          <label class="q-label">Brake preference</label>
-          <div class="opt-row">
-            <button type="button" class="opt" data-group="brake" data-value="coaster">Coaster</button>
-            <button type="button" class="opt" data-group="brake" data-value="hand">Hand brakes</button>
-            <button type="button" class="opt" data-group="brake" data-value="either">No preference</button>
-          </div>
-        </div>
-
-        <div class="q-group">
-          <label class="q-label">Budget</label>
-          <div class="range-row">
-            <input type="range" id="budget" min="80" max="600" value="250" step="10">
-            <span class="range-out" id="budget-out">$250</span>
-          </div>
-        </div>
-
-        <div class="q-group">
-          <label class="q-label">Brand origin</label>
-          <div class="opt-row">
-            <button type="button" class="opt" data-group="origin" data-value="canadian">Prefer Canadian</button>
-            <button type="button" class="opt" data-group="origin" data-value="none">No preference</button>
-          </div>
-        </div>
-
-        <div class="q-group">
-          <label class="q-label">How much does "grows with them" matter?</label>
-          <div class="range-row">
-            <input type="range" id="growth" min="0" max="10" value="6" step="1">
-            <span class="range-out" id="growth-out" style="min-width:110px;">Somewhat</span>
-          </div>
-        </div>
-
-        <button type="button" class="submit-btn" id="submit">See recommendations</button>
-        <p class="err" id="err">Pick an experience level, terrain, and brake preference first.</p>
-      </div>
-
-      <div>
-        <div id="placeholder" class="placeholder-note">Your top three matches will appear here, ranked with reasons — including how many years the bike should last before they outgrow it.</div>
-        <div class="results" id="results" tabindex="-1" aria-live="polite" style="display:none;"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="stat">
-  <div class="wrap">
-    <div class="fig-tag"><span>Fig. 004</span><span class="chip-div"></span><span>Why fit matters</span></div>
-    <svg class="sketch-icon stat-sketch" viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M32 50 L32 20"/>
-      <path d="M24 28 L32 18 L40 28"/>
-      <path d="M32 36 Q41 32 38 23 Q30 27 32 36 Z"/>
-    </svg>
-    <div class="stat-figure">
-      <span class="num">3.9</span>
-      <span class="stat-note">worth getting right</span>
-    </div>
-    <p class="cap">average years a well-chosen bike lasts a growing kid, versus 1–2 for a bike picked on looks or price alone.</p>
-  </div>
-</section>
-
-<section class="trust-strip">
-  <div class="wrap">
-    <div class="fig-tag"><span>Fig. 005</span><span class="chip-div"></span><span>Every brand</span></div>
-    <p>Every brand is eligible for a match — we don't sell any of them</p>
-    <div class="trust-row">
-      <span>Woom</span><span>Trek</span><span>Cleary</span><span>Norco</span><span>Islabikes</span><span>Specialized</span><span>Frog Bikes</span><span>Huffy</span><span>Schwinn</span><span>Decathlon</span><span>Supercycle</span>
-    </div>
-  </div>
-</section>
-
-<section class="game-section">
-  <div class="wrap">
-    <div class="fig-tag"><span>Fig. 006</span><span class="chip-div"></span><span>Take a spin</span></div>
-    <h2>How steady is your hand?</h2>
-    <p class="lede">Move your mouse to steer. The lane never ends, and it never stops narrowing — don't touch the edges.</p>
-    <div class="game-card">
-      <canvas id="rideGame" width="640" height="340" aria-label="A steering mini-game: move your mouse or use the arrow keys to keep a bike inside a winding, narrowing lane"></canvas>
-      <div class="game-hud"><span id="gameScore">0.0s</span><span id="gameBest">Best: 0.0s</span></div>
-      <div class="game-overlay" id="gameOverlay">
-        <p class="game-overlay-title" id="gameOverlayTitle">Ready?</p>
-        <p class="game-overlay-sub" id="gameOverlaySub">Move your mouse over the lane to steer, or use the arrow keys.</p>
-        <button type="button" class="submit-btn game-btn" id="gameStartBtn">Start riding</button>
-      </div>
+        <div class="fig-tag"><span>Sheet 003</span></div>
+        <h3>Bikepacking</h3>
+        <p>Terrain, trip length, and how you carry your gear — from a weekend loop to a self-supported ultra race.</p>
+        <span class="card-cta">Start matching</span>
+      </a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div class="logo">
+    <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
       <svg width="22" height="16" viewBox="0 0 44 28" aria-hidden="true">
         <circle cx="9" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
         <circle cx="35" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
         <path d="M9 19 L20 8 L28 8 L35 19 M20 8 L16 19" fill="none" stroke="var(--blueprint)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       VeloMatch
-    </div>
-    <p>A smarter way to find a kid's first bike.</p>
+    </a>
+    <p>A smarter way to find the right bike, for any ride.</p>
     <button type="button" class="letter-trigger" id="openLetter">Why we built this</button>
   </div>
 </footer>
@@ -306,215 +101,48 @@
       <path d="M9 17 L56 15 L55 46 L7 45 Z"/>
       <path d="M9 17 L32 35 L55 15"/>
     </svg>
-    <p class="letter-fig">Fig. 007 — where this is headed</p>
+    <p class="letter-fig">Fig. 000 — where this is headed</p>
     <h3 id="letterTitle">To everyone who's stood in a bike aisle guessing,</h3>
     <p>Buying a bike usually comes down to a guess: a size sticker on a rack, a salesperson pointing at whatever's in stock, or a color you liked in a catalog. Get it wrong and it's money spent on something that never quite fits.</p>
     <p>We think fit should come from geometry, not guesswork — reach, stack, standover, all measured and matched to the rider, whoever that rider is.</p>
-    <p>VeloMatch is built to do that matching for every kind of rider and every kind of ride. Right now it's one working prototype: a first bike for a growing kid, because that's where a wrong guess costs the most and a growing body changes the fastest. The same approach — real measurements, scored against real bikes — is what we're building toward next, for every rider after this one.</p>
+    <p>VeloMatch is built to do that matching for every kind of rider and every kind of ride. Right now it's three working prototypes: a first bike for a growing kid, a daily commuter, and a bikepacking rig — because those are the cases where a wrong guess costs the most. The same approach — real measurements, scored against real bikes — is what we're building toward next, for every rider after this one.</p>
     <p>It won't get everything right yet. But it will show its work — the wheel size, the standover, the years of growth room — so you're choosing a bike, not gambling on one.</p>
     <p class="letter-sign">This is where we're starting. Not where we're stopping.</p>
   </div>
 </div>
 
+<div class="page-transition" id="pageTransition" aria-hidden="true">
+  <div class="transition-panel">
+    <svg class="transition-rider" viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="30" cy="72" r="20" fill="none" stroke="var(--paper)" stroke-width="3.4"/>
+      <circle cx="100" cy="72" r="20" fill="none" stroke="var(--paper)" stroke-width="3.4"/>
+      <g fill="none" stroke="var(--paper)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M55 60 L45 30 L90 26 L100 72 M55 60 L30 72"/>
+        <path d="M90 26 L82 12"/>
+        <path d="M70 15 L94 19"/>
+        <path d="M78 18 L58 38"/>
+        <path d="M62 34 L84 30"/>
+      </g>
+      <circle cx="78" cy="10" r="7.5" fill="var(--paper)"/>
+      <g class="pedal-leg">
+        <path d="M55 60 L46 76 L58 82" fill="none" stroke="var(--paper)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
 <script>
-// ---- LIVE DATA SOURCE ----
-// Paste your published Google Sheet CSV link below (File > Share > Publish to web > CSV).
-// Add an "image" column with a direct photo URL per row to show real bike photos —
-// rows without one fall back to a sketch placeholder.
-const SHEET_CSV_URL = "PASTE_YOUR_PUBLISHED_GOOGLE_SHEET_CSV_LINK_HERE";
-
-// The real catalog lives in data/kids-bikes.json — edit that file to add/update bikes.
-// This is only an emergency fallback for the rare case the fetch below fails
-// (e.g. the page opened as a local file:// instead of through a real server).
-const emergencyFallbackBikes = [
-  {name:"Cleary Gecko", brand:"Cleary", origin:"USA", wheel:16, minH:98, maxH:117, price:280, brake:"coaster", type:"pavement", exp:["balance","training"], seatRange:9, barAdjust:false, trainWheel:false, resale:"medium", image:""},
-  {name:"Woom 3", brand:"Woom", origin:"Austria", wheel:16, minH:103, maxH:120, price:290, brake:"hand", type:"park", exp:["confident","training"], seatRange:9, barAdjust:true, trainWheel:false, resale:"high", image:""},
-  {name:"Trek Precaliber 20", brand:"Trek", origin:"USA", wheel:20, minH:115, maxH:135, price:260, brake:"hand", type:"trail", exp:["confident","training"], seatRange:9, barAdjust:false, trainWheel:false, resale:"medium", image:""}
-];
-
-let bikes = [];
-
-function parseSheetRow(row){
-  return {
-    name: row.name,
-    brand: row.brand,
-    origin: row.origin,
-    wheel: Number(row.wheel),
-    minH: Number(row.minH),
-    maxH: Number(row.maxH),
-    price: Number(row.price),
-    currency: row.currency || "USD",
-    brake: row.brake,
-    type: row.type,
-    exp: (row.exp || "").split(";").map(s => s.trim()).filter(Boolean),
-    seatRange: Number(row.seatRange),
-    barAdjust: String(row.barAdjust).trim().toUpperCase() === "TRUE",
-    trainWheel: String(row.trainWheel).trim().toUpperCase() === "TRUE",
-    resale: row.resale,
-    image: row.image || "",
-    retailerUrl: row.retailerUrl || ""
-  };
-}
-
-function escapeHtml(str){
-  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-// Price and stock are the least stable facts in this catalog — rather than
-// cache a number that will go stale, link out to wherever it can actually be
-// checked live: a specific page only when a human has verified that exact
-// URL shows this bike, otherwise a plain web search for the model name.
-function priceCheckLink(b){
-  if (b.retailerUrl) {
-    let host = '';
-    try { host = new URL(b.retailerUrl).hostname.replace(/^www\./, ''); } catch(e){}
-    return `<a href="${escapeHtml(b.retailerUrl)}" target="_blank" rel="noopener" class="result-link">Check current price${host ? ' at ' + escapeHtml(host) : ''} →</a>`;
-  }
-  const searchText = b.name.toLowerCase().includes(b.brand.toLowerCase()) ? b.name : `${b.brand} ${b.name}`;
-  const query = encodeURIComponent(searchText + ' bike');
-  return `<a href="https://www.google.com/search?q=${query}" target="_blank" rel="noopener" class="result-link">Search for current price →</a>`;
-}
-
-async function loadBikeData(){
-  try {
-    const res = await fetch('data/kids-bikes.json');
-    const data = await res.json();
-    bikes = data.bikes;
-    console.log("VeloMatch: loaded " + bikes.length + " bikes from data/kids-bikes.json.");
-  } catch (err) {
-    bikes = emergencyFallbackBikes;
-    console.warn("VeloMatch: couldn't load data/kids-bikes.json, using emergency fallback.", err);
-  }
-
-  // Optional: a published Google Sheet CSV can override the JSON catalog above
-  // for non-technical live edits, without needing a redeploy.
-  if (!SHEET_CSV_URL || SHEET_CSV_URL.indexOf("PASTE_YOUR") === 0) return;
-  Papa.parse(SHEET_CSV_URL, {
-    download: true,
-    header: true,
-    skipEmptyLines: true,
-    complete: function(results){
-      const parsed = results.data.map(parseSheetRow).filter(b => b.name);
-      if (parsed.length) {
-        bikes = parsed;
-        console.log("VeloMatch: loaded " + bikes.length + " bikes from the live sheet override.");
-      }
-    },
-    error: function(err){
-      console.warn("VeloMatch: couldn't load the live sheet override, keeping data/kids-bikes.json.", err);
-    }
+const pageTransition = document.getElementById('pageTransition');
+document.querySelectorAll('.category-card').forEach(card => {
+  card.addEventListener('click', function(e){
+    const target = this.getAttribute('href');
+    if (!target) return;
+    e.preventDefault();
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) { window.location.href = target; return; }
+    pageTransition.classList.add('active');
+    setTimeout(() => { window.location.href = target; }, 640);
   });
-}
-loadBikeData();
-
-const state = {exp:null, terrain:null, brake:null, origin:null};
-const growthLabels = ["Not important","Not important","A little","A little","Somewhat","Somewhat","Somewhat","Important","Important","Very important","Very important"];
-
-// Bikes are only tagged pavement/park/trail. The newer road-and-gravel options sit
-// between those on a single surface spectrum, so we score by distance along it
-// rather than requiring an exact match.
-const terrainPosition = {pavement:0, road_gravel:1, park:2, trail_road_gravel:3, trail:4};
-
-// Shown when a bike has no photo yet, or its photo URL fails to load.
-const resultPlaceholderMarkup = `
-  <svg class="sketch-icon result-placeholder" viewBox="0 0 64 64" aria-hidden="true">
-    <circle cx="16" cy="42" r="12"/>
-    <circle cx="48" cy="42" r="12"/>
-    <path d="M16 42 L30 20 L40 20 M30 20 L22 42 M40 20 L48 42 M30 20 L34 14 L40 14"/>
-  </svg>
-`;
-
-document.getElementById('height').addEventListener('input', e => {
-  document.getElementById('height-out').textContent = e.target.value + ' cm';
-});
-document.getElementById('budget').addEventListener('input', e => {
-  document.getElementById('budget-out').textContent = '$' + e.target.value;
-});
-document.getElementById('growth').addEventListener('input', e => {
-  document.getElementById('growth-out').textContent = growthLabels[Number(e.target.value)];
-});
-
-document.querySelectorAll('.opt').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const group = btn.dataset.group;
-    document.querySelectorAll('.opt[data-group="'+group+'"]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    state[group] = btn.dataset.value;
-  });
-});
-
-document.getElementById('submit').addEventListener('click', () => {
-  const err = document.getElementById('err');
-  if (!state.exp || !state.terrain || !state.brake) {
-    err.textContent = "Pick an experience level, terrain, and brake preference first.";
-    err.style.display = 'block';
-    return;
-  }
-  if (!bikes.length) {
-    err.textContent = "Still loading the bike catalog — try again in a second.";
-    err.style.display = 'block';
-    return;
-  }
-  err.style.display = 'none';
-
-  const height = Number(document.getElementById('height').value);
-  const budget = Number(document.getElementById('budget').value);
-  const growthWeight = Number(document.getElementById('growth').value) / 10;
-  const originPref = state.origin || 'none';
-
-  const scored = bikes.map(b => {
-    let score = 0;
-    if (height >= b.minH && height <= b.maxH) score += 35;
-    else score -= Math.min(40, Math.abs(height - (b.minH+b.maxH)/2) * 0.8);
-
-    if (b.exp.includes(state.exp)) score += 20;
-    if (state.brake === 'either' || state.brake === b.brake) score += 10;
-    else score -= 5;
-    if (state.exp === 'none' && b.brake === 'hand') score -= 4;
-
-    const terrainGap = Math.abs(terrainPosition[state.terrain] - terrainPosition[b.type]);
-    score += Math.max(0, 15 - terrainGap * 5);
-
-    if (b.price <= budget) score += 8;
-    else score -= (b.price - budget) * 0.04;
-
-    const growthRaw = (b.seatRange/11)*10 + (b.barAdjust?5:0) + (b.trainWheel?3:0);
-    score += growthRaw * growthWeight * 1.3;
-
-    if (originPref === 'canadian' && b.origin === 'Canada') score += 6;
-
-    const years = Math.max(1, Math.round((b.seatRange/2 + (b.barAdjust?0.5:0)) * 10) / 10);
-    return {...b, score, years};
-  }).sort((a,b) => b.score - a.score).slice(0,3);
-
-  document.getElementById('placeholder').style.display = 'none';
-  const results = document.getElementById('results');
-  results.style.display = 'flex';
-  results.innerHTML = scored.map((b,i) => `
-    <div class="result-card ${i===0?'top':''}">
-      ${i===0 ? '<span class="badge">Top pick</span>' : ''}
-      <div class="result-media">
-        ${b.image ? `<img src="${escapeHtml(b.image)}" alt="${escapeHtml(b.name)}" loading="lazy">` : resultPlaceholderMarkup}
-      </div>
-      <div class="result-top">
-        <span class="result-name">${escapeHtml(b.name)}</span>
-        <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
-      </div>
-      <p class="result-meta">${b.wheel}in wheels · fits ${b.minH}–${b.maxH}cm · ${b.brake} brakes · ${b.origin}<br>Grows with them for roughly ${b.years} years</p>
-      ${priceCheckLink(b)}
-    </div>
-  `).join('');
-
-  // A bike photo that fails to load (bad URL, taken-down image) falls back to
-  // the same sketch placeholder used when no image was supplied at all.
-  results.querySelectorAll('.result-media img').forEach(img => {
-    img.addEventListener('error', () => {
-      img.closest('.result-media').innerHTML = resultPlaceholderMarkup;
-    }, {once: true});
-  });
-
-  results.scrollIntoView({behavior: 'smooth', block: 'start'});
-  results.focus();
 });
 
 const letterOverlay = document.getElementById('letterOverlay');
@@ -539,183 +167,6 @@ openLetterBtn.addEventListener('click', openLetter);
 closeLetterBtn.addEventListener('click', closeLetter);
 letterOverlay.addEventListener('click', e => { if (e.target === letterOverlay) closeLetter(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOverlay.classList.contains('open')) closeLetter(); });
-</script>
-
-<script>
-(function(){
-  const canvas = document.getElementById('rideGame');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const overlay = document.getElementById('gameOverlay');
-  const overlayTitle = document.getElementById('gameOverlayTitle');
-  const overlaySub = document.getElementById('gameOverlaySub');
-  const startBtn = document.getElementById('gameStartBtn');
-  const scoreEl = document.getElementById('gameScore');
-  const bestEl = document.getElementById('gameBest');
-
-  const W = canvas.width, H = canvas.height;
-  const START_HALF_WIDTH = 105, MIN_HALF_WIDTH = 50, NARROW_DURATION = 75;
-  const AMPLITUDE = 85, FREQUENCY = 0.01;
-  const SPEED = 130;
-  const BIKE_ROW_OFFSET = 70;
-  const BIKE_RADIUS = 20;
-
-  let best = 0;
-  try { best = Number(localStorage.getItem('velomatch_ride_best')) || 0; } catch(e){}
-  bestEl.textContent = 'Best: ' + best.toFixed(1) + 's';
-
-  let running = false;
-  let dist = 0;
-  let elapsed = 0;
-  let bikeX = W / 2;
-  let targetX = W / 2;
-  let lastTime = null;
-  let crashed = false;
-  let pedalAngle = 0;
-
-  function pathCenter(worldPos){
-    return W / 2 + AMPLITUDE * Math.sin(worldPos * FREQUENCY);
-  }
-  function currentHalfWidth(){
-    const frac = Math.min(1, elapsed / NARROW_DURATION);
-    return START_HALF_WIDTH - (START_HALF_WIDTH - MIN_HALF_WIDTH) * frac;
-  }
-
-  function setTargetFromClientX(clientX){
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = W / rect.width;
-    targetX = Math.max(0, Math.min(W, (clientX - rect.left) * scaleX));
-  }
-  canvas.addEventListener('mousemove', e => setTargetFromClientX(e.clientX));
-  canvas.addEventListener('touchmove', e => {
-    if (e.touches[0]) setTargetFromClientX(e.touches[0].clientX);
-    e.preventDefault();
-  }, {passive:false});
-  document.addEventListener('keydown', e => {
-    if (!running) return;
-    if (e.key === 'ArrowLeft') targetX = Math.max(0, targetX - 30);
-    else if (e.key === 'ArrowRight') targetX = Math.min(W, targetX + 30);
-  });
-
-  function reset(){
-    dist = 0; elapsed = 0; bikeX = W / 2; targetX = W / 2; crashed = false; lastTime = null; pedalAngle = 0;
-  }
-
-  function endGame(){
-    running = false;
-    crashed = true;
-    if (elapsed > best) {
-      best = elapsed;
-      try { localStorage.setItem('velomatch_ride_best', String(best)); } catch(e){}
-      bestEl.textContent = 'Best: ' + best.toFixed(1) + 's';
-    }
-    overlayTitle.textContent = 'You hit the edge!';
-    overlaySub.textContent = 'Survived ' + elapsed.toFixed(1) + 's. Give it another go?';
-    startBtn.textContent = 'Ride again';
-    overlay.hidden = false;
-  }
-
-  function drawBike(x, y, angle, isCrashed){
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.strokeStyle = isCrashed ? '#B8410F' : '#E2551D';
-    ctx.fillStyle = ctx.strokeStyle;
-    ctx.lineWidth = 2.4;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    ctx.beginPath(); ctx.arc(-11, 6, 9, 0, Math.PI * 2); ctx.stroke();
-    ctx.beginPath(); ctx.arc(11, 6, 9, 0, Math.PI * 2); ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(-11, 6); ctx.lineTo(-2, -8); ctx.lineTo(11, 6);
-    ctx.lineTo(0, 0); ctx.lineTo(-11, 6);
-    ctx.moveTo(-2, -8); ctx.lineTo(4, -8);
-    ctx.stroke();
-
-    const r = 5;
-    const px = Math.cos(angle) * r, py = Math.sin(angle) * r;
-    ctx.beginPath();
-    ctx.moveTo(0, 6); ctx.lineTo(px, 6 + py);
-    ctx.moveTo(0, 6); ctx.lineTo(-px, 6 - py);
-    ctx.stroke();
-    ctx.beginPath(); ctx.arc(0, 6, 2.5, 0, Math.PI * 2); ctx.fill();
-    ctx.restore();
-  }
-
-  function draw(){
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#0F3630';
-    ctx.fillRect(0, 0, W, H);
-
-    const hw = currentHalfWidth();
-    const step = 8;
-    const leftPts = [], rightPts = [];
-    for (let y = H; y >= 0; y -= step) {
-      const worldPos = dist + (H - y);
-      const c = pathCenter(worldPos);
-      leftPts.push([c - hw, y]);
-      rightPts.push([c + hw, y]);
-    }
-
-    ctx.beginPath();
-    ctx.moveTo(leftPts[0][0], leftPts[0][1]);
-    for (const p of leftPts) ctx.lineTo(p[0], p[1]);
-    for (let i = rightPts.length - 1; i >= 0; i--) ctx.lineTo(rightPts[i][0], rightPts[i][1]);
-    ctx.closePath();
-    ctx.fillStyle = 'rgba(242,236,221,0.05)';
-    ctx.fill();
-
-    ctx.strokeStyle = '#7ED7BE';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    leftPts.forEach((p, i) => i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]));
-    ctx.stroke();
-    ctx.beginPath();
-    rightPts.forEach((p, i) => i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]));
-    ctx.stroke();
-
-    drawBike(bikeX, H - BIKE_ROW_OFFSET, pedalAngle, crashed);
-  }
-
-  function loop(ts){
-    if (!running) return;
-    if (lastTime === null) lastTime = ts;
-    const dt = Math.min(0.05, (ts - lastTime) / 1000);
-    lastTime = ts;
-
-    elapsed += dt;
-    dist += SPEED * dt;
-    bikeX += (targetX - bikeX) * Math.min(1, dt * 10);
-    pedalAngle += dt * (6 + SPEED / 40);
-
-    const bikeWorldPos = dist + BIKE_ROW_OFFSET;
-    const centerAtBike = pathCenter(bikeWorldPos);
-    const hw = currentHalfWidth();
-    const leftEdge = centerAtBike - hw;
-    const rightEdge = centerAtBike + hw;
-
-    if (bikeX - BIKE_RADIUS < leftEdge || bikeX + BIKE_RADIUS > rightEdge) {
-      draw();
-      endGame();
-      return;
-    }
-
-    draw();
-    scoreEl.textContent = elapsed.toFixed(1) + 's';
-    requestAnimationFrame(loop);
-  }
-
-  function start(){
-    reset();
-    running = true;
-    overlay.hidden = true;
-    requestAnimationFrame(loop);
-  }
-  startBtn.addEventListener('click', start);
-
-  draw();
-})();
 </script>
 
 </body>

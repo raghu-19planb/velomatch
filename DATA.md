@@ -1,8 +1,8 @@
 # Maintaining the VeloMatch bike catalogs
 
-Each quiz category has its own catalog file under `data/`:
+`index.html` is the homepage — a category chooser, not a quiz itself. Each quiz category lives on its own page with its own catalog file under `data/`:
 
-- `data/kids-bikes.json` — used by `index.html` (kids' first bike)
+- `data/kids-bikes.json` — used by `kids.html` (kids' first bike)
 - `data/commute-bikes.json` — used by `commute.html` (daily commute)
 - `data/bikepacking-bikes.json` — used by `bikepacking.html` (bikepacking), 31 bikes, grounded in bikepacking.com's own route/bike taxonomy (terrain and bike-type categories) plus domain knowledge. First category with a real known-frame-size question (asks the number, e.g. 54cm, before falling back to height) and an `availability` field that defaults scoring toward mainstream/widely-sold brands unless the rider says they're open to boutique builders — both added per direct user feedback while building it.
 

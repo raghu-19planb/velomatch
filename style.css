@@ -60,7 +60,9 @@ nav{
 }
 nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; row-gap:8px; min-height:64px; padding-top:8px; padding-bottom:8px;}
 .logo{display:flex; align-items:center; gap:9px; font-weight:600; font-size:18px; letter-spacing:-0.01em; flex:none;}
-.logo svg{flex:none;}
+.logo svg{flex:none; animation:wheel-spin 6s linear infinite; transform-origin:50% 50%;}
+@keyframes wheel-spin{ to{ transform:rotate(360deg); } }
+@media (prefers-reduced-motion: reduce){ .logo svg{animation:none;} }
 .nav-links{display:flex; align-items:center; gap:18px; flex-wrap:wrap; row-gap:8px; justify-content:flex-end;}
 .nav-link{font-size:14.5px; color:var(--fog); text-decoration:none; white-space:nowrap;}
 .nav-link:hover{color:var(--ink);}
@@ -391,3 +393,52 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .letter-card p{font-size:15.5px; color:var(--ink); line-height:1.72; margin:0 0 18px; opacity:0.86;}
 .letter-sign{font-weight:600; opacity:1 !important; margin-bottom:0 !important;}
 @media (max-width:640px){ .letter-card{padding:38px 26px 32px;} }
+
+/* HOMEPAGE CATEGORY CHOOSER */
+.chooser-hero{padding:88px 0 20px; text-align:left;}
+.chooser-hero h1{font-size:clamp(32px,4.6vw,50px); font-weight:700; letter-spacing:-0.015em; line-height:1.12; margin:0 0 18px; max-width:680px;}
+.chooser-hero .lede{margin-bottom:8px;}
+
+.category-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; padding-top:16px;}
+@media (max-width:900px){ .category-grid{grid-template-columns:1fr; gap:20px;} }
+
+.category-card{
+  display:block; text-decoration:none; color:inherit; position:relative;
+  border:1px solid var(--line); border-radius:6px; padding:30px 28px 28px;
+  background:rgba(255,255,255,0.32);
+  transition:border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.category-card:hover{border-color:var(--blueprint); transform:translateY(-3px); box-shadow:0 14px 30px rgba(27,35,31,0.08);}
+.category-card:focus-visible{outline:2px solid var(--signal); outline-offset:3px;}
+.category-card .sketch-icon{margin-bottom:18px;}
+.category-card h3{font-size:19.5px; font-weight:700; margin:0 0 9px; letter-spacing:-0.01em;}
+.category-card p{font-size:14.5px; color:var(--fog); line-height:1.62; margin:0 0 20px;}
+.card-cta{font-size:13.5px; font-weight:600; color:var(--signal);}
+
+/* PAGE TRANSITION — a rider pushes the curtain across between pages */
+.page-transition{position:fixed; inset:0; z-index:300; pointer-events:none; visibility:hidden;}
+.page-transition.active{visibility:visible; pointer-events:auto;}
+.transition-panel{
+  position:absolute; top:0; left:0; height:100%; width:0; overflow:visible;
+  background:var(--ink);
+  transition:width .62s cubic-bezier(.65,0,.35,1);
+}
+.page-transition.active .transition-panel{width:100%;}
+.transition-rider{position:absolute; top:50%; right:0; width:104px; height:auto; transform:translate(50%,-50%);}
+.transition-rider .pedal-leg{animation:pedal-cycle .28s linear infinite; transform-box:fill-box; transform-origin:center;}
+@keyframes pedal-cycle{ 0%,100%{transform:rotate(0deg);} 50%{transform:rotate(-26deg);} }
+
+/* Arrival reveal — plays once on load for each category page, continuing the same motion */
+.page-reveal{position:fixed; inset:0; z-index:300; pointer-events:none; visibility:visible;}
+.page-reveal .transition-panel{
+  left:auto; right:0; width:100%;
+  animation:reveal-wipe .62s cubic-bezier(.65,0,.35,1) .05s forwards;
+}
+.page-reveal .transition-rider{right:auto; left:0; transform:translate(-50%,-50%);}
+@keyframes reveal-wipe{ to{ width:0%; } }
+
+@media (prefers-reduced-motion: reduce){
+  .transition-panel{transition:none !important; animation:none !important;}
+  .page-reveal .transition-panel{width:0 !important;}
+  .transition-rider .pedal-leg{animation:none;}
+}
