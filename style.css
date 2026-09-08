@@ -442,3 +442,43 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 @keyframes reveal-wipe{ to{ width:0%; } }
 @keyframes reveal-hide{ to{ visibility:hidden; } }
 
+
+/* FIT RADAR — the homepage's "wow" moment, before any category is picked */
+.fit-radar-section{padding:8px 0 56px;}
+.fit-radar-card{
+  display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;
+  border:1px solid var(--line); border-radius:8px;
+  padding:36px 40px;
+  background:rgba(255,255,255,0.32);
+}
+@media (max-width:860px){ .fit-radar-card{grid-template-columns:1fr; gap:28px; padding:28px 24px;} }
+
+.fit-radar-controls .q-label{margin-top:18px;}
+.fit-radar-hint{
+  font-family:var(--font-hand); font-size:22px; color:var(--signal-deep); font-weight:600;
+  margin:16px 0 4px;
+}
+.fit-radar-category{font-size:14.5px; color:var(--fog); margin:0;}
+
+.fit-radar-diagram{position:relative; display:flex; flex-direction:column; align-items:center; min-height:220px; justify-content:flex-end;}
+.fit-radar-scale-wrap{
+  width:100%; transform-origin:50% 100%;
+  transition:transform .28s cubic-bezier(.34,1.2,.4,1);
+}
+.fit-radar-diagram .bike-diagram{width:100%; height:auto; display:block;}
+.fit-radar-labels{
+  display:flex; gap:18px; flex-wrap:wrap; justify-content:center;
+  font-family:var(--font-mono); font-size:12.5px; color:var(--blueprint);
+  margin-top:14px; padding-top:14px; border-top:1px solid var(--line); width:100%;
+}
+
+.category-card.radar-highlight{
+  border-color:var(--signal);
+  box-shadow:0 0 0 3px rgba(226,85,29,0.14);
+  animation:radar-pulse 1.4s ease-in-out infinite;
+}
+@keyframes radar-pulse{
+  0%,100%{ box-shadow:0 0 0 3px rgba(226,85,29,0.14); }
+  50%{ box-shadow:0 0 0 6px rgba(226,85,29,0.06); }
+}
+@media (prefers-reduced-motion: reduce){ .category-card.radar-highlight{animation:none;} }

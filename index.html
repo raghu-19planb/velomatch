@@ -39,6 +39,55 @@
   </div>
 </section>
 
+<section class="fit-radar-section">
+  <div class="wrap">
+    <div class="fit-radar-card">
+      <div class="fit-radar-controls">
+        <div class="fig-tag"><span>Try it</span><span class="chip-div"></span><span>Before you pick</span></div>
+        <label class="q-label" for="radarHeight">Drag to any height</label>
+        <div class="range-row">
+          <input type="range" id="radarHeight" min="95" max="195" value="120" step="1">
+          <span class="range-out" id="radarHeightOut">120 cm</span>
+        </div>
+        <p class="fit-radar-hint" id="radarHint">That's about a 6-year-old.</p>
+        <p class="fit-radar-category" id="radarCategory">Sounds like a kid's first bike.</p>
+      </div>
+      <div class="fit-radar-diagram">
+        <div class="fit-radar-scale-wrap" id="radarScaleWrap">
+          <svg class="bike-diagram" viewBox="0 0 640 410" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line class="dim-ext" x1="40" y1="340" x2="600" y2="340"/>
+            <circle class="wheel-ring" cx="160" cy="268" r="72"/>
+            <circle class="wheel-ring" cx="470" cy="268" r="72"/>
+            <circle class="hub" cx="160" cy="268" r="5.5"/>
+            <circle class="hub" cx="470" cy="268" r="5.5"/>
+            <g class="frame-line">
+              <path d="M300 255 L240 140"/>
+              <path d="M240 140 L410 120"/>
+              <path d="M300 255 L410 190"/>
+              <path d="M410 120 L410 190"/>
+              <path d="M410 190 L470 268"/>
+              <path d="M300 255 L160 268"/>
+              <path d="M240 140 L160 268"/>
+              <path d="M240 140 L222 102"/>
+              <path d="M410 120 L400 90"/>
+              <path d="M375 88 L425 92"/>
+              <path d="M300 255 L322 278"/>
+              <path d="M300 255 L278 232"/>
+            </g>
+            <circle class="wheel-ring" cx="300" cy="255" r="13"/>
+            <ellipse cx="196" cy="108" rx="20" ry="6" transform="rotate(-8 196 108)" fill="none" stroke="var(--blueprint)" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="fit-radar-labels">
+          <span id="radarWheel">⌀ 16in</span>
+          <span id="radarStandover">Standover ~46cm</span>
+          <span id="radarWheelbase">Wheelbase ~86cm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section style="padding-top:0;">
   <div class="wrap">
     <div class="category-grid">
@@ -132,6 +181,63 @@
 </div>
 
 <script>
+const radarSlider = document.getElementById('radarHeight');
+const radarOut = document.getElementById('radarHeightOut');
+const radarHint = document.getElementById('radarHint');
+const radarCategory = document.getElementById('radarCategory');
+const radarScaleWrap = document.getElementById('radarScaleWrap');
+const radarWheel = document.getElementById('radarWheel');
+const radarStandover = document.getElementById('radarStandover');
+const radarWheelbase = document.getElementById('radarWheelbase');
+const radarCards = {
+  kids: document.querySelector('.category-card[href="kids.html"]'),
+  commute: document.querySelector('.category-card[href="commute.html"]'),
+  bikepacking: document.querySelector('.category-card[href="bikepacking.html"]')
+};
+
+function radarAgeHint(h){
+  if (h < 105) return "That's about a 4-year-old.";
+  if (h < 118) return "That's about a 6-year-old.";
+  if (h < 132) return "That's about an 8-year-old.";
+  if (h < 148) return "That's about a 10 to 12-year-old.";
+  if (h < 165) return "That's a teenager, or a petite adult.";
+  return "That's an average-height adult.";
+}
+function radarWheelSize(h){
+  if (h < 112) return "12in";
+  if (h < 130) return "16in";
+  if (h < 148) return "20in";
+  if (h < 168) return "24in";
+  return "700c";
+}
+
+function updateRadar(){
+  const h = Number(radarSlider.value);
+  radarOut.textContent = h + ' cm';
+  radarHint.textContent = radarAgeHint(h);
+
+  const scale = 0.55 + (h - 95) / (195 - 95) * 0.75;
+  radarScaleWrap.style.transform = 'scale(' + scale.toFixed(3) + ')';
+
+  radarWheel.textContent = '⌀ ' + radarWheelSize(h);
+  radarStandover.textContent = 'Standover ~' + Math.round(h * 0.42) + 'cm';
+  radarWheelbase.textContent = 'Wheelbase ~' + Math.round(h * 0.72) + 'cm';
+
+  Object.values(radarCards).forEach(c => c && c.classList.remove('radar-highlight'));
+  if (h < 148) {
+    radarCategory.textContent = "Sounds like a kid's first bike.";
+    radarCards.kids && radarCards.kids.classList.add('radar-highlight');
+  } else if (h < 165) {
+    radarCategory.textContent = "Getting into bigger-bike territory.";
+  } else {
+    radarCategory.textContent = "Sounds like an adult bike — commuting or bikepacking.";
+    radarCards.commute && radarCards.commute.classList.add('radar-highlight');
+    radarCards.bikepacking && radarCards.bikepacking.classList.add('radar-highlight');
+  }
+}
+radarSlider.addEventListener('input', updateRadar);
+updateRadar();
+
 const pageTransition = document.getElementById('pageTransition');
 document.querySelectorAll('.category-card').forEach(card => {
   card.addEventListener('click', function(e){
