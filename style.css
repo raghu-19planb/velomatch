@@ -579,12 +579,12 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .schem-stage[data-variant="cassette"][data-cassette="wide"] .cassette-sub-wide{display:inline;}
 
 .spoke-line{stroke:var(--blueprint); stroke-width:1.1; opacity:0.4;}
-.chainring-ring{stroke:var(--blueprint); stroke-width:3; fill:none;}
+.chainring-ring{stroke:var(--blueprint); stroke-width:4.5; fill:none;}
 .pedal-shape{stroke:var(--blueprint); stroke-width:2.6; fill:none;}
 .saddle-shape{stroke:var(--blueprint); stroke-width:3; fill:none;}
 .lever-shape{stroke:var(--blueprint); stroke-width:2.6; fill:none;}
 .brake-shape{stroke:var(--blueprint); stroke-width:2.6; fill:none; stroke-linecap:round;}
-.cog-ring{stroke:var(--blueprint); stroke-width:2.8; fill:none;}
+.cog-ring{stroke:var(--blueprint); stroke-width:3.6; fill:none;}
 .derail-line{stroke:var(--blueprint); stroke-width:2.8; fill:none; stroke-linecap:round;}
 .derail-pulley{stroke:var(--blueprint); stroke-width:2.4; fill:none;}
 .chain-line{stroke:var(--blueprint); stroke-width:2.4; fill:none;}
@@ -597,8 +597,17 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .chainring-bolt{fill:var(--blueprint); stroke:none;}
 .bb-shape{stroke:var(--blueprint); stroke-width:2; fill:var(--paper);}
 .pad-shape{stroke:var(--blueprint); stroke-width:1.6; fill:rgba(43,87,160,0.1);}
+/* Schematics-only "tube" stroke — thick + rounded, distinct from the thin
+   .frame-line used in the hero diagrams on the category pages, so those
+   pages are unaffected by this page's heavier, more engineered look. */
+.schem-tube{stroke:var(--blueprint); stroke-width:6.5; fill:none; stroke-linecap:round; stroke-linejoin:round;}
+.schem-tube-thin{stroke-width:4.5;}
+.tooth-tick{stroke:var(--blueprint); stroke-width:1.6;}
+.hanger-shape{stroke:var(--blueprint); stroke-width:2.2; fill:rgba(43,87,160,0.08);}
+.tape-hatch{stroke:var(--blueprint); stroke-width:1.1; opacity:0.55;}
 
 .s-part.s-highlight .frame-line, .s-part.s-highlight .chainring-ring, .s-part.s-highlight .cog-ring,
+.s-part.s-highlight .schem-tube, .s-part.s-highlight .tooth-tick, .s-part.s-highlight .hanger-shape,
 .s-part.s-highlight .spoke-line, .s-part.s-highlight .wheel-ring, .s-part.s-highlight .brake-shape,
 .s-part.s-highlight .lever-shape, .s-part.s-highlight .cable-line, .s-part.s-highlight .derail-line,
 .s-part.s-highlight .derail-pulley, .s-part.s-highlight .battery-shape, .s-part.s-highlight .pedal-shape,
@@ -610,7 +619,7 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .s-part.s-highlight .chain-link, .s-part.s-highlight .pad-shape{stroke-width:2.2;}
 .s-part.s-highlight .chainring-bolt{fill:var(--signal) !important;}
 .s-part.s-highlight .spoke-line{opacity:0.85;}
-.s-part.s-highlight .battery-shape, .s-part.s-highlight .bb-shape{fill:rgba(226,85,29,0.14) !important;}
+.s-part.s-highlight .battery-shape, .s-part.s-highlight .bb-shape, .s-part.s-highlight .hanger-shape{fill:rgba(226,85,29,0.14) !important;}
 
 .s-caption{opacity:0; transition:opacity .5s ease;}
 .schem-stage.show-captions .s-caption{opacity:1;}
@@ -620,11 +629,11 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .schem-legend{list-style:none; margin:0; padding:0; opacity:0; transition:opacity .5s ease;}
 .schem-legend.show{opacity:1;}
 .schem-legend li{display:none; padding:13px 4px; border-bottom:1px solid var(--line-soft);}
-.schem-legend li[data-for="shared"]{display:block;}
-.schem-legend[data-variant="single"] li[data-for="single"]{display:block;}
-.schem-legend[data-variant="mechanical"] li[data-for="mechanical"]{display:block;}
-.schem-legend[data-variant="cassette"] li[data-for="cassette"]{display:block;}
-.schem-legend[data-variant="electronic"] li[data-for="electronic"]{display:block;}
+.schem-legend li[data-for~="shared"]{display:block;}
+.schem-legend[data-variant="single"] li[data-for~="single"]{display:block;}
+.schem-legend[data-variant="mechanical"] li[data-for~="mechanical"]{display:block;}
+.schem-legend[data-variant="cassette"] li[data-for~="cassette"]{display:block;}
+.schem-legend[data-variant="electronic"] li[data-for~="electronic"]{display:block;}
 .schem-legend[data-variant="cassette"][data-cassette="narrow"] li[data-cassette-for="wide"]{display:none;}
 .schem-legend[data-variant="cassette"][data-cassette="wide"] li[data-cassette-for="narrow"]{display:none;}
 .schem-legend li:last-child{border-bottom:none;}
