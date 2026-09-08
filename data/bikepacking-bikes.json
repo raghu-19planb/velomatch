@@ -591,6 +591,44 @@
       "tireDurability": "standard"
     },
     {
+      "name": "Kona Sutra LTD",
+      "brand": "Kona",
+      "origin": "Canada",
+      "wheel": 700,
+      "sizes": [
+        49,
+        51,
+        52,
+        54,
+        56,
+        58,
+        60
+      ],
+      "minH": 160,
+      "maxH": 190,
+      "price": 2400,
+      "availability": "mainstream",
+      "frameMaterial": "steel",
+      "groupset": "Shimano Deore",
+      "terrain": "mixed",
+      "purpose": "touring",
+      "cargoCapacity": 3,
+      "rackMounts": true,
+      "frameBagFriendly": false,
+      "climbingRange": "ultra_low",
+      "suspensionFork": false,
+      "dynamoReady": true,
+      "weight": 13.5,
+      "colors": [
+        "Black",
+        "Orange"
+      ],
+      "image": "",
+      "electronicShifting": false,
+      "comfortDamping": false,
+      "tireDurability": "reinforced"
+    },
+    {
       "name": "Surly Long Haul Trucker",
       "brand": "Surly",
       "origin": "USA",
@@ -629,6 +667,46 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "standard"
+    },
+    {
+      "name": "Surly Disc Trucker",
+      "brand": "Surly",
+      "origin": "USA",
+      "wheel": 700,
+      "sizes": [
+        47,
+        49,
+        51,
+        52,
+        54,
+        56,
+        58,
+        60,
+        62
+      ],
+      "minH": 158,
+      "maxH": 193,
+      "price": 1900,
+      "availability": "mainstream",
+      "frameMaterial": "steel",
+      "groupset": "Shimano Deore",
+      "terrain": "mixed",
+      "purpose": "touring",
+      "cargoCapacity": 3,
+      "rackMounts": true,
+      "frameBagFriendly": false,
+      "climbingRange": "ultra_low",
+      "suspensionFork": false,
+      "dynamoReady": true,
+      "weight": 14.1,
+      "colors": [
+        "Black",
+        "Blue"
+      ],
+      "image": "",
+      "electronicShifting": false,
+      "comfortDamping": false,
+      "tireDurability": "reinforced"
     },
     {
       "name": "Co-op Cycles ADV 4.2",
