@@ -588,19 +588,29 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .derail-line{stroke:var(--blueprint); stroke-width:2.8; fill:none; stroke-linecap:round;}
 .derail-pulley{stroke:var(--blueprint); stroke-width:2.4; fill:none;}
 .chain-line{stroke:var(--blueprint); stroke-width:2.4; fill:none;}
+.chain-link{stroke:var(--blueprint); stroke-width:1.3; fill:rgba(43,87,160,0.1);}
 .cable-line{stroke:var(--fog); stroke-width:1.8; fill:none; stroke-dasharray:5 4;}
 .battery-shape{stroke:var(--blueprint); stroke-width:2.4; fill:rgba(43,87,160,0.06);}
 .wireless-arc{stroke:var(--signal); stroke-width:1.8; fill:none; opacity:0.75;}
+.headset-shape{stroke:var(--blueprint); stroke-width:2.2; fill:none;}
+.tire-ring{stroke:var(--blueprint); stroke-width:3; fill:none; stroke-dasharray:1 4.5; stroke-linecap:round;}
+.chainring-bolt{fill:var(--blueprint); stroke:none;}
+.bb-shape{stroke:var(--blueprint); stroke-width:2; fill:var(--paper);}
+.pad-shape{stroke:var(--blueprint); stroke-width:1.6; fill:rgba(43,87,160,0.1);}
 
 .s-part.s-highlight .frame-line, .s-part.s-highlight .chainring-ring, .s-part.s-highlight .cog-ring,
 .s-part.s-highlight .spoke-line, .s-part.s-highlight .wheel-ring, .s-part.s-highlight .brake-shape,
 .s-part.s-highlight .lever-shape, .s-part.s-highlight .cable-line, .s-part.s-highlight .derail-line,
 .s-part.s-highlight .derail-pulley, .s-part.s-highlight .battery-shape, .s-part.s-highlight .pedal-shape,
-.s-part.s-highlight .saddle-shape, .s-part.s-highlight .chain-line{
+.s-part.s-highlight .saddle-shape, .s-part.s-highlight .chain-line, .s-part.s-highlight .chain-link,
+.s-part.s-highlight .headset-shape, .s-part.s-highlight .tire-ring, .s-part.s-highlight .bb-shape,
+.s-part.s-highlight .pad-shape{
   stroke:var(--signal) !important; stroke-width:4;
 }
+.s-part.s-highlight .chain-link, .s-part.s-highlight .pad-shape{stroke-width:2.2;}
+.s-part.s-highlight .chainring-bolt{fill:var(--signal) !important;}
 .s-part.s-highlight .spoke-line{opacity:0.85;}
-.s-part.s-highlight .battery-shape{fill:rgba(226,85,29,0.14) !important;}
+.s-part.s-highlight .battery-shape, .s-part.s-highlight .bb-shape{fill:rgba(226,85,29,0.14) !important;}
 
 .s-caption{opacity:0; transition:opacity .5s ease;}
 .schem-stage.show-captions .s-caption{opacity:1;}
@@ -622,3 +632,8 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .schem-legend li.leg-hoverable:hover, .schem-legend li.leg-hoverable:focus-within{background:rgba(43,87,160,0.07);}
 .schem-legend .leg-name{font-size:14.5px; font-weight:600; margin:0 0 4px;}
 .schem-legend .leg-desc{font-size:13px; color:var(--fog); line-height:1.55; margin:0;}
+.schem-legend li.leg-header{
+  font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:0.05em;
+  color:var(--blueprint); text-transform:uppercase; padding:20px 4px 6px; border-bottom:none;
+}
+.schem-legend li.leg-header:first-child{padding-top:4px;}
