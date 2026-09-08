@@ -30,38 +30,77 @@ function initQuizFlow(containerSelector){
     el.style.display = 'none';
   });
 
+  // A step counts as "answered" if it contains at least one selected .opt —
+  // a plain slider-only question (no .opt buttons) is always considered
+  // answered, since its default value is already a real, scoreable value.
+  function stepIsAnswered(step){
+    const opts = step.querySelectorAll('.opt');
+    if (!opts.length) return true;
+    return !!step.querySelector('.opt.active');
+  }
+
   const nav = document.createElement('div');
   nav.className = 'q-flow-nav';
   nav.innerHTML =
     '<div class="q-flow-progress"><div class="q-flow-progress-bar" id="qFlowBar"></div></div>' +
     '<p class="q-flow-count" id="qFlowCount"></p>' +
+    '<p class="q-flow-hint" id="qFlowHint">Every question you answer helps us recommend more accurately. ' +
+      '<button type="button" class="q-flow-skip" id="qFlowSkip">Skip for now</button></p>' +
     '<div class="q-flow-buttons">' +
       '<button type="button" class="q-flow-back" id="qFlowBack">Back</button>' +
       '<button type="button" class="q-flow-next" id="qFlowNext">Next</button>' +
     '</div>';
-  container.insertBefore(nav, groups[0]);
+  // Placed after the first step for now; render() relocates it after
+  // whichever step is current, so it always sits below the visible question.
+  groups[0].insertAdjacentElement('afterend', nav);
 
   const backBtn = nav.querySelector('#qFlowBack');
   const nextBtn = nav.querySelector('#qFlowNext');
+  const skipBtn = nav.querySelector('#qFlowSkip');
+  const hintEl = nav.querySelector('#qFlowHint');
   const countEl = nav.querySelector('#qFlowCount');
   const barEl = nav.querySelector('#qFlowBar');
   let current = 0;
 
+  function advance(){
+    if (current < steps.length - 1) { current++; render(); }
+  }
+
   function render(){
     steps.forEach((s, i) => { s.style.display = i === current ? '' : 'none'; });
     const isLast = current === steps.length - 1;
-    backBtn.style.visibility = current === 0 ? 'hidden' : 'visible';
-    nav.style.display = isLast ? 'none' : 'flex';
-    countEl.textContent = isLast ? '' : ('Question ' + (current + 1) + ' of ' + (steps.length - 1));
-    barEl.style.width = (100 * current / (steps.length - 1)) + '%';
+
+    if (isLast) {
+      nav.style.display = 'none';
+    } else {
+      nav.style.display = 'flex';
+      steps[current].insertAdjacentElement('afterend', nav);
+
+      const answered = stepIsAnswered(steps[current]);
+      nextBtn.style.display = answered ? '' : 'none';
+      hintEl.style.display = answered ? 'none' : 'block';
+      backBtn.style.display = current === 0 ? 'none' : '';
+
+      countEl.textContent = 'Question ' + (current + 1) + ' of ' + (steps.length - 1);
+      barEl.style.width = (100 * current / (steps.length - 1)) + '%';
+    }
+
     if (current > 0) steps[current].scrollIntoView({behavior: 'smooth', block: 'center'});
   }
 
-  nextBtn.addEventListener('click', () => {
-    if (current < steps.length - 1) { current++; render(); }
-  });
+  nextBtn.addEventListener('click', advance);
+  skipBtn.addEventListener('click', advance);
   backBtn.addEventListener('click', () => {
     if (current > 0) { current--; render(); }
+  });
+
+  // Re-check answered/unanswered the moment the user picks an option on the
+  // current step, so Next appears immediately without waiting for anything
+  // else to trigger a re-render.
+  container.addEventListener('click', e => {
+    if (e.target.classList && e.target.classList.contains('opt') && steps[current].contains(e.target)) {
+      render();
+    }
   });
 
   // If the final submit fails validation (a required question wasn't
