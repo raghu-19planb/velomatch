@@ -26,7 +26,7 @@ function initQuizFlow(containerSelector){
   groups.forEach(g => g.classList.add('q-step'));
   const steps = [...groups, reviewStep];
 
-  container.querySelectorAll(':scope > .q-section-label').forEach(el => {
+  container.querySelectorAll(':scope > .q-section-label, :scope > .q-section-hint').forEach(el => {
     el.style.display = 'none';
   });
 
