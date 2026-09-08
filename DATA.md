@@ -7,16 +7,32 @@ Each quiz category has its own catalog file under `data/`:
 
 These files are the **single source of truth** for what each quiz can recommend. When you add a new category page (a third use case, a fourth, etc.), give it its own `data/<category>-bikes.json` following the same pattern.
 
-## Catalog scope — what "23 commute bikes" actually means
+## Catalog scope — what "24 commute bikes" actually means
 
-The commute catalog (23 models as of this writing, including real Canadian brands — Norco, Opus, Kona, Devinci, Batch Bicycles) is a **curated, well-researched set**, not a scrape of every Canadian retailer. Each entry's specs come from real-world product knowledge of that actual model, but nothing here is live-verified against a current manufacturer spec sheet or checked for this exact model year's availability.
+The commute catalog (24 models as of this writing, including real Canadian brands — Norco, Opus, Kona, Devinci, Batch Bicycles, Supercycle) is a **curated, well-researched set**, not a scrape of every Canadian retailer. Most entries' specs come from real-world product knowledge of that actual model rather than a live-verified spec sheet; a few carry an explicit `_verified` field noting exactly what was confirmed live and when (see the Supercycle entry for an example).
 
 That distinction matters more now that the quiz asks purchase-influencing questions (frame material, brakes, groupset). Two things this catalog deliberately does **not** do, and why:
 
 - **It doesn't invent model-year variants.** A bike doesn't get separate 2022/2023/2024/2025/2026 entries unless there's a real, known difference between them — most models don't change every year, and fabricating "the 2025 version" of a bike down to specific spec differences would risk misleading someone who's about to actually spend money.
 - **It isn't a scrape of every Canadian bike shop.** A truly exhaustive retailer-level catalog (every SKU, every store, every year) needs either a real data feed/API from retailers, or manually extracting listings from pages you point me at. Both are realistic next steps — just not something to fabricate wholesale in one pass.
 
-**To grow this responsibly:** send me links to specific store/category pages (e.g. a Norco or MEC bike listing) and I'll extract real entries from them, or hand me a spec sheet/spreadsheet you already have. I can also do a browsing pass to verify or refresh specific existing entries if something looks off.
+### Why live scraping isn't the growth engine here
+
+I tried pulling a real listing from a major Canadian retailer's site directly. The search page worked and gave a genuine, verifiable result (name, price, SKU). The individual product page did not — it's rendered client-side behind JavaScript that didn't execute in a way that exposed the actual spec sheet, so instead of frame material/gearing/brake details I got a page of legal boilerplate. Guessing a direct product URL to route around that isn't an option — that's exactly the kind of guessed URL this project avoids, and it also just doesn't work reliably against modern e-commerce sites. So one verified fact (name, price, SKU) cost a very large amount of effort, and that ratio doesn't scale to "exhaustive."
+
+**What actually scales, in priority order:**
+1. **My own product knowledge**, for breadth — fast, consistent, reasonably accurate for real, well-known current/recent models. This is how most of the catalog was built and remains the main growth engine.
+2. **You send me specific pages** (a product page you have open, a spec sheet, a retailer's category listing, a screenshot) — I can extract from content directly in front of me far more reliably than I can navigate a retailer's site blind.
+3. **Targeted live verification** for a specific fact that matters (like the Supercycle price/SKU above) — worth doing occasionally, not as the default way to add every bike.
+
+### Coverage tracker (update this as the catalog grows)
+
+**Canadian brands represented:** Norco, Opus, Kona, Devinci, Batch Bicycles, Supercycle (Canadian Tire house brand).
+**Canadian brands known but not yet added:** Rocky Mountain, Miele (adult line — a kids model is already in the kids catalog), CCM, Marinoni, Six Fifty, Panorama Cycles, Envo. (Sites for Envo/Panorama weren't reachable in this pass — worth another attempt, or send me their current product pages directly.)
+**International brands already represented (sold in Canada):** Trek, Specialized, Cannondale, Giant, Priority, Brompton, Tern, Rad Power Bikes, Aventon, Ride1Up, Marin, Surly, State Bicycle Co. — all USA/UK/Taiwan.
+**Next planned phase, per direction from the user:** once Canadian-market coverage feels reasonably broad, extend deliberately into other countries' domestic brands, starting with the USA (e.g. more from Fuji, Raleigh USA, Diamondback, Electra) before moving further afield.
+
+**To grow this responsibly:** send me links to specific store/category pages, a spec sheet, or a spreadsheet you already have, and I'll extract real entries from them — that's more reliable than me navigating retailer sites blind. I can also do a browsing pass to verify or refresh specific existing entries if something looks off.
 
 ## How to update a catalog
 
