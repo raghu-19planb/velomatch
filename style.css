@@ -420,7 +420,9 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .page-transition.active{visibility:visible; pointer-events:auto;}
 .transition-panel{
   position:absolute; top:0; left:0; height:100%; width:0; overflow:visible;
-  background:var(--ink);
+  background:rgba(27,35,31,0.8);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
   transition:width 2.4s cubic-bezier(.45,0,.55,1);
 }
 .page-transition.active .transition-panel{width:100%;}
