@@ -10,6 +10,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="quiz-flow.js"></script>
 </head>
 <body>
 
@@ -178,7 +179,7 @@
       <div>
         <div class="fig-tag"><span>Fig. 003</span><span class="chip-div"></span><span>The fit quiz</span></div>
         <h2>Let's find your commute bike.</h2>
-        <p class="lede">This prototype covers daily commuting by bike. It's a longer quiz than the essentials — every field feeds the match on the right, and none of it requires knowing bike jargon going in.</p>
+        <p class="lede">This prototype covers daily commuting by bike. It's a longer quiz than the essentials, answered one question at a time — none of it requires knowing bike jargon going in.</p>
       </div>
       <svg class="sketch-icon on-dark quiz-sketch" viewBox="0 0 64 64" aria-hidden="true">
         <path d="M20 30 L44 30 L44 50 L20 50 Z"/>
@@ -189,7 +190,7 @@
     </div>
 
     <div class="quiz-grid">
-      <div>
+      <div id="quizSteps">
         <p class="q-section-label first">Your commute</p>
 
         <div class="q-group">
@@ -535,6 +536,7 @@ async function loadBikeData(){
   });
 }
 loadBikeData();
+initQuizFlow('#quizSteps');
 
 const state = {
   power:null, route:null, cargo:null, origin:null, frame:null, groupset:null, color:null,

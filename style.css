@@ -200,6 +200,29 @@ h2{font-size:clamp(27px,3.6vw,38px); font-weight:700; letter-spacing:-0.01em; ma
 .q-section-label.first{margin-top:0; padding-top:0; border-top:none;}
 .q-section-hint{font-size:12.5px; color:var(--ink-faint); margin:0 0 20px;}
 .q-group{margin-bottom:26px;}
+
+/* CONVERSATIONAL QUIZ FLOW — a presentation layer over the existing .q-group
+   questions: one at a time instead of a long scrollable wall of them. */
+.q-flow-nav{margin-bottom:8px;}
+.q-flow-progress{height:3px; background:var(--line-dark); border-radius:2px; overflow:hidden; margin-bottom:10px;}
+.q-flow-progress-bar{height:100%; background:var(--signal); transition:width .3s ease;}
+.q-flow-count{font-family:var(--font-mono); font-size:12.5px; color:var(--ink-faint); margin:0 0 22px;}
+.q-flow-buttons{display:flex; gap:12px; margin-top:8px;}
+.q-flow-back{
+  background:transparent; border:1px solid var(--line-dark); color:var(--paper);
+  padding:0 22px; border-radius:100px; font-size:14px; font-weight:600; cursor:pointer; font-family:inherit;
+}
+.q-flow-back:hover{border-color:rgba(242,236,221,0.4);}
+.q-flow-next{
+  background:var(--signal); border:none; color:var(--paper);
+  padding:0 26px; height:44px; border-radius:100px; font-size:14px; font-weight:600; cursor:pointer; font-family:inherit;
+  flex:1;
+}
+.q-flow-next:hover{background:var(--signal-deep);}
+.q-step{animation:q-step-in .25s ease;}
+@keyframes q-step-in{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+@media (prefers-reduced-motion: reduce){ .q-step{animation:none;} }
+.q-step-review .q-step-heading{font-size:16px; font-weight:600; margin:0 0 20px; color:var(--paper);}
 .q-label{font-size:14px; font-weight:600; margin-bottom:12px; display:block;}
 .q-hint{font-size:12px; color:var(--ink-faint); margin:-6px 0 12px;}
 .opt-row{display:flex; gap:8px; flex-wrap:wrap;}

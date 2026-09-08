@@ -10,6 +10,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="quiz-flow.js"></script>
 </head>
 <body>
 
@@ -175,7 +176,7 @@
       <div>
         <div class="fig-tag"><span>Fig. 003</span><span class="chip-div"></span><span>The fit quiz</span></div>
         <h2>Let's find their bike.</h2>
-        <p class="lede">This prototype covers kids five and up. Every field below feeds the match on the right.</p>
+        <p class="lede">This prototype covers kids five and up. One question at a time — every answer feeds the match.</p>
       </div>
       <svg class="sketch-icon on-dark quiz-sketch" viewBox="0 0 64 64" aria-hidden="true">
         <path d="M10 34 Q10 14 30 14 Q50 14 50 34 L50 36 L10 36 Z"/>
@@ -185,7 +186,7 @@
     </div>
 
     <div class="quiz-grid">
-      <div>
+      <div id="quizSteps">
         <div class="q-group">
           <label class="q-label">Child's height</label>
           <p class="q-hint">Assumes a starting age of 5 and up.</p>
@@ -427,6 +428,7 @@ async function loadBikeData(){
   });
 }
 loadBikeData();
+initQuizFlow('#quizSteps');
 
 const state = {exp:null, terrain:null, brake:null, origin:null};
 const growthLabels = ["Not important","Not important","A little","A little","Somewhat","Somewhat","Somewhat","Important","Important","Very important","Very important"];
