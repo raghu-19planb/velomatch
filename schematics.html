@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VeloMatch — Bike Schematics</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-transition page-reveal" aria-hidden="true">
+  <div class="transition-panel">
+    <svg class="transition-rider" viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="30" cy="72" r="20" fill="none" stroke="#000" stroke-width="3.4"/>
+      <circle cx="100" cy="72" r="20" fill="none" stroke="#000" stroke-width="3.4"/>
+      <g fill="none" stroke="#000" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M55 60 L45 30 L90 26 L100 72 M55 60 L30 72"/>
+        <path d="M90 26 L82 12"/>
+        <path d="M70 15 L94 19"/>
+        <path d="M78 18 L58 38"/>
+        <path d="M62 34 L84 30"/>
+      </g>
+      <circle cx="78" cy="10" r="7.5" fill="#000"/>
+      <g class="pedal-leg">
+        <path d="M55 60 L46 76 L58 82" fill="none" stroke="#000" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
+      <svg width="22" height="16" viewBox="0 0 44 28" aria-hidden="true">
+        <circle cx="9" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
+        <circle cx="35" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
+        <path d="M9 19 L20 8 L28 8 L35 19 M20 8 L16 19" fill="none" stroke="var(--blueprint)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      VeloMatch
+    </a>
+    <div class="nav-links">
+      <a href="kids.html" class="nav-link">Kids' bikes</a>
+      <a href="commute.html" class="nav-link">Commuting</a>
+      <a href="bikepacking.html" class="nav-link">Bikepacking</a>
+      <a href="racing.html" class="nav-link">Racing</a>
+      <a href="schematics.html" class="nav-link current">Schematics</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="kids.html#quiz" class="nav-cta">Start matching</a>
+    </div>
+  </div>
+</nav>
+
+<section style="padding:76px 0 0;">
+  <div class="wrap">
+    <div class="fig-tag"><span>Sheet 005</span><span class="chip-div"></span><span>Bike schematics</span></div>
+    <h1 style="font-size:clamp(30px,4.2vw,48px); font-weight:700; letter-spacing:-0.015em; line-height:1.12; margin:0 0 18px; max-width:660px;">Know your bike before you buy one.</h1>
+    <p class="lede" style="margin-bottom:0; max-width:600px;">Bikes are getting more complex — electronic shifting, wireless derailleurs, a dozen cassette options that all sound the same in a shop pitch. Watch a bike go together, part by part, so you can walk in speaking the language instead of nodding along.</p>
+  </div>
+</section>
+
+<section style="padding-top:36px;">
+  <div class="wrap">
+    <div class="schem-tabs" role="tablist" aria-label="Drivetrain type">
+      <button type="button" class="schem-tab" data-variant="single" role="tab">Single-speed</button>
+      <button type="button" class="schem-tab" data-variant="mechanical" role="tab">Mechanical (cassette)</button>
+      <button type="button" class="schem-tab" data-variant="cassette" role="tab">Cassette range</button>
+      <button type="button" class="schem-tab" data-variant="electronic" role="tab">Electronic shifting</button>
+    </div>
+    <div class="schem-subtoggle" id="schemSubtoggle">
+      <button type="button" class="schem-subtab" data-cassette="narrow">Narrow — 11–28T</button>
+      <button type="button" class="schem-subtab" data-cassette="wide">Wide — 10–50T</button>
+    </div>
+    <p class="schem-note" id="schemNote"></p>
+
+    <div class="schem-layout">
+      <div>
+        <div class="schem-diagram-card">
+          <svg class="schem-svg schem-stage" id="schemStage" viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Blueprint diagram of a bicycle, animating as its parts assemble into place">
+
+            <!-- ===== on-diagram zone captions (fade in once assembled) ===== -->
+            <g class="s-caption" aria-hidden="true">
+              <path class="s-caption-line" d="M70,50 Q40,180 130,260 Q160,300 195,325" fill="none"/>
+              <text class="s-caption-text" id="drivetrainCaptionText" x="70" y="34" text-anchor="middle">SINGLE COG</text>
+
+              <path class="s-caption-line" d="M230,50 L268,96" fill="none"/>
+              <text class="s-caption-text" x="230" y="34" text-anchor="middle">SADDLE</text>
+
+              <path class="s-caption-line" d="M420,50 L400,180" fill="none"/>
+              <text class="s-caption-text" x="420" y="34" text-anchor="middle">FRAME &amp; FORK</text>
+
+              <path class="s-caption-line" d="M590,50 L508,88" fill="none"/>
+              <text class="s-caption-text" x="590" y="34" text-anchor="middle">COCKPIT</text>
+
+              <path class="s-caption-line" d="M170,395 L170,368" fill="none"/>
+              <text class="s-caption-text" x="170" y="410" text-anchor="middle">WHEEL — rim · spoke · hub</text>
+
+              <path class="s-caption-line" d="M420,393 L360,300" fill="none"/>
+              <text class="s-caption-text" x="420" y="410" text-anchor="middle">CRANKSET &amp; PEDALS</text>
+            </g>
+
+            <!-- ===== FRAME ===== -->
+            <g class="s-part" data-part="frame" style="--dx:-260px; --dy:-40px; --dr:-12deg; --delay:0s;">
+              <g class="frame-line">
+                <path d="M330,280 L282,118"/>
+                <path d="M282,118 L478,108"/>
+                <path d="M330,280 L460,150"/>
+                <path d="M282,118 L170,290"/>
+                <path d="M330,280 L170,290"/>
+              </g>
+            </g>
+
+            <!-- ===== FORK ===== -->
+            <g class="s-part" data-part="fork" style="--dx:220px; --dy:-70px; --dr:18deg; --delay:.05s;">
+              <path class="frame-line" d="M460,150 Q498,222 530,290" fill="none"/>
+            </g>
+
+            <!-- ===== REAR WHEEL ===== -->
+            <g class="s-part" data-part="wheel" style="--dx:-300px; --dy:120px; --dr:-40deg; --delay:.10s;">
+              <circle class="wheel-ring" cx="170" cy="290" r="78"/>
+              <circle class="hub" cx="170" cy="290" r="5.5"/>
+              <g class="spoke-line">
+                <line x1="170" y1="290" x2="246" y2="290"/>
+                <line x1="170" y1="290" x2="223.7" y2="343.7"/>
+                <line x1="170" y1="290" x2="170" y2="366"/>
+                <line x1="170" y1="290" x2="116.3" y2="343.7"/>
+                <line x1="170" y1="290" x2="94" y2="290"/>
+                <line x1="170" y1="290" x2="116.3" y2="236.3"/>
+                <line x1="170" y1="290" x2="170" y2="214"/>
+                <line x1="170" y1="290" x2="223.7" y2="236.3"/>
+              </g>
+            </g>
+
+            <!-- ===== FRONT WHEEL ===== -->
+            <g class="s-part" data-part="wheel" style="--dx:300px; --dy:120px; --dr:40deg; --delay:.15s;">
+              <circle class="wheel-ring" cx="530" cy="290" r="78"/>
+              <circle class="hub" cx="530" cy="290" r="5.5"/>
+              <g class="spoke-line">
+                <line x1="530" y1="290" x2="606" y2="290"/>
+                <line x1="530" y1="290" x2="583.7" y2="343.7"/>
+                <line x1="530" y1="290" x2="530" y2="366"/>
+                <line x1="530" y1="290" x2="476.3" y2="343.7"/>
+                <line x1="530" y1="290" x2="454" y2="290"/>
+                <line x1="530" y1="290" x2="476.3" y2="236.3"/>
+                <line x1="530" y1="290" x2="530" y2="214"/>
+                <line x1="530" y1="290" x2="583.7" y2="236.3"/>
+              </g>
+            </g>
+
+            <!-- ===== CRANKSET & PEDALS ===== -->
+            <g class="s-part" data-part="crankset" style="--dx:0px; --dy:180px; --dr:70deg; --delay:.30s;">
+              <circle class="chainring-ring" cx="330" cy="280" r="32"/>
+              <line class="pedal-shape" x1="330" y1="280" x2="372" y2="318"/>
+              <rect class="pedal-shape" x="365" y="314" width="14" height="8" rx="2"/>
+              <line class="pedal-shape" x1="330" y1="280" x2="288" y2="242"/>
+              <rect class="pedal-shape" x="281" y="238" width="14" height="8" rx="2"/>
+            </g>
+
+            <!-- ===== COCKPIT: handlebar, stem, levers ===== -->
+            <g class="s-part" data-part="cockpit" style="--dx:200px; --dy:-160px; --dr:35deg; --delay:.35s;">
+              <path class="frame-line" d="M478,108 L503,90" fill="none"/>
+              <path class="frame-line" d="M503,90 L522,86 Q536,86 537,98 Q538,108 526,110" fill="none"/>
+              <ellipse class="lever-shape" cx="524" cy="88" rx="8" ry="5" transform="rotate(-15 524 88)"/>
+            </g>
+
+            <!-- ===== SADDLE & SEATPOST ===== -->
+            <g class="s-part" data-part="saddle" style="--dx:-180px; --dy:-160px; --dr:-35deg; --delay:.40s;">
+              <path class="frame-line" d="M282,118 L274,101" fill="none"/>
+              <ellipse class="saddle-shape" cx="262" cy="99" rx="24" ry="7" transform="rotate(-6 262 99)"/>
+            </g>
+
+            <!-- ===== CHAIN ===== -->
+            <g class="s-part" data-part="chain" style="--dx:-60px; --dy:160px; --dr:15deg; --delay:.55s;">
+              <line class="chain-line" x1="300" y1="254" x2="196" y2="266"/>
+              <line class="chain-line" x1="300" y1="306" x2="196" y2="314"/>
+            </g>
+
+            <!-- ===== BRAKES ===== -->
+            <g class="s-part" data-part="brakes" style="--dx:180px; --dy:-100px; --dr:25deg; --delay:.60s;">
+              <path class="brake-shape" d="M518,206 L518,224 M542,206 L542,224 M518,215 L542,215" fill="none"/>
+            </g>
+            <g class="s-part" data-part="brakes" style="--dx:-180px; --dy:-100px; --dr:-25deg; --delay:.62s;">
+              <path class="brake-shape" d="M158,206 L158,224 M182,206 L182,224 M158,215 L182,215" fill="none"/>
+            </g>
+
+            <!-- ===== SINGLE-SPEED: rear cog only ===== -->
+            <g class="s-part v-single" data-part="cog" style="--dx:-40px; --dy:140px; --dr:20deg; --delay:.70s;">
+              <circle class="cog-ring" cx="170" cy="290" r="20"/>
+            </g>
+
+            <!-- ===== MECHANICAL: cassette + cable-actuated derailleur ===== -->
+            <g class="s-part v-mechanical" data-part="cassette" style="--dx:-40px; --dy:140px; --dr:20deg; --delay:.70s;">
+              <circle class="cog-ring" cx="170" cy="290" r="14"/>
+              <circle class="cog-ring" cx="170" cy="290" r="18"/>
+              <circle class="cog-ring" cx="170" cy="290" r="22"/>
+              <circle class="cog-ring" cx="170" cy="290" r="26"/>
+              <circle class="cog-ring" cx="170" cy="290" r="30"/>
+            </g>
+            <g class="s-part v-mechanical" data-part="derailleur" style="--dx:-70px; --dy:130px; --dr:-25deg; --delay:.76s;">
+              <path class="derail-line" d="M188,300 L206,326 M206,326 L202,352 M202,352 L190,372" fill="none"/>
+              <circle class="derail-pulley" cx="202" cy="352" r="6"/>
+              <circle class="derail-pulley" cx="190" cy="372" r="6"/>
+            </g>
+            <g class="s-part v-mechanical" data-part="cable" style="--dx:120px; --dy:-60px; --dr:10deg; --delay:.82s;">
+              <path class="cable-line" d="M524,90 Q460,150 400,190 Q300,250 198,300" fill="none"/>
+            </g>
+
+            <!-- ===== CASSETTE RANGE: narrow vs wide, toggled ===== -->
+            <g class="s-part v-cassette cassette-sub-narrow" data-part="cassette" style="--dx:-40px; --dy:140px; --dr:20deg; --delay:.70s;">
+              <circle class="cog-ring" cx="170" cy="290" r="14"/>
+              <circle class="cog-ring" cx="170" cy="290" r="18"/>
+              <circle class="cog-ring" cx="170" cy="290" r="22"/>
+              <circle class="cog-ring" cx="170" cy="290" r="26"/>
+              <circle class="cog-ring" cx="170" cy="290" r="30"/>
+            </g>
+            <g class="s-part v-cassette cassette-sub-narrow" data-part="derailleur" style="--dx:-70px; --dy:130px; --dr:-25deg; --delay:.76s;">
+              <path class="derail-line" d="M188,300 L206,326 M206,326 L202,352 M202,352 L190,372" fill="none"/>
+              <circle class="derail-pulley" cx="202" cy="352" r="6"/>
+              <circle class="derail-pulley" cx="190" cy="372" r="6"/>
+            </g>
+
+            <g class="s-part v-cassette cassette-sub-wide" data-part="cassette" style="--dx:-40px; --dy:140px; --dr:20deg; --delay:.70s;">
+              <circle class="cog-ring" cx="170" cy="290" r="12"/>
+              <circle class="cog-ring" cx="170" cy="290" r="17"/>
+              <circle class="cog-ring" cx="170" cy="290" r="23"/>
+              <circle class="cog-ring" cx="170" cy="290" r="30"/>
+              <circle class="cog-ring" cx="170" cy="290" r="38"/>
+              <circle class="cog-ring" cx="170" cy="290" r="47"/>
+            </g>
+            <g class="s-part v-cassette cassette-sub-wide" data-part="derailleur" style="--dx:-70px; --dy:130px; --dr:-25deg; --delay:.76s;">
+              <path class="derail-line" d="M188,300 L204,328 M204,328 L200,354 M200,354 L184,388" fill="none"/>
+              <circle class="derail-pulley" cx="200" cy="354" r="6"/>
+              <circle class="derail-pulley" cx="184" cy="388" r="6"/>
+            </g>
+
+            <g class="s-part v-cassette" data-part="cable" style="--dx:120px; --dy:-60px; --dr:10deg; --delay:.82s;">
+              <path class="cable-line" d="M524,90 Q460,150 400,190 Q300,250 198,300" fill="none"/>
+            </g>
+
+            <!-- ===== ELECTRONIC: cassette + electronic derailleur + battery + wireless ===== -->
+            <g class="s-part v-electronic" data-part="cassette" style="--dx:-40px; --dy:140px; --dr:20deg; --delay:.70s;">
+              <circle class="cog-ring" cx="170" cy="290" r="14"/>
+              <circle class="cog-ring" cx="170" cy="290" r="18"/>
+              <circle class="cog-ring" cx="170" cy="290" r="22"/>
+              <circle class="cog-ring" cx="170" cy="290" r="26"/>
+              <circle class="cog-ring" cx="170" cy="290" r="30"/>
+              <circle class="cog-ring" cx="170" cy="290" r="34"/>
+            </g>
+            <g class="s-part v-electronic" data-part="derailleur" style="--dx:-70px; --dy:130px; --dr:-25deg; --delay:.76s;">
+              <path class="derail-line" d="M188,300 L206,326" fill="none"/>
+              <circle class="derail-pulley" cx="206" cy="326" r="9"/>
+              <path class="derail-line" d="M206,326 L202,352 M202,352 L190,372" fill="none"/>
+              <circle class="derail-pulley" cx="202" cy="352" r="6"/>
+              <circle class="derail-pulley" cx="190" cy="372" r="6"/>
+            </g>
+            <g class="s-part v-electronic" data-part="battery" style="--dx:0px; --dy:-180px; --dr:0deg; --delay:.82s;">
+              <rect class="battery-shape" x="298" y="190" width="16" height="30" rx="5"/>
+            </g>
+            <g class="s-part v-electronic" data-part="wireless" style="--dx:100px; --dy:100px; --dr:0deg; --delay:.88s;">
+              <path class="wireless-arc" d="M218,320 A8,8 0 0 1 218,332" fill="none"/>
+              <path class="wireless-arc" d="M224,314 A14,14 0 0 1 224,338" fill="none"/>
+              <path class="wireless-arc" d="M230,308 A20,20 0 0 1 230,344" fill="none"/>
+            </g>
+
+          </svg>
+        </div>
+        <button type="button" class="schem-replay" id="schemReplay">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          Replay assembly
+        </button>
+      </div>
+
+      <div>
+        <ul class="schem-legend" id="schemLegend">
+          <li data-for="shared" data-part="frame" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Frame</p>
+            <p class="leg-desc">Ties every other part together — its size and angles set how the bike fits and handles.</p>
+          </li>
+          <li data-for="shared" data-part="fork" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Fork &amp; headset</p>
+            <p class="leg-desc">Holds the front wheel and lets it steer; the headset is the bearing that lets the fork rotate smoothly.</p>
+          </li>
+          <li data-for="shared" data-part="wheel" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Wheels</p>
+            <p class="leg-desc">Rim, spokes, and hub — sized by diameter (700c, 650b, 26", etc.) to match the frame and tires.</p>
+          </li>
+          <li data-for="shared" data-part="cockpit" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Handlebar, stem &amp; levers</p>
+            <p class="leg-desc">Where you steer and brake from. The stem sets reach and height; the same lever often brakes and shifts.</p>
+          </li>
+          <li data-for="shared" data-part="saddle" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Saddle &amp; seatpost</p>
+            <p class="leg-desc">The post sets your height; the saddle is the single most personal fit point on the whole bike.</p>
+          </li>
+          <li data-for="shared" data-part="crankset" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Crankset &amp; pedals</p>
+            <p class="leg-desc">Where your legs put in power — the chainring's tooth count sets how hard or easy each stroke feels.</p>
+          </li>
+          <li data-for="shared" data-part="chain" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Chain</p>
+            <p class="leg-desc">Carries power from the crankset to whichever rear cog is currently selected.</p>
+          </li>
+          <li data-for="shared" data-part="brakes" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Brakes</p>
+            <p class="leg-desc">Slows the wheel — drawn here as rim calipers, though many modern bikes use disc brakes instead.</p>
+          </li>
+
+          <li data-for="single" data-part="cog" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Rear cog</p>
+            <p class="leg-desc">One gear, always engaged — no derailleur, cable, or adjustment needed. Common on fixed-gear and single-speed bikes.</p>
+          </li>
+
+          <li data-for="mechanical" data-part="cassette" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Cassette</p>
+            <p class="leg-desc">A stack of different-sized cogs. Shifting moves the chain sideways between them to change gear.</p>
+          </li>
+          <li data-for="mechanical" data-part="derailleur" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Rear derailleur</p>
+            <p class="leg-desc">A cable-pulled arm that pushes the chain onto a bigger or smaller cog when you shift.</p>
+          </li>
+          <li data-for="mechanical" data-part="cable" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Gear cable housing</p>
+            <p class="leg-desc">Carries the pull from your shift lever to the derailleur — the part that stretches over time and needs the odd adjustment.</p>
+          </li>
+
+          <li data-for="cassette" data-cassette-for="narrow" data-part="cassette" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Cassette — narrow range (11–28T)</p>
+            <p class="leg-desc">Gears sit close together for smooth, evenly-spaced pedaling on flatter roads — but no easy bail-out gear for steep climbs.</p>
+          </li>
+          <li data-for="cassette" data-cassette-for="wide" data-part="cassette" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Cassette — wide range (10–50T)</p>
+            <p class="leg-desc">Trades smooth spacing for a much easier bail-out gear — the difference between grinding and walking on a loaded climb.</p>
+          </li>
+          <li data-for="cassette" data-cassette-for="narrow" data-part="derailleur" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Rear derailleur — short cage</p>
+            <p class="leg-desc">A narrow cassette needs less chain wrap, so the derailleur's cage — the part holding the two small pulley wheels — stays short.</p>
+          </li>
+          <li data-for="cassette" data-cassette-for="wide" data-part="derailleur" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Rear derailleur — long cage</p>
+            <p class="leg-desc">A wide-range cassette needs far more chain wrap to take up slack, so the cage stretches noticeably longer to reach the biggest cog.</p>
+          </li>
+          <li data-for="cassette" data-part="cable" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Gear cable housing</p>
+            <p class="leg-desc">Carries the pull from your shift lever to the derailleur, whichever range the cassette is built for.</p>
+          </li>
+
+          <li data-for="electronic" data-part="cassette" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Cassette</p>
+            <p class="leg-desc">Same job as on a mechanical bike — a stack of cogs the chain moves between — usually with more speeds (11–13) on electronic groupsets.</p>
+          </li>
+          <li data-for="electronic" data-part="derailleur" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Electronic rear derailleur</p>
+            <p class="leg-desc">A small motor moves the chain instead of a cable — shifts stay precise and never need cable-tension adjustment.</p>
+          </li>
+          <li data-for="electronic" data-part="battery" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Battery pack</p>
+            <p class="leg-desc">Powers the derailleur's motor (and front derailleur, if fitted) — typically good for hundreds of kilometres per charge.</p>
+          </li>
+          <li data-for="electronic" data-part="wireless" class="leg-hoverable" tabindex="0">
+            <p class="leg-name">Wireless shift signal</p>
+            <p class="leg-desc">A button tap sends a signal — wireless on some brands, a thin wire on others — to the derailleur's motor instead of pulling a cable.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="fig-tag"><span>Fig. 002</span><span class="chip-div"></span><span>Why this matters</span></div>
+    <h2>Understanding your bike is how you avoid overpaying for the wrong thing.</h2>
+    <p class="lede">A shop can always describe a bike in terms that sound impressive. Knowing what each part actually does is how you tell an upgrade worth paying for from one that isn't.</p>
+    <div class="steps">
+      <div class="step">
+        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="20"/>
+          <path d="M32 20 L32 32 L41 38"/>
+        </svg>
+        <div class="step-index"><span>01</span><span class="tick"></span></div>
+        <h3>Same words, no surprises</h3>
+        <p>"Cassette," "derailleur cage," "electronic shifting" stop being sales jargon and start being parts you can point at.</p>
+      </div>
+      <div class="step">
+        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M10 46 L54 46 M18 46 L18 30 L32 20 L46 30 L46 46"/>
+        </svg>
+        <div class="step-index"><span>02</span><span class="tick"></span></div>
+        <h3>Spot the real trade-offs</h3>
+        <p>Wider cassette, longer derailleur cage, heavier bike — every upgrade trades something for something else. Now you can see what.</p>
+      </div>
+      <div class="step">
+        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M12 20 L52 20 L52 44 L32 52 L12 44 Z"/>
+          <path d="M22 32 L29 39 L43 24"/>
+        </svg>
+        <div class="step-index"><span>03</span><span class="tick"></span></div>
+        <h3>Ask better questions</h3>
+        <p>Walk into any shop, or open any quiz on this site, already knowing what you're choosing between.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
+      <svg width="22" height="16" viewBox="0 0 44 28" aria-hidden="true">
+        <circle cx="9" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
+        <circle cx="35" cy="19" r="8" fill="none" stroke="var(--blueprint)" stroke-width="2.4"/>
+        <path d="M9 19 L20 8 L28 8 L35 19 M20 8 L16 19" fill="none" stroke="var(--blueprint)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      VeloMatch
+    </a>
+    <p>A smarter way to find a bike that fits your ride.</p>
+    <button type="button" class="letter-trigger" id="openLetter">Why we built this</button>
+  </div>
+</footer>
+
+<div class="letter-overlay" id="letterOverlay" aria-hidden="true">
+  <div class="letter-card" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+    <button type="button" class="letter-close" id="closeLetter" aria-label="Close">✕</button>
+    <svg class="sketch-icon letter-sketch" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M9 17 L56 15 L55 46 L7 45 Z"/>
+      <path d="M9 17 L32 35 L55 15"/>
+    </svg>
+    <p class="letter-fig">Fig. 007 — where this is headed</p>
+    <h3 id="letterTitle">To everyone who's stood in a bike aisle guessing,</h3>
+    <p>Buying a bike usually comes down to a guess: a size sticker on a rack, a salesperson pointing at whatever's in stock, or a color you liked in a catalog. Get it wrong and it's money spent on something that never quite fits.</p>
+    <p>We think fit should come from geometry, not guesswork — reach, stack, standover, all measured and matched to the rider, whoever that rider is.</p>
+    <p>VeloMatch is built to do that matching for every kind of rider and every kind of ride. Right now it's four working prototypes: a first bike for a growing kid, a daily commuter, a bikepacking rig, and a racing or ultra-endurance bike — because those are the cases where a wrong guess costs the most. The same approach — real measurements, scored against real bikes — is what we're building toward next, for every rider after this one.</p>
+    <p>It won't get everything right yet. But it will show its work — the frame size, the gear capacity, the climbing range — so you're choosing a bike, not gambling on one.</p>
+    <p class="letter-sign">This is where we're starting. Not where we're stopping.</p>
+  </div>
+</div>
+
+<script>
+const stage = document.getElementById('schemStage');
+const legend = document.getElementById('schemLegend');
+const tabs = document.querySelectorAll('.schem-tab');
+const subtoggle = document.getElementById('schemSubtoggle');
+const subtabs = document.querySelectorAll('.schem-subtab');
+const drivetrainCaptionText = document.getElementById('drivetrainCaptionText');
+const schemNote = document.getElementById('schemNote');
+const replayBtn = document.getElementById('schemReplay');
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const ASSEMBLE_MS = reduceMotion ? 150 : 1900;
+
+const driveLabel = {
+  single: 'SINGLE COG',
+  mechanical: 'CASSETTE & DERAILLEUR',
+  cassette: 'CASSETTE RANGE',
+  electronic: 'ELECTRONIC DERAILLEUR'
+};
+
+const noteText = {
+  single: "The simplest drivetrain there is: one chainring, one rear cog, one gear. Nothing to shift and nothing to adjust — the trade-off is you provide all the gearing yourself on hills.",
+  mechanical: "Most bikes in a shop use this setup: a stack of rear cogs (the cassette) and a derailleur that a cable pulls sideways to move the chain between them. Simple to understand, and almost any shop can service it.",
+  cassette: "A cassette's spread — its smallest cog to its biggest — decides how flat or steep a road you can comfortably climb. Toggle below to see how a wider range stretches the derailleur's cage to reach it.",
+  electronic: "Electronic groupsets (Shimano Di2, SRAM eTap, Campagnolo EPS) replace the cable with a motor in the derailleur and a battery to power it. A button tap sends a signal and the motor does the pulling — shifts stay precise even as a cable would otherwise stretch."
+};
+
+function setVariant(v){
+  stage.dataset.variant = v;
+  legend.dataset.variant = v;
+  drivetrainCaptionText.textContent = driveLabel[v];
+  schemNote.textContent = noteText[v];
+  tabs.forEach(t => t.classList.toggle('active', t.dataset.variant === v));
+  subtoggle.classList.toggle('visible', v === 'cassette');
+  playAssembly();
+}
+
+function setCassette(mode){
+  stage.dataset.cassette = mode;
+  legend.dataset.cassette = mode;
+  subtabs.forEach(t => t.classList.toggle('active', t.dataset.cassette === mode));
+  playAssembly();
+}
+
+tabs.forEach(t => t.addEventListener('click', () => setVariant(t.dataset.variant)));
+subtabs.forEach(t => t.addEventListener('click', () => setCassette(t.dataset.cassette)));
+
+function playAssembly(){
+  stage.classList.remove('assembling', 'show-captions');
+  legend.classList.remove('show');
+  void stage.getBoundingClientRect();
+  stage.classList.add('assembling');
+  setTimeout(() => {
+    stage.classList.add('show-captions');
+    legend.classList.add('show');
+  }, ASSEMBLE_MS);
+}
+replayBtn.addEventListener('click', playAssembly);
+
+legend.querySelectorAll('li[data-part]').forEach(li => {
+  const part = li.dataset.part;
+  const targets = stage.querySelectorAll('[data-part="' + part + '"]');
+  const on = () => targets.forEach(g => g.classList.add('s-highlight'));
+  const off = () => targets.forEach(g => g.classList.remove('s-highlight'));
+  li.addEventListener('mouseenter', on);
+  li.addEventListener('mouseleave', off);
+  li.addEventListener('focus', on);
+  li.addEventListener('blur', off);
+});
+
+stage.dataset.variant = 'single';
+stage.dataset.cassette = 'narrow';
+legend.dataset.variant = 'single';
+legend.dataset.cassette = 'narrow';
+drivetrainCaptionText.textContent = driveLabel.single;
+schemNote.textContent = noteText.single;
+tabs[0].classList.add('active');
+subtabs[0].classList.add('active');
+playAssembly();
+
+const letterOverlay = document.getElementById('letterOverlay');
+const openLetterBtn = document.getElementById('openLetter');
+const closeLetterBtn = document.getElementById('closeLetter');
+let letterLastFocused = null;
+
+function openLetter(){
+  letterLastFocused = document.activeElement;
+  letterOverlay.classList.add('open');
+  letterOverlay.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  closeLetterBtn.focus();
+}
+function closeLetter(){
+  letterOverlay.classList.remove('open');
+  letterOverlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (letterLastFocused) letterLastFocused.focus();
+}
+openLetterBtn.addEventListener('click', openLetter);
+closeLetterBtn.addEventListener('click', closeLetter);
+letterOverlay.addEventListener('click', e => { if (e.target === letterOverlay) closeLetter(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOverlay.classList.contains('open')) closeLetter(); });
+</script>
+
+</body>
+</html>

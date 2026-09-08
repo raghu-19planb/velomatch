@@ -513,3 +513,112 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
   50%{ box-shadow:0 0 0 6px rgba(226,85,29,0.06); }
 }
 @media (prefers-reduced-motion: reduce){ .category-card.radar-highlight{animation:none;} }
+
+/* BIKE SCHEMATICS PAGE — exploded blueprint parts assembling into a labeled bike */
+.schem-tabs{display:flex; flex-wrap:wrap; gap:10px; margin:28px 0 0;}
+.schem-tab{
+  border:1px solid var(--line); background:rgba(255,255,255,0.4); color:var(--ink);
+  padding:10px 20px; border-radius:100px; font-size:13.5px; font-weight:600; cursor:pointer;
+  font-family:inherit; transition:all .15s ease;
+}
+.schem-tab:hover{border-color:var(--blueprint);}
+.schem-tab.active{background:var(--blueprint); border-color:var(--blueprint); color:var(--paper);}
+
+.schem-subtoggle{display:none; gap:8px; margin:16px 0 0;}
+.schem-subtoggle.visible{display:flex;}
+.schem-subtab{
+  border:1px solid var(--line); background:transparent; color:var(--fog);
+  padding:7px 16px; border-radius:100px; font-size:12.5px; font-weight:600; cursor:pointer; font-family:inherit;
+}
+.schem-subtab:hover{border-color:var(--signal);}
+.schem-subtab.active{border-color:var(--signal); color:var(--signal-deep); background:rgba(226,85,29,0.08);}
+
+.schem-note{font-size:14.5px; color:var(--fog); line-height:1.65; max-width:640px; margin:18px 0 0;}
+
+.schem-layout{display:grid; grid-template-columns:1.3fr 1fr; gap:44px; align-items:start; margin-top:34px;}
+@media (max-width:900px){ .schem-layout{grid-template-columns:1fr; gap:34px;} }
+
+.schem-diagram-card{border:1px solid var(--line); border-radius:8px; padding:22px 18px 18px; background:rgba(255,255,255,0.32);}
+.schem-svg{width:100%; height:auto; display:block; overflow:visible;}
+.schem-replay{
+  display:inline-flex; align-items:center; gap:8px; margin-top:16px;
+  background:transparent; border:1px solid var(--line); color:var(--ink);
+  padding:9px 18px; border-radius:100px; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit;
+}
+.schem-replay:hover{border-color:var(--blueprint);}
+.schem-replay svg{display:block;}
+
+/* exploded-part entrance: each labeled part starts offset/rotated/faded and
+   snaps into its assembled position — the --dx/--dy/--dr custom properties
+   per part are the only thing that changes between parts. */
+.s-part{
+  opacity:0;
+  transform:translate(var(--dx,0px), var(--dy,0px)) rotate(var(--dr,0deg)) scale(1.08);
+  transform-box:fill-box; transform-origin:center;
+}
+.schem-stage.assembling .s-part{
+  animation:s-assemble .85s cubic-bezier(.2,.75,.25,1.1) forwards;
+  animation-delay:var(--delay,0s);
+}
+@keyframes s-assemble{
+  0%{opacity:0;}
+  12%{opacity:1;}
+  100%{transform:translate(0,0) rotate(0) scale(1); opacity:1;}
+}
+@media (prefers-reduced-motion: reduce){
+  .s-part{transform:none !important; opacity:1 !important; animation:none !important;}
+}
+
+.v-single, .v-mechanical, .v-cassette, .v-electronic{display:none;}
+.schem-stage[data-variant="single"] .v-single{display:inline;}
+.schem-stage[data-variant="mechanical"] .v-mechanical{display:inline;}
+.schem-stage[data-variant="cassette"] .v-cassette{display:inline;}
+.schem-stage[data-variant="electronic"] .v-electronic{display:inline;}
+.cassette-sub-narrow, .cassette-sub-wide{display:none;}
+.schem-stage[data-variant="cassette"][data-cassette="narrow"] .cassette-sub-narrow{display:inline;}
+.schem-stage[data-variant="cassette"][data-cassette="wide"] .cassette-sub-wide{display:inline;}
+
+.spoke-line{stroke:var(--blueprint); stroke-width:1.1; opacity:0.4;}
+.chainring-ring{stroke:var(--blueprint); stroke-width:3; fill:none;}
+.pedal-shape{stroke:var(--blueprint); stroke-width:2.6; fill:none;}
+.saddle-shape{stroke:var(--blueprint); stroke-width:3; fill:none;}
+.lever-shape{stroke:var(--blueprint); stroke-width:2.6; fill:none;}
+.brake-shape{stroke:var(--blueprint); stroke-width:2.6; fill:none; stroke-linecap:round;}
+.cog-ring{stroke:var(--blueprint); stroke-width:2.8; fill:none;}
+.derail-line{stroke:var(--blueprint); stroke-width:2.8; fill:none; stroke-linecap:round;}
+.derail-pulley{stroke:var(--blueprint); stroke-width:2.4; fill:none;}
+.chain-line{stroke:var(--blueprint); stroke-width:2.4; fill:none;}
+.cable-line{stroke:var(--fog); stroke-width:1.8; fill:none; stroke-dasharray:5 4;}
+.battery-shape{stroke:var(--blueprint); stroke-width:2.4; fill:rgba(43,87,160,0.06);}
+.wireless-arc{stroke:var(--signal); stroke-width:1.8; fill:none; opacity:0.75;}
+
+.s-part.s-highlight .frame-line, .s-part.s-highlight .chainring-ring, .s-part.s-highlight .cog-ring,
+.s-part.s-highlight .spoke-line, .s-part.s-highlight .wheel-ring, .s-part.s-highlight .brake-shape,
+.s-part.s-highlight .lever-shape, .s-part.s-highlight .cable-line, .s-part.s-highlight .derail-line,
+.s-part.s-highlight .derail-pulley, .s-part.s-highlight .battery-shape, .s-part.s-highlight .pedal-shape,
+.s-part.s-highlight .saddle-shape, .s-part.s-highlight .chain-line{
+  stroke:var(--signal) !important; stroke-width:4;
+}
+.s-part.s-highlight .spoke-line{opacity:0.85;}
+.s-part.s-highlight .battery-shape{fill:rgba(226,85,29,0.14) !important;}
+
+.s-caption{opacity:0; transition:opacity .5s ease;}
+.schem-stage.show-captions .s-caption{opacity:1;}
+.s-caption-line{stroke:var(--fog); stroke-width:1; opacity:0.55;}
+.s-caption-text{font-family:var(--font-mono); font-size:12.5px; fill:var(--ink); letter-spacing:0.01em;}
+
+.schem-legend{list-style:none; margin:0; padding:0; opacity:0; transition:opacity .5s ease;}
+.schem-legend.show{opacity:1;}
+.schem-legend li{display:none; padding:13px 4px; border-bottom:1px solid var(--line-soft);}
+.schem-legend li[data-for="shared"]{display:block;}
+.schem-legend[data-variant="single"] li[data-for="single"]{display:block;}
+.schem-legend[data-variant="mechanical"] li[data-for="mechanical"]{display:block;}
+.schem-legend[data-variant="cassette"] li[data-for="cassette"]{display:block;}
+.schem-legend[data-variant="electronic"] li[data-for="electronic"]{display:block;}
+.schem-legend[data-variant="cassette"][data-cassette="narrow"] li[data-cassette-for="wide"]{display:none;}
+.schem-legend[data-variant="cassette"][data-cassette="wide"] li[data-cassette-for="narrow"]{display:none;}
+.schem-legend li:last-child{border-bottom:none;}
+.schem-legend li.leg-hoverable{cursor:default; transition:background .15s ease; border-radius:6px;}
+.schem-legend li.leg-hoverable:hover, .schem-legend li.leg-hoverable:focus-within{background:rgba(43,87,160,0.07);}
+.schem-legend .leg-name{font-size:14.5px; font-weight:600; margin:0 0 4px;}
+.schem-legend .leg-desc{font-size:13px; color:var(--fog); line-height:1.55; margin:0;}
