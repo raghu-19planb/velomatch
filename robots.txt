@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raghu-19planb.github.io/velomatch/sitemap.xml
