@@ -451,14 +451,33 @@ const growthLabels = ["Not important","Not important","A little","A little","Som
 // rather than requiring an exact match.
 const terrainPosition = {pavement:0, road_gravel:1, park:2, trail_road_gravel:3, trail:4};
 
-// Shown when a bike has no photo yet, or its photo URL fails to load.
-const resultPlaceholderMarkup = `
-  <svg class="sketch-icon result-placeholder" viewBox="0 0 64 64" aria-hidden="true">
-    <circle cx="16" cy="42" r="12"/>
-    <circle cx="48" cy="42" r="12"/>
-    <path d="M16 42 L30 20 L40 20 M30 20 L22 42 M40 20 L48 42 M30 20 L34 14 L40 14"/>
-  </svg>
-`;
+// Shown when a bike has no photo yet, or its photo URL fails to load —
+// points people to the brand's own site instead of showing nothing.
+function resultPlaceholderMarkup(b){
+  let href, label, rel = 'noopener';
+  if (b.retailerUrl) {
+    const [trackedUrl, isAffiliate] = applyAffiliateTracking(b.retailerUrl);
+    let host = '';
+    try { host = new URL(b.retailerUrl).hostname.replace(/^www\./, ''); } catch(e){}
+    href = trackedUrl;
+    label = host ? `See photos at ${host}` : 'See photos at the retailer';
+    if (isAffiliate) rel += ' sponsored';
+  } else {
+    const searchText = b.name.toLowerCase().includes(b.brand.toLowerCase()) ? b.name : `${b.brand} ${b.name}`;
+    href = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(searchText + ' bike')}`;
+    label = `Search for photos of the ${b.brand}`;
+  }
+  return `
+    <div class="result-placeholder-wrap">
+      <svg class="sketch-icon result-placeholder" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="16" cy="42" r="12"/>
+        <circle cx="48" cy="42" r="12"/>
+        <path d="M16 42 L30 20 L40 20 M30 20 L22 42 M40 20 L48 42 M30 20 L34 14 L40 14"/>
+      </svg>
+      <a href="${escapeHtml(href)}" target="_blank" rel="${rel}" class="result-photo-link">${escapeHtml(label)} →</a>
+    </div>
+  `;
+}
 
 document.getElementById('height').addEventListener('input', e => {
   document.getElementById('height-out').textContent = e.target.value + ' cm';
@@ -530,7 +549,7 @@ document.getElementById('submit').addEventListener('click', () => {
     <div class="result-card ${i===0?'top':''}">
       ${i===0 ? '<span class="badge">Top pick</span>' : ''}
       <div class="result-media">
-        ${b.image ? `<img src="${escapeHtml(b.image)}" alt="${escapeHtml(b.name)}" loading="lazy">` : resultPlaceholderMarkup}
+        ${b.image ? `<img src="${escapeHtml(b.image)}" alt="${escapeHtml(b.name)}" loading="lazy">` : resultPlaceholderMarkup(b)}
       </div>
       <div class="result-top">
         <span class="result-name">${escapeHtml(b.name)}</span>
@@ -542,10 +561,12 @@ document.getElementById('submit').addEventListener('click', () => {
   `).join('');
 
   // A bike photo that fails to load (bad URL, taken-down image) falls back to
-  // the same sketch placeholder used when no image was supplied at all.
-  results.querySelectorAll('.result-media img').forEach(img => {
+  // the same placeholder-plus-link used when no image was supplied at all.
+  results.querySelectorAll('.result-media').forEach((mediaEl, i) => {
+    const img = mediaEl.querySelector('img');
+    if (!img) return;
     img.addEventListener('error', () => {
-      img.closest('.result-media').innerHTML = resultPlaceholderMarkup;
+      mediaEl.innerHTML = resultPlaceholderMarkup(scored[i]);
     }, {once: true});
   });
 
