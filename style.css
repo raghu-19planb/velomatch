@@ -190,8 +190,8 @@ h2{font-size:clamp(27px,3.6vw,38px); font-weight:700; letter-spacing:-0.01em; ma
 .quiz-heading{display:flex; align-items:flex-start; justify-content:space-between; gap:24px;}
 .quiz-sketch{flex:none; margin-top:6px;}
 @media (max-width:560px){ .quiz-sketch{display:none;} }
-.quiz-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
-@media (max-width:860px){ .quiz-grid{grid-template-columns:1fr; gap:40px;} }
+.quiz-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:60px; align-items:start;}
+@media (max-width:860px){ .quiz-grid{grid-template-columns:minmax(0,1fr); gap:40px;} }
 
 .q-section-label{
   font-family:var(--font-mono); font-size:12px; color:var(--quiz-accent);
@@ -265,14 +265,17 @@ input[type=range]::-moz-range-thumb{
 .submit-btn:hover{background:var(--signal-deep);}
 .err{color:#F0A98E; font-size:13px; margin-top:10px; display:none;}
 
-.results{display:flex; flex-direction:column; gap:14px;}
+.results{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px; align-items:start;}
+@media (max-width:640px){ .results{grid-template-columns:1fr;} }
 .result-card{
   background:rgba(242,236,221,0.05);
   border:1px solid var(--line-dark);
   border-radius:10px;
   padding:20px 22px;
+  min-width:0;
 }
-.result-card.top{border-color:var(--signal); background:rgba(226,85,29,0.1);}
+.result-card.top{border-color:var(--signal); background:rgba(226,85,29,0.1); grid-column:1 / -1;}
+.result-card.top .result-media{max-width:340px;}
 .result-media{
   width:100%; aspect-ratio:4/3; border-radius:8px; overflow:hidden;
   background:rgba(242,236,221,0.06); border:1px solid var(--line-dark);
@@ -285,8 +288,8 @@ input[type=range]::-moz-range-thumb{
   display:inline-block; font-family:var(--font-mono); font-size:11.5px; font-weight:500; color:var(--signal);
   background:rgba(226,85,29,0.16); padding:4px 11px; border-radius:100px; margin-bottom:10px;
 }
-.result-top{display:flex; justify-content:space-between; align-items:baseline;}
-.result-name{font-size:16.5px; font-weight:600;}
+.result-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px;}
+.result-name{font-size:16.5px; font-weight:600; min-width:0; overflow-wrap:break-word;}
 .result-price{font-family:var(--font-mono); font-size:14px; color:var(--ink-soft);}
 .result-meta{font-size:13.5px; color:var(--ink-soft); margin:8px 0 0; line-height:1.6;}
 .result-link{

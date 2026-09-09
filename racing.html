@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="quiz-flow.js"></script>
+<script src="affiliate.js"></script>
 </head>
 <body>
 
@@ -322,7 +323,7 @@
       </div>
 
       <div>
-        <div id="placeholder" class="placeholder-note">Your top three matches will appear here, ranked with reasons — including frame size fit, groupset, and aero vs. climbing character.</div>
+        <div id="placeholder" class="placeholder-note">Your top matches will appear here, ranked with reasons — including frame size fit, groupset, and aero vs. climbing character.</div>
         <div class="results" id="results" tabindex="-1" aria-live="polite" style="display:none;"></div>
       </div>
     </div>
@@ -446,9 +447,10 @@ function escapeHtml(str){
 
 function priceCheckLink(b){
   if (b.retailerUrl) {
+    const [trackedUrl, isAffiliate] = applyAffiliateTracking(b.retailerUrl);
     let host = '';
     try { host = new URL(b.retailerUrl).hostname.replace(/^www\./, ''); } catch(e){}
-    return `<a href="${escapeHtml(b.retailerUrl)}" target="_blank" rel="noopener" class="result-link">Check current price${host ? ' at ' + escapeHtml(host) : ''} →</a>`;
+    return `<a href="${escapeHtml(trackedUrl)}" target="_blank" rel="noopener${isAffiliate ? ' sponsored' : ''}" class="result-link">Check current price${host ? ' at ' + escapeHtml(host) : ''} →</a>`;
   }
   const searchText = b.name.toLowerCase().includes(b.brand.toLowerCase()) ? b.name : `${b.brand} ${b.name}`;
   const query = encodeURIComponent(searchText + ' bike');
@@ -636,11 +638,11 @@ document.getElementById('submit').addEventListener('click', () => {
     if (state.availabilitypref !== 'open' && b.availability === 'mainstream') score += 6;
 
     return {...b, score};
-  }).sort((a,b) => b.score - a.score).slice(0,3);
+  }).sort((a,b) => b.score - a.score).slice(0,6);
 
   document.getElementById('placeholder').style.display = 'none';
   const results = document.getElementById('results');
-  results.style.display = 'flex';
+  results.style.display = 'grid';
   results.innerHTML = scored.map((b,i) => `
     <div class="result-card ${i===0?'top':''}">
       ${i===0 ? '<span class="badge">Top pick</span>' : ''}
