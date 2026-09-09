@@ -57,7 +57,7 @@ Both catalogs' `price` field is face-value in whatever `currency` says; a bare n
 
 1. Open the relevant file in `data/`.
 2. Add, edit, or remove an entry in the `"bikes"` array. Each file's `"_schema"` block at the top documents exactly what every field means and what values it accepts.
-3. Commit and push. Netlify redeploys automatically in about a minute — no other code changes needed.
+3. Commit and push. GitHub Pages redeploys automatically in about a minute — no other code changes needed.
 
 There's no build step and no database: it's a plain JSON file, readable and diffable in a normal git history, which also means anyone (or anything) reading the repo — including an AI helping to pick or reason about a bike — has one unambiguous, documented place to look.
 

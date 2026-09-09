@@ -1,6 +1,6 @@
 {
   "_schema": {
-    "note": "Canonical catalog for the bikepacking quiz (bikepacking.html). Edit this file directly and push — Netlify redeploys automatically. Optional live override: set SHEET_CSV_URL in bikepacking.html to a published Google Sheet CSV with the same column names. Specs are researched from real current/recent models (grounded in bikepacking.com's own route/bike taxonomy plus general domain knowledge) but are NOT live-verified against manufacturer spec sheets. See DATA.md for the catalog's scope.",
+    "note": "Canonical catalog for the bikepacking quiz (bikepacking.html). Edit this file directly and push — GitHub Pages redeploys automatically. Optional live override: set SHEET_CSV_URL in bikepacking.html to a published Google Sheet CSV with the same column names. Specs are researched from real current/recent models (grounded in bikepacking.com's own route/bike taxonomy plus general domain knowledge) but are NOT live-verified against manufacturer spec sheets. See DATA.md for the catalog's scope.",
     "fields": {
       "name": "string — model name shown to users",
       "brand": "string",

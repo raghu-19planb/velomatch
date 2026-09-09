@@ -1,6 +1,6 @@
 {
   "_schema": {
-    "note": "Canonical catalog for the kids' first-bike quiz (index.html). Edit this file directly and push — Netlify redeploys automatically. Optional live override: set SHEET_CSV_URL in index.html to a published Google Sheet CSV with the same column names; when set, it replaces this file's data at load time without a redeploy.",
+    "note": "Canonical catalog for the kids' first-bike quiz (index.html). Edit this file directly and push — GitHub Pages redeploys automatically. Optional live override: set SHEET_CSV_URL in index.html to a published Google Sheet CSV with the same column names; when set, it replaces this file's data at load time without a redeploy.",
     "fields": {
       "name": "string — model name shown to users",
       "brand": "string",
