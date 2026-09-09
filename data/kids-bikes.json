@@ -23,33 +23,13 @@
   },
   "bikes": [
     {
-      "name": "Cleary Gecko",
-      "brand": "Cleary",
-      "origin": "USA",
-      "wheel": 16,
-      "minH": 98,
-      "maxH": 117,
-      "price": 280,
-      "brake": "coaster",
-      "type": "pavement",
-      "exp": [
-        "balance",
-        "training"
-      ],
-      "seatRange": 9,
-      "barAdjust": false,
-      "trainWheel": false,
-      "resale": "medium",
-      "image": ""
-    },
-    {
       "name": "Guardian Original 16\"",
       "brand": "Guardian",
       "origin": "USA",
       "wheel": 16,
-      "minH": 100,
-      "maxH": 120,
-      "price": 230,
+      "minH": 102,
+      "maxH": 117,
+      "price": 249,
       "brake": "hand",
       "type": "pavement",
       "exp": [
@@ -60,16 +40,18 @@
       "barAdjust": false,
       "trainWheel": true,
       "resale": "low",
-      "image": ""
+      "image": "images/kids/guardian-original-16.jpg",
+      "retailerUrl": "https://guardianbikes.com/products/16-inch-original-bike",
+      "_verified": "name, price ($249, was stale $230), wheel size, weight (17.5lb), height range (40-46in / 102-117cm, was 100-120), brake (single-lever SureStop hand brake, no coaster), and frame material (steel) confirmed live at guardianbikes.com on 2026-09-09. Product photo downloaded from the same page. exp, seatRange, barAdjust, and resale remain estimated."
     },
     {
       "name": "Priority Start 16",
       "brand": "Priority",
       "origin": "USA",
       "wheel": 16,
-      "minH": 100,
-      "maxH": 120,
-      "price": 250,
+      "minH": 104,
+      "maxH": 119,
+      "price": 339,
       "brake": "hand",
       "type": "pavement",
       "exp": [
@@ -80,16 +62,18 @@
       "barAdjust": true,
       "trainWheel": true,
       "resale": "medium",
-      "image": ""
+      "image": "images/kids/priority-start-16.jpg",
+      "retailerUrl": "https://www.prioritybicycles.com/products/startfw2",
+      "_verified": "name, price ($339, was stale $250), wheel size, weight (15.9lb), height range (3'5\"-3'11\" / 104-119cm, was 100-120), dual hand V-brakes, and frame (6061 aluminum with Gates belt drive, single-speed freewheel) confirmed live at prioritybicycles.com on 2026-09-09. Product photo downloaded from the same page. exp, seatRange, barAdjust, and resale remain estimated."
     },
     {
-      "name": "Woom 3",
+      "name": "woom GO 3",
       "brand": "Woom",
       "origin": "Austria",
       "wheel": 16,
-      "minH": 103,
-      "maxH": 120,
-      "price": 290,
+      "minH": 104,
+      "maxH": 119,
+      "price": 519,
       "brake": "hand",
       "type": "park",
       "exp": [
@@ -100,35 +84,17 @@
       "barAdjust": true,
       "trainWheel": false,
       "resale": "high",
-      "image": ""
-    },
-    {
-      "name": "Cleary Owl",
-      "brand": "Cleary",
-      "origin": "USA",
-      "wheel": 20,
-      "minH": 112,
-      "maxH": 135,
-      "price": 380,
-      "brake": "hand",
-      "type": "park",
-      "exp": [
-        "confident",
-        "training"
-      ],
-      "seatRange": 11,
-      "barAdjust": true,
-      "trainWheel": false,
-      "resale": "medium",
-      "image": ""
+      "image": "images/kids/woom-go-3.png",
+      "retailerUrl": "https://woom.com/en_US/products/go-3-kids-bike",
+      "_verified": "Woom rebranded/renamed this line: the catalog's old 'Woom 3' is now 'woom GO 3', the current permanent model replacing the discontinued 'woom ORIGINAL 3' (per woom's own FAQ). Name, price ($519, was stale $290 under the old name/gen), wheel size, weight (13lb), height range (41-47in / 104-119cm, was 103-120), and frame (6061 aluminum) confirmed live at woom.com on 2026-09-09. Product photo downloaded from the same page. exp, seatRange, barAdjust, and resale remain estimated."
     },
     {
       "name": "Frog 48",
       "brand": "Frog Bikes",
       "origin": "UK",
       "wheel": 16,
-      "minH": 98,
-      "maxH": 112,
+      "minH": 104,
+      "maxH": 110,
       "price": 300,
       "brake": "hand",
       "type": "trail",
@@ -140,16 +106,17 @@
       "barAdjust": false,
       "trainWheel": false,
       "resale": "medium",
-      "image": ""
+      "image": "images/kids/frog-48.jpg",
+      "_verified": "wheel size, height range (104-110cm, was 98-112), aluminum frame, and rim (hand) brakes confirmed via pedalnook.com's spec listing on 2026-09-09. Frog Bikes' own frogbikes.com now redirects to Evans Cycles, so this was sourced via a retailer aggregator rather than the manufacturer directly — worth re-verifying if a manufacturer page resurfaces. Price not re-confirmed (catalog's $300 kept). exp, seatRange, barAdjust, and resale remain estimated."
     },
     {
-      "name": "Woom Off 4",
+      "name": "woom OFF 4",
       "brand": "Woom",
       "origin": "Austria",
       "wheel": 20,
-      "minH": 118,
-      "maxH": 135,
-      "price": 420,
+      "minH": 117,
+      "maxH": 130,
+      "price": 949,
       "brake": "hand",
       "type": "trail",
       "exp": [
@@ -159,17 +126,19 @@
       "barAdjust": true,
       "trainWheel": false,
       "resale": "high",
-      "image": ""
+      "image": "images/kids/woom-off-4.png",
+      "retailerUrl": "https://woom.com/en_US/products/woom-off-4-kids-mountain-bike",
+      "_verified": "name (was 'Woom Off 4', renamed under woom's current GO/OFF lineup naming), price ($949, was stale $420 — this is a hydraulic-disc-brake hardtail MTB, a much pricier category than the catalog's old price suggested), wheel size, weight (18.9lb), saddle height range (22.8-28.7in), recommended height (46-51in / 117-130cm, was 118-135), hydraulic disc brakes (Promax, 140/140mm), and frame (6061-T6 aluminum) confirmed live at woom.com on 2026-09-09. Product photo downloaded from the same page. seatRange, barAdjust, and resale remain estimated."
     },
     {
       "name": "REI Co-op Cycles REV 16",
       "brand": "REI Co-op",
       "origin": "USA",
       "wheel": 16,
-      "minH": 100,
-      "maxH": 118,
-      "price": 180,
-      "brake": "hand",
+      "minH": 99,
+      "maxH": 122,
+      "price": 269,
+      "brake": "coaster",
       "type": "pavement",
       "exp": [
         "training",
@@ -179,16 +148,18 @@
       "barAdjust": false,
       "trainWheel": true,
       "resale": "low",
-      "image": ""
+      "image": "",
+      "retailerUrl": "https://www.rei.com/product/190742/co-op-cycles-rev-16-kids-bike",
+      "_verified": "price ($269, was stale $180), weight (17.5lb), and brake type corrected from 'hand' to 'coaster' (coaster-only, no hand brakes — confirmed via a twowheelingtots.com review of the official REI spec sheet on 2026-09-09; rei.com blocks direct automated fetches). Fit range (~3'3\"-4' / 99-122cm) close to catalog's prior 100-118. Image not sourced this pass — rei.com's own product photos weren't reachable; revisit with a direct link if available. exp, seatRange, barAdjust, and resale remain estimated."
     },
     {
       "name": "Trek Precaliber 16",
       "brand": "Trek",
       "origin": "USA",
       "wheel": 16,
-      "minH": 100,
-      "maxH": 119,
-      "price": 200,
+      "minH": 99,
+      "maxH": 117,
+      "price": 320,
       "brake": "coaster",
       "type": "park",
       "exp": [
@@ -199,37 +170,18 @@
       "barAdjust": false,
       "trainWheel": true,
       "resale": "medium",
-      "image": ""
+      "image": "images/kids/trek-precaliber-16.png",
+      "_verified": "price ($319.99, was stale $200), wheel size, height range (39-46in / 99-117cm, was 100-119), coaster brake, and frame (Alpha Silver aluminum) confirmed via an authorized Trek retailer (roysbikes.com) on 2026-09-09 — trekbikes.com itself blocks automated fetches. exp, seatRange, barAdjust, and resale remain estimated."
     },
     {
-      "name": "Islabikes CNOC 16",
-      "brand": "Islabikes",
-      "origin": "UK",
-      "wheel": 16,
-      "minH": 98,
-      "maxH": 114,
-      "price": 330,
-      "brake": "hand",
-      "type": "trail",
-      "exp": [
-        "confident",
-        "training"
-      ],
-      "seatRange": 8,
-      "barAdjust": true,
-      "trainWheel": false,
-      "resale": "high",
-      "image": ""
-    },
-    {
-      "name": "Specialized Riprock 16",
+      "name": "Specialized Riprock Coaster 16",
       "brand": "Specialized",
       "origin": "USA",
       "wheel": 16,
       "minH": 102,
       "maxH": 120,
-      "price": 260,
-      "brake": "hand",
+      "price": 350,
+      "brake": "coaster",
       "type": "trail",
       "exp": [
         "confident",
@@ -239,7 +191,8 @@
       "barAdjust": false,
       "trainWheel": false,
       "resale": "medium",
-      "image": ""
+      "image": "images/kids/specialized-riprock-16.jpg",
+      "_verified": "name (actual model name is 'Riprock Coaster 16'), price ($349.99, was stale $260), and corrected brake from 'hand' to 'coaster' (steel coaster brake, no hand brakes) confirmed via an authorized Specialized retailer (incycle.com, 2024 model year) on 2026-09-09 — specialized.com itself blocks automated fetches. Frame is Specialized A1 Premium Aluminum. Height range not re-confirmed (catalog's estimate kept). exp, seatRange, barAdjust, and resale remain estimated."
     },
     {
       "name": "Norco Roller 16",
@@ -282,13 +235,13 @@
       "image": ""
     },
     {
-      "name": "Woom 4",
+      "name": "woom GO 4",
       "brand": "Woom",
       "origin": "Austria",
       "wheel": 20,
-      "minH": 113,
+      "minH": 114,
       "maxH": 130,
-      "price": 340,
+      "price": 659,
       "brake": "hand",
       "type": "park",
       "exp": [
@@ -299,18 +252,20 @@
       "barAdjust": true,
       "trainWheel": false,
       "resale": "high",
-      "image": ""
+      "image": "images/kids/woom-go-4.png",
+      "retailerUrl": "https://woom.com/en_US/products/go-4-kids-bike",
+      "_verified": "name (was 'Woom 4', now 'woom GO 4' under the current lineup naming), price ($659, was stale $340), wheel size, weight (17.2lb), height range (45-51in / 114-130cm, was 113-130), and frame (6061 aluminum) confirmed live at woom.com on 2026-09-09. Product photo downloaded from the same page. exp, seatRange, barAdjust, and resale remain estimated."
     },
     {
       "name": "Trek Precaliber 20",
       "brand": "Trek",
       "origin": "USA",
       "wheel": 20,
-      "minH": 115,
-      "maxH": 135,
-      "price": 260,
-      "brake": "hand",
-      "type": "trail",
+      "minH": 114,
+      "maxH": 132,
+      "price": 350,
+      "brake": "coaster",
+      "type": "pavement",
       "exp": [
         "confident",
         "training"
@@ -319,7 +274,8 @@
       "barAdjust": false,
       "trainWheel": false,
       "resale": "medium",
-      "image": ""
+      "image": "images/kids/trek-precaliber-20.png",
+      "_verified": "corrected brake from 'hand' to 'coaster' and type from 'trail' to 'pavement' — the base Precaliber 20 (this entry) is a coaster-brake model with alloy linear-pull front brake, not the separate hand-brake 7-speed variant. Price ($329.99-$349.99, using $350; was stale $260), wheel size, height range (45-52in / 114-132cm, was 115-135), and frame (Alpha Silver aluminum) confirmed via an authorized Trek retailer (citycycleinc.com) on 2026-09-09 — trekbikes.com itself blocks automated fetches. exp, seatRange, barAdjust, and resale remain estimated. A separate hand-brake 7-speed Precaliber 20 variant exists and could be added as its own entry later."
     },
     {
       "name": "Huffy 16\" GRM",
@@ -617,8 +573,8 @@
       "barAdjust": true,
       "trainWheel": true,
       "resale": "low",
-      "image": "",
-      "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Listing states both hand and coaster brakes plus an adjustable seat; height range not stated and is estimated. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand."
+      "image": "images/kids/costway-12in.jpg",
+      "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Listing states both hand and coaster brakes plus an adjustable seat; height range not stated and is estimated. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand. Product photo sourced from costway.com's own listing of the same model on 2026-09-09 (US price there is $89.99, kept walmart.ca's $119.99 CAD as the catalog's price of record since that's the confirmed regional listing)."
     },
     {
       "name": "JOYSTAR Angel 16\"",
@@ -683,8 +639,8 @@
       "barAdjust": false,
       "trainWheel": true,
       "resale": "low",
-      "image": "",
-      "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Stated age range 4-8 years (wide range for this model); height range estimated from that. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand."
+      "image": "images/kids/costway-18in-basket.jpg",
+      "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Stated age range 4-8 years (wide range for this model); height range estimated from that. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand. Product photo sourced from costway.com's own listing of the same model on 2026-09-09 (US price there is $82.99, kept walmart.ca's $161.99 CAD as the catalog's price of record)."
     },
     {
       "name": "Costway 20\" Kids Mountain Bike (Suspension Fork)",
@@ -705,8 +661,8 @@
       "barAdjust": false,
       "trainWheel": false,
       "resale": "low",
-      "image": "",
-      "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Kids' Bikes\" category listing on 2026-09-08 (user-supplied link). Stated age range 8+ years, with a front suspension fork; height range estimated and capped at this quiz's 145cm ceiling. Brake type, terrain fit, experience fit, seat range, and resale are estimated from typical bikes of this size/style."
+      "image": "images/kids/costway-mtb-suspension.jpg",
+      "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Kids' Bikes\" category listing on 2026-09-08 (user-supplied link). Stated age range 8+ years, with a front suspension fork; height range estimated and capped at this quiz's 145cm ceiling. Brake type, terrain fit, experience fit, seat range, and resale are estimated from typical bikes of this size/style. Product photo sourced from costway.com's own listing of the same model (20\"/24\" suspension MTB, dual V-brakes, Shimano 6-speed) on 2026-09-09 (US price there is $165.99, kept walmart.ca's $265.99 CAD as the catalog's price of record)."
     },
     {
       "name": "Costway 24\" Kids Mountain Bike (Suspension Fork)",
@@ -726,8 +682,8 @@
       "barAdjust": true,
       "trainWheel": false,
       "resale": "low",
-      "image": "",
-      "_verified": "Real height range is 56\"-66\" (142-168cm, capped here at the quiz's 145cm ceiling), metal frame, 6-speed, front/rear V-brakes, adjustable seat AND handlebar, $275.99 CAD. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). Real range extends to 168cm, beyond what this quiz currently models."
+      "image": "images/kids/costway-mtb-suspension.jpg",
+      "_verified": "Real height range is 56\"-66\" (142-168cm, capped here at the quiz's 145cm ceiling), metal frame, 6-speed, front/rear V-brakes, adjustable seat AND handlebar, $275.99 CAD. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). Real range extends to 168cm, beyond what this quiz currently models. Product photo sourced from costway.com's own listing of the same 20\"/24\" suspension MTB product family on 2026-09-09."
     },
     {
       "name": "Hyper Bicycles 20\" Jet Fuel BMX",
@@ -813,7 +769,7 @@
       "trainWheel": false,
       "resale": "low",
       "image": "",
-      "_verified": "High-carbon steel frame, front/rear V-brakes, 7-speed, adjustable seat with 135mm of travel, $299.99 CAD. Real height range is 4'5\"-5'7\" (135-170cm), capped here at the quiz's 145cm ceiling. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). Real range extends to 170cm, beyond what this quiz currently models. Origin is an estimate."
+      "_verified": "High-carbon steel frame, front/rear V-brakes, 7-speed, adjustable seat with 135mm of travel, $299.99 CAD. Real height range is 4'5\"-5'7\" (135-170cm), capped here at the quiz's 145cm ceiling. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). Real range extends to 170cm, beyond what this quiz currently models. Origin is an estimate. Cross-checked against vevor.ca's own listing of the same model on 2026-09-09: price C$286.90, weight 36.2lb, front/rear V-brakes, high-carbon steel frame all consistent. Only a low-resolution (90x90) thumbnail was retrievable from vevor.ca, not usable as a real product photo — image left as placeholder."
     },
     {
       "name": "Huffy Rock It 20\"",
