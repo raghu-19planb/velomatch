@@ -136,9 +136,9 @@ nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-
   background:rgba(255,255,255,0.28);
 }
 .bike-diagram{width:100%; height:auto; display:block;}
-.frame-line{stroke:var(--blueprint); stroke-width:3.2; fill:none; stroke-linecap:round; stroke-linejoin:round;}
-.wheel-ring{stroke:var(--blueprint); stroke-width:3.2; fill:none;}
-.hub{fill:var(--blueprint);}
+.frame-line{stroke:var(--signal); stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round;}
+.wheel-ring{stroke:var(--signal); stroke-width:2.5; fill:none;}
+.hub{fill:var(--ink);}
 .dim-ext{stroke:var(--fog); stroke-width:1; stroke-dasharray:2 3; opacity:0.55;}
 .dim-line{stroke:var(--fog); stroke-width:1.2; fill:none;}
 .dim-tick{stroke:var(--fog); stroke-width:1.2;}
@@ -148,11 +148,12 @@ nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-
 @media (max-width:480px){ .dim-minor{display:none;} }
 .diagram-cap{margin:10px 2px 0; font-size:12.5px; color:var(--fog); font-family:var(--font-mono);}
 
-/* PENCIL-SKETCH ACCENTS — the rough, exploratory counterpart to the confident
-   blueprint linework above: sketches first, geometry second. */
+/* PENCIL-SKETCH ACCENTS — same duotone recipe as the story scenes (thin
+   signal-orange outline strokes throughout), just at icon scale.
+   No grain filter here — at 42px it would just read as mud. */
 .sketch-icon{width:42px; height:42px; display:block; overflow:visible;}
 .sketch-icon path, .sketch-icon circle{
-  stroke:var(--graphite); stroke-width:1.6; fill:none;
+  stroke:var(--signal); stroke-width:1.8; fill:none;
   stroke-linecap:round; stroke-linejoin:round;
 }
 .sketch-icon.on-dark path, .sketch-icon.on-dark circle{stroke:var(--ink-soft);}
@@ -438,26 +439,72 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .chooser-hero h1{font-size:clamp(32px,4.6vw,50px); font-weight:700; letter-spacing:-0.015em; line-height:1.12; margin:0 0 18px; max-width:680px;}
 .chooser-hero .lede{margin-bottom:8px;}
 
-.life-story{padding:8px 0 40px;}
-.life-story-wrap{display:grid; grid-template-columns:0.9fr 1.1fr; gap:40px; align-items:center;}
-@media (max-width:860px){ .life-story-wrap{grid-template-columns:1fr; gap:28px;} }
-.life-story-text h2{font-size:clamp(26px,3.4vw,36px); font-weight:700; letter-spacing:-0.015em; line-height:1.15; margin:0 0 14px; max-width:480px;}
-.life-story-stage{
-  border:1px solid var(--line); border-radius:8px; background:rgba(255,255,255,0.32);
-  padding:22px 18px 18px; text-align:center;
-}
-.story-scene-wrap{position:relative; width:100%; aspect-ratio:220/150; max-width:420px; margin:0 auto;}
-.story-scene{position:absolute; inset:0; width:100%; height:100%; opacity:0; transition:opacity 1s ease;}
+/* The life-story slideshow: real illustrated scenes (picture-book style —
+   one full image on screen at a time, crossfading to the next) rather than
+   the site's hand-drawn duotone linework, so these keep their own full
+   color instead of being forced into the orange/ink treatment. */
+.story-scene-wrap{position:relative; width:100%; aspect-ratio:1/0.94; max-width:520px; margin:0 auto; border-radius:10px; overflow:hidden; box-shadow:0 14px 40px rgba(27,35,31,0.16);}
+.story-scene{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1s ease;}
 .story-scene.active{opacity:1;}
-.story-scene path, .story-scene line, .story-scene ellipse, .story-scene rect{
-  stroke:var(--graphite); stroke-width:2; fill:none; stroke-linecap:round; stroke-linejoin:round;
-}
-.story-wheel{stroke:var(--graphite); stroke-width:2; fill:none;}
-.story-head{fill:var(--graphite); stroke:none;}
-.story-ground{stroke:var(--graphite); stroke-width:1; opacity:0.3;}
-.story-faint{opacity:0.45;}
 .story-caption{font-family:var(--font-hand); font-size:20px; color:var(--signal-deep); font-weight:600; margin:14px 0 0;}
 @media (prefers-reduced-motion: reduce){ .story-scene{transition:none;} }
+
+/* Full-screen landing splash (index.html only) — the life-story scenes,
+   shown ONLY here (not duplicated inline further down the homepage, which
+   needs that real estate for the actual matching tools). Plays on load,
+   then dismisses on tap/Escape/close-button to reveal the homepage
+   underneath. It's a glass pane covering the whole viewport by itself —
+   not a card floating on a plain backdrop — so the homepage bleeds through
+   the blur everywhere behind it, not just at the edges. Sits above
+   everything, including the page-transition curtain (z-index 300).
+   Deliberately not flex-centered: a flex item taller than its centered
+   flex container clips at the start with no way to scroll to it, so this
+   centers via auto margins on a block-level, scrollable overlay instead. */
+.splash-overlay{
+  position:fixed; inset:0; z-index:400;
+  background:rgba(242,236,221,0.6);
+  backdrop-filter:blur(22px) saturate(1.15);
+  -webkit-backdrop-filter:blur(22px) saturate(1.15);
+  overflow-y:auto;
+  padding:70px 24px;
+  cursor:pointer;
+  opacity:1; transition:opacity .5s ease;
+}
+.splash-overlay.closing{opacity:0;}
+.splash-overlay.hidden{display:none;}
+.splash-close{
+  position:fixed; top:22px; right:22px; z-index:401;
+  width:38px; height:38px; border-radius:50%;
+  border:1px solid var(--line); background:rgba(242,236,221,0.7);
+  color:var(--fog); font-size:16px; line-height:1; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+.splash-close:hover{border-color:var(--signal); color:var(--signal-deep);}
+.splash-inner{
+  display:flex; flex-direction:column; align-items:center; gap:22px;
+  max-width:900px; margin:0 auto;
+  text-align:center;
+  cursor:default;
+}
+.splash-text{max-width:640px;}
+.splash-text h2{font-size:clamp(30px,4.6vw,50px); font-weight:700; letter-spacing:-0.015em; line-height:1.14; margin:0 0 14px;}
+.splash-text .lede{margin:0 auto; font-size:16.5px;}
+.splash-stage{width:100%; display:flex; justify-content:center;}
+.splash-stage .story-scene-wrap{width:min(42vw, 580px); max-width:580px;}
+.splash-skip{
+  border:none; background:none; font-family:var(--font-mono); font-size:12.5px;
+  color:var(--fog); letter-spacing:0.02em; cursor:pointer; padding:6px 10px;
+}
+.splash-skip kbd{font-family:inherit; border:1px solid var(--line); border-radius:3px; padding:1px 5px;}
+@media (max-width:860px){
+  .splash-stage .story-scene-wrap{width:min(80vw, 480px);}
+}
+@media (max-width:640px){
+  .splash-overlay{padding:60px 20px;}
+  .splash-inner{gap:16px;}
+  .splash-text .lede{font-size:14.5px;}
+}
+@media (prefers-reduced-motion: reduce){ .splash-overlay{transition:none;} }
 
 .category-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:26px; padding-top:16px;}
 @media (max-width:640px){ .category-grid{grid-template-columns:1fr; gap:20px;} }
@@ -609,33 +656,34 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .schem-stage[data-variant="cassette"][data-cassette="narrow"] .cassette-sub-narrow{display:inline;}
 .schem-stage[data-variant="cassette"][data-cassette="wide"] .cassette-sub-wide{display:inline;}
 
-.spoke-line{stroke:var(--blueprint); stroke-width:1.1; opacity:0.4;}
-.chainring-ring{stroke:var(--blueprint); stroke-width:4.5; fill:none;}
-.pedal-shape{stroke:var(--blueprint); stroke-width:2.6; fill:none;}
-.saddle-shape{stroke:var(--blueprint); stroke-width:3; fill:none;}
-.lever-shape{stroke:var(--blueprint); stroke-width:2.6; fill:none;}
-.brake-shape{stroke:var(--blueprint); stroke-width:2.6; fill:none; stroke-linecap:round;}
-.cog-ring{stroke:var(--blueprint); stroke-width:3.6; fill:none;}
-.derail-line{stroke:var(--blueprint); stroke-width:2.8; fill:none; stroke-linecap:round;}
-.derail-pulley{stroke:var(--blueprint); stroke-width:2.4; fill:none;}
-.chain-line{stroke:var(--blueprint); stroke-width:2.4; fill:none;}
-.chain-link{stroke:var(--blueprint); stroke-width:1.3; fill:rgba(43,87,160,0.1);}
+.spoke-line{stroke:var(--signal); stroke-width:1.1; opacity:0.4;}
+.chainring-ring{stroke:var(--signal); stroke-width:3.2; fill:none;}
+.pedal-shape{stroke:var(--signal); stroke-width:2.2; fill:none;}
+.saddle-shape{stroke:var(--signal); stroke-width:2.4; fill:none;}
+.lever-shape{stroke:var(--signal); stroke-width:2.2; fill:none;}
+.brake-shape{stroke:var(--signal); stroke-width:2.2; fill:none; stroke-linecap:round;}
+.cog-ring{stroke:var(--signal); stroke-width:2.8; fill:none;}
+.derail-line{stroke:var(--signal); stroke-width:2.2; fill:none; stroke-linecap:round;}
+.derail-pulley{stroke:var(--signal); stroke-width:2; fill:none;}
+.chain-line{stroke:var(--signal); stroke-width:2; fill:none;}
+.chain-link{stroke:var(--signal); stroke-width:1.3; fill:rgba(226,85,29,0.1);}
 .cable-line{stroke:var(--fog); stroke-width:1.8; fill:none; stroke-dasharray:5 4;}
-.battery-shape{stroke:var(--blueprint); stroke-width:2.4; fill:rgba(43,87,160,0.06);}
+.battery-shape{stroke:var(--signal); stroke-width:2; fill:rgba(226,85,29,0.06);}
 .wireless-arc{stroke:var(--signal); stroke-width:1.8; fill:none; opacity:0.75;}
-.headset-shape{stroke:var(--blueprint); stroke-width:2.2; fill:none;}
-.tire-ring{stroke:var(--blueprint); stroke-width:3; fill:none; stroke-dasharray:1 4.5; stroke-linecap:round;}
-.chainring-bolt{fill:var(--blueprint); stroke:none;}
-.bb-shape{stroke:var(--blueprint); stroke-width:2; fill:var(--paper);}
-.pad-shape{stroke:var(--blueprint); stroke-width:1.6; fill:rgba(43,87,160,0.1);}
-/* Schematics-only "tube" stroke — thick + rounded, distinct from the thin
-   .frame-line used in the hero diagrams on the category pages, so those
-   pages are unaffected by this page's heavier, more engineered look. */
-.schem-tube{stroke:var(--blueprint); stroke-width:6.5; fill:none; stroke-linecap:round; stroke-linejoin:round;}
-.schem-tube-thin{stroke-width:4.5;}
-.tooth-tick{stroke:var(--blueprint); stroke-width:1.6;}
-.hanger-shape{stroke:var(--blueprint); stroke-width:2.2; fill:rgba(43,87,160,0.08);}
-.tape-hatch{stroke:var(--blueprint); stroke-width:1.1; opacity:0.55;}
+.headset-shape{stroke:var(--signal); stroke-width:1.8; fill:none;}
+.tire-ring{stroke:var(--signal); stroke-width:2.4; fill:none; stroke-dasharray:1 4.5; stroke-linecap:round;}
+.chainring-bolt{fill:var(--signal); stroke:none;}
+.bb-shape{stroke:var(--signal); stroke-width:1.8; fill:var(--paper);}
+.pad-shape{stroke:var(--signal); stroke-width:1.4; fill:rgba(226,85,29,0.1);}
+/* Schematics-only "tube" stroke — thinned to match the site's duotone
+   linework (see .frame-line in the fit-radar diagram) while staying the
+   heaviest line on this page, since it's still the primary structural
+   member against dozens of finer sub-part lines. */
+.schem-tube{stroke:var(--signal); stroke-width:4.5; fill:none; stroke-linecap:round; stroke-linejoin:round;}
+.schem-tube-thin{stroke-width:3.2;}
+.tooth-tick{stroke:var(--signal); stroke-width:1.4;}
+.hanger-shape{stroke:var(--signal); stroke-width:1.8; fill:rgba(226,85,29,0.08);}
+.tape-hatch{stroke:var(--signal); stroke-width:1.1; opacity:0.55;}
 
 .s-part.s-highlight .frame-line, .s-part.s-highlight .chainring-ring, .s-part.s-highlight .cog-ring,
 .s-part.s-highlight .schem-tube, .s-part.s-highlight .tooth-tick, .s-part.s-highlight .hanger-shape,
@@ -645,12 +693,12 @@ footer p{font-size:14px; color:var(--fog); margin:0;}
 .s-part.s-highlight .saddle-shape, .s-part.s-highlight .chain-line, .s-part.s-highlight .chain-link,
 .s-part.s-highlight .headset-shape, .s-part.s-highlight .tire-ring, .s-part.s-highlight .bb-shape,
 .s-part.s-highlight .pad-shape{
-  stroke:var(--signal) !important; stroke-width:4;
+  stroke:var(--ink) !important; stroke-width:4;
 }
 .s-part.s-highlight .chain-link, .s-part.s-highlight .pad-shape{stroke-width:2.2;}
-.s-part.s-highlight .chainring-bolt{fill:var(--signal) !important;}
+.s-part.s-highlight .chainring-bolt{fill:var(--ink) !important;}
 .s-part.s-highlight .spoke-line{opacity:0.85;}
-.s-part.s-highlight .battery-shape, .s-part.s-highlight .bb-shape, .s-part.s-highlight .hanger-shape{fill:rgba(226,85,29,0.14) !important;}
+.s-part.s-highlight .battery-shape, .s-part.s-highlight .bb-shape, .s-part.s-highlight .hanger-shape{fill:rgba(27,35,31,0.14) !important;}
 
 .s-caption{opacity:0; transition:opacity .5s ease;}
 .schem-stage.show-captions .s-caption{opacity:1;}
