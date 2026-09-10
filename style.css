@@ -17,9 +17,12 @@
   --quiz-bg:#0F3630;
   --quiz-accent:#7ED7BE;
   --graphite:rgba(75,74,66,0.8);
+  --teal:#1A6E62;
   --font-body:'IBM Plex Sans', -apple-system, sans-serif;
   --font-mono:'IBM Plex Mono', ui-monospace, monospace;
   --font-hand:'Caveat', cursive;
+  --font-wordmark:'Fredoka', sans-serif;
+  --font-tagline:'Chewy', cursive;
 }
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -59,10 +62,24 @@ nav{
   border-bottom:1px solid var(--line);
 }
 nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; row-gap:8px; min-height:64px; padding-top:8px; padding-bottom:8px;}
-.logo{display:flex; align-items:center; gap:9px; font-weight:600; font-size:18px; letter-spacing:-0.01em; flex:none; perspective:240px;}
-.logo svg{flex:none; animation:wheel-spin 4.5s linear infinite; transform-style:preserve-3d;}
-@keyframes wheel-spin{ to{ transform:rotateY(360deg); } }
-@media (prefers-reduced-motion: reduce){ .logo svg{animation:none;} }
+.logo{display:flex; align-items:center; flex:none;}
+
+/* RideOmetry wordmark: the "O" is a literal spoked wheel that keeps
+   spinning (only the wheel — a real bike's fork/frame don't spin with it),
+   reused identically in the nav and footer. */
+.wordmark{
+  display:inline-flex; align-items:center; font-family:var(--font-wordmark);
+  font-weight:700; letter-spacing:-0.005em; color:var(--teal); line-height:1; font-size:20px;
+}
+.wheel-o{display:inline-block; width:0.9em; height:0.9em; margin:0 1px; flex:none;}
+.wheel-o svg{width:100%; height:100%; display:block; overflow:visible; animation:wheel-o-spin 3.2s linear infinite; transform-origin:50% 50%;}
+@keyframes wheel-o-spin{ to{ transform:rotate(360deg); } }
+@media (prefers-reduced-motion: reduce){ .wheel-o svg{animation:none;} }
+.wheel-o .wheel-rim{fill:none; stroke:var(--signal); stroke-width:7;}
+.wheel-o .wheel-spoke{stroke:var(--signal); stroke-width:3.4; stroke-linecap:round;}
+.wheel-o .wheel-hub{fill:var(--teal);}
+
+.tagline{font-family:var(--font-tagline); font-weight:400; font-size:14px; color:var(--fog); letter-spacing:0.01em; margin:10px 0 0;}
 .nav-links{display:flex; align-items:center; gap:18px; flex-wrap:wrap; row-gap:8px; justify-content:flex-end;}
 .nav-link{font-size:14.5px; color:var(--fog); text-decoration:none; white-space:nowrap;}
 .nav-link:hover{color:var(--ink);}
@@ -377,6 +394,7 @@ input[type=range]::-moz-range-thumb{
 footer{padding:52px 0; border-top:1px solid var(--line);}
 footer .wrap{display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center;}
 footer p{font-size:14px; color:var(--fog); margin:0;}
+footer .tagline{margin:0; font-size:16px;}
 .letter-trigger{
   background:none; border:none; padding:0; margin-top:2px;
   font-family:var(--font-body); font-size:13.5px; color:var(--blueprint);
