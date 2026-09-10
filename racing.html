@@ -202,8 +202,8 @@
         <p class="q-section-label first">Your event</p>
 
         <div class="q-group">
-          <label class="q-label">What are you training or buying for?</label>
-          <div class="opt-row">
+          <label class="q-label">What are you training or buying for? <span class="q-hint">(choose all that apply)</span></label>
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="discipline" data-value="road_race">Road racing (criteriums, road races, gran fondos)</button>
             <button type="button" class="opt" data-group="discipline" data-value="triathlon">Triathlon or Ironman (the bike leg)</button>
             <button type="button" class="opt" data-group="discipline" data-value="audax">Audax / randonneuring (LEL, PBP, all-night riding)</button>
@@ -291,8 +291,8 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">Preferred color</label>
-          <div class="opt-row">
+          <label class="q-label">Preferred color <span class="q-hint">(choose all that apply)</span></label>
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="color" data-value="none">No preference</button>
             <button type="button" class="opt" data-group="color" data-value="Black">Black</button>
             <button type="button" class="opt" data-group="color" data-value="White">White</button>
@@ -548,12 +548,28 @@ document.getElementById('riderHeight').addEventListener('input', e => {
 document.querySelectorAll('.opt').forEach(btn => {
   btn.addEventListener('click', () => {
     const group = btn.dataset.group;
-    document.querySelectorAll('.opt[data-group="'+group+'"]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    state[group] = btn.dataset.value;
+    const groupEl = btn.closest('.opt-row');
+    const isMulti = groupEl && groupEl.dataset.multi === 'true';
+    const isExclusive = btn.dataset.value === 'none' || btn.dataset.value === 'no_preference';
+
+    if (isMulti && !isExclusive) {
+      // Multi-select: toggle this option on/off, and drop any "no preference"
+      // exclusive option in the same group since a real pick was just made.
+      btn.classList.toggle('active');
+      groupEl.querySelectorAll('.opt[data-value="none"], .opt[data-value="no_preference"]').forEach(b => b.classList.remove('active'));
+    } else {
+      // Single-select, or the "no preference" option within a multi-select
+      // group — either way it's exclusive, so clear siblings first.
+      document.querySelectorAll('.opt[data-group="'+group+'"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    state[group] = isMulti
+      ? Array.from(document.querySelectorAll('.opt[data-group="'+group+'"].active')).map(b => b.dataset.value)
+      : btn.dataset.value;
 
     if (group === 'discipline') {
-      if (btn.dataset.value === 'road_race') {
+      if (state.discipline.includes('road_race')) {
         characterBlock.style.display = 'flex';
       } else {
         characterBlock.style.display = 'none';
@@ -597,12 +613,12 @@ function disciplineScore(userD, b){
 
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
-  if (!state.discipline) {
+  if (!state.discipline || !state.discipline.length) {
     err.textContent = "Pick what you're training for first.";
     err.style.display = 'block';
     return;
   }
-  if (state.discipline === 'road_race' && !state.character) {
+  if (state.discipline.includes('road_race') && !state.character) {
     err.textContent = "Pick what matters more for your racing first.";
     err.style.display = 'block';
     return;
@@ -618,12 +634,12 @@ document.getElementById('submit').addEventListener('click', () => {
   const originPref = state.origin || 'none';
   const framePref = state.frame || 'none';
   const groupsetPref = state.groupset || 'none';
-  const colorPref = state.color || 'none';
+  const colorPrefs = (state.color || []).filter(c => c !== 'none');
 
   const scored = bikes.map(b => {
     let score = 0;
 
-    score += disciplineScore(state.discipline, b);
+    score += Math.max(...state.discipline.map(d => disciplineScore(d, b)));
 
     if (state.character) {
       if (state.character === b.character) score += 18;
@@ -663,7 +679,7 @@ document.getElementById('submit').addEventListener('click', () => {
 
     if (originPref === 'canadian' && b.origin === 'Canada') score += 6;
 
-    if (colorPref !== 'none') score += b.colors.includes(colorPref) ? 6 : -2;
+    if (colorPrefs.length) score += colorPrefs.some(c => b.colors.includes(c)) ? 6 : -2;
 
     if (state.availabilitypref !== 'open' && b.availability === 'mainstream') score += 6;
 

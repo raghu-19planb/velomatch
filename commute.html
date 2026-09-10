@@ -224,8 +224,8 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">What's your route like?</label>
-          <div class="opt-row">
+          <label class="q-label">What's your route like? <span class="q-hint">(choose all that apply)</span></label>
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="route" data-value="city_streets">City streets &amp; bike lanes</button>
             <button type="button" class="opt" data-group="route" data-value="mixed_paths">Mixed paved &amp; gravel paths</button>
             <button type="button" class="opt" data-group="route" data-value="long_flat">Long, flat roads</button>
@@ -311,8 +311,8 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">Preferred color</label>
-          <div class="opt-row">
+          <label class="q-label">Preferred color <span class="q-hint">(choose all that apply)</span></label>
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="color" data-value="none">No preference</button>
             <button type="button" class="opt" data-group="color" data-value="Black">Black</button>
             <button type="button" class="opt" data-group="color" data-value="Silver">Silver</button>
@@ -595,9 +595,25 @@ document.getElementById('budget').addEventListener('input', e => {
 document.querySelectorAll('.opt').forEach(btn => {
   btn.addEventListener('click', () => {
     const group = btn.dataset.group;
-    document.querySelectorAll('.opt[data-group="'+group+'"]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    state[group] = btn.dataset.value;
+    const groupEl = btn.closest('.opt-row');
+    const isMulti = groupEl && groupEl.dataset.multi === 'true';
+    const isExclusive = btn.dataset.value === 'none' || btn.dataset.value === 'no_preference';
+
+    if (isMulti && !isExclusive) {
+      // Multi-select: toggle this option on/off, and drop any "no preference"
+      // exclusive option in the same group since a real pick was just made.
+      btn.classList.toggle('active');
+      groupEl.querySelectorAll('.opt[data-value="none"], .opt[data-value="no_preference"]').forEach(b => b.classList.remove('active'));
+    } else {
+      // Single-select, or the "no preference" option within a multi-select
+      // group — either way it's exclusive, so clear siblings first.
+      document.querySelectorAll('.opt[data-group="'+group+'"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    state[group] = isMulti
+      ? Array.from(document.querySelectorAll('.opt[data-group="'+group+'"].active')).map(b => b.dataset.value)
+      : btn.dataset.value;
   });
 });
 
@@ -607,7 +623,7 @@ function cargoLabel(n){
 
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
-  if (!state.power || !state.route || !state.cargo) {
+  if (!state.power || !state.route || !state.route.length || !state.cargo) {
     err.textContent = "Pick a power preference, route, and cargo need first.";
     err.style.display = 'block';
     return;
@@ -628,7 +644,7 @@ document.getElementById('submit').addEventListener('click', () => {
   const scored = bikes.map(b => {
     let score = 0;
 
-    const routeGap = Math.abs(routePosition[state.route] - routePosition[b.type]);
+    const routeGap = Math.min(...state.route.map(r => Math.abs(routePosition[r] - routePosition[b.type])));
     score += Math.max(0, 15 - routeGap * 5);
 
     // Power preference is close to a hard requirement for most riders — a
@@ -671,8 +687,8 @@ document.getElementById('submit').addEventListener('click', () => {
 
     // Color is purely cosmetic — a light tie-breaker, never worth overriding
     // an otherwise better-fitting bike.
-    const colorPref = state.color || 'none';
-    if (colorPref !== 'none') score += b.colors.includes(colorPref) ? 6 : -2;
+    const colorPrefs = (state.color || []).filter(c => c !== 'none');
+    if (colorPrefs.length) score += colorPrefs.some(c => b.colors.includes(c)) ? 6 : -2;
 
     // Riding position is a real comfort factor (how far forward you lean) —
     // translated from a plain-language question into the bike's geometry style.

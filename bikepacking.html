@@ -207,8 +207,8 @@
         <p class="q-section-label first">Your route</p>
 
         <div class="q-group">
-          <label class="q-label">What's the terrain?</label>
-          <div class="opt-row">
+          <label class="q-label">What's the terrain? <span class="q-hint">(choose all that apply)</span></label>
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="terrain" data-value="road_paved">Fully paved</button>
             <button type="button" class="opt" data-group="terrain" data-value="gravel">Dedicated gravel</button>
             <button type="button" class="opt" data-group="terrain" data-value="mixed">Mixed paved &amp; gravel (like Iceland's Ring Road)</button>
@@ -255,8 +255,8 @@
         <p class="q-section-hint">Rack-and-panniers vs. soft bikepacking bags is a real fork in the road, and it depends on trip length and wheel size as much as taste.</p>
 
         <div class="q-group">
-          <label class="q-label">How do you want to carry your gear?</label>
-          <div class="opt-row">
+          <label class="q-label">How do you want to carry your gear? <span class="q-hint">(choose all that apply)</span></label>
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="carrystyle" data-value="minimalist">Frame bag, seat pack, bar roll — no rack</button>
             <button type="button" class="opt" data-group="carrystyle" data-value="rack_panniers">Rack and panniers</button>
             <button type="button" class="opt" data-group="carrystyle" data-value="no_preference">Not sure — recommend based on my trip</button>
@@ -355,8 +355,8 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">Preferred color</label>
-          <div class="opt-row">
+          <label class="q-label">Preferred color <span class="q-hint">(choose all that apply)</span></label>
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="color" data-value="none">No preference</button>
             <button type="button" class="opt" data-group="color" data-value="Black">Black</button>
             <button type="button" class="opt" data-group="color" data-value="Silver">Silver</button>
@@ -634,9 +634,25 @@ const sizeHeightBlock = document.getElementById('sizeHeightBlock');
 document.querySelectorAll('.opt').forEach(btn => {
   btn.addEventListener('click', () => {
     const group = btn.dataset.group;
-    document.querySelectorAll('.opt[data-group="'+group+'"]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    state[group] = btn.dataset.value;
+    const groupEl = btn.closest('.opt-row');
+    const isMulti = groupEl && groupEl.dataset.multi === 'true';
+    const isExclusive = btn.dataset.value === 'none' || btn.dataset.value === 'no_preference';
+
+    if (isMulti && !isExclusive) {
+      // Multi-select: toggle this option on/off, and drop any "no preference"
+      // exclusive option in the same group since a real pick was just made.
+      btn.classList.toggle('active');
+      groupEl.querySelectorAll('.opt[data-value="none"], .opt[data-value="no_preference"]').forEach(b => b.classList.remove('active'));
+    } else {
+      // Single-select, or the "no preference" option within a multi-select
+      // group — either way it's exclusive, so clear siblings first.
+      document.querySelectorAll('.opt[data-group="'+group+'"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    state[group] = isMulti
+      ? Array.from(document.querySelectorAll('.opt[data-group="'+group+'"].active')).map(b => b.dataset.value)
+      : btn.dataset.value;
 
     if (group === 'sizemode') {
       if (btn.dataset.value === 'known') {
@@ -666,7 +682,7 @@ function climbingLabel(r){
 
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
-  if (!state.terrain || !state.purpose || !state.triplength) {
+  if (!state.terrain || !state.terrain.length || !state.purpose || !state.triplength) {
     err.textContent = "Pick a terrain, trip goal, and trip length first.";
     err.style.display = 'block';
     return;
@@ -683,14 +699,14 @@ document.getElementById('submit').addEventListener('click', () => {
   const neededCargo = tripLengthCargo[state.triplength];
   const framePref = state.frame || 'none';
   const groupsetPref = state.groupset || 'none';
-  const colorPref = state.color || 'none';
+  const colorPrefs = (state.color || []).filter(c => c !== 'none');
 
   const scored = bikes.map(b => {
     let score = 0;
 
     // Terrain and trip purpose are the two axes that most determine whether
     // a bike is even the right category of bike for the trip.
-    const terrainGap = Math.abs(terrainPosition[state.terrain] - terrainPosition[b.terrain]);
+    const terrainGap = Math.min(...state.terrain.map(t => Math.abs(terrainPosition[t] - terrainPosition[b.terrain])));
     score += Math.max(0, 18 - terrainGap * 6);
 
     const purposeGap = Math.abs(purposePosition[state.purpose] - purposePosition[b.purpose]);
@@ -708,8 +724,11 @@ document.getElementById('submit').addEventListener('click', () => {
     else if (state.climbing === 'flat_rolling') score += (2 - climbingScore[b.climbingRange]) * 2;
 
     // Carry style: rack+panniers and frame-bag setups want different bikes.
-    if (state.carrystyle === 'minimalist') score += b.frameBagFriendly ? 8 : -3;
-    else if (state.carrystyle === 'rack_panniers') score += b.rackMounts ? 8 : -4;
+    const carryPrefs = state.carrystyle || [];
+    let carryScore = -99;
+    if (carryPrefs.includes('minimalist')) carryScore = Math.max(carryScore, b.frameBagFriendly ? 8 : -3);
+    if (carryPrefs.includes('rack_panniers')) carryScore = Math.max(carryScore, b.rackMounts ? 8 : -4);
+    if (carryScore > -99) score += carryScore;
 
     if (state.wheelsize && state.wheelsize !== 'no_preference') {
       score += b.wheel === Number(state.wheelsize) ? 8 : -3;
@@ -754,7 +773,7 @@ document.getElementById('submit').addEventListener('click', () => {
 
     if (state.dynamo === 'want_it') score += b.dynamoReady ? 8 : -3;
 
-    if (colorPref !== 'none') score += b.colors.includes(colorPref) ? 6 : -2;
+    if (colorPrefs.length) score += colorPrefs.some(c => b.colors.includes(c)) ? 6 : -2;
 
     // Most people asking "which bike should I buy" want something they can
     // actually buy without hunting — mainstream gets a light default nudge,
