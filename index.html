@@ -49,15 +49,15 @@
     </div>
     <div class="splash-stage">
       <div class="story-scene-wrap" id="storySceneWrap">
-        <img class="story-scene active" data-index="0" src="images/splash/01-first-ride.png" alt="A rider pausing with coffee on a quiet cobblestone street">
-        <img class="story-scene" data-index="1" src="images/splash/02-school.png" alt="Kids riding to school together, backpacks on">
-        <img class="story-scene" data-index="2" src="images/splash/03-friends.png" alt="Riding with friends down a tree-lined city street">
-        <img class="story-scene" data-index="3" src="images/splash/04-climb.png" alt="Two riders climbing a mountain road together">
-        <img class="story-scene" data-index="4" src="images/splash/05-packed.png" alt="A loaded touring bike, packed and ready to go">
-        <img class="story-scene" data-index="5" src="images/splash/06-offmap.png" alt="Bikepacking through a snowy mountain pass">
-        <img class="story-scene" data-index="6" src="images/splash/07-race.png" alt="A racer training against a city skyline">
-        <img class="story-scene" data-index="7" src="images/splash/08-home.png" alt="An aerial view of a rider finding their way home">
-        <img class="story-scene" data-index="8" src="images/splash/09-family.png" alt="Three bikes side by side, one for every rider">
+        <img class="story-scene active" data-index="0" src="images/splash/01-first-ride.jpg" alt="A rider pausing with coffee on a quiet cobblestone street">
+        <img class="story-scene" data-index="1" src="images/splash/02-school.jpg" alt="Kids riding to school together, backpacks on">
+        <img class="story-scene" data-index="2" src="images/splash/03-friends.jpg" alt="Riding with friends down a tree-lined city street">
+        <img class="story-scene" data-index="3" src="images/splash/04-climb.jpg" alt="Two riders climbing a mountain road together">
+        <img class="story-scene" data-index="4" src="images/splash/05-packed.jpg" alt="A loaded touring bike, packed and ready to go">
+        <img class="story-scene" data-index="5" src="images/splash/06-offmap.jpg" alt="Bikepacking through a snowy mountain pass">
+        <img class="story-scene" data-index="6" src="images/splash/07-race.jpg" alt="A racer training against a city skyline">
+        <img class="story-scene" data-index="7" src="images/splash/08-home.jpg" alt="An aerial view of a rider finding their way home">
+        <img class="story-scene" data-index="8" src="images/splash/09-family.jpg" alt="Three bikes side by side, one for every rider">
       </div>
     </div>
     <p class="story-caption" id="splashCaption">Your first ride into town.</p>
@@ -324,8 +324,11 @@ const storyCaptions = [
   "Every ride finds its way home.",
   "One for every rider in the family."
 ];
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (storyScenes.length && !prefersReducedMotion) {
+// Cycles regardless of prefers-reduced-motion: this is a plain page-to-page
+// image swap (no parallax/zoom/scroll-triggered motion), and reduced-motion
+// visitors still get it — just as an instant cut instead of a crossfade,
+// via the transition:none override in the stylesheet.
+if (storyScenes.length) {
   let storyIndex = 0;
   setInterval(() => {
     storyIndex = (storyIndex + 1) % storyCaptions.length;
