@@ -62,7 +62,8 @@ nav{
   border-bottom:1px solid var(--line);
 }
 nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; row-gap:8px; min-height:64px; padding-top:8px; padding-bottom:8px;}
-.logo{display:flex; align-items:center; flex:none;}
+.logo{display:flex; flex-direction:column; align-items:flex-start; gap:1px; flex:none;}
+.logo .tagline{margin:0; font-size:10.5px; line-height:1.2;}
 
 /* RideOmetry wordmark: the "O" is a literal spoked wheel that keeps
    spinning (only the wheel — a real bike's fork/frame don't spin with it),
@@ -76,7 +77,7 @@ nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-
 @keyframes wheel-o-spin{ to{ transform:rotate(360deg); } }
 @media (prefers-reduced-motion: reduce){ .wheel-o svg{animation:none;} }
 .wheel-o .wheel-rim{fill:none; stroke:var(--signal); stroke-width:7;}
-.wheel-o .wheel-spoke{stroke:var(--signal); stroke-width:3.4; stroke-linecap:round;}
+.wheel-o .wheel-spoke{stroke:var(--signal); stroke-width:1.8; stroke-linecap:round;}
 .wheel-o .wheel-hub{fill:var(--teal);}
 
 .tagline{font-family:var(--font-tagline); font-weight:400; font-size:14px; color:var(--fog); letter-spacing:0.01em; margin:10px 0 0;}
