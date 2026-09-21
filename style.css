@@ -647,55 +647,53 @@ footer .tagline{margin:0; font-size:16px;}
 /* ROUTE MAPS PAGE — "rolling a map out on a table." .map-cover starts at
    full viewport width (the map, still rolled up, hiding the real page
    underneath) anchored to the right edge, then shrinks to width:0 —
-   since only its LEFT edge moves, the page reveals left-to-right as the
-   roll recedes rightward. Kept deliberately translucent (a blurred,
-   frosted paper tone rather than a solid block of color) and thin, so it
-   reads as sleek tracing paper rather than a heavy kraft-paper tube. The
-   ::before is the roll's edge — a slim band that keeps spinning like a
-   barber pole while it travels — sitting at the cover's current left
-   edge throughout, so it visually "carries" the unrolling edge across
-   the screen. Page-specific, plays once on load — not the shared
-   page-transition curtain used elsewhere. */
+   since only its LEFT edge moves, the page reveals left-to-right,
+   starting at the left of the screen, as the roll recedes rightward.
+   Earlier versions put the "rolling" cue only in a thin strip at that
+   left edge, so the rest of the cover was a flat translucent panel that
+   matched the real page's own tone and just read as sliding. Now the
+   ENTIRE cover carries a repeating light/dark band pattern — like
+   looking at a paper tube end-on — animated across its whole width the
+   whole time, so however wide the remaining strip is, it visibly reads
+   as a rotating cylinder rather than a sliding slab. Slowed down and
+   eased more gently so the unroll feels deliberate, not snappy. */
 .map-cover{
   position:fixed; top:0; right:0; bottom:0; z-index:300; pointer-events:none;
   width:100%;
-  background-color:rgba(242,236,221,0.78);
-  background-image:var(--rm-map-pattern);
-  background-size:560px 560px;
-  backdrop-filter:blur(7px);
-  -webkit-backdrop-filter:blur(7px);
-  animation:map-cover-shrink 1.5s cubic-bezier(.65,0,.35,1) .15s both;
+  background-color:rgba(242,236,221,0.74);
+  background-image:
+    repeating-linear-gradient(90deg,
+      rgba(255,255,255,0) 0px,
+      rgba(255,255,255,0.55) 34px,
+      rgba(120,96,60,0.22) 68px,
+      rgba(255,255,255,0) 104px,
+      rgba(226,85,29,0.12) 138px,
+      rgba(255,255,255,0) 172px
+    ),
+    var(--rm-map-pattern);
+  background-size:172px 100%, 560px 560px;
+  background-position:0 0, 0 0;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  box-shadow:-16px 0 36px rgba(60,45,20,0.16);
+  animation:
+    map-cover-shrink 2.4s cubic-bezier(.45,0,.2,1) .15s both,
+    map-roll-texture 1.1s linear infinite;
 }
-/* The roll's edge: a repeating translucent band pattern wider than the
-   element, continuously scrolling through it (like a barber pole) for as
-   long as the page is unrolling — that's what reads as "a cylinder
-   spinning" rather than "a bar sliding." Bands alternate a soft white
-   highlight (the curve of the paper catching light) with a faint signal-
-   orange tint, all at low opacity so the whole roll stays see-through. */
-.map-cover::before{
-  content:''; position:absolute; top:0; bottom:0; left:-9px; width:18px;
-  background-image:repeating-linear-gradient(90deg,
-    rgba(226,85,29,0.04) 0px, rgba(226,85,29,0.22) 4px, rgba(255,255,255,0.5) 8px, rgba(255,255,255,0.8) 9.5px, rgba(255,255,255,0.5) 11px, rgba(226,85,29,0.22) 15px, rgba(226,85,29,0.04) 19px
-  );
-  background-size:38px 100%;
-  border-radius:9px;
-  box-shadow:-2px 0 12px rgba(90,68,32,0.12), inset 2px 0 5px -2px rgba(255,255,255,0.55), inset -2px 0 5px -2px rgba(90,68,32,0.18);
-  animation:map-roll-spin .26s linear infinite;
-}
-/* Opacity holds at 1 through 92% then drops — the roll (::before) is a
-   fixed-size child, so once the parent's width hits 0 it would otherwise
-   stay visible as a stray bar pinned to the right edge forever. Fading
-   the parent's opacity takes the whole subtree, including ::before and
-   its infinite spin, with it. */
 @keyframes map-cover-shrink{
   0%{ width:100%; opacity:1; }
-  92%{ opacity:1; }
+  90%{ opacity:1; }
   100%{ width:0%; opacity:0; }
 }
-@keyframes map-roll-spin{ from{ background-position-x:0; } to{ background-position-x:-38px; } }
+/* Only the first background layer (the cylindrical shading) shifts —
+   the second position stays put so the underlying map-tone pattern
+   doesn't itself appear to spin, only the paper-roll shading on top. */
+@keyframes map-roll-texture{
+  from{ background-position:0 0, 0 0; }
+  to{ background-position:-172px 0, 0 0; }
+}
 @media (prefers-reduced-motion: reduce){
   .map-cover{ animation:none; width:0%; }
-  .map-cover::before{ animation:none; }
 }
 
 /* A faint, stylized pattern standing in for a real map background on this
