@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rideometry — Find the right bike, measured</title>
-<meta name="description" content="Find the bike that actually fits — kids, commuting, bikepacking, or racing. A free quiz scores real bikes from every brand against your measurements, not a sales pitch.">
+<meta name="description" content="Find the bike that actually fits — kids, commuting, bikepacking, mountain biking, or racing. A free quiz scores real bikes from every brand against your measurements, not a sales pitch.">
 <link rel="canonical" href="https://raghu-19planb.github.io/velomatch/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Rideometry — Find the right bike, measured">
-<meta property="og:description" content="Find the bike that actually fits — kids, commuting, bikepacking, or racing. A free quiz scores real bikes from every brand against your measurements, not a sales pitch.">
+<meta property="og:description" content="Find the bike that actually fits — kids, commuting, bikepacking, mountain biking, or racing. A free quiz scores real bikes from every brand against your measurements, not a sales pitch.">
 <meta property="og:url" content="https://raghu-19planb.github.io/velomatch/">
 <meta property="og:site_name" content="Rideometry">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rideometry — Find the right bike, measured">
-<meta name="twitter:description" content="Find the bike that actually fits — kids, commuting, bikepacking, or racing. A free quiz scores real bikes from every brand against your measurements, not a sales pitch.">
+<meta name="twitter:description" content="Find the bike that actually fits — kids, commuting, bikepacking, mountain biking, or racing. A free quiz scores real bikes from every brand against your measurements, not a sales pitch.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -79,6 +79,7 @@
       <a href="kids.html" class="nav-link">Kids' bikes</a>
       <a href="commute.html" class="nav-link">Commuting</a>
       <a href="bikepacking.html" class="nav-link">Bikepacking</a>
+      <a href="mountainbiking.html" class="nav-link">Mountain biking</a>
       <a href="racing.html" class="nav-link">Racing</a>
       <a href="schematics.html" class="nav-link">Schematics</a>
       <a href="blog.html" class="nav-link">Blog</a>
@@ -180,13 +181,24 @@
         <span class="card-cta">Start matching</span>
       </a>
 
+      <a href="mountainbiking.html" class="category-card">
+        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M6 48 L18 26 L28 40 L36 22 L46 48 M6 48 L58 48"/>
+          <circle cx="18" cy="26" r="3"/>
+        </svg>
+        <div class="fig-tag"><span>Sheet 004</span></div>
+        <h3>Mountain biking</h3>
+        <p>XC, trail, enduro, or downhill — matched on suspension travel and geometry, not a generic "mountain bike" shelf.</p>
+        <span class="card-cta">Start matching</span>
+      </a>
+
       <a href="racing.html" class="category-card">
         <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
           <path d="M10 40 L26 40 M10 40 Q10 30 20 28 L30 26 Q36 24 38 30 L42 40 L54 40"/>
           <circle cx="16" cy="46" r="8"/>
           <circle cx="48" cy="46" r="8"/>
         </svg>
-        <div class="fig-tag"><span>Sheet 004</span></div>
+        <div class="fig-tag"><span>Sheet 005</span></div>
         <h3>Racing</h3>
         <p>Road racing, triathlon, and ultra-endurance — from a criterium to Ironman to an all-night push like LEL or PBP.</p>
         <span class="card-cta">Start matching</span>
@@ -217,7 +229,7 @@
     <h3 id="letterTitle">To everyone who's stood in a bike aisle guessing,</h3>
     <p>Buying a bike usually comes down to a guess: a size sticker on a rack, a salesperson pointing at whatever's in stock, or a color you liked in a catalog. Get it wrong and it's money spent on something that never quite fits.</p>
     <p>We think fit should come from geometry, not guesswork — reach, stack, standover, all measured and matched to the rider, whoever that rider is.</p>
-    <p>Rideometry is built to do that matching for every kind of rider and every kind of ride. Right now it's four working prototypes: a first bike for a growing kid, a daily commuter, a bikepacking rig, and a racing or ultra-endurance bike — because those are the cases where a wrong guess costs the most. The same approach — real measurements, scored against real bikes — is what we're building toward next, for every rider after this one.</p>
+    <p>Rideometry is built to do that matching for every kind of rider and every kind of ride. Right now it's five working prototypes: a first bike for a growing kid, a daily commuter, a bikepacking rig, a mountain bike, and a racing or ultra-endurance bike — because those are the cases where a wrong guess costs the most. The same approach — real measurements, scored against real bikes — is what we're building toward next, for every rider after this one.</p>
     <p>It won't get everything right yet. But it will show its work — the wheel size, the standover, the years of growth room — so you're choosing a bike, not gambling on one.</p>
     <p class="letter-sign">This is where we're starting. Not where we're stopping.</p>
   </div>
@@ -256,6 +268,7 @@ const radarCards = {
   kids: document.querySelector('.category-card[href="kids.html"]'),
   commute: document.querySelector('.category-card[href="commute.html"]'),
   bikepacking: document.querySelector('.category-card[href="bikepacking.html"]'),
+  mountainbiking: document.querySelector('.category-card[href="mountainbiking.html"]'),
   racing: document.querySelector('.category-card[href="racing.html"]')
 };
 
@@ -294,9 +307,10 @@ function updateRadar(){
   } else if (h < 165) {
     radarCategory.textContent = "Getting into bigger-bike territory.";
   } else {
-    radarCategory.textContent = "Sounds like an adult bike — commuting, bikepacking, or racing.";
+    radarCategory.textContent = "Sounds like an adult bike — commuting, bikepacking, mountain biking, or racing.";
     radarCards.commute && radarCards.commute.classList.add('radar-highlight');
     radarCards.bikepacking && radarCards.bikepacking.classList.add('radar-highlight');
+    radarCards.mountainbiking && radarCards.mountainbiking.classList.add('radar-highlight');
     radarCards.racing && radarCards.racing.classList.add('radar-highlight');
   }
 }

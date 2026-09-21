@@ -941,6 +941,27 @@
       "resale": "medium",
       "image": "",
       "_verified": "Steel frame with front suspension, 18-speed, height range 5'2\"-5'10\" (157-178cm), $198 CAD. Also sold in a girls'/white-and-pink colorway at the same spec. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). This exceeds the quiz's current 145cm height-slider ceiling entirely — this bike won't surface as a match until that range is extended. seatRange, barAdjust, and resale are estimated."
+    },
+    {
+      "name": "Honzo 20",
+      "brand": "Kona",
+      "origin": "Canada",
+      "wheel": 20,
+      "minH": 122,
+      "maxH": 142,
+      "price": 749,
+      "currency": "CAD",
+      "brake": "hand",
+      "frameStyle": "step-over",
+      "type": "trail",
+      "exp": ["confident"],
+      "seatRange": 7,
+      "barAdjust": false,
+      "trainWheel": false,
+      "resale": "medium",
+      "image": "",
+      "retailerUrl": "https://en-ca.konaworld.com/products/honzo-20-36b",
+      "_verified": "Found while researching the new mountain-biking catalog — a real junior mountain bike (Kona's adult Honzo hardtail, scaled down), not the adult category. Frame material (6061 aluminum), 20x2.6in tires, Suntour XCT DS coil fork (60mm travel), Shimano Tourney 7-speed, and Tektro hydraulic disc brakes confirmed live at en-ca.konaworld.com on 2026-09-20. Single frame size ('11in'). Height range (122-142cm) and seatRange are estimates typical for a 20in-wheel kids MTB, not shown on the product page — the site pitches it as being for a kid who 'needs to keep pace with older siblings,' i.e. a capable rider already off training wheels, hence exp:['confident']."
     }
   ]
 }
