@@ -647,6 +647,34 @@ footer .tagline{margin:0; font-size:16px;}
 @keyframes reveal-fade{ to{ opacity:0; } }
 @keyframes reveal-hide{ to{ visibility:hidden; } }
 
+/* ROUTE MAPS PAGE — "rolling a map out on a table." .map-cover starts at
+   full viewport width (the map, still rolled up, hiding the real page
+   underneath) anchored to the right edge, then shrinks to width:0 —
+   since only its LEFT edge moves, the page reveals left-to-right as the
+   roll recedes rightward. The ::before is the roll itself (a dowel-like
+   cylinder), sitting at the cover's current left edge throughout, so it
+   visually "carries" the unrolling edge across the screen. Page-specific,
+   plays once on load — not the shared page-transition curtain used
+   elsewhere, since this page alone should feel like unrolling a map. */
+.map-cover{
+  position:fixed; top:0; right:0; bottom:0; z-index:300; pointer-events:none;
+  width:100%;
+  background:var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:34px 34px;
+  animation:map-cover-shrink 1.5s cubic-bezier(.65,0,.35,1) .15s both;
+}
+.map-cover::before{
+  content:''; position:absolute; top:0; bottom:0; left:-13px; width:26px;
+  background:linear-gradient(90deg, #17221d, #4a5950 50%, #17221d 100%);
+  border-radius:13px;
+  box-shadow:-3px 0 20px rgba(0,0,0,0.35);
+}
+@keyframes map-cover-shrink{ from{ width:100%; } to{ width:0%; } }
+@media (prefers-reduced-motion: reduce){ .map-cover{ animation:none; width:0%; } }
+
 
 /* FIT RADAR — the homepage's "wow" moment, before any category is picked */
 .fit-radar-section{padding:8px 0 56px;}

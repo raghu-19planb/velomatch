@@ -29,6 +29,11 @@
 </head>
 <body>
 
+<!-- Plays once on load: a rolled-up "map" surface unrolls left to right,
+     revealing the real page underneath. Purely decorative (aria-hidden),
+     purely CSS — see .map-cover in style.css. Respects reduced-motion. -->
+<div class="map-cover" aria-hidden="true"></div>
+
 <nav>
   <div class="wrap">
     <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
