@@ -962,6 +962,27 @@
       "image": "",
       "retailerUrl": "https://en-ca.konaworld.com/products/honzo-20-36b",
       "_verified": "Found while researching the new mountain-biking catalog — a real junior mountain bike (Kona's adult Honzo hardtail, scaled down), not the adult category. Frame material (6061 aluminum), 20x2.6in tires, Suntour XCT DS coil fork (60mm travel), Shimano Tourney 7-speed, and Tektro hydraulic disc brakes confirmed live at en-ca.konaworld.com on 2026-09-20. Single frame size ('11in'). Height range (122-142cm) and seatRange are estimates typical for a 20in-wheel kids MTB, not shown on the product page — the site pitches it as being for a kid who 'needs to keep pace with older siblings,' i.e. a capable rider already off training wheels, hence exp:['confident']."
+    },
+    {
+      "name": "Bebop 10 Balance Bike",
+      "brand": "Evo",
+      "origin": "Canada",
+      "wheel": 10,
+      "minH": 85,
+      "maxH": 105,
+      "price": 199.99,
+      "currency": "CAD",
+      "brake": "hand",
+      "frameStyle": "either",
+      "type": "pavement",
+      "exp": ["none", "balance"],
+      "seatRange": 6,
+      "barAdjust": false,
+      "trainWheel": false,
+      "resale": "medium",
+      "image": "",
+      "retailerUrl": "https://cyclingelements.ca/products/evo-bebop-10-balance-bike-10",
+      "_verified": "Found while pulling catalog updates via cyclingelements.ca on 2026-09-20 — a real balance bike, not the kids-MTB stage this catalog was otherwise thin above. Frame (6061-T6 alloy), 10in airless foam tire, weight (3.1kg), and price confirmed live. Brake type wasn't stated on the page — many balance bikes ship with none at all; marked 'hand' as the closer of the schema's two options for a bike pitched on safety features, but genuinely uncertain. Height range is a typical-for-balance-bike estimate, not published."
     }
   ]
 }
