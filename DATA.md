@@ -102,3 +102,15 @@ When you add a new preference question, ask "if this is wrong, does the bike bec
 - **E-bike preference was too soft.** A rider who explicitly chose "want e-assist" could still get a pedal-only bike as the top pick if it was cheaper. Fixed by roughly doubling the power-type weight.
 
 The lesson in all three: when a preference is close to a hard requirement in real life, its weight needs to be large enough that budget/weight/other soft factors can't casually overrule it. Worth re-checking with real quiz answers any time a new question or a new bike is added — a quick way is to script a handful of representative answer combinations and eyeball whether the #1 result actually makes sense for that rider.
+
+## Frame shape (`frameStyle`) — why this isn't a "gender" field
+
+All four quizzes ask whether the rider wants a step-through or step-over frame, sometimes marketed as "women's" or "men's." The catalogs deliberately don't have a literal gender field — modern bikes mostly don't have an inherent gender fit anymore (the industry has moved toward unisex frames sized by height/proportions, which is exactly what this site already does via `minH`/`maxH` and frame size). The one real, physical thing that colloquial "his/hers" bike language usually maps to is frame shape, so that's what's actually scored.
+
+**How each catalog's values were set**, in order of confidence:
+1. **Explicit evidence already in the data** — e.g. Aventon Pace 4's `_verified` note says Aventon "moved to a step-through-only frame with the 2025 redesign," so that's a sourced fact, not a guess.
+2. **A structural fact about the bike type** — racing and bikepacking frames are always `step-over`: loaded touring rigs and drop-bar race bikes need diamond-frame rigidity, and real mainstream models in those categories simply aren't sold step-through. This isn't a per-model guess, it's true of the whole category.
+3. **A strong naming/brand signal** — e.g. Huffy Sea Star is a real, long-running step-through girls' cruiser line; Madd Gear's "Boys BMX" says so in the product name; BMX/mountain-bike-style kids bikes are diamond-frame by construction.
+4. **`either` as the honest default everywhere else** — most kids' bikes (Woom, Frog, Trek Precaliber, Specialized Riprock, etc.) and most hybrid/city commuter models are genuinely unisex or sold in both frame options under one name. Marking these `either` means a rider's stated preference is never held against a bike that actually satisfies it, and never fabricates a specific claim this catalog doesn't actually have a basis for.
+
+Scoring never excludes a bike over this — same "always rank the closest available option" philosophy as everything else (see above). A bike marked `either` is never penalized regardless of what the rider picks; only bikes with a confirmed single frame shape get scored against a stated preference.

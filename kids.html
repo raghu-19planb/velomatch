@@ -236,6 +236,15 @@
         </div>
 
         <div class="q-group">
+          <label class="q-label">Frame shape <span class="q-hint">(sometimes marketed as "girls'" or "boys'")</span></label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="frameStyle" data-value="either">No preference</button>
+            <button type="button" class="opt" data-group="frameStyle" data-value="step-through">Step-through — lower bar, easier to mount</button>
+            <button type="button" class="opt" data-group="frameStyle" data-value="step-over">Step-over — traditional diamond frame</button>
+          </div>
+        </div>
+
+        <div class="q-group">
           <label class="q-label">Budget</label>
           <div class="range-row">
             <input type="range" id="budget" min="80" max="600" value="250" step="10">
@@ -435,7 +444,7 @@ async function loadBikeData(){
 loadBikeData();
 initQuizFlow('#quizSteps');
 
-const state = {exp:null, terrain:null, brake:null, origin:null};
+const state = {exp:null, terrain:null, brake:null, frameStyle:null, origin:null};
 const growthLabels = ["Not important","Not important","A little","A little","Somewhat","Somewhat","Somewhat","Important","Important","Very important","Very important"];
 
 // Bikes are only tagged pavement/park/trail. The newer road-and-gravel options sit
@@ -529,6 +538,14 @@ document.getElementById('submit').addEventListener('click', () => {
     score += growthRaw * growthWeight * 1.3;
 
     if (originPref === 'canadian' && b.origin === 'Canada') score += 6;
+
+    // Frame shape (step-through/step-over) is a real physical preference,
+    // not a requirement — most kids' bikes are unisex ('either'), so this
+    // mostly matters for the brands/models that genuinely offer a choice.
+    const frameStylePref = state.frameStyle || 'either';
+    if (frameStylePref !== 'either' && b.frameStyle !== 'either') {
+      score += b.frameStyle === frameStylePref ? 10 : -5;
+    }
 
     const years = Math.max(1, Math.round((b.seatRange/2 + (b.barAdjust?0.5:0)) * 10) / 10);
     return {...b, score, years};

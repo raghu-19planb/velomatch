@@ -259,6 +259,16 @@
         </div>
 
         <div class="q-group">
+          <label class="q-label">Frame shape <span class="q-hint">(sometimes marketed as "women's" or "men's")</span></label>
+          <p class="q-hint">Drop-bar racing frames need diamond-frame rigidity for stiffness and aero — real racing bikes in this category aren't built step-through, so this mostly serves as an honest heads-up rather than a filter.</p>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="frameStyle" data-value="either">No preference</button>
+            <button type="button" class="opt" data-group="frameStyle" data-value="step-through">Step-through — lower bar, easier to mount</button>
+            <button type="button" class="opt" data-group="frameStyle" data-value="step-over">Step-over — traditional diamond frame</button>
+          </div>
+        </div>
+
+        <div class="q-group">
           <label class="q-label">Groupset preference</label>
           <div class="opt-row">
             <button type="button" class="opt" data-group="groupset" data-value="none">No preference</button>
@@ -521,7 +531,7 @@ initQuizFlow('#quizSteps');
 const state = {
   discipline:null, character:null, dynamo:null,
   sizemode:null, framesize:null, riderHeight:null,
-  frame:null, groupset:null, shifting:null, wheelpref:null, color:null,
+  frame:null, frameStyle:null, groupset:null, shifting:null, wheelpref:null, color:null,
   availabilitypref:null, origin:null
 };
 
@@ -655,6 +665,14 @@ document.getElementById('submit').addEventListener('click', () => {
     if (state.dynamo === 'want_it') score += b.dynamoReady ? 10 : -4;
 
     if (framePref !== 'none') score += b.frameMaterial === framePref ? 12 : -6;
+
+    // Frame shape: every bike in this catalog is step-over (see schema note),
+    // so this mostly surfaces an honest "not available that way" rather than
+    // meaningfully re-ranking anything.
+    const frameStylePref = state.frameStyle || 'either';
+    if (frameStylePref !== 'either' && b.frameStyle !== 'either') {
+      score += b.frameStyle === frameStylePref ? 10 : -5;
+    }
 
     if (groupsetPref === 'shimano') score += /shimano/i.test(b.groupset) ? 10 : -4;
     else if (groupsetPref === 'sram') score += /sram/i.test(b.groupset) ? 10 : -4;

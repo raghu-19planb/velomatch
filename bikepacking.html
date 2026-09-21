@@ -307,6 +307,16 @@
         </div>
 
         <div class="q-group">
+          <label class="q-label">Frame shape <span class="q-hint">(sometimes marketed as "women's" or "men's")</span></label>
+          <p class="q-hint">Loaded touring/bikepacking frames need diamond-frame rigidity — real mainstream rigs in this category aren't built step-through, so this mostly serves as an honest heads-up rather than a filter.</p>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="frameStyle" data-value="either">No preference</button>
+            <button type="button" class="opt" data-group="frameStyle" data-value="step-through">Step-through — lower bar, easier to mount</button>
+            <button type="button" class="opt" data-group="frameStyle" data-value="step-over">Step-over — traditional diamond frame</button>
+          </div>
+        </div>
+
+        <div class="q-group">
           <label class="q-label">Want some relief from harsh roads?</label>
           <p class="q-hint">A suspension fork or a built-in comfort mechanism (like Specialized's Future Shock or Cannondale's Kingpin) — both count.</p>
           <div class="opt-row">
@@ -604,7 +614,7 @@ initQuizFlow('#quizSteps');
 const state = {
   terrain:null, purpose:null, triplength:null, climbing:null, remoteness:null,
   carrystyle:null, wheelsize:null, sizemode:null, framesize:null,
-  frame:null, suspension:null, groupset:null, shifting:null, tires:null, dynamo:null, color:null,
+  frame:null, frameStyle:null, suspension:null, groupset:null, shifting:null, tires:null, dynamo:null, color:null,
   experience:null, availabilitypref:null, origin:null
 };
 
@@ -748,6 +758,14 @@ document.getElementById('submit').addEventListener('click', () => {
     if (originPref === 'canadian' && b.origin === 'Canada') score += 6;
 
     if (framePref !== 'none') score += b.frameMaterial === framePref ? 12 : -6;
+
+    // Frame shape: every bike in this catalog is step-over (see schema note),
+    // so this mostly surfaces an honest "not available that way" rather than
+    // meaningfully re-ranking anything.
+    const frameStylePref = state.frameStyle || 'either';
+    if (frameStylePref !== 'either' && b.frameStyle !== 'either') {
+      score += b.frameStyle === frameStylePref ? 10 : -5;
+    }
 
     // "Some relief from harsh roads" is satisfied by a suspension fork OR a
     // proprietary comfort mechanism (Future Shock, Kingpin) — comfortDamping

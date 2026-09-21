@@ -6,6 +6,7 @@
       "brand": "string",
       "origin": "string — country of the brand, used for the 'prefer Canadian' filter",
       "wheel": "number — 700 (700c) or 650 (650b); 650b trades top-end speed for higher-volume tires on rough terrain",
+      "frameStyle": "'step-through' | 'step-over' | 'either' — physical frame shape (low-step vs. traditional diamond), sometimes marketed as 'women's'/'men's'. Every entry here is 'step-over': loaded bikepacking/touring frames need the structural rigidity of a diamond frame, and real mainstream touring/bikepacking rigs (Surly, Salsa, Tumbleweed, etc.) aren't sold in step-through variants — a categorical fact about this bike type, not a per-model guess.",
       "sizes": "array of numbers — the actual frame sizes (cm) this model is offered in. The quiz asks riders their known frame size first (how experienced cyclists actually shop) and scores against this list; height is only a fallback for riders who don't know their size.",
       "minH": "number — cm, fallback height range lower bound (used only when the rider picks 'use my height instead')",
       "maxH": "number — cm, fallback height range upper bound",
@@ -34,6 +35,7 @@
   "bikes": [
     {
       "name": "Salsa Cutthroat C GRX",
+      "frameStyle": "step-over",
       "brand": "Salsa",
       "origin": "USA",
       "wheel": 700,
@@ -74,6 +76,7 @@
     },
     {
       "name": "Cannondale Topstone 4",
+      "frameStyle": "step-over",
       "brand": "Cannondale",
       "origin": "USA",
       "wheel": 700,
@@ -113,6 +116,7 @@
     },
     {
       "name": "Cannondale Topstone Carbon Lefty 3",
+      "frameStyle": "step-over",
       "brand": "Cannondale",
       "origin": "USA",
       "wheel": 650,
@@ -152,6 +156,7 @@
     },
     {
       "name": "Trek Checkpoint SL 5",
+      "frameStyle": "step-over",
       "brand": "Trek",
       "origin": "USA",
       "wheel": 700,
@@ -190,6 +195,7 @@
     },
     {
       "name": "Canyon Grizl 7",
+      "frameStyle": "step-over",
       "brand": "Canyon",
       "origin": "Germany",
       "wheel": 700,
@@ -230,6 +236,7 @@
     },
     {
       "name": "Specialized Diverge Comp",
+      "frameStyle": "step-over",
       "brand": "Specialized",
       "origin": "USA",
       "wheel": 700,
@@ -268,6 +275,7 @@
     },
     {
       "name": "Specialized Diverge Expert Carbon",
+      "frameStyle": "step-over",
       "brand": "Specialized",
       "origin": "USA",
       "wheel": 700,
@@ -306,6 +314,7 @@
     },
     {
       "name": "Cervélo Aspero-5",
+      "frameStyle": "step-over",
       "brand": "Cervélo",
       "origin": "Canada",
       "wheel": 700,
@@ -345,6 +354,7 @@
     },
     {
       "name": "3T Exploro Race",
+      "frameStyle": "step-over",
       "brand": "3T",
       "origin": "Italy",
       "wheel": 700,
@@ -381,6 +391,7 @@
     },
     {
       "name": "Otso Waheela C",
+      "frameStyle": "step-over",
       "brand": "Otso",
       "origin": "USA",
       "wheel": 700,
@@ -419,6 +430,7 @@
     },
     {
       "name": "Ritchey Outback",
+      "frameStyle": "step-over",
       "brand": "Ritchey",
       "origin": "USA",
       "wheel": 700,
@@ -457,6 +469,7 @@
     },
     {
       "name": "All-City Space Horse",
+      "frameStyle": "step-over",
       "brand": "All-City",
       "origin": "USA",
       "wheel": 700,
@@ -496,6 +509,7 @@
     },
     {
       "name": "Fairlight Secan",
+      "frameStyle": "step-over",
       "brand": "Fairlight",
       "origin": "UK",
       "wheel": 700,
@@ -535,6 +549,7 @@
     },
     {
       "name": "Salsa Marrakesh",
+      "frameStyle": "step-over",
       "brand": "Salsa",
       "origin": "USA",
       "wheel": 700,
@@ -573,6 +588,7 @@
     },
     {
       "name": "Kona Sutra",
+      "frameStyle": "step-over",
       "brand": "Kona",
       "origin": "Canada",
       "wheel": 700,
@@ -613,6 +629,7 @@
     },
     {
       "name": "Kona Sutra LTD",
+      "frameStyle": "step-over",
       "brand": "Kona",
       "origin": "Canada",
       "wheel": 700,
@@ -653,6 +670,7 @@
     },
     {
       "name": "Surly Long Haul Trucker",
+      "frameStyle": "step-over",
       "brand": "Surly",
       "origin": "USA",
       "wheel": 700,
@@ -694,6 +712,7 @@
     },
     {
       "name": "Surly Disc Trucker",
+      "frameStyle": "step-over",
       "brand": "Surly",
       "origin": "USA",
       "wheel": 700,
@@ -736,6 +755,7 @@
     },
     {
       "name": "Co-op Cycles ADV 4.2",
+      "frameStyle": "step-over",
       "brand": "Co-op Cycles",
       "origin": "USA",
       "wheel": 650,
@@ -776,6 +796,7 @@
     },
     {
       "name": "Salsa Fargo",
+      "frameStyle": "step-over",
       "brand": "Salsa",
       "origin": "USA",
       "wheel": 700,
@@ -815,6 +836,7 @@
     },
     {
       "name": "Tumbleweed Prospector",
+      "frameStyle": "step-over",
       "brand": "Tumbleweed",
       "origin": "USA",
       "wheel": 650,
@@ -855,6 +877,7 @@
     },
     {
       "name": "Bombtrack Hook EXT",
+      "frameStyle": "step-over",
       "brand": "Bombtrack",
       "origin": "Germany",
       "wheel": 650,
@@ -894,6 +917,7 @@
     },
     {
       "name": "Genesis Croix de Fer 30",
+      "frameStyle": "step-over",
       "brand": "Genesis",
       "origin": "UK",
       "wheel": 700,
@@ -933,6 +957,7 @@
     },
     {
       "name": "Surly Karate Monkey",
+      "frameStyle": "step-over",
       "brand": "Surly",
       "origin": "USA",
       "wheel": 650,
@@ -972,6 +997,7 @@
     },
     {
       "name": "Surly ECR",
+      "frameStyle": "step-over",
       "brand": "Surly",
       "origin": "USA",
       "wheel": 650,
@@ -1011,6 +1037,7 @@
     },
     {
       "name": "Salsa Timberjack",
+      "frameStyle": "step-over",
       "brand": "Salsa",
       "origin": "USA",
       "wheel": 700,
@@ -1051,6 +1078,7 @@
     },
     {
       "name": "Kona Unit",
+      "frameStyle": "step-over",
       "brand": "Kona",
       "origin": "Canada",
       "wheel": 650,
@@ -1089,6 +1117,7 @@
     },
     {
       "name": "Tumbleweed Stargazer",
+      "frameStyle": "step-over",
       "brand": "Tumbleweed",
       "origin": "USA",
       "wheel": 650,
@@ -1129,6 +1158,7 @@
     },
     {
       "name": "Norco Search",
+      "frameStyle": "step-over",
       "brand": "Norco",
       "origin": "Canada",
       "wheel": 700,
@@ -1167,6 +1197,7 @@
     },
     {
       "name": "Devinci Hatchet",
+      "frameStyle": "step-over",
       "brand": "Devinci",
       "origin": "Canada",
       "wheel": 700,
@@ -1205,6 +1236,7 @@
     },
     {
       "name": "Rocky Mountain Solo",
+      "frameStyle": "step-over",
       "brand": "Rocky Mountain",
       "origin": "Canada",
       "wheel": 700,

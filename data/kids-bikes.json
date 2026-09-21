@@ -11,6 +11,7 @@
       "price": "number — face-value price in whatever 'currency' says (see below); the budget slider compares this number as-is and does not convert between currencies",
       "currency": "optional string, 3-letter code (e.g. 'CAD') — omit to mean USD, the default for every entry added before this field existed",
       "brake": "'coaster' | 'hand'",
+      "frameStyle": "'step-through' | 'step-over' | 'either' — physical frame shape (low-step vs. traditional diamond), sometimes marketed as 'girls'/'boys''. Most mainstream kids-bike brands (Woom, Frog, Trek, Specialized, Guardian, Priority, etc.) build one unisex frame and are marked 'either'. 'step-through'/'step-over' are only set where there's real basis: an explicit product name (e.g. 'Boys BMX'), a known real product line (e.g. Huffy Sea Star is a real, long-running step-through cruiser line), or the bike's structural type (BMX/mountain-bike-style kids bikes are diamond-frame, so 'step-over'). Not live-verified per model — same product-knowledge basis as the rest of this catalog.",
       "type": "'pavement' | 'road_gravel' | 'park' | 'trail_road_gravel' | 'trail' — best-fit terrain, scored by proximity",
       "exp": "array of 'none' | 'balance' | 'training' | 'confident' — rider experience levels this bike suits",
       "seatRange": "number — cm of seatpost height adjustment, used to estimate years of growth",
@@ -24,6 +25,7 @@
   "bikes": [
     {
       "name": "Guardian Original 16\"",
+      "frameStyle": "either",
       "brand": "Guardian",
       "origin": "USA",
       "wheel": 16,
@@ -46,6 +48,7 @@
     },
     {
       "name": "Priority Start 16",
+      "frameStyle": "either",
       "brand": "Priority",
       "origin": "USA",
       "wheel": 16,
@@ -68,6 +71,7 @@
     },
     {
       "name": "woom GO 3",
+      "frameStyle": "either",
       "brand": "Woom",
       "origin": "Austria",
       "wheel": 16,
@@ -90,6 +94,7 @@
     },
     {
       "name": "Frog 48",
+      "frameStyle": "either",
       "brand": "Frog Bikes",
       "origin": "UK",
       "wheel": 16,
@@ -111,6 +116,7 @@
     },
     {
       "name": "woom OFF 4",
+      "frameStyle": "either",
       "brand": "Woom",
       "origin": "Austria",
       "wheel": 20,
@@ -132,6 +138,7 @@
     },
     {
       "name": "REI Co-op Cycles REV 16",
+      "frameStyle": "either",
       "brand": "REI Co-op",
       "origin": "USA",
       "wheel": 16,
@@ -154,6 +161,7 @@
     },
     {
       "name": "Trek Precaliber 16",
+      "frameStyle": "either",
       "brand": "Trek",
       "origin": "USA",
       "wheel": 16,
@@ -175,6 +183,7 @@
     },
     {
       "name": "Specialized Riprock Coaster 16",
+      "frameStyle": "either",
       "brand": "Specialized",
       "origin": "USA",
       "wheel": 16,
@@ -196,6 +205,7 @@
     },
     {
       "name": "Norco Roller 16",
+      "frameStyle": "either",
       "brand": "Norco",
       "origin": "Canada",
       "wheel": 16,
@@ -216,6 +226,7 @@
     },
     {
       "name": "Miele Alba Junior 16",
+      "frameStyle": "either",
       "brand": "Miele",
       "origin": "Canada",
       "wheel": 16,
@@ -236,6 +247,7 @@
     },
     {
       "name": "woom GO 4",
+      "frameStyle": "either",
       "brand": "Woom",
       "origin": "Austria",
       "wheel": 20,
@@ -258,6 +270,7 @@
     },
     {
       "name": "Trek Precaliber 20",
+      "frameStyle": "either",
       "brand": "Trek",
       "origin": "USA",
       "wheel": 20,
@@ -279,6 +292,7 @@
     },
     {
       "name": "Huffy 16\" GRM",
+      "frameStyle": "either",
       "brand": "Huffy",
       "origin": "USA",
       "wheel": 16,
@@ -300,6 +314,7 @@
     },
     {
       "name": "Huffy 16\" Rock It",
+      "frameStyle": "either",
       "brand": "Huffy",
       "origin": "USA",
       "wheel": 16,
@@ -320,6 +335,7 @@
     },
     {
       "name": "Schwinn Aerostar 16-in",
+      "frameStyle": "either",
       "brand": "Schwinn",
       "origin": "USA",
       "wheel": 16,
@@ -340,6 +356,7 @@
     },
     {
       "name": "Btwin Inuit 100 16\"",
+      "frameStyle": "either",
       "brand": "Decathlon",
       "origin": "France",
       "wheel": 16,
@@ -360,6 +377,7 @@
     },
     {
       "name": "Btwin HYC500 16\"",
+      "frameStyle": "either",
       "brand": "Decathlon",
       "origin": "France",
       "wheel": 16,
@@ -380,6 +398,7 @@
     },
     {
       "name": "Supercycle Valley 16-in",
+      "frameStyle": "either",
       "brand": "Supercycle",
       "origin": "Canada",
       "wheel": 16,
@@ -400,6 +419,7 @@
     },
     {
       "name": "Hyper Spinner BMX 20\"",
+      "frameStyle": "step-over",
       "brand": "Hyper Bicycles",
       "origin": "USA",
       "wheel": 20,
@@ -423,6 +443,7 @@
     },
     {
       "name": "Huffy Sea Star 12-inch",
+      "frameStyle": "step-through",
       "brand": "Huffy",
       "origin": "USA",
       "wheel": 12,
@@ -445,6 +466,7 @@
     },
     {
       "name": "Huffy Sea Star 14-inch",
+      "frameStyle": "step-through",
       "brand": "Huffy",
       "origin": "USA",
       "wheel": 14,
@@ -467,6 +489,7 @@
     },
     {
       "name": "Huffy Sea Star 16-inch",
+      "frameStyle": "step-through",
       "brand": "Huffy",
       "origin": "USA",
       "wheel": 16,
@@ -489,6 +512,7 @@
     },
     {
       "name": "Huffy Sea Star 18-inch",
+      "frameStyle": "step-through",
       "brand": "Huffy",
       "origin": "USA",
       "wheel": 18,
@@ -511,6 +535,7 @@
     },
     {
       "name": "Huffy Rock It 12-inch",
+      "frameStyle": "either",
       "brand": "Huffy",
       "origin": "USA",
       "wheel": 12,
@@ -534,6 +559,7 @@
     },
     {
       "name": "Huffy Rock It 14-inch",
+      "frameStyle": "either",
       "brand": "Huffy",
       "origin": "USA",
       "wheel": 14,
@@ -556,6 +582,7 @@
     },
     {
       "name": "Costway 12\" Kids Bike (Hand & Coaster Brake)",
+      "frameStyle": "either",
       "brand": "Costway",
       "origin": "China",
       "wheel": 12,
@@ -578,6 +605,7 @@
     },
     {
       "name": "JOYSTAR Angel 16\"",
+      "frameStyle": "step-through",
       "brand": "JOYSTAR",
       "origin": "China",
       "wheel": 16,
@@ -600,6 +628,7 @@
     },
     {
       "name": "Hyper Bicycles 16\" Motobike",
+      "frameStyle": "step-over",
       "brand": "Hyper Bicycles",
       "origin": "USA",
       "wheel": 16,
@@ -622,6 +651,7 @@
     },
     {
       "name": "Costway 18\" Kids Bike (Basket)",
+      "frameStyle": "step-through",
       "brand": "Costway",
       "origin": "China",
       "wheel": 18,
@@ -644,6 +674,7 @@
     },
     {
       "name": "Costway 20\" Kids Mountain Bike (Suspension Fork)",
+      "frameStyle": "step-over",
       "brand": "Costway",
       "origin": "China",
       "wheel": 20,
@@ -666,6 +697,7 @@
     },
     {
       "name": "Costway 24\" Kids Mountain Bike (Suspension Fork)",
+      "frameStyle": "step-over",
       "brand": "Costway",
       "origin": "China",
       "wheel": 24,
@@ -687,6 +719,7 @@
     },
     {
       "name": "Hyper Bicycles 20\" Jet Fuel BMX",
+      "frameStyle": "step-over",
       "brand": "Hyper Bicycles",
       "origin": "USA",
       "wheel": 20,
@@ -709,6 +742,7 @@
     },
     {
       "name": "Madd Gear 18\" Boys BMX",
+      "frameStyle": "step-over",
       "brand": "Madd Gear",
       "origin": "USA",
       "wheel": 18,
@@ -731,6 +765,7 @@
     },
     {
       "name": "Hyper Bicycles 24\" Swift Mountain Bike",
+      "frameStyle": "step-over",
       "brand": "Hyper Bicycles",
       "origin": "USA",
       "wheel": 24,
@@ -752,6 +787,7 @@
     },
     {
       "name": "VEVOR 26\" Cruiser Bike (7-Speed)",
+      "frameStyle": "either",
       "brand": "VEVOR",
       "origin": "China",
       "wheel": 26,
@@ -773,6 +809,7 @@
     },
     {
       "name": "Huffy Rock It 20\"",
+      "frameStyle": "either",
       "brand": "Huffy",
       "origin": "USA",
       "wheel": 20,
@@ -795,6 +832,7 @@
     },
     {
       "name": "Huffy Rock Creek 20\" Mountain Bike",
+      "frameStyle": "step-over",
       "brand": "Huffy",
       "origin": "USA",
       "wheel": 20,
@@ -817,6 +855,7 @@
     },
     {
       "name": "Huffy Algonquin 18\" Mountain Bike",
+      "frameStyle": "step-over",
       "brand": "Huffy",
       "origin": "USA",
       "wheel": 18,
@@ -839,6 +878,7 @@
     },
     {
       "name": "Mongoose Kipawa 24\" Mountain Bike",
+      "frameStyle": "step-over",
       "brand": "Mongoose",
       "origin": "USA",
       "wheel": 24,
@@ -860,6 +900,7 @@
     },
     {
       "name": "KFFKFF 20\" Mountain Bike (Disc Brakes)",
+      "frameStyle": "step-over",
       "brand": "KFFKFF",
       "origin": "China",
       "wheel": 20,
@@ -881,6 +922,7 @@
     },
     {
       "name": "Hyper Bicycles 24\" Boundary Mountain Bike",
+      "frameStyle": "step-over",
       "brand": "Hyper Bicycles",
       "origin": "USA",
       "wheel": 24,

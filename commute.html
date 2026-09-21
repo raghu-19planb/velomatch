@@ -307,6 +307,15 @@
         </div>
 
         <div class="q-group">
+          <label class="q-label">Frame shape <span class="q-hint">(sometimes marketed as "women's" or "men's")</span></label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="frameStyle" data-value="either">No preference</button>
+            <button type="button" class="opt" data-group="frameStyle" data-value="step-through">Step-through — lower bar, easier to mount</button>
+            <button type="button" class="opt" data-group="frameStyle" data-value="step-over">Step-over — traditional diamond frame</button>
+          </div>
+        </div>
+
+        <div class="q-group">
           <label class="q-label">Preferred color <span class="q-hint">(choose all that apply)</span></label>
           <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="color" data-value="none">No preference</button>
@@ -565,7 +574,8 @@ initQuizFlow('#quizSteps');
 
 const state = {
   power:null, route:null, cargo:null, origin:null, frame:null, groupset:null, color:null,
-  position:null, weather:null, roughness:null, flats:null, brakepower:null, experience:null, storage:null
+  position:null, weather:null, roughness:null, flats:null, brakepower:null, experience:null, storage:null,
+  frameStyle:null
 };
 
 // Route options sit on one approximate spectrum so a bike built for one route
@@ -701,6 +711,13 @@ document.getElementById('submit').addEventListener('click', () => {
     if (state.flats === 'worried') score += b.tireProfile === 'wide' ? 8 : -3;
 
     if (state.brakepower === 'disc') score += b.brakeType === 'disc' ? 8 : -4;
+
+    // Frame shape (step-through/step-over) — most hybrid/city models here are
+    // genuinely sold in both, so 'either' bikes are never penalized either way.
+    const frameStylePref = state.frameStyle || 'either';
+    if (frameStylePref !== 'either' && b.frameStyle !== 'either') {
+      score += b.frameStyle === frameStylePref ? 10 : -5;
+    }
 
     // New riders benefit from low-maintenance drivetrains even if they don't
     // know to ask for one by name — a gentle nudge, not a groupset override.
