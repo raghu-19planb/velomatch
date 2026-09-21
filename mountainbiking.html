@@ -247,8 +247,20 @@
         <p class="q-section-label">Your fit</p>
 
         <div class="q-group">
-          <label class="q-label">Height</label>
-          <div class="range-row">
+          <label class="q-label">Do you know your frame size?</label>
+          <p class="q-hint">Mountain bikes are sized by letter (XS-XL), not a cm number the way road bikes are — so that's what we ask for here.</p>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="sizemode" data-value="known">Yes — I know my size</button>
+            <button type="button" class="opt" data-group="sizemode" data-value="height">Not sure — use my height</button>
+          </div>
+          <div id="sizeKnownBlock" class="opt-row" style="margin-top:14px; display:none;">
+            <button type="button" class="opt" data-group="framesize" data-value="XS">XS</button>
+            <button type="button" class="opt" data-group="framesize" data-value="S">S</button>
+            <button type="button" class="opt" data-group="framesize" data-value="M">M</button>
+            <button type="button" class="opt" data-group="framesize" data-value="L">L</button>
+            <button type="button" class="opt" data-group="framesize" data-value="XL">XL</button>
+          </div>
+          <div id="sizeHeightBlock" class="range-row" style="margin-top:14px; display:none;">
             <input type="range" id="height" min="145" max="205" value="172" step="1">
             <span class="range-out" id="height-out">172 cm</span>
           </div>
@@ -276,7 +288,7 @@
 
         <div class="q-group">
           <label class="q-label">Frame shape <span class="q-hint">(sometimes marketed as "women's" or "men's")</span></label>
-          <p class="q-hint">Real mountain bikes need diamond-frame rigidity for off-road loads — this catalog doesn't have step-through mountain bikes, so this mostly serves as an honest heads-up rather than a filter.</p>
+          <p class="q-hint">A step-through frame has a low or missing top tube — easier to swing a leg over, traditionally sold as a "women's" bike. A step-over frame is the traditional diamond shape, traditionally sold as a "men's" bike. Either shape genuinely works for any rider. Real mountain bikes also need diamond-frame rigidity for off-road loads — this catalog doesn't have step-through mountain bikes, so this question mostly serves as an honest heads-up rather than a filter.</p>
           <div class="opt-row">
             <button type="button" class="opt" data-group="frameStyle" data-value="either">No preference</button>
             <button type="button" class="opt" data-group="frameStyle" data-value="step-through">Step-through — lower bar, easier to mount</button>
@@ -352,10 +364,10 @@
       <path d="M24 28 L32 18 L40 28"/>
     </svg>
     <div class="stat-figure">
-      <span class="num">160mm</span>
-      <span class="stat-note">of travel you either need or don't</span>
+      <span class="num">~3kg</span>
+      <span class="stat-note">heavier for full suspension — and worth every gram on the way down</span>
     </div>
-    <p class="cap">an XC bike on an enduro trail gets outclassed by the terrain; an enduro bike on an XC loop gets outclassed by the climbs. The right amount of travel isn't a nice-to-have, it's the bike actually working for the riding you do.</p>
+    <p class="cap">that's the real tradeoff, not marketing spin: a full-suspension bike soaks up rough descents a hardtail can't, but you feel every extra kilogram on the climbs. Picking between them isn't about which bike is "better" — it's about which one is better for where you actually ride.</p>
   </div>
 </section>
 
@@ -471,6 +483,21 @@ function priceCheckLink(b){
   return `<a href="https://www.google.com/search?q=${query}" target="_blank" rel="noopener" class="result-link">Search for current price →</a>`;
 }
 
+// Only shown for bikes priced above the selected budget (within the $500
+// grace window scoring already allows) — explains what the extra money
+// actually buys, instead of silently over-recommending.
+function budgetNote(b, budget){
+  const over = b.price - budget;
+  if (over <= 0 || over > 500) return '';
+  const perks = [];
+  if (b.suspensionType === 'full_suspension') perks.push('full suspension instead of a hardtail');
+  if (b.frameMaterial === 'carbon') perks.push('a lighter carbon frame');
+  if (b.dropperPost) perks.push('a dropper post');
+  if (b.travelFront >= 150 && !perks.length) perks.push('more suspension travel for rougher terrain');
+  if (!perks.length) perks.push('a step up in components for the same basic bike');
+  return `<p class="result-budget-note"><b>$${Math.round(over)} over your budget</b> — that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+}
+
 // Shown when a bike has no photo yet, or its photo URL fails to load —
 // points people to the brand's own site instead of showing nothing.
 function resultPlaceholderMarkup(b){
@@ -532,6 +559,7 @@ initQuizFlow('#quizSteps');
 
 const state = {
   discipline:null, experience:null, suspensionType:null, dropper:null,
+  sizemode:null, framesize:null, riderHeight:null,
   wheelsize:null, frame:null, frameStyle:null, groupset:null, color:null,
   availabilitypref:null, origin:null
 };
@@ -539,13 +567,20 @@ const state = {
 // Disciplines sit on one spectrum, mild to aggressive, so a bike one notch
 // off still scores reasonably instead of an all-or-nothing match.
 const disciplinePosition = {xc:0, trail:1, enduro:2, dirt_jump:2.5, downhill:3};
+// Letter sizes sit on one spectrum too, for a gap-based score when a rider's
+// exact size isn't offered on a given bike.
+const sizePosition = {XS:0, S:1, M:2, L:3, XL:4};
 
 document.getElementById('height').addEventListener('input', e => {
   document.getElementById('height-out').textContent = e.target.value + ' cm';
+  state.riderHeight = Number(e.target.value);
 });
 document.getElementById('budget').addEventListener('input', e => {
   document.getElementById('budget-out').textContent = '$' + e.target.value;
 });
+
+const sizeKnownBlock = document.getElementById('sizeKnownBlock');
+const sizeHeightBlock = document.getElementById('sizeHeightBlock');
 
 document.querySelectorAll('.opt').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -565,6 +600,20 @@ document.querySelectorAll('.opt').forEach(btn => {
     state[group] = isMulti
       ? Array.from(document.querySelectorAll('.opt[data-group="'+group+'"].active')).map(b => b.dataset.value)
       : btn.dataset.value;
+
+    if (group === 'sizemode') {
+      if (btn.dataset.value === 'known') {
+        sizeKnownBlock.style.display = 'flex';
+        sizeHeightBlock.style.display = 'none';
+        state.riderHeight = null;
+      } else {
+        sizeKnownBlock.style.display = 'none';
+        sizeHeightBlock.style.display = 'flex';
+        state.framesize = null;
+        document.querySelectorAll('.opt[data-group="framesize"]').forEach(b => b.classList.remove('active'));
+        state.riderHeight = Number(document.getElementById('height').value);
+      }
+    }
   });
 });
 
@@ -582,7 +631,6 @@ document.getElementById('submit').addEventListener('click', () => {
   }
   err.style.display = 'none';
 
-  const height = Number(document.getElementById('height').value);
   const budget = Number(document.getElementById('budget').value);
   const originPref = state.origin || 'none';
   const framePref = state.frame || 'none';
@@ -605,15 +653,34 @@ document.getElementById('submit').addEventListener('click', () => {
     if (state.dropper === 'want_it') score += b.dropperPost ? 10 : -5;
     else if (state.dropper === 'dont_need') score += !b.dropperPost ? 3 : 0;
 
-    if (height >= b.minH && height <= b.maxH) score += 22;
-    else score -= Math.min(30, Math.abs(height - (b.minH + b.maxH) / 2) * 0.6);
+    // Frame size: a rider who knows their letter size is scored against the
+    // bike's actual offered sizes; otherwise we fall back to height, same
+    // pattern as the bikepacking and racing quizzes' cm-based version.
+    if (state.sizemode === 'known' && state.framesize) {
+      if (b.sizes && b.sizes.includes(state.framesize)) score += 22;
+      else if (b.sizes && b.sizes.length) {
+        const target = sizePosition[state.framesize];
+        const nearestGap = Math.min(...b.sizes.map(s => Math.abs(sizePosition[s] - target)));
+        score += Math.max(-15, 20 - nearestGap * 12);
+      }
+    } else if (state.sizemode === 'height' && state.riderHeight) {
+      const h = state.riderHeight;
+      if (h >= b.minH && h <= b.maxH) score += 22;
+      else score -= Math.min(30, Math.abs(h - (b.minH + b.maxH) / 2) * 0.6);
+    }
 
     if (state.wheelsize && state.wheelsize !== 'none') {
       score += b.wheel === Number(state.wheelsize) ? 8 : -3;
     }
 
+    // Budget is honored, not just nudged: bikes up to $500 over get a gentle
+    // penalty (still surface if genuinely the better fit), anything further
+    // over budget drops off the results almost entirely.
     if (b.price <= budget) score += 10;
-    else score -= (b.price - budget) * 0.015;
+    else {
+      const over = b.price - budget;
+      score -= over <= 500 ? over * 0.015 : 500 * 0.015 + (over - 500) * 3;
+    }
 
     if (originPref === 'canadian' && b.origin === 'Canada') score += 6;
 
@@ -650,6 +717,7 @@ document.getElementById('submit').addEventListener('click', () => {
         <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
       </div>
       <p class="result-meta">${b.wheel}" wheels · sizes ${b.sizes.join('/')} · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)} · ${b.origin}<br>${b.suspensionType === 'hardtail' ? 'Hardtail' : 'Full suspension'} · ${b.travelFront}mm front${b.suspensionType === 'full_suspension' ? ' / ' + b.travelRear + 'mm rear' : ''} travel${b.dropperPost ? ' · dropper post' : ''}<br>${b.discipline.replace('_',' ')} · ${b.availability === 'boutique' ? 'boutique/small-builder' : 'widely available'}</p>
+      ${budgetNote(b, budget)}
       ${priceCheckLink(b)}
     </div>
   `).join('');

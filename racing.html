@@ -261,7 +261,7 @@
 
         <div class="q-group">
           <label class="q-label">Frame shape <span class="q-hint">(sometimes marketed as "women's" or "men's")</span></label>
-          <p class="q-hint">Drop-bar racing frames need diamond-frame rigidity for stiffness and aero — real racing bikes in this category aren't built step-through, so this mostly serves as an honest heads-up rather than a filter.</p>
+          <p class="q-hint">A step-through frame has a low or missing top tube — easier to swing a leg over, traditionally sold as a "women's" bike. A step-over frame is the traditional diamond shape, traditionally sold as a "men's" bike. Either shape genuinely works for any rider. Drop-bar racing frames also need diamond-frame rigidity for stiffness and aero — real racing bikes in this category aren't built step-through, so this question mostly serves as an honest heads-up rather than a filter.</p>
           <div class="opt-row">
             <button type="button" class="opt" data-group="frameStyle" data-value="either">No preference</button>
             <button type="button" class="opt" data-group="frameStyle" data-value="step-through">Step-through — lower bar, easier to mount</button>
@@ -468,6 +468,21 @@ function priceCheckLink(b){
   const searchText = b.name.toLowerCase().includes(b.brand.toLowerCase()) ? b.name : `${b.brand} ${b.name}`;
   const query = encodeURIComponent(searchText + ' bike');
   return `<a href="https://www.google.com/search?q=${query}" target="_blank" rel="noopener" class="result-link">Search for current price →</a>`;
+}
+
+// Only shown for bikes priced above the selected budget (within the $500
+// grace window scoring already allows) — explains what the extra money
+// actually buys, instead of silently over-recommending.
+function budgetNote(b, budget){
+  const over = b.price - budget;
+  if (over <= 0 || over > 500) return '';
+  const perks = [];
+  if (b.electronicShifting) perks.push('electronic shifting');
+  if (b.frameMaterial === 'carbon' || b.frameMaterial === 'titanium') perks.push(`a ${b.frameMaterial} frame`);
+  if (b.wheelDepth === 'deep') perks.push('deeper aero wheels');
+  if (b.dynamoReady) perks.push('a dynamo-ready hub for all-night riding');
+  if (!perks.length) perks.push('a step up in components for the same basic bike');
+  return `<p class="result-budget-note"><b>$${Math.round(over)} over your budget</b> — that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
 }
 
 // Shown when a bike has no photo yet, or its photo URL fails to load —
@@ -685,8 +700,14 @@ document.getElementById('submit').addEventListener('click', () => {
     if (state.wheelpref === 'deep') score += b.wheelDepth === 'deep' ? 8 : -3;
     else if (state.wheelpref === 'shallow') score += b.wheelDepth === 'shallow' ? 8 : -3;
 
+    // Budget is honored, not just nudged: bikes up to $500 over get a gentle
+    // penalty (still surface if genuinely the better fit), anything further
+    // over budget drops off the results almost entirely.
     if (b.price <= budget) score += 8;
-    else score -= (b.price - budget) * 0.008;
+    else {
+      const over = b.price - budget;
+      score -= over <= 500 ? over * 0.008 : 500 * 0.008 + (over - 500) * 3;
+    }
 
     if (originPref === 'canadian' && b.origin === 'Canada') score += 6;
 
@@ -711,6 +732,7 @@ document.getElementById('submit').addEventListener('click', () => {
         <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
       </div>
       <p class="result-meta">Sizes ${b.sizes.join('/')}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)}${b.electronicShifting ? ' (electronic)' : ' (mechanical)'} · ${b.brakeType} brakes · ${b.origin}<br>${b.discipline.replace('_',' ')} · ${b.character.replace('_',' ')} character · ${b.wheelDepth === 'deep' ? 'deep aero wheels' : 'lightweight wheels'}${b.dynamoReady ? ' · dynamo-ready' : ''} · ${b.availability === 'boutique' ? 'boutique/premium' : 'widely available'}</p>
+      ${budgetNote(b, budget)}
       ${priceCheckLink(b)}
     </div>
   `).join('');

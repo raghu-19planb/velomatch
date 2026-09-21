@@ -309,7 +309,7 @@
 
         <div class="q-group">
           <label class="q-label">Frame shape <span class="q-hint">(sometimes marketed as "women's" or "men's")</span></label>
-          <p class="q-hint">Loaded touring/bikepacking frames need diamond-frame rigidity — real mainstream rigs in this category aren't built step-through, so this mostly serves as an honest heads-up rather than a filter.</p>
+          <p class="q-hint">A step-through frame has a low or missing top tube — easier to swing a leg over, traditionally sold as a "women's" bike. A step-over frame is the traditional diamond shape, traditionally sold as a "men's" bike. Either shape genuinely works for any rider. Loaded touring/bikepacking frames also need diamond-frame rigidity — real mainstream rigs in this category aren't built step-through, so this question mostly serves as an honest heads-up rather than a filter.</p>
           <div class="opt-row">
             <button type="button" class="opt" data-group="frameStyle" data-value="either">No preference</button>
             <button type="button" class="opt" data-group="frameStyle" data-value="step-through">Step-through — lower bar, easier to mount</button>
@@ -553,6 +553,22 @@ function priceCheckLink(b){
   return `<a href="https://www.google.com/search?q=${query}" target="_blank" rel="noopener" class="result-link">Search for current price →</a>`;
 }
 
+// Only shown for bikes priced above the selected budget (within the $500
+// grace window scoring already allows) — explains what the extra money
+// actually buys, instead of silently over-recommending.
+function budgetNote(b, budget){
+  const over = b.price - budget;
+  if (over <= 0 || over > 500) return '';
+  const perks = [];
+  if (b.electronicShifting) perks.push('electronic shifting');
+  if (b.frameMaterial === 'carbon' || b.frameMaterial === 'titanium') perks.push(`a ${b.frameMaterial} frame`);
+  if (b.comfortDamping) perks.push('front-end comfort damping for rough roads');
+  if (b.dynamoReady) perks.push('a dynamo-ready hub for lights and charging');
+  if (b.tireDurability === 'reinforced' && !perks.length) perks.push('more reinforced, reliable tires');
+  if (!perks.length) perks.push('a step up in components for the same basic bike');
+  return `<p class="result-budget-note"><b>$${Math.round(over)} over your budget</b> — that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+}
+
 // Shown when a bike has no photo yet, or its photo URL fails to load —
 // points people to the brand's own site instead of showing nothing.
 function resultPlaceholderMarkup(b){
@@ -753,8 +769,14 @@ document.getElementById('submit').addEventListener('click', () => {
       else score -= Math.min(30, Math.abs(h - (b.minH + b.maxH) / 2) * 0.7);
     }
 
+    // Budget is honored, not just nudged: bikes up to $500 over get a gentle
+    // penalty (still surface if genuinely the better fit), anything further
+    // over budget drops off the results almost entirely.
     if (b.price <= budget) score += 8;
-    else score -= (b.price - budget) * 0.015;
+    else {
+      const over = b.price - budget;
+      score -= over <= 500 ? over * 0.015 : 500 * 0.015 + (over - 500) * 3;
+    }
 
     if (originPref === 'canadian' && b.origin === 'Canada') score += 6;
 
@@ -808,6 +830,7 @@ document.getElementById('submit').addEventListener('click', () => {
         <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
       </div>
       <p class="result-meta">${b.wheel === 700 ? '700c' : '650b'} wheels · sizes ${b.sizes.join('/')}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)}${b.electronicShifting ? ' (electronic)' : ' (mechanical)'} · ${b.origin}<br>${cargoLabel(b.cargoCapacity)} capacity · ${climbingLabel(b.climbingRange)}${b.comfortDamping ? ' · front-end comfort damping' : ' · rigid'}<br>${b.rackMounts ? 'rack mounts' : 'no rack mounts'} · ${b.frameBagFriendly ? 'frame-bag friendly' : 'tight frame-bag fit'} · ${b.tireDurability === 'reinforced' ? 'reinforced tires' : 'standard tires'}${b.dynamoReady ? ' · dynamo-ready' : ''} · ${b.availability === 'boutique' ? 'boutique/small-builder' : 'widely available'}</p>
+      ${budgetNote(b, budget)}
       ${priceCheckLink(b)}
     </div>
   `).join('');

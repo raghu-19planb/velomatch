@@ -238,6 +238,7 @@
 
         <div class="q-group">
           <label class="q-label">Frame shape <span class="q-hint">(sometimes marketed as "girls'" or "boys'")</span></label>
+          <p class="q-hint">A step-through frame has a low or missing top tube — easier to swing a leg over, traditionally sold as a "girls'" bike. A step-over frame is the traditional diamond shape, traditionally sold as a "boys'" bike. Either shape genuinely works for any kid; it's a fit and mounting-ease choice, not a rule about who rides which.</p>
           <div class="opt-row">
             <button type="button" class="opt" data-group="frameStyle" data-value="either">No preference</button>
             <button type="button" class="opt" data-group="frameStyle" data-value="step-through">Step-through — lower bar, easier to mount</button>
@@ -412,6 +413,21 @@ function priceCheckLink(b){
   return `<a href="https://www.google.com/search?q=${query}" target="_blank" rel="noopener" class="result-link">Search for current price →</a>`;
 }
 
+// Only shown for bikes priced above the selected budget (within the $500
+// grace window scoring already allows) — explains what the extra money
+// actually buys, instead of silently over-recommending.
+function budgetNote(b, budget){
+  const over = b.price - budget;
+  if (over <= 0 || over > 500) return '';
+  const perks = [];
+  if (b.barAdjust) perks.push('an adjustable handlebar for a longer growth window');
+  if (b.seatRange >= 9) perks.push('extra seatpost travel to grow with them longer');
+  if (b.resale === 'high') perks.push('strong resale value if they outgrow it fast');
+  if (b.brake === 'hand' && b.wheel >= 20) perks.push('hand brakes with more stopping power as they ride faster');
+  if (!perks.length) perks.push('a bit more room to grow into');
+  return `<p class="result-budget-note"><b>$${Math.round(over)} over your budget</b> — that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+}
+
 async function loadBikeData(){
   try {
     const res = await fetch('data/kids-bikes.json');
@@ -532,8 +548,14 @@ document.getElementById('submit').addEventListener('click', () => {
     const terrainGap = Math.abs(terrainPosition[state.terrain] - terrainPosition[b.type]);
     score += Math.max(0, 15 - terrainGap * 5);
 
+    // Budget is honored, not just nudged: bikes creep up to $500 over get a
+    // gentle penalty (still surface if they're genuinely the better fit),
+    // but anything further over budget drops off the results almost entirely.
     if (b.price <= budget) score += 8;
-    else score -= (b.price - budget) * 0.04;
+    else {
+      const over = b.price - budget;
+      score -= over <= 500 ? over * 0.04 : 500 * 0.04 + (over - 500) * 3;
+    }
 
     const growthRaw = (b.seatRange/11)*10 + (b.barAdjust?5:0) + (b.trainWheel?3:0);
     score += growthRaw * growthWeight * 1.3;
@@ -566,6 +588,7 @@ document.getElementById('submit').addEventListener('click', () => {
         <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
       </div>
       <p class="result-meta">${b.wheel}in wheels · fits ${b.minH}–${b.maxH}cm · ${b.brake} brakes · ${b.origin}<br>Grows with them for roughly ${b.years} years</p>
+      ${budgetNote(b, budget)}
       ${priceCheckLink(b)}
     </div>
   `).join('');

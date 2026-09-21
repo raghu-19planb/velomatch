@@ -104,6 +104,16 @@ When you add a new preference question, ask "if this is wrong, does the bike bec
 
 The lesson in all three: when a preference is close to a hard requirement in real life, its weight needs to be large enough that budget/weight/other soft factors can't casually overrule it. Worth re-checking with real quiz answers any time a new question or a new bike is added — a quick way is to script a handful of representative answer combinations and eyeball whether the #1 result actually makes sense for that rider.
 
+### Budget is a $500 grace window, not a soft nudge (all five quizzes)
+
+Price used to be scored the same way as everything else — a mild, ever-present penalty for going over budget, meaning a bike hundreds or even thousands over budget could still win the #1 spot if it was a great match on every other dimension. Raghu asked for budget to actually be honored: every quiz's price scoring is now a gentle penalty for the first $500 over the stated budget (same "closest available alternative" philosophy as the rest of the site — a bike $50 over that's otherwise perfect can still surface), then a steep, near-prohibitive penalty beyond that. In practice a bike more than ~$500 over budget essentially never appears, *unless* the catalog for that category is thin enough that fewer than 6 bikes exist within the grace window — then the least-over-budget of the excluded bikes fills the remaining result slots rather than the page showing fewer than 6 results. This only happens on the newer, smaller mountain-biking catalog for now; it'll stop happening there too as that catalog grows.
+
+Every result card priced within the $500 grace window also gets a `budgetNote()` line explaining what the extra money actually buys — carbon vs. aluminum, electronic shifting, a dropper post, deeper wheels, whatever's genuinely notable about that specific bike (per-category logic, since the fields differ: see `budgetNote()` in each page's script). Bikes at or under budget, or more than $500 over, don't get this note — it's specifically for "worth stretching for" territory.
+
+### Mountain biking's size question uses letters, not cm
+
+Raghu asked for the height slider to become a size-number picker like bikepacking/racing (e.g. "49, 51, 52, 52.5, 54, 56cm"). Real mountain bikes are sized by letter (XS/S/M/L/XL) industry-wide, not the cm numbers road/gravel bikes use — every bike in `mountain-bikes.json` stores `sizes` as letters, sourced live from Kona/Specialized product pages. Rather than fabricate a cm equivalent that doesn't exist on any real spec sheet, the mountain-biking quiz's "know your size" question offers XS-XL buttons instead, scored the same adjacency-gap way as bikepacking/racing's cm version (see `sizePosition` in mountainbiking.html). Height stays as the fallback for riders who don't know their size, same pattern as the other two.
+
 ## 2026-09-20 research pass — Kona, Cycling Elements, Decathlon, Giant
 
 Raghu asked to pull catalog updates from six sites: Kona, Cycling Elements (a retailer), Decathlon, Canadian Tire's Raleigh pages, Specialized, and Giant. What actually happened, site by site:

@@ -309,6 +309,7 @@
 
         <div class="q-group">
           <label class="q-label">Frame shape <span class="q-hint">(sometimes marketed as "women's" or "men's")</span></label>
+          <p class="q-hint">A step-through frame has a low or missing top tube — easier to swing a leg over, traditionally sold as a "women's" bike. A step-over frame is the traditional diamond shape, traditionally sold as a "men's" bike. Either shape genuinely works for any rider; it's a fit and mounting-ease choice, not a rule about who rides which.</p>
           <div class="opt-row">
             <button type="button" class="opt" data-group="frameStyle" data-value="either">No preference</button>
             <button type="button" class="opt" data-group="frameStyle" data-value="step-through">Step-through — lower bar, easier to mount</button>
@@ -514,6 +515,23 @@ function priceCheckLink(b){
   return `<a href="https://www.google.com/search?q=${query}" target="_blank" rel="noopener" class="result-link">Search for current price →</a>`;
 }
 
+// Only shown for bikes priced above the selected budget (within the $500
+// grace window scoring already allows) — explains what the extra money
+// actually buys, instead of silently over-recommending.
+function budgetNote(b, budget){
+  const over = b.price - budget;
+  if (over <= 0 || over > 500) return '';
+  const perks = [];
+  if (b.frameMaterial === 'carbon') perks.push('a lighter carbon frame');
+  if (b.foldable) perks.push('a folding frame for stairs and storage');
+  if (b.suspensionFork) perks.push('a suspension fork for rough streets');
+  if (b.fendersIncluded) perks.push('fenders already included');
+  if (b.brakeType === 'disc' && !perks.length) perks.push('disc brakes with more stopping power');
+  if (b.gearing === 'internal') perks.push('a low-maintenance internal-gear hub');
+  if (!perks.length) perks.push('a step up in components for the same basic bike');
+  return `<p class="result-budget-note"><b>$${Math.round(over)} over your budget</b> — that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+}
+
 // Shown when a bike has no photo yet, or its photo URL fails to load —
 // points people to the brand's own site instead of showing nothing.
 function resultPlaceholderMarkup(b){
@@ -665,8 +683,14 @@ document.getElementById('submit').addEventListener('click', () => {
     if (distance <= b.maxComfortDistance) score += 20;
     else score -= (distance - b.maxComfortDistance) * 1.5;
 
+    // Budget is honored, not just nudged: bikes up to $500 over get a gentle
+    // penalty (still surface if genuinely the better fit), anything further
+    // over budget drops off the results almost entirely.
     if (b.price <= budget) score += 8;
-    else score -= (b.price - budget) * 0.02;
+    else {
+      const over = b.price - budget;
+      score -= over <= 500 ? over * 0.02 : 500 * 0.02 + (over - 500) * 3;
+    }
 
     // Folding matters more than a kilogram or two for actually carrying a
     // bike upstairs or fitting it in a closet — weight alone underrates it.
@@ -744,6 +768,7 @@ document.getElementById('submit').addEventListener('click', () => {
         <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
       </div>
       <p class="result-meta">${b.wheel}mm wheels${b.foldable ? ' · folds' : ''} · fits ${b.minH}–${b.maxH}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)} · ${b.brakeType} brakes · ${b.origin}<br>Comfortable up to ${b.maxComfortDistance}km one-way · ${cargoLabel(b.cargoCapacity)} cargo · ${b.ridingPosition} position<br>${b.fendersIncluded ? 'Fenders included' : 'No fenders'} · ${b.tireProfile} tires${b.suspensionFork ? ' · front suspension' : ''} · ${b.colors.map(escapeHtml).join(', ')}</p>
+      ${budgetNote(b, budget)}
       ${priceCheckLink(b)}
     </div>
   `).join('');
