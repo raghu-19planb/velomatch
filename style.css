@@ -648,35 +648,39 @@ footer .tagline{margin:0; font-size:16px;}
    full viewport width (the map, still rolled up, hiding the real page
    underneath) anchored to the right edge, then shrinks to width:0 —
    since only its LEFT edge moves, the page reveals left-to-right as the
-   roll recedes rightward. The ::before is the roll itself — styled as a
-   rolled paper tube (warm kraft tones, a light streak down the middle
-   where a curved surface catches light, not a dark mechanical dowel) —
-   sitting at the cover's current left edge throughout, so it visually
-   "carries" the unrolling edge across the screen. Page-specific, plays
-   once on load — not the shared page-transition curtain used elsewhere,
-   since this page alone should feel like unrolling a paper map. */
+   roll recedes rightward. Kept deliberately translucent (a blurred,
+   frosted paper tone rather than a solid block of color) and thin, so it
+   reads as sleek tracing paper rather than a heavy kraft-paper tube. The
+   ::before is the roll's edge — a slim band that keeps spinning like a
+   barber pole while it travels — sitting at the cover's current left
+   edge throughout, so it visually "carries" the unrolling edge across
+   the screen. Page-specific, plays once on load — not the shared
+   page-transition curtain used elsewhere. */
 .map-cover{
   position:fixed; top:0; right:0; bottom:0; z-index:300; pointer-events:none;
   width:100%;
-  background-color:var(--paper);
+  background-color:rgba(242,236,221,0.78);
   background-image:var(--rm-map-pattern);
   background-size:560px 560px;
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
   animation:map-cover-shrink 1.5s cubic-bezier(.65,0,.35,1) .15s both;
 }
-/* The roll itself: a repeating light/dark band pattern wider than the
+/* The roll's edge: a repeating translucent band pattern wider than the
    element, continuously scrolling through it (like a barber pole) for as
-   long as the page is unrolling — that's what actually reads as "a
-   cylinder spinning" rather than "a bar sliding." A flat gradient alone
-   just slides; a moving band pattern rolls. */
+   long as the page is unrolling — that's what reads as "a cylinder
+   spinning" rather than "a bar sliding." Bands alternate a soft white
+   highlight (the curve of the paper catching light) with a faint signal-
+   orange tint, all at low opacity so the whole roll stays see-through. */
 .map-cover::before{
-  content:''; position:absolute; top:0; bottom:0; left:-15px; width:30px;
+  content:''; position:absolute; top:0; bottom:0; left:-9px; width:18px;
   background-image:repeating-linear-gradient(90deg,
-    #9C7C4C 0px, #C9AC79 7px, #F2E4C4 14px, #FBF6E8 17.5px, #F2E4C4 21px, #C9AC79 28px, #9C7C4C 35px
+    rgba(226,85,29,0.04) 0px, rgba(226,85,29,0.22) 4px, rgba(255,255,255,0.5) 8px, rgba(255,255,255,0.8) 9.5px, rgba(255,255,255,0.5) 11px, rgba(226,85,29,0.22) 15px, rgba(226,85,29,0.04) 19px
   );
-  background-size:70px 100%;
-  border-radius:15px;
-  box-shadow:-4px 0 18px rgba(90,68,32,0.3), inset 6px 0 10px -6px rgba(90,68,32,0.4), inset -6px 0 10px -6px rgba(90,68,32,0.4);
-  animation:map-roll-spin .32s linear infinite;
+  background-size:38px 100%;
+  border-radius:9px;
+  box-shadow:-2px 0 12px rgba(90,68,32,0.12), inset 2px 0 5px -2px rgba(255,255,255,0.55), inset -2px 0 5px -2px rgba(90,68,32,0.18);
+  animation:map-roll-spin .26s linear infinite;
 }
 /* Opacity holds at 1 through 92% then drops — the roll (::before) is a
    fixed-size child, so once the parent's width hits 0 it would otherwise
@@ -688,19 +692,22 @@ footer .tagline{margin:0; font-size:16px;}
   92%{ opacity:1; }
   100%{ width:0%; opacity:0; }
 }
-@keyframes map-roll-spin{ from{ background-position-x:0; } to{ background-position-x:-70px; } }
+@keyframes map-roll-spin{ from{ background-position-x:0; } to{ background-position-x:-38px; } }
 @media (prefers-reduced-motion: reduce){
   .map-cover{ animation:none; width:0%; }
   .map-cover::before{ animation:none; }
 }
 
-/* A faint, stylized street-grid-plus-bike-path pattern standing in for a real
-   map background on this page only — not a literal reproduction of any real
-   city's streets (no map data was sourced for this decoration; the actual
-   real, verified maps are the linked PDFs below, not this background). */
+/* A faint, stylized pattern standing in for a real map background on this
+   page only — echoes the color language of official municipal cycling
+   maps (soft tan built-up blocks, a gray street grid, green off-road
+   trails, blue on-road routes) at very low opacity, but is NOT a
+   reproduction of any real city's actual streets or trail geometry — no
+   map data was sourced for this decoration. The real, verified maps are
+   the linked PDFs below, not this background. */
 :root{
   --rm-map-pattern:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 560'%3E%3Cg fill='none' stroke='rgba(27,35,31,0.055)' stroke-width='2'%3E%3Cpath d='M0,70 L560,55'/%3E%3Cpath d='M0,150 L560,175'/%3E%3Cpath d='M0,260 L560,235'/%3E%3Cpath d='M0,350 L560,375'/%3E%3Cpath d='M0,470 L560,450'/%3E%3Cpath d='M60,0 L40,560'/%3E%3Cpath d='M170,0 L200,560'/%3E%3Cpath d='M300,0 L270,560'/%3E%3Cpath d='M420,0 L450,560'/%3E%3Cpath d='M520,0 L500,560'/%3E%3C/g%3E%3Cg fill='none' stroke='rgba(226,85,29,0.16)' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='1 8'%3E%3Cpath d='M10,320 Q110,255 180,190 T330,95 Q400,60 545,45'/%3E%3Cpath d='M25,540 Q95,455 55,365 Q25,275 150,230 Q265,195 305,130 Q335,65 470,90'/%3E%3C/g%3E%3Cg fill='rgba(226,85,29,0.14)'%3E%3Ccircle cx='180' cy='190' r='4'/%3E%3Ccircle cx='330' cy='95' r='4'/%3E%3Ccircle cx='150' cy='230' r='4'/%3E%3Ccircle cx='305' cy='130' r='4'/%3E%3C/g%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 560'%3E%3Cg fill='rgba(196,164,116,0.09)'%3E%3Crect x='40' y='55' width='120' height='90'/%3E%3Crect x='235' y='35' width='145' height='110'/%3E%3Crect x='55' y='265' width='160' height='120'/%3E%3Crect x='325' y='300' width='150' height='130'/%3E%3Crect x='95' y='425' width='130' height='100'/%3E%3C/g%3E%3Cg fill='none' stroke='rgba(27,35,31,0.05)' stroke-width='1.5'%3E%3Cpath d='M0,70 L560,55'/%3E%3Cpath d='M0,150 L560,175'/%3E%3Cpath d='M0,260 L560,235'/%3E%3Cpath d='M0,350 L560,375'/%3E%3Cpath d='M0,470 L560,450'/%3E%3Cpath d='M60,0 L40,560'/%3E%3Cpath d='M170,0 L200,560'/%3E%3Cpath d='M300,0 L270,560'/%3E%3Cpath d='M420,0 L450,560'/%3E%3Cpath d='M520,0 L500,560'/%3E%3C/g%3E%3Cg fill='none' stroke='rgba(53,122,74,0.15)' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='1 8'%3E%3Cpath d='M10,320 Q110,255 180,190 T330,95 Q400,60 545,45'/%3E%3Cpath d='M25,540 Q95,455 55,365 Q25,275 150,230 Q265,195 305,130 Q335,65 470,90'/%3E%3C/g%3E%3Cg fill='none' stroke='rgba(43,108,183,0.12)' stroke-width='2'%3E%3Cpath d='M0,410 Q140,378 220,410 T430,382 L560,396'/%3E%3Cpath d='M120,0 Q142,140 90,222 Q42,300 132,340'/%3E%3C/g%3E%3Cg fill='rgba(53,122,74,0.13)'%3E%3Ccircle cx='180' cy='190' r='4'/%3E%3Ccircle cx='330' cy='95' r='4'/%3E%3Ccircle cx='150' cy='230' r='4'/%3E%3Ccircle cx='305' cy='130' r='4'/%3E%3C/g%3E%3Cg fill='rgba(226,85,29,0.13)'%3E%3Ccircle cx='220' cy='410' r='3.5'/%3E%3Ccircle cx='90' cy='222' r='3.5'/%3E%3C/g%3E%3C/svg%3E");
 }
 body.rm-page{
   background-color:var(--paper);
