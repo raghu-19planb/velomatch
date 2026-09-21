@@ -554,11 +554,8 @@ footer .tagline{margin:0; font-size:16px;}
 /* ROUTE MAPS PAGE */
 .rm-hero{
   padding:88px 0 56px; position:relative; overflow:hidden;
-  background-image:
-    radial-gradient(ellipse 900px 420px at 85% -10%, rgba(226,85,29,0.10), transparent 60%),
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size:auto, 34px 34px, 34px 34px;
+  /* background-image set further down, alongside the page's other
+     route-map-pattern rules — keeps the one pattern definition in one place */
 }
 .rm-hero h1{font-size:clamp(32px,4.6vw,50px); font-weight:700; letter-spacing:-0.015em; line-height:1.12; margin:0 0 18px; max-width:680px;}
 .rm-hero .lede{max-width:660px; margin-bottom:32px;}
@@ -651,29 +648,57 @@ footer .tagline{margin:0; font-size:16px;}
    full viewport width (the map, still rolled up, hiding the real page
    underneath) anchored to the right edge, then shrinks to width:0 —
    since only its LEFT edge moves, the page reveals left-to-right as the
-   roll recedes rightward. The ::before is the roll itself (a dowel-like
-   cylinder), sitting at the cover's current left edge throughout, so it
-   visually "carries" the unrolling edge across the screen. Page-specific,
-   plays once on load — not the shared page-transition curtain used
-   elsewhere, since this page alone should feel like unrolling a map. */
+   roll recedes rightward. The ::before is the roll itself — styled as a
+   rolled paper tube (warm kraft tones, a light streak down the middle
+   where a curved surface catches light, not a dark mechanical dowel) —
+   sitting at the cover's current left edge throughout, so it visually
+   "carries" the unrolling edge across the screen. Page-specific, plays
+   once on load — not the shared page-transition curtain used elsewhere,
+   since this page alone should feel like unrolling a paper map. */
 .map-cover{
   position:fixed; top:0; right:0; bottom:0; z-index:300; pointer-events:none;
   width:100%;
-  background:var(--paper);
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size:34px 34px;
+  background-color:var(--paper);
+  background-image:var(--rm-map-pattern);
+  background-size:560px 560px;
   animation:map-cover-shrink 1.5s cubic-bezier(.65,0,.35,1) .15s both;
 }
 .map-cover::before{
-  content:''; position:absolute; top:0; bottom:0; left:-13px; width:26px;
-  background:linear-gradient(90deg, #17221d, #4a5950 50%, #17221d 100%);
-  border-radius:13px;
-  box-shadow:-3px 0 20px rgba(0,0,0,0.35);
+  content:''; position:absolute; top:0; bottom:0; left:-15px; width:30px;
+  background:linear-gradient(90deg, #B79A66 0%, #E4CFA0 22%, #FBF3DE 50%, #E4CFA0 78%, #B79A66 100%);
+  border-radius:15px;
+  box-shadow:-4px 0 18px rgba(90,68,32,0.28);
+}
+/* faint rolled-paper seam lines, so the cylinder doesn't read as a flat bar */
+.map-cover::after{
+  content:''; position:absolute; top:0; bottom:0; left:-15px; width:30px;
+  background:
+    linear-gradient(90deg, transparent 12%, rgba(120,92,48,0.18) 13%, transparent 14%),
+    linear-gradient(90deg, transparent 86%, rgba(120,92,48,0.18) 87%, transparent 88%);
+  border-radius:15px;
 }
 @keyframes map-cover-shrink{ from{ width:100%; } to{ width:0%; } }
 @media (prefers-reduced-motion: reduce){ .map-cover{ animation:none; width:0%; } }
+
+/* A faint, stylized street-grid-plus-bike-path pattern standing in for a real
+   map background on this page only — not a literal reproduction of any real
+   city's streets (no map data was sourced for this decoration; the actual
+   real, verified maps are the linked PDFs below, not this background). */
+:root{
+  --rm-map-pattern:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 560'%3E%3Cg fill='none' stroke='rgba(27,35,31,0.055)' stroke-width='2'%3E%3Cpath d='M0,70 L560,55'/%3E%3Cpath d='M0,150 L560,175'/%3E%3Cpath d='M0,260 L560,235'/%3E%3Cpath d='M0,350 L560,375'/%3E%3Cpath d='M0,470 L560,450'/%3E%3Cpath d='M60,0 L40,560'/%3E%3Cpath d='M170,0 L200,560'/%3E%3Cpath d='M300,0 L270,560'/%3E%3Cpath d='M420,0 L450,560'/%3E%3Cpath d='M520,0 L500,560'/%3E%3C/g%3E%3Cg fill='none' stroke='rgba(226,85,29,0.16)' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='1 8'%3E%3Cpath d='M10,320 Q110,255 180,190 T330,95 Q400,60 545,45'/%3E%3Cpath d='M25,540 Q95,455 55,365 Q25,275 150,230 Q265,195 305,130 Q335,65 470,90'/%3E%3C/g%3E%3Cg fill='rgba(226,85,29,0.14)'%3E%3Ccircle cx='180' cy='190' r='4'/%3E%3Ccircle cx='330' cy='95' r='4'/%3E%3Ccircle cx='150' cy='230' r='4'/%3E%3Ccircle cx='305' cy='130' r='4'/%3E%3C/g%3E%3C/svg%3E");
+}
+body.rm-page{
+  background-color:var(--paper);
+  background-image:var(--rm-map-pattern);
+  background-size:560px 560px;
+}
+.rm-hero{
+  background-image:
+    radial-gradient(ellipse 900px 420px at 85% -10%, rgba(226,85,29,0.10), transparent 60%),
+    var(--rm-map-pattern);
+  background-size:auto, 560px 560px;
+}
 
 
 /* FIT RADAR — the homepage's "wow" moment, before any category is picked */
