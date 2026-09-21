@@ -663,22 +663,36 @@ footer .tagline{margin:0; font-size:16px;}
   background-size:560px 560px;
   animation:map-cover-shrink 1.5s cubic-bezier(.65,0,.35,1) .15s both;
 }
+/* The roll itself: a repeating light/dark band pattern wider than the
+   element, continuously scrolling through it (like a barber pole) for as
+   long as the page is unrolling — that's what actually reads as "a
+   cylinder spinning" rather than "a bar sliding." A flat gradient alone
+   just slides; a moving band pattern rolls. */
 .map-cover::before{
   content:''; position:absolute; top:0; bottom:0; left:-15px; width:30px;
-  background:linear-gradient(90deg, #B79A66 0%, #E4CFA0 22%, #FBF3DE 50%, #E4CFA0 78%, #B79A66 100%);
+  background-image:repeating-linear-gradient(90deg,
+    #9C7C4C 0px, #C9AC79 7px, #F2E4C4 14px, #FBF6E8 17.5px, #F2E4C4 21px, #C9AC79 28px, #9C7C4C 35px
+  );
+  background-size:70px 100%;
   border-radius:15px;
-  box-shadow:-4px 0 18px rgba(90,68,32,0.28);
+  box-shadow:-4px 0 18px rgba(90,68,32,0.3), inset 6px 0 10px -6px rgba(90,68,32,0.4), inset -6px 0 10px -6px rgba(90,68,32,0.4);
+  animation:map-roll-spin .32s linear infinite;
 }
-/* faint rolled-paper seam lines, so the cylinder doesn't read as a flat bar */
-.map-cover::after{
-  content:''; position:absolute; top:0; bottom:0; left:-15px; width:30px;
-  background:
-    linear-gradient(90deg, transparent 12%, rgba(120,92,48,0.18) 13%, transparent 14%),
-    linear-gradient(90deg, transparent 86%, rgba(120,92,48,0.18) 87%, transparent 88%);
-  border-radius:15px;
+/* Opacity holds at 1 through 92% then drops — the roll (::before) is a
+   fixed-size child, so once the parent's width hits 0 it would otherwise
+   stay visible as a stray bar pinned to the right edge forever. Fading
+   the parent's opacity takes the whole subtree, including ::before and
+   its infinite spin, with it. */
+@keyframes map-cover-shrink{
+  0%{ width:100%; opacity:1; }
+  92%{ opacity:1; }
+  100%{ width:0%; opacity:0; }
 }
-@keyframes map-cover-shrink{ from{ width:100%; } to{ width:0%; } }
-@media (prefers-reduced-motion: reduce){ .map-cover{ animation:none; width:0%; } }
+@keyframes map-roll-spin{ from{ background-position-x:0; } to{ background-position-x:-70px; } }
+@media (prefers-reduced-motion: reduce){
+  .map-cover{ animation:none; width:0%; }
+  .map-cover::before{ animation:none; }
+}
 
 /* A faint, stylized street-grid-plus-bike-path pattern standing in for a real
    map background on this page only — not a literal reproduction of any real
