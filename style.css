@@ -622,7 +622,13 @@ footer .tagline{margin:0; font-size:16px;}
 .transition-panel{
   position:absolute; top:0; left:0; height:100%; width:0; overflow:visible;
   background:rgba(27,35,31,0.86);
-  transition:width 2.4s cubic-bezier(.45,0,.55,1);
+  /* 2.4s used a symmetric ease-in-out curve, so its last third was already
+     ~98% covered and visually static well before the JS timer (matched to
+     the same 2.4s) actually navigated — that long, motionless "fully dark,
+     rider parked at the edge" tail read as the animation being stuck, not
+     finishing. A snappier, mostly-linear-out curve over well under a
+     second keeps the covered/parked moment brief enough that it doesn't. */
+  transition:width .85s cubic-bezier(.2,.7,.3,1);
   will-change:width;
 }
 .page-transition.active .transition-panel{width:100%;}

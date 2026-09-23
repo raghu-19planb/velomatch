@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
       panel.style.transition = '';
       void panel.offsetWidth;
       curtain.classList.add('active');
-      setTimeout(function () { window.location.href = href; }, 2400);
+      setTimeout(function () { window.location.href = href; }, 900);
     });
   });
 });
