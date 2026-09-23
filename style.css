@@ -644,55 +644,6 @@ footer .tagline{margin:0; font-size:16px;}
 @keyframes reveal-fade{ to{ opacity:0; } }
 @keyframes reveal-hide{ to{ visibility:hidden; } }
 
-/* ROUTE MAPS PAGE — "rolling a map out on a table." .map-cover starts at
-   full viewport width (the map, still rolled up, hiding the real page
-   underneath) anchored to the right edge, then shrinks to width:0 —
-   since only its LEFT edge moves, the page reveals left-to-right,
-   starting at the left of the screen, as the roll recedes rightward. A
-   backdrop-blur version of this looked broken (nav text ghosting through
-   a supposedly solid roll of paper), so the cover is a near-solid warm
-   paper tone instead — no blur. The ENTIRE cover carries a repeating
-   light/dark band pattern — like looking at a paper tube end-on —
-   animated across its whole width, so however wide the remaining strip
-   is, it reads as a rotating cylinder. Quick and snappy — a fast paper
-   unroll, not a slow reveal. */
-.map-cover{
-  position:fixed; top:0; right:0; bottom:0; z-index:300; pointer-events:none;
-  width:100%;
-  background-color:rgba(247,242,230,0.95);
-  background-image:
-    repeating-linear-gradient(90deg,
-      rgba(255,255,255,0) 0px,
-      rgba(255,255,255,0.75) 22px,
-      rgba(120,96,60,0.3) 44px,
-      rgba(255,255,255,0) 68px,
-      rgba(226,85,29,0.18) 90px,
-      rgba(255,255,255,0) 112px
-    ),
-    var(--rm-map-pattern);
-  background-size:112px 100%, 560px 560px;
-  background-position:0 0, 0 0;
-  box-shadow:-16px 0 36px rgba(60,45,20,0.2);
-  animation:
-    map-cover-shrink .6s cubic-bezier(.16,1,.3,1) both,
-    map-roll-texture .16s linear infinite;
-}
-@keyframes map-cover-shrink{
-  0%{ width:100%; opacity:1; }
-  85%{ opacity:1; }
-  100%{ width:0%; opacity:0; }
-}
-/* Only the first background layer (the cylindrical shading) shifts —
-   the second position stays put so the underlying map-tone pattern
-   doesn't itself appear to spin, only the paper-roll shading on top. */
-@keyframes map-roll-texture{
-  from{ background-position:0 0, 0 0; }
-  to{ background-position:-112px 0, 0 0; }
-}
-@media (prefers-reduced-motion: reduce){
-  .map-cover{ animation:none; width:0%; }
-}
-
 /* A faint, stylized pattern standing in for a real map background on this
    page only — echoes the color language of official municipal cycling
    maps (soft tan built-up blocks, a gray street grid, green off-road
