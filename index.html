@@ -36,6 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Fredoka:wght@600;700&family=Chewy&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="style.css?v=rideometry12">
+<script src="nav-transition.js"></script>
 </head>
 <body>
 
@@ -236,7 +237,7 @@
   </div>
 </div>
 
-<div class="page-transition" id="pageTransition" aria-hidden="true">
+<div class="page-transition page-reveal" id="pageTransition" aria-hidden="true">
   <div class="transition-panel">
     <svg class="transition-rider" viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <circle cx="30" cy="72" r="20" fill="none" stroke="var(--signal)" stroke-width="3.4"/>
@@ -378,6 +379,7 @@ document.querySelectorAll('.category-card').forEach(card => {
     const target = this.getAttribute('href');
     if (!target) return;
     e.preventDefault();
+    pageTransition.classList.remove('page-reveal');
     pageTransition.classList.add('active');
     setTimeout(() => { window.location.href = target; }, 2400);
   });
