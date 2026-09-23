@@ -379,7 +379,12 @@ document.querySelectorAll('.category-card').forEach(card => {
     const target = this.getAttribute('href');
     if (!target) return;
     e.preventDefault();
+    const panel = pageTransition.querySelector('.transition-panel');
     pageTransition.classList.remove('page-reveal');
+    panel.style.transition = 'none';
+    void panel.offsetWidth;
+    panel.style.transition = '';
+    void panel.offsetWidth;
     pageTransition.classList.add('active');
     setTimeout(() => { window.location.href = target; }, 2400);
   });
