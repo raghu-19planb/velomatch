@@ -572,6 +572,12 @@ const disciplinePosition = {xc:0, trail:1, enduro:2, dirt_jump:2.5, downhill:3};
 // Letter sizes sit on one spectrum too, for a gap-based score when a rider's
 // exact size isn't offered on a given bike.
 const sizePosition = {XS:0, S:1, M:2, L:3, XL:4};
+// Brands label sizes their own way (Kona/Rocky Mountain SM/MD/LG, Specialized
+// S1-S6, some XXL). Unmapped labels used to give sizePosition[s] === undefined,
+// so the nearest-size gap became NaN and the whole bike score NaN. Map every
+// known label onto the XS-XL scale for scoring only; data keeps the brand's labels.
+const sizeAlias = {XXS:'XS', SM:'S', MD:'M', LG:'L', XXL:'XL', S1:'XS', S2:'S', S3:'M', S4:'L', S5:'XL', S6:'XL', SZ1:'XS', SZ2:'S', SZ3:'M', SZ4:'L', SZ5:'XL', Short:'S', Medium:'M', Long:'L'};
+const normSize = s => (s in sizePosition ? s : sizeAlias[s]);
 
 document.getElementById('height').addEventListener('input', e => {
   document.getElementById('height-out').textContent = e.target.value + ' cm';
@@ -659,10 +665,11 @@ document.getElementById('submit').addEventListener('click', () => {
     // bike's actual offered sizes; otherwise we fall back to height, same
     // pattern as the bikepacking and racing quizzes' cm-based version.
     if (state.sizemode === 'known' && state.framesize) {
-      if (b.sizes && b.sizes.includes(state.framesize)) score += 22;
-      else if (b.sizes && b.sizes.length) {
+      const bikeSizes = (b.sizes || []).map(normSize).filter(Boolean);
+      if (bikeSizes.includes(state.framesize)) score += 22;
+      else if (bikeSizes.length) {
         const target = sizePosition[state.framesize];
-        const nearestGap = Math.min(...b.sizes.map(s => Math.abs(sizePosition[s] - target)));
+        const nearestGap = Math.min(...bikeSizes.map(s => Math.abs(sizePosition[s] - target)));
         score += Math.max(-15, 20 - nearestGap * 12);
       }
     } else if (state.sizemode === 'height' && state.riderHeight) {

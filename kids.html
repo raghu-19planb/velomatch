@@ -589,7 +589,7 @@ document.getElementById('submit').addEventListener('click', () => {
         <span class="result-name">${escapeHtml(b.name)}</span>
         <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
       </div>
-      <p class="result-meta">${b.wheel}in wheels · fits ${b.minH}–${b.maxH}cm · ${b.brake} brakes · ${b.origin}<br>Grows with them for roughly ${b.years} years</p>
+      <p class="result-meta">${b.wheel}in wheels · fits ${b.minH}–${b.maxH}cm · ${b.brake === 'none' ? 'no brakes' : b.brake + ' brakes'} · ${b.origin}<br>Grows with them for roughly ${b.years} years</p>
       ${budgetNote(b, budget)}
       ${priceCheckLink(b)}
     </div>

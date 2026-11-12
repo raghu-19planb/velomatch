@@ -41,7 +41,7 @@ I tried pulling a real listing from a major Canadian retailer's site directly. T
 
 ### Coverage tracker (update this as the catalog grows)
 
-**Canadian brands represented:** Norco, Opus, Kona, Devinci, Batch Bicycles, Supercycle (Canadian Tire house brand), Rocky Mountain, Panorama Cycles, ENVO.
+**Canadian brands represented:** Norco, Opus, Kona, Devinci, Batch Bicycles, Supercycle (Canadian Tire house brand), Rocky Mountain, Panorama Cycles, ENVO, MEC (house brand), Evo.
 **Canadian brands known but not yet added:** Miele (adult line — a kids model is already in the kids catalog; the brand appears largely inactive/legacy now, sold to Procycle in the 90s, no current official site or lineup found), CCM (owned by Canadian Tire; canadiantire.ca product pages still return a JS-shell placeholder with no product data even via a real rendering browser, not just a raw fetch — see the 2026-09-22 pass below), Marinoni, Six Fifty.
 **International brands already represented (sold in Canada):** Trek, Specialized, Cannondale, Giant, Priority, Brompton, Tern, Rad Power Bikes, Aventon, Ride1Up, Marin, Surly, State Bicycle Co. — all USA/UK/Taiwan.
 **Next planned phase, per direction from the user:** once Canadian-market coverage feels reasonably broad, extend deliberately into other countries' domestic brands, starting with the USA (e.g. more from Fuji, Raleigh USA, Diamondback, Electra) before moving further afield.
@@ -127,6 +127,29 @@ Raghu asked to pull catalog updates from six sites: Kona, Cycling Elements (a re
 **Multi-category tagging, per Raghu's explicit direction:** when a real bike genuinely fits more than one quiz (most didn't — a gravel bike is gravel, a hardtail is a hardtail), the same bike gets its own tailored entry in each fitting catalog, rather than one shared record. Kept the existing per-catalog architecture (each with its own schema fields tuned to what that category actually needs to score) instead of merging into one shared catalog — a bigger rework Raghu considered and declined in favor of this lighter approach. In practice this pass found only cross-catalog additions, not one bike duplicated across two catalogs — e.g. Kona's Honzo 20 turned out to be a junior mountain bike and went into the kids catalog, not the new mountain-biking one, rather than both.
 
 **New pattern worth remembering: letter sizing vs. cm sizing.** Decathlon and Giant both size by letter (XS/S/M/L/XL) with a height range per letter, not by a cm number the way most of racing.html/bikepacking.html's existing entries do. Rather than fabricate a cm-equivalent, those new entries ship with `sizes: []` and a note in `_verified` — they score against the height fallback only, and the "know your frame size" quiz question simply won't have anything to match against for them yet. Revisit if either brand ever publishes cm-equivalent geometry.
+
+## 2026-11-12 research pass — Firecrawl across manufacturers and Canadian retailers
+
+Raghu asked for a bulk scrape of online bike sites using **Firecrawl** (connected as an MCP connector this session) and for the catalogs to grow with *relevant* products. Catalogs went from 158 → **197 bikes** (kids 43→53, commute 31→37, bikepacking 37→40, mountain 10→27, racing 37→40). Every new entry's `_verified` note says what the page confirmed and what is an estimate.
+
+**What "relevant" meant here:** complete, current-model bikes that fit one of the five quizzes and fill a real gap — not parts, framesets, e-bikes outside the commute catalog, or older-model-year leftovers. Mountain was thinnest (and had no downhill or dirt-jump at all), so most of the effort went there. Canadian brands (Norco, Rocky Mountain, MEC, Opus, Kona, Evo) and a spread of price tiers, including budget bikes ($679–$900), were prioritised over adding yet another $10k+ carbon flagship.
+
+**How it was done, and what worked:**
+- `firecrawl_scrape` with `formats:["query"]` and a field-extraction prompt returned compact spec rows instead of whole pages — cheap enough to run listing pages first (to find current models, prices and URLs), then product pages only for bikes worth adding.
+- **Manufacturer pages beat retailer pages.** specialized.com/ca, norco.com, giant-bicycles.com/ca and bikes.com all gave full spec tables. Cycling Elements product pages (Shopify) carried marketing copy only — groupset, wheel size and mounts came back blank, so those bikes were *not* added from the retailer page alone (Kona Rove/Splice/Dew Plus and the Opus Zenith were skipped for this reason; worth redoing from konaworld.com/opusbike).
+- **Norco's spec tables are JS-rendered.** The first scrape of a Norco road/urban product page returned nothing; `waitFor: 8000` with `onlyMainContent: false` and `maxAge: 0` got the full table. (Mountain pages rendered fine without it.)
+- **Listing pages mix model years.** Specialized's lists include archived generations (low product IDs) next to current ones; Norco's include 2023–2027 URLs. Only current-year entries were added, and a couple of prices (Instinct Alloy 30 at $3,999 vs a clearance $3,399) are noted where two listings disagreed.
+
+**What did not work:**
+- **Canadian Tire / CCM** — the scrape was blocked by the permission classifier because it asked for `proxy: stealth` to get past the site's bot check. That's bot-detection circumvention, so it was not retried; CCM stays unscraped. (Allowing that explicitly is Raghu's call, via a permission rule.)
+- **Trek Canada** kids' page redirected to the US catalog with no usable data; **Devinci**'s mountain listing loaded but returned no product rows; **Giant Canada** guessed gravel URL 404'd (same inconsistent-slug note as before); **Marinoni** sells frames and a downloadable price list, not complete bikes with listed specs.
+- Rider-height ranges are published by almost none of these brands on the product page, so `minH`/`maxH` are class-typical estimates on most new entries (kids' entries use a brand's own figure where it exists — Giant's Talon 24 Lite, Animator and STP 20 FS).
+
+**Two schema/scoring changes this pass required:**
+- **`brake: 'none'`** added to the kids catalog for true balance bikes (Specialized Hotwalk). `kids.html` now shows "no brakes" instead of "none brakes".
+- **Size-label aliasing in `mountainbiking.html`.** The size scorer only knew XS/S/M/L/XL, so any bike listed with SM/MD/LG (Kona Mahuna, Rocky Mountain Element Alloy), XXL, Specialized's S1-S6 or Norco's SZ1-SZ5 got `sizePosition[s] === undefined` → a NaN nearest-size gap → a NaN score whenever a rider picked a frame size. This is a pre-existing bug (it affected Mahuna and Element Alloy before this pass) that the new brands would have made much worse; `sizeAlias`/`normSize` now map every label onto XS-XL for scoring only, and the data keeps each brand's own labels. Verified across 15 discipline × size combinations with zero NaN scores.
+
+**Still open:** MEC's own commuter/hybrid listing URL (a guessed slug 404'd), Cycling Elements' remaining kids/hybrid lines (need manufacturer pages), Devinci, Rocky Mountain's other lines (Reaper junior trail bikes could suit the kids catalog), and Trek/Cannondale/Giant road+gravel refreshes.
 
 ## Frame shape (`frameStyle`) — why this isn't a "gender" field
 
