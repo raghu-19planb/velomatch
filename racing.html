@@ -18,10 +18,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Fredoka:wght@600;700&family=Chewy&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=rideometry13">
+<link rel="stylesheet" href="style.css?v=rideometry14">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="quiz-flow.js"></script>
 <script src="affiliate.js"></script>
+<script src="info-tips.js"></script>
 <script src="nav-transition.js"></script>
 </head>
 <body>
@@ -251,7 +252,7 @@
         <p class="q-section-label">The bike itself</p>
 
         <div class="q-group">
-          <label class="q-label">Frame material</label>
+          <label class="q-label" data-info="frame">Frame material</label>
           <div class="opt-row">
             <button type="button" class="opt" data-group="frame" data-value="none">No preference</button>
             <button type="button" class="opt" data-group="frame" data-value="carbon">Carbon</button>
@@ -272,7 +273,7 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">Groupset preference</label>
+          <label class="q-label" data-info="groupset">Groupset preference</label>
           <div class="opt-row">
             <button type="button" class="opt" data-group="groupset" data-value="none">No preference</button>
             <button type="button" class="opt" data-group="groupset" data-value="shimano">Shimano</button>
