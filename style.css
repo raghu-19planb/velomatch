@@ -65,14 +65,15 @@ nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-
 .logo{display:flex; flex-direction:column; align-items:flex-start; gap:1px; flex:none;}
 .logo .tagline{margin:0; font-size:10.5px; line-height:1.2;}
 
-/* RideOmetry wordmark: the "O" is a literal spoked wheel that keeps
-   spinning (only the wheel — a real bike's fork/frame don't spin with it),
-   reused identically in the nav and footer. */
+/* "Right ⊙ Bike" wordmark: a literal spoked wheel sits between the two
+   words and keeps spinning (only the wheel — a real bike's fork/frame don't
+   spin with it), reused identically in the nav, footer and splash. It used
+   to be the "O" in Rideometry; RightBike has no O, so it became the join. */
 .wordmark{
   display:inline-flex; align-items:center; font-family:var(--font-wordmark);
   font-weight:700; letter-spacing:-0.005em; color:var(--teal); line-height:1; font-size:20px;
 }
-.wheel-o{display:inline-block; width:0.9em; height:0.9em; margin:0 1px; flex:none;}
+.wheel-o{display:inline-block; width:0.9em; height:0.9em; margin:0 0.14em; flex:none;}
 .wheel-o svg{width:100%; height:100%; display:block; overflow:visible; animation:wheel-o-spin 3.2s linear infinite; transform-origin:50% 50%;}
 @keyframes wheel-o-spin{ to{ transform:rotate(360deg); } }
 @media (prefers-reduced-motion: reduce){ .wheel-o svg{animation:none;} }
