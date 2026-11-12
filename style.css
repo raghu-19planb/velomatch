@@ -1062,3 +1062,32 @@ body.rm-page{
 .nb-more:hover{background:var(--ink);}
 .nb-more:focus-visible{outline:3px solid var(--signal); outline-offset:3px;}
 .nb-more[hidden]{display:none;}
+
+/* ============================================================
+   SHOWCASE FLAG: a small flag hanging from the "Showcase" nav tab
+   (flag-banner.js builds it). It rides the sticky nav, eases away on scroll,
+   and holds still for anyone who prefers reduced motion.
+   ============================================================ */
+.flag-rope{ cursor:pointer;
+  position:absolute; width:2px; margin-left:-1px; background:var(--ink); opacity:0.55; z-index:1;
+  transition:opacity .35s;
+}
+.flag-banner{
+  position:absolute; top:100%; width:150px; z-index:2; display:block; text-decoration:none;
+  transform-origin:50% 0; animation:flag-sway 4.2s ease-in-out infinite;
+  filter:drop-shadow(0 3px 4px rgba(27,35,31,0.18));
+  transition:opacity .35s, transform .35s;
+}
+.flag-banner svg{display:block; width:100%; height:auto; overflow:visible;}
+.flag-cloth{fill:var(--signal);}
+.flag-text{font-family:var(--font-wordmark); font-weight:700; font-size:17px; fill:var(--paper); letter-spacing:0.005em;}
+.flag-rod{fill:var(--ink);}
+.flag-banner:hover{animation-duration:1.6s;}
+.flag-banner:focus-visible{outline:3px solid var(--teal); outline-offset:4px; border-radius:4px;}
+.flag-banner.is-away, .flag-rope.is-away{opacity:0; pointer-events:none;}
+.flag-banner.is-away{transform:translateY(-8px);}
+@keyframes flag-sway{ 0%,100%{ transform:rotate(-1.6deg); } 50%{ transform:rotate(1.6deg); } }
+.flag-banner.is-still{animation:none;}
+@media (prefers-reduced-motion: reduce){ .flag-banner{animation:none;} .flag-banner, .flag-rope{transition:none;} }
+@media (max-width:640px){ .flag-banner{width:124px;} .flag-text{font-size:18px;} }
+.flag-rope::before{content:""; position:absolute; top:0; bottom:0; left:-9px; right:-9px;} /* wider hit area for the thin cord */

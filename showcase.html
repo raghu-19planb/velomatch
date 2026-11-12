@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Fredoka:wght@600;700&family=Chewy&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=bikespoke6">
+<link rel="stylesheet" href="style.css?v=bikespoke8">
 <script src="nav-transition.js"></script>
 </head>
 <body class="nb-page">
@@ -346,6 +346,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
       buildControls();
       var wanted = (location.hash || '').replace('#','');
       if (CATS.some(function(c){ return c.key === wanted; })) state.cat = wanted;
+      if (wanted === 'new') state.newOnly = true; // the flag in the nav links here
       render();
       var skipped = document.getElementById('nbSkipped');
       (meta.skipped || []).forEach(function(s){
