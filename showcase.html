@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BikeSpoke — Bike showcase: new and current bikes in Canada</title>
+<meta name="description" content="New and current bikes from the brands and Canadian shops, with photos, Canadian prices and links straight to each maker’s or shop’s own page. Checked and refreshed every quarter.">
+<link rel="canonical" href="https://raghu-19planb.github.io/velomatch/showcase.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BikeSpoke — Bike showcase: new and current bikes in Canada">
+<meta property="og:description" content="New and current bikes from the brands and Canadian shops, with photos, Canadian prices and links straight to each maker’s or shop’s own page. Checked and refreshed every quarter.">
+<meta property="og:url" content="https://raghu-19planb.github.io/velomatch/showcase.html">
+<meta property="og:site_name" content="BikeSpoke">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BikeSpoke — Bike showcase: new and current bikes in Canada">
+<meta name="twitter:description" content="New and current bikes from the brands and Canadian shops, with photos, Canadian prices and links straight to each maker’s or shop’s own page. Checked and refreshed every quarter.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Fredoka:wght@600;700&family=Chewy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=bikespoke6">
+<script src="nav-transition.js"></script>
+</head>
+<body class="nb-page">
+
+<div class="page-transition page-reveal" aria-hidden="true">
+  <div class="transition-panel">
+    <svg class="transition-rider" viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="30" cy="72" r="20" fill="none" stroke="var(--signal)" stroke-width="3.4"/>
+      <circle cx="100" cy="72" r="20" fill="none" stroke="var(--signal)" stroke-width="3.4"/>
+      <g fill="none" stroke="var(--signal)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M55 60 L45 30 L90 26 L100 72 M55 60 L30 72"/>
+        <path d="M90 26 L82 12"/>
+        <path d="M70 15 L94 19"/>
+        <path d="M78 18 L58 38"/>
+        <path d="M62 34 L84 30"/>
+      </g>
+      <circle cx="78" cy="10" r="7.5" fill="var(--ink)"/>
+      <g class="pedal-leg">
+        <path d="M55 60 L46 76 L58 82" fill="none" stroke="var(--signal)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
+      <span class="wordmark">BikeSp<span class="wheel-o"><span class="sr-o">o</span><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="wheel-rim" cx="50" cy="50" r="43"/><circle class="wheel-valve" cx="93" cy="50" r="3.2"/><g class="wheel-spoke"><line x1="50" y1="50" x2="93" y2="50"/><line x1="50" y1="50" x2="89.7" y2="66.5"/><line x1="50" y1="50" x2="80.4" y2="80.4"/><line x1="50" y1="50" x2="66.5" y2="89.7"/><line x1="50" y1="50" x2="50" y2="93"/><line x1="50" y1="50" x2="33.5" y2="89.7"/><line x1="50" y1="50" x2="19.6" y2="80.4"/><line x1="50" y1="50" x2="10.3" y2="66.5"/><line x1="50" y1="50" x2="7" y2="50"/><line x1="50" y1="50" x2="10.3" y2="33.5"/><line x1="50" y1="50" x2="19.6" y2="19.6"/><line x1="50" y1="50" x2="33.5" y2="10.3"/><line x1="50" y1="50" x2="50" y2="7"/><line x1="50" y1="50" x2="66.5" y2="10.3"/><line x1="50" y1="50" x2="80.4" y2="19.6"/><line x1="50" y1="50" x2="89.7" y2="33.5"/></g><circle class="wheel-hub" cx="50" cy="50" r="7"/></svg></span>ke</span>
+      <span class="tagline">The right bike for how you ride.</span>
+    </a>
+    <div class="nav-links">
+      <a href="kids.html" class="nav-link">Kids' bikes</a>
+      <a href="commute.html" class="nav-link">Commuting</a>
+      <a href="bikepacking.html" class="nav-link">Bikepacking</a>
+      <a href="mountainbiking.html" class="nav-link">Mountain biking</a>
+      <a href="racing.html" class="nav-link">Racing</a>
+      <a href="showcase.html" class="nav-link current" aria-current="page">Showcase</a>
+      <a href="schematics.html" class="nav-link">Schematics</a>
+      <a href="routemaps.html" class="nav-link">Route maps</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="kids.html#quiz" class="nav-cta">Start matching</a>
+    </div>
+  </div>
+</nav>
+
+<section class="nb-hero">
+  <div class="wrap">
+    <div class="nb-hero-text">
+      <h1>Bikes you can buy in Canada</h1>
+      <p class="lede">New 2027 models and current favourites from the brands and Canadian shops. A bike tagged New is one its maker calls new. Photos and prices come from the brand’s or shop’s own site, and every bike links back to it.</p>
+      <p class="nb-checked" id="nbChecked">Checking the latest list…</p>
+    </div>
+    <figure class="nb-stage" id="nbStage" aria-live="polite"></figure>
+  </div>
+</section>
+
+<div class="nb-filterbar" id="nbFilterbar">
+  <div class="wrap">
+    <div class="nb-filters" id="nbFilters" role="group" aria-label="Filter the bikes"></div>
+  </div>
+</div>
+
+<section class="nb-results">
+  <div class="wrap">
+    <p class="nb-count" id="nbCount" aria-live="polite"></p>
+    <div class="nb-grid" id="nbGrid"></div>
+    <div class="nb-more-wrap"><button type="button" class="nb-more" id="nbMore" hidden></button></div>
+    <p class="nb-empty" id="nbEmpty" hidden><b>No bikes match those filters.</b> Try another type or brand, or turn off “New only”.</p>
+    <noscript><p class="nb-empty">This page needs JavaScript to show the bikes. You can still browse by type: <a href="kids.html">kids</a>, <a href="commute.html">commuting</a>, <a href="bikepacking.html">bikepacking</a>, <a href="mountainbiking.html">mountain</a>, <a href="racing.html">racing</a>.</p></noscript>
+  </div>
+</section>
+
+<section class="nb-notes">
+  <div class="wrap">
+    <div>
+      <h2>How this page works</h2>
+      <p>A bike is tagged New only if its maker says so: a “New” label, an all-new range, or a 2027 model-year page. The rest are bikes on sale now from the brand or a Canadian shop. Every bike has a live product page and a photo we checked.</p>
+      <p>Prices are shown only when they are in Canadian dollars, as the “from” price on the day we checked, so they can change before you buy. Where a brand’s page doesn’t show a Canadian price, we say so instead of guessing.</p>
+      <p>Photos load from each brand’s or shop’s own website and belong to them. We link to them and don’t pass them off as ours. If a photo goes missing, the bike still links to its page.</p>
+      <p id="nbNextCheck">We re-check every link and photo each quarter and add the new arrivals.</p>
+    </div>
+    <div>
+      <h2>Left off for now</h2>
+      <ul id="nbSkipped"></ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
+      <span class="wordmark">BikeSp<span class="wheel-o"><span class="sr-o">o</span><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="wheel-rim" cx="50" cy="50" r="43"/><circle class="wheel-valve" cx="93" cy="50" r="3.2"/><g class="wheel-spoke"><line x1="50" y1="50" x2="93" y2="50"/><line x1="50" y1="50" x2="89.7" y2="66.5"/><line x1="50" y1="50" x2="80.4" y2="80.4"/><line x1="50" y1="50" x2="66.5" y2="89.7"/><line x1="50" y1="50" x2="50" y2="93"/><line x1="50" y1="50" x2="33.5" y2="89.7"/><line x1="50" y1="50" x2="19.6" y2="80.4"/><line x1="50" y1="50" x2="10.3" y2="66.5"/><line x1="50" y1="50" x2="7" y2="50"/><line x1="50" y1="50" x2="10.3" y2="33.5"/><line x1="50" y1="50" x2="19.6" y2="19.6"/><line x1="50" y1="50" x2="33.5" y2="10.3"/><line x1="50" y1="50" x2="50" y2="7"/><line x1="50" y1="50" x2="66.5" y2="10.3"/><line x1="50" y1="50" x2="80.4" y2="19.6"/><line x1="50" y1="50" x2="89.7" y2="33.5"/></g><circle class="wheel-hub" cx="50" cy="50" r="7"/></svg></span>ke</span>
+    </a>
+    <p class="tagline">The right bike for how you ride.</p>
+    <p>A smarter way to find a bike that fits your ride.</p>
+    <button type="button" class="letter-trigger" id="openLetter">Why we built this</button>
+  </div>
+</footer>
+
+<div class="letter-overlay" id="letterOverlay" aria-hidden="true">
+  <div class="letter-card" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+    <button type="button" class="letter-close" id="closeLetter" aria-label="Close">✕</button>
+    <svg class="sketch-icon letter-sketch" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M9 17 L56 15 L55 46 L7 45 Z"/>
+      <path d="M9 17 L32 35 L55 15"/>
+    </svg>
+    <p class="letter-fig">Fig. 005 — where this is headed</p>
+    <h3 id="letterTitle">To everyone who's stood in a bike aisle guessing,</h3>
+    <p>Buying a bike usually comes down to a guess: a size sticker on a rack, a salesperson pointing at whatever's in stock, or a color you liked in a catalog. Get it wrong and it's money spent on something that never quite fits.</p>
+    <p>We think fit should come from geometry, not guesswork — reach, stack, standover, all measured and matched to the rider, whoever that rider is.</p>
+    <p>BikeSpoke is built to do that matching for every kind of rider and every kind of ride. Right now it's five working prototypes: a first bike for a growing kid, a daily commuter, a bikepacking rig, a mountain bike, and a racing or ultra-endurance bike — because those are the cases where a wrong guess costs the most. The same approach — real measurements, scored against real bikes — is what we're building toward next, for every rider after this one.</p>
+    <p>It won't get everything right yet. But it will show its work — the frame size, the gear capacity, the climbing range — so you're choosing a bike, not gambling on one.</p>
+    <p class="letter-sign">This is where we're starting. Not where we're stopping.</p>
+  </div>
+</div>
+
+<script>
+const letterOverlay = document.getElementById('letterOverlay');
+const openLetterBtn = document.getElementById('openLetter');
+const closeLetterBtn = document.getElementById('closeLetter');
+let letterLastFocused = null;
+
+function openLetter(){
+  letterLastFocused = document.activeElement;
+  letterOverlay.classList.add('open');
+  letterOverlay.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  closeLetterBtn.focus();
+}
+function closeLetter(){
+  letterOverlay.classList.remove('open');
+  letterOverlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (letterLastFocused) letterLastFocused.focus();
+}
+openLetterBtn.addEventListener('click', openLetter);
+closeLetterBtn.addEventListener('click', closeLetter);
+letterOverlay.addEventListener('click', e => { if (e.target === letterOverlay) closeLetter(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOverlay.classList.contains('open')) closeLetter(); });
+</script>
+
+<script src="affiliate.js"></script>
+<script>
+(function(){
+  var CATS = [
+    {key:'all', label:'All'},
+    {key:'racing', label:'Racing'},
+    {key:'bikepacking', label:'Bikepacking & gravel'},
+    {key:'mountain', label:'Mountain'},
+    {key:'commute', label:'Commuting'},
+    {key:'kids', label:'Kids'}
+  ];
+  var HERO_ID = 'specialized-s-works-tarmac-sl9-sram-red-axs';
+  var PAGE = 24;
+  var ICON = '<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3H3v10h10v-3"/><path d="M9 2h5v5"/><path d="M14 2 7.5 8.5"/></svg>';
+  var grid = document.getElementById('nbGrid');
+  var filters = document.getElementById('nbFilters');
+  var stage = document.getElementById('nbStage');
+  var empty = document.getElementById('nbEmpty');
+  var more = document.getElementById('nbMore');
+  var countEl = document.getElementById('nbCount');
+  var state = { cat: 'all', newOnly: false, brand: '', limit: PAGE };
+  var bikes = [];
+  var cards = [];
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function money(p){
+    try { return new Intl.NumberFormat('en-CA',{style:'currency',currency:p.currency||'CAD',minimumFractionDigits:0,maximumFractionDigits:2}).format(p.amount).replace('CA$','$'); }
+    catch(e){ return '$' + p.amount; }
+  }
+  function seller(b){ return b.soldBy || b.brand; }
+  function link(b){
+    var r = applyAffiliateTracking(b.productUrl);
+    return { href: r[0], rel: 'noopener noreferrer' + (r[1] ? ' sponsored' : '') };
+  }
+  function badge(b){ return b.modelYear ? 'New for ' + b.modelYear : 'New'; }
+  function why(b){ return b.isNew ? (b.newReason || '') : (b.note || ''); }
+  function priceLine(b){
+    if (b.price) {
+      var t = 'from ' + money(b.price) + ' ' + (b.price.currency || 'CAD');
+      return '<div class="nb-dim" aria-label="' + esc(t) + '"><i></i><span>' + esc(t) + '</span><i></i></div>';
+    }
+    return '<div class="nb-dim nb-dim-quiet"><i></i><span>price on ' + esc(seller(b)) + '’s page</span><i></i></div>';
+  }
+  function img(b, eager){
+    var c = [];
+    if (b.image.width / b.image.height < 1.15) c.push('is-square');
+    if (b.image.blend === false) c.push('has-bg');
+    return '<img src="' + esc(b.image.url) + '" alt="' + esc(b.brand + ' ' + b.name) + '" width="' + b.image.width + '" height="' + b.image.height + '"' +
+      (eager ? ' fetchpriority="high"' : ' loading="lazy"') + (c.length ? ' class="' + c.join(' ') + '"' : '') + ' decoding="async" referrerpolicy="no-referrer">';
+  }
+  function wireImages(root, b){
+    root.querySelectorAll('img').forEach(function(im){
+      function ok(){ im.classList.add('is-loaded'); }
+      function fail(){
+        im.parentNode.innerHTML = '<div class="nb-fallback"><div>' + esc(b.brand) + '<small>Photo unavailable right now</small></div></div>';
+      }
+      im.addEventListener('load', ok);
+      im.addEventListener('error', fail);
+      if (im.complete && im.naturalWidth) ok();
+      else if (im.complete) fail();
+    });
+  }
+
+  function card(b, i){
+    var l = link(b);
+    var el = document.createElement('article');
+    el.className = 'nb-card';
+    el.innerHTML =
+      '<div class="nb-media">' + (b.isNew ? '<span class="nb-badge">' + esc(badge(b)) + '</span>' : '') + img(b, i < 3) + '</div>' +
+      priceLine(b) +
+      '<div class="nb-body">' +
+        '<p class="nb-brand">' + esc(b.brand) + '</p>' +
+        '<h2 class="nb-name">' + esc(b.name) + '</h2>' +
+        '<p class="nb-type">' + esc(b.type) + '</p>' +
+        '<p class="nb-why">' + esc(why(b)) + '</p>' +
+        '<a class="nb-cta" href="' + esc(l.href) + '" target="_blank" rel="' + l.rel + '">View at ' + esc(seller(b)) + ' ' + ICON + '<span class="sr-o"> (opens in a new tab)</span></a>' +
+      '</div>';
+    wireImages(el, b);
+    return el;
+  }
+
+  function hero(b){
+    var l = link(b);
+    stage.innerHTML =
+      '<div class="nb-stage-media">' + img(b, true) + '</div>' +
+      '<figcaption>' + priceLine(b) +
+        '<p class="nb-brand" style="margin-top:12px">' + esc(b.brand) + '</p>' +
+        '<h2 class="nb-name">' + esc(b.name) + '</h2>' +
+        '<p class="nb-why" style="margin-bottom:12px">' + esc(why(b)) + '</p>' +
+        '<a class="nb-cta" style="position:static" href="' + esc(l.href) + '" target="_blank" rel="' + l.rel + '">View at ' + esc(seller(b)) + ' ' + ICON + '<span class="sr-o"> (opens in a new tab)</span></a>' +
+      '</figcaption>';
+    wireImages(stage, b);
+  }
+
+  // Show a mix of brands from the first screen on: new bikes first, then take one bike per brand in turn.
+  function interleave(list){
+    var byBrand = {};
+    list.slice().sort(function(a,b){ return (b.isNew?1:0) - (a.isNew?1:0); }).forEach(function(b){ (byBrand[b.brand] = byBrand[b.brand] || []).push(b); });
+    var queues = Object.keys(byBrand).sort(function(a,b){ return byBrand[b].length - byBrand[a].length; }).map(function(k){ return byBrand[k]; });
+    var out = [];
+    while (queues.some(function(q){ return q.length; })) queues.forEach(function(q){ if (q.length) out.push(q.shift()); });
+    return out;
+  }
+
+  function matches(b, skipCat){
+    if (!skipCat && state.cat !== 'all' && b.category !== state.cat) return false;
+    if (state.newOnly && !b.isNew) return false;
+    if (state.brand && b.brand !== state.brand) return false;
+    return true;
+  }
+
+  function buildControls(){
+    filters.innerHTML = '';
+    CATS.forEach(function(cat){
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'nb-chip'; btn.dataset.key = cat.key;
+      btn.setAttribute('aria-pressed', 'false');
+      btn.innerHTML = esc(cat.label) + ' <span class="nb-chip-n"></span>';
+      btn.addEventListener('click', function(){ state.cat = cat.key; state.limit = PAGE; try { history.replaceState(null, '', cat.key === 'all' ? location.pathname : '#' + cat.key); } catch(e){} render(); });
+      filters.appendChild(btn);
+    });
+    var nw = document.createElement('button');
+    nw.type = 'button'; nw.className = 'nb-chip nb-chip-new'; nw.id = 'nbNewOnly';
+    nw.setAttribute('aria-pressed', 'false'); nw.textContent = 'New only';
+    nw.addEventListener('click', function(){ state.newOnly = !state.newOnly; state.limit = PAGE; render(); });
+    filters.appendChild(nw);
+    var lab = document.createElement('label'); lab.className = 'sr-o'; lab.setAttribute('for', 'nbBrand'); lab.textContent = 'Brand';
+    var sel = document.createElement('select'); sel.id = 'nbBrand'; sel.className = 'nb-select';
+    var names = {}; bikes.forEach(function(b){ names[b.brand] = (names[b.brand]||0) + 1; });
+    sel.innerHTML = '<option value="">All brands</option>' + Object.keys(names).sort(function(a,b){ return a.localeCompare(b); }).map(function(n){ return '<option value="' + esc(n) + '">' + esc(n) + ' (' + names[n] + ')</option>'; }).join('');
+    sel.addEventListener('change', function(){ state.brand = sel.value; state.limit = PAGE; render(); });
+    filters.appendChild(lab); filters.appendChild(sel);
+  }
+
+  function render(){
+    // chip counts reflect the other filters, so a count always matches what the chip will show
+    var counts = { all: 0 };
+    bikes.forEach(function(b){ if (matches(b, true)) { counts.all++; counts[b.category] = (counts[b.category]||0) + 1; } });
+    filters.querySelectorAll('.nb-chip[data-key]').forEach(function(btn){
+      btn.setAttribute('aria-pressed', btn.dataset.key === state.cat ? 'true' : 'false');
+      btn.querySelector('.nb-chip-n').textContent = counts[btn.dataset.key] || 0;
+    });
+    document.getElementById('nbNewOnly').setAttribute('aria-pressed', state.newOnly ? 'true' : 'false');
+
+    var shown = 0, total = 0;
+    cards.forEach(function(c){
+      var ok = matches(c.bike);
+      if (ok) total++;
+      var visible = ok && shown < state.limit;
+      if (visible) shown++;
+      c.el.hidden = !visible;
+    });
+    empty.hidden = total !== 0;
+    countEl.textContent = total ? 'Showing ' + shown + ' of ' + total + (total === 1 ? ' bike' : ' bikes') : '';
+    if (total > shown) { more.hidden = false; more.textContent = 'Show ' + Math.min(PAGE, total - shown) + ' more (' + (total - shown) + ' left)'; }
+    else more.hidden = true;
+  }
+  more.addEventListener('click', function(){ state.limit += PAGE; render(); });
+
+  function fmtDate(iso){
+    try { return new Date(iso + 'T12:00:00').toLocaleDateString('en-CA', {day:'numeric', month:'long', year:'numeric'}); }
+    catch(e){ return iso; }
+  }
+  function syncNavHeight(){
+    var nav = document.querySelector('nav');
+    if (nav) document.body.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+  }
+  syncNavHeight();
+  window.addEventListener('resize', syncNavHeight);
+  window.addEventListener('load', syncNavHeight);
+
+  fetch('data/showcase.json', {cache: 'no-cache'})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(data){
+      bikes = data.bikes || [];
+      var meta = data._meta || {};
+      var brands = new Set(bikes.map(function(b){ return b.brand; })).size;
+      var fresh = bikes.filter(function(b){ return b.isNew; }).length;
+      document.getElementById('nbChecked').innerHTML = 'Last checked <b>' + esc(fmtDate(meta.updated)) + '</b>. ' + bikes.length + ' bikes from ' + brands + ' brands, ' + fresh + ' of them new. Refreshed every quarter.';
+      var h = bikes.filter(function(b){ return b.id === HERO_ID; })[0] || bikes[0];
+      if (h) hero(h);
+      var ordered = interleave(bikes);
+      ordered.forEach(function(b, i){ var el = card(b, i); el.hidden = true; grid.appendChild(el); cards.push({ bike: b, el: el }); });
+      buildControls();
+      var wanted = (location.hash || '').replace('#','');
+      if (CATS.some(function(c){ return c.key === wanted; })) state.cat = wanted;
+      render();
+      var skipped = document.getElementById('nbSkipped');
+      (meta.skipped || []).forEach(function(s){
+        var li = document.createElement('li');
+        li.innerHTML = '<b>' + esc(s.what) + '.</b> ' + esc(s.why);
+        skipped.appendChild(li);
+      });
+    })
+    .catch(function(err){
+      grid.innerHTML = '';
+      empty.hidden = false;
+      empty.innerHTML = '<b>We couldn’t load the bikes just now.</b> Reload the page in a moment, or browse by type from the menu.';
+      document.getElementById('nbChecked').textContent = '';
+      if (window.console) console.warn('BikeSpoke: couldn’t load data/showcase.json.', err);
+    });
+})();
+</script>
+
+</body>
+</html>

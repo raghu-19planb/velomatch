@@ -1,0 +1,44 @@
+# Quarterly health check for the Showcase page. It only reports: it never edits
+# the site. If a link, photo or recall check fails it opens (or updates) one issue.
+#
+# The discovery of NEW bikes is a separate job (see scripts/README.md): finding what a
+# brand now calls new needs someone, or an agent, reading the brand's site.
+#
+# Runs on the 8th of Jan/Apr/Jul/Oct, a week after the quarterly update, as a second
+# opinion on what was published. Can also be run by hand from the Actions tab.
+name: Showcase check
+
+on:
+  schedule:
+    - cron: '0 14 8 1,4,7,10 *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Verify every bike on the Showcase page
+        run: node scripts/verify-showcase.mjs --json > showcase-report.json || true
+      - name: Open or update an issue if anything needs attention
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          failing=$(jq '.failing | length' showcase-report.json)
+          echo "bikes failing: $failing"
+          if [ "$failing" -eq 0 ]; then exit 0; fi
+          body=$(jq -r '"Checked on \(.checkedOn): \(.failing | length) of \(.total) bikes on the Showcase page need attention.\n\n" + ([.failing[] | "- **\(.label)**: \(.problems | join("; "))"] | join("\n")) + "\n\nRecall advisories to read: \(.recallAdvisories | length)\n\nSee scripts/README.md for what to do. Blocked-by-the-network results are not listed here because they are not proof of a problem."' showcase-report.json)
+          existing=$(gh issue list --label showcase-check --state open --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh label create showcase-check --color E2551D --description "Quarterly Showcase page check" 2>/dev/null || true
+            gh issue create --title "Showcase page: some bikes need attention" --label showcase-check --body "$body"
+          fi

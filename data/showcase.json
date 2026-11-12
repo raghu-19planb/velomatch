@@ -1,0 +1,3239 @@
+{
+  "_meta": {
+    "purpose": "Bikes on the “Showcase” page (showcase.html): bikes the brands call new (tagged “New”) plus bikes available now from Canadian sellers. Every entry has a live Canadian product page and a photo of at least 1000px.",
+    "currency": "CAD",
+    "updated": "2026-11-12",
+    "rules": [
+      "Never add a bike without opening its product page and confirming the brand calls it new.",
+      "Photos are linked from the brand’s own site (never copied). Verify with scripts/verify-showcase.mjs.",
+      "Skip any model with a recall notice, a 404, or only a placeholder/banner image.",
+      "Prices are the brand’s “from” price in CAD on the day it was checked, shown only if verified."
+    ],
+    "skipped": [
+      {
+        "what": "Specialized Sirrus X 3.0 and X 5.0",
+        "why": "Health Canada has a crank recall for these model names (2020–2022 model years), and we couldn’t confirm the listed bikes are a newer year."
+      },
+      {
+        "what": "Norco Fluid Gen 3 (2027)",
+        "why": "Norco issued a voluntary safety recall on all 2027 Fluid Gen 3 models; not featured."
+      },
+      {
+        "what": "Canyon Spectral:ON CF 9 and other Canyon launches",
+        "why": "Only a “coming soon” page with no product page to link to as of 2026-11-12."
+      },
+      {
+        "what": "Trek 2027 range",
+        "why": "Trek’s new-bikes pages are script-rendered and returned only banner images; add by hand once product pages and photos can be verified."
+      },
+      {
+        "what": "Giant Defy Advanced 4 (2027)",
+        "why": "Product page returns 404 on Giant Canada."
+      },
+      {
+        "what": "Priority, Guardian, Aventon, Ride1Up, Tumbleweed and Quintana Roo",
+        "why": "These sell only in the US, so we can’t say you can buy them in Canada."
+      },
+      {
+        "what": "Brands without a verified Canadian product page yet",
+        "why": "Trek, Cervélo, Canyon, Scott, Santa Cruz and others aren’t listed until we can check their Canadian pages and photos."
+      }
+    ]
+  },
+  "bikes": [
+    {
+      "id": "specialized-tarmac-sl9-comp-sram-rival-axs",
+      "brand": "Specialized",
+      "name": "Tarmac SL9 Comp – SRAM Rival AXS",
+      "category": "racing",
+      "type": "Race road bike",
+      "modelYear": null,
+      "price": {
+        "amount": 5999.99,
+        "currency": "CAD"
+      },
+      "newReason": "Part of the all-new Tarmac SL9 range, per Specialized.com",
+      "productUrl": "https://www.specialized.com/ca/en/tarmac-sl9-comp-sram-rival-axs/p/4293529?color=5470202-4293529",
+      "image": {
+        "url": "https://resources.specialized.com/image/94927-51_TARMAC-SL9-COMP-AXS-CHAR-LQDMET-DLMMET_HERO-SQUARE?bg=ffffff&w=1600&h=1600&q=75",
+        "width": 1600,
+        "height": 1600,
+        "credit": "Specialized"
+      },
+      "source": "https://www.specialized.com/ca/en/shop/bikes/road-bikes/performance-road-bikes/tarmac",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Specialized"
+    },
+    {
+      "id": "specialized-s-works-tarmac-sl9-sram-red-axs",
+      "brand": "Specialized",
+      "name": "S-Works Tarmac SL9 – SRAM RED AXS",
+      "category": "racing",
+      "type": "Race road bike",
+      "modelYear": null,
+      "price": {
+        "amount": 18999.99,
+        "currency": "CAD"
+      },
+      "newReason": "Part of the all-new Tarmac SL9 range, per Specialized.com",
+      "productUrl": "https://www.specialized.com/ca/en/s-works-tarmac-sl9-sram-red-axs/p/4293533?color=5470183-4293533",
+      "image": {
+        "url": "https://resources.specialized.com/image/94927-00_TARMAC-SL9-SW-AXS-SILDST-SPCTFLR-CHRM_HERO-SQUARE?bg=ffffff&w=1600&h=1600&q=75",
+        "width": 1600,
+        "height": 1600,
+        "credit": "Specialized"
+      },
+      "source": "https://www.specialized.com/ca/en/shop/bikes/road-bikes/performance-road-bikes/tarmac",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Specialized"
+    },
+    {
+      "id": "giant-propel-advanced-1",
+      "brand": "Giant",
+      "name": "Propel Advanced 1",
+      "category": "racing",
+      "type": "Aero road bike",
+      "modelYear": 2027,
+      "price": {
+        "amount": 5999,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "productUrl": "https://www.giant-bicycles.com/ca/propel-advanced-1-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/gnfkbuoldekzx6mzwsvw/MY27PropelAdvanced1_ColorACarbon.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://www.giant-bicycles.com/ca/propel-advanced-1-2027",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Giant"
+    },
+    {
+      "id": "cannondale-supersix-evo-4",
+      "brand": "Cannondale",
+      "name": "SuperSix EVO 4",
+      "category": "racing",
+      "type": "Race road bike",
+      "modelYear": null,
+      "price": {
+        "amount": 7599,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/road/race/supersix-evo/supersix-evo-4",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/snhstecogu/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 956,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "cannondale-supersix-evo-6",
+      "brand": "Cannondale",
+      "name": "SuperSix EVO 6",
+      "category": "racing",
+      "type": "Race road bike",
+      "modelYear": null,
+      "price": {
+        "amount": 3999,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/road/race/supersix-evo/supersix-evo-6",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/idlzpkc4xx/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 956,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "cannondale-caad14-2",
+      "brand": "Cannondale",
+      "name": "CAAD14 2",
+      "category": "racing",
+      "type": "Aluminum race bike",
+      "modelYear": null,
+      "price": {
+        "amount": 4999,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/road/race/caad14/caad14-2",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/8vkvbzblht/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 956,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "giant-revolt-advanced-sl-0",
+      "brand": "Giant",
+      "name": "Revolt Advanced SL 0",
+      "category": "bikepacking",
+      "type": "Gravel race bike",
+      "modelYear": 2027,
+      "price": {
+        "amount": 15999,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "productUrl": "https://www.giant-bicycles.com/ca/revolt-advanced-sl-0-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/xtncwu04bza2x4zgnfc5/MY27RevoltAdvancedSL0_ColorARawCarbon1.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://www.giant-bicycles.com/ca/revolt-advanced-sl-0-2027",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Giant"
+    },
+    {
+      "id": "specialized-s-works-diverge-4-sram-red-xplr",
+      "brand": "Specialized",
+      "name": "S-Works Diverge 4 – SRAM RED XPLR",
+      "category": "bikepacking",
+      "type": "Gravel race bike",
+      "modelYear": null,
+      "price": {
+        "amount": 17499.99,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Specialized.com (Canada)",
+      "productUrl": "https://www.specialized.com/ca/en/s-works-diverge-4-sram-red-xplr/p/4298775?color=5479311-4298775",
+      "image": {
+        "url": "https://resources.specialized.com/image/95427-00_DIVERGE-SW-WRMSMKMET-CARB-SILDST_HERO-SQUARE?bg=ffffff&w=1600&h=1600&q=75",
+        "width": 1600,
+        "height": 1600,
+        "credit": "Specialized"
+      },
+      "source": "https://www.specialized.com/ca/en/shop/bikes/gravel-bikes/diverge",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Specialized"
+    },
+    {
+      "id": "cannondale-superx-4-axs",
+      "brand": "Cannondale",
+      "name": "SuperX 4 AXS",
+      "category": "bikepacking",
+      "type": "Gravel race bike",
+      "modelYear": null,
+      "price": {
+        "amount": 5499,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/road/gravel/superx/superx-4-axs",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/w3wrth97fo/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 934,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes/road/gravel/superx",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "cannondale-superx-3",
+      "brand": "Cannondale",
+      "name": "SuperX 3",
+      "category": "bikepacking",
+      "type": "Gravel race bike",
+      "modelYear": null,
+      "price": {
+        "amount": 6999,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/road/gravel/superx/superx-3",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/7ovmf5yitb/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 934,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes/road/gravel/superx",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "giant-trance-advanced-e-0",
+      "brand": "Giant",
+      "name": "Trance Advanced E+ 0",
+      "category": "mountain",
+      "type": "Electric trail bike",
+      "modelYear": 2027,
+      "price": {
+        "amount": 13999,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "productUrl": "https://www.giant-bicycles.com/ca/trance-advanced-eplus-0-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/dxbf9j1n7mwjqwwd2rqh/MY27TranceAdvancedE0_ColorA1.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://www.giant-bicycles.com/ca/trance-advanced-eplus-0-2027",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Giant"
+    },
+    {
+      "id": "cannondale-bad-habit-2",
+      "brand": "Cannondale",
+      "name": "Bad Habit 2",
+      "category": "mountain",
+      "type": "Trail / enduro bike",
+      "modelYear": null,
+      "price": {
+        "amount": 7599,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/mountain/enduro/bad-habit/bad-habit-2",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/b4ps0vadac/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 907,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "cannondale-moterra-4",
+      "brand": "Cannondale",
+      "name": "Moterra 4+",
+      "category": "mountain",
+      "type": "Electric mountain bike",
+      "modelYear": null,
+      "price": {
+        "amount": 6199,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/electric/e-mountain/moterra-neo/moterra-4-plus-smu",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/uomgtm73rz/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 890,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "cannondale-quick-1",
+      "brand": "Cannondale",
+      "name": "Quick 1",
+      "category": "commute",
+      "type": "Fitness / commuter bike",
+      "modelYear": null,
+      "price": {
+        "amount": 1399,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/active/fitness/quick/quick-1",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/mtgshtyyzj/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 910,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "cannondale-quick-3",
+      "brand": "Cannondale",
+      "name": "Quick 3",
+      "category": "commute",
+      "type": "Fitness / commuter bike",
+      "modelYear": null,
+      "price": {
+        "amount": 849,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/active/fitness/quick/quick-3",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/nslgew9vi9/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 902,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "cannondale-quick-4-stepthru",
+      "brand": "Cannondale",
+      "name": "Quick 4 StepThru",
+      "category": "commute",
+      "type": "Step-through commuter",
+      "modelYear": null,
+      "price": {
+        "amount": 749,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/active/fitness/quick/quick-4-stepthru",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/polymiaa8l/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 905,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "norco-storm-26",
+      "brand": "Norco",
+      "name": "Storm 26",
+      "category": "kids",
+      "type": "Youth mountain bike",
+      "modelYear": 2027,
+      "price": {
+        "amount": 619,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Norco.com",
+      "productUrl": "https://www.norco.com/bikes/youth/youth-trail/storm-youth-kids/2027-storm-26/",
+      "image": {
+        "url": "https://www.norco.com/cmsb/uploads/bikes/bikes/my27-storm-youth-26-berry-magenta-tp-shadow-main.jpg",
+        "width": 1200,
+        "height": 670,
+        "credit": "Norco",
+        "blend": false
+      },
+      "source": "https://www.norco.com/bikes/youth/youth-trail/storm-youth-kids/2027-storm-26/",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Norco"
+    },
+    {
+      "id": "cannondale-kids-trail-16-single-speed",
+      "brand": "Cannondale",
+      "name": "Kids Trail 16 Single-Speed",
+      "category": "kids",
+      "type": "Kids’ bike, 16\"",
+      "modelYear": null,
+      "price": {
+        "amount": 449,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/kids/4-to-6/kids-trail-4-to-6/kids-trail-16-single-speed-smu",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/nmzzfrhozt/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 978,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "cannondale-kids-trail-20",
+      "brand": "Cannondale",
+      "name": "Kids Trail 20",
+      "category": "kids",
+      "type": "Kids’ bike, 20\"",
+      "modelYear": null,
+      "price": {
+        "amount": 549,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/kids/5-to-8/kids-trail-5-to-8/kids-trail-20-c5217gu",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/amyc66zfg1/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 895,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "cannondale-kids-quick-24",
+      "brand": "Cannondale",
+      "name": "Kids Quick 24",
+      "category": "kids",
+      "type": "Kids’ bike, 24\"",
+      "modelYear": null,
+      "price": {
+        "amount": 649,
+        "currency": "CAD"
+      },
+      "newReason": "Labelled “New” on Cannondale.com (Canada)",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/kids/7-to-12/kids-quick-7-to-12/kids-quick-24-smu",
+      "image": {
+        "url": "https://embed.widencdn.net/img/dorelrl/8d7u6ygnlq/1600px@1x/?color=ffffff&q=90",
+        "width": 1600,
+        "height": 887,
+        "credit": "Cannondale"
+      },
+      "source": "https://www.cannondale.com/en-ca/bikes",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12",
+      "isNew": true,
+      "soldBy": "Cannondale"
+    },
+    {
+      "id": "specialized-riprock-20",
+      "brand": "Specialized",
+      "name": "Riprock 20",
+      "category": "kids",
+      "type": "Kids’ bike, 20\"",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 799.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/riprock-20/p/4222029?color=5383259-4222029",
+      "image": {
+        "url": "https://resources.specialized.com/image/96526-72_RIPROCK-20-SKYBLU-OIS-DSRTRS_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/kids-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-riprock-24",
+      "brand": "Specialized",
+      "name": "Riprock 24",
+      "category": "kids",
+      "type": "Kids’ bike, 24\"",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 899.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/riprock-24/p/4222031?color=5383292-4222031",
+      "image": {
+        "url": "https://resources.specialized.com/image/96526-72_RIPROCK-24-OIS-EMDMET_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/kids-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-hotwalk",
+      "brand": "Specialized",
+      "name": "Hotwalk",
+      "category": "kids",
+      "type": "Kids’ bike, 12\"",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 299.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/hotwalk/p/4222027?color=5383274-4222027",
+      "image": {
+        "url": "https://resources.specialized.com/image/94026-70_HOTWALK-CALSUN-ORGZST-OIS_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/kids-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "opus-match-16",
+      "brand": "Opus",
+      "name": "Match 16",
+      "category": "kids",
+      "type": "Kids’ bike, 16\" with training wheels",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 349.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Cycling Elements in Canada",
+      "soldBy": "Cycling Elements",
+      "productUrl": "https://cyclingelements.ca/products/opus-match-16-fire-red-fade",
+      "image": {
+        "url": "https://cyclingelements.ca/cdn/shop/files/OPUS_2021_MATCH_Fire20Red20Fade_SIDE-20230626-133608.jpg?v=1743198603",
+        "width": 1920,
+        "height": 1284,
+        "credit": "Cycling Elements"
+      },
+      "source": "data/kids-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-makena-20",
+      "brand": "Kona",
+      "name": "Makena 20",
+      "category": "kids",
+      "type": "Kids’ bike, 20\"",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 549.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Cycling Elements in Canada",
+      "soldBy": "Cycling Elements",
+      "productUrl": "https://cyclingelements.ca/products/makena-20",
+      "image": {
+        "url": "https://cyclingelements.ca/cdn/shop/files/my23_makena.webp?v=1773330218",
+        "width": 2000,
+        "height": 1500,
+        "credit": "Cycling Elements"
+      },
+      "source": "data/kids-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "brompton-c-line",
+      "brand": "Brompton",
+      "name": "C Line",
+      "category": "commute",
+      "type": "folding commuter",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Brompton’s page for stores and price",
+      "soldBy": "Brompton",
+      "productUrl": "https://us.brompton.com/c-line",
+      "image": {
+        "url": "images/commute/brompton-c-line.jpg",
+        "width": 1800,
+        "height": 1000,
+        "credit": "Brompton",
+        "blend": false
+      },
+      "source": "data/commute-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-dew",
+      "brand": "Kona",
+      "name": "Dew",
+      "category": "commute",
+      "type": "Commuter for mixed paths",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://konaworld.com/products/dew-2",
+      "image": {
+        "url": "images/commute/kona-dew.jpg",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "data/commute-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "devinci-e-milano-hd",
+      "brand": "Devinci",
+      "name": "E-Milano HD",
+      "category": "commute",
+      "type": "Electric hill-friendly commuter",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2499,
+        "currency": "CAD"
+      },
+      "note": "Sold by Devinci in Canada",
+      "soldBy": "Devinci",
+      "productUrl": "https://www.devinci.com/en/bikes/e-hybrid/emilano-hd-altus-graphite-blue/",
+      "image": {
+        "url": "images/commute/devinci-e-milano-hd.png",
+        "width": 2048,
+        "height": 1152,
+        "credit": "Devinci"
+      },
+      "source": "data/commute-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-roll-2-0",
+      "brand": "Specialized",
+      "name": "Roll 2.0",
+      "category": "commute",
+      "type": "City commuter",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 899.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/roll-20/p/4263358?color=5470755-4263358",
+      "image": {
+        "url": "https://resources.specialized.com/image/96127-82_ROLL-20-METDPMRNBLU-SKYBLU_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/commute-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "marin-fairfax-2",
+      "brand": "Marin",
+      "name": "Fairfax 2",
+      "category": "commute",
+      "type": "Commuter for mixed paths",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Marin’s page for stores and price",
+      "soldBy": "Marin",
+      "productUrl": "https://marinbikes.com/products/2025-1-fairfax-2",
+      "image": {
+        "url": "images/commute/marin-fairfax2.png",
+        "width": 2000,
+        "height": 1375,
+        "credit": "Marin"
+      },
+      "source": "data/commute-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "woom-off-4",
+      "brand": "Woom",
+      "name": "OFF 4",
+      "category": "kids",
+      "type": "Kids’ bike, 20\"",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Woom’s page for stores and price",
+      "soldBy": "Woom",
+      "productUrl": "https://woom.com/en_US/products/woom-off-4-kids-mountain-bike",
+      "image": {
+        "url": "images/kids/woom-off-4.png",
+        "width": 2528,
+        "height": 1683,
+        "credit": "Woom"
+      },
+      "source": "data/kids-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-roll-3-0",
+      "brand": "Specialized",
+      "name": "Roll 3.0",
+      "category": "commute",
+      "type": "City commuter",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 1099.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/roll-30/p/4263360?color=5470757-4263360",
+      "image": {
+        "url": "https://resources.specialized.com/image/96127-72_ROLL-30-OAKGRNMET-PDRLME_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/commute-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-sirrus-x-1-0",
+      "brand": "Specialized",
+      "name": "Sirrus X 1.0",
+      "category": "commute",
+      "type": "Commuter for mixed paths",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 799.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/sirrus-x-10/p/4293702?color=5466526-4293702",
+      "image": {
+        "url": "https://resources.specialized.com/image/92426-94_SIRRUS-X-10-KM-MAJBLUMET-DLMMET_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/commute-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "cannondale-topstone-3",
+      "brand": "Cannondale",
+      "name": "Topstone 3",
+      "category": "commute",
+      "type": "Long-distance commuter",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Cannondale’s page for stores and price",
+      "soldBy": "Cannondale",
+      "productUrl": "https://www.cannondale.com/en-ca/bikes/road/gravel/topstone-alloy/topstone-3",
+      "image": {
+        "url": "images/commute/cannondale-topstone3.png",
+        "width": 2000,
+        "height": 1158,
+        "credit": "Cannondale"
+      },
+      "source": "data/commute-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "woom-go-4",
+      "brand": "Woom",
+      "name": "GO 4",
+      "category": "kids",
+      "type": "Kids’ bike, 20\"",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Woom’s page for stores and price",
+      "soldBy": "Woom",
+      "productUrl": "https://woom.com/en_US/products/go-4-kids-bike",
+      "image": {
+        "url": "images/kids/woom-go-4.png",
+        "width": 2528,
+        "height": 1685,
+        "credit": "Woom"
+      },
+      "source": "data/kids-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "woom-go-3",
+      "brand": "Woom",
+      "name": "GO 3",
+      "category": "kids",
+      "type": "Kids’ bike, 16\"",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Woom’s page for stores and price",
+      "soldBy": "Woom",
+      "productUrl": "https://woom.com/en_US/products/go-3-kids-bike",
+      "image": {
+        "url": "images/kids/woom-go-3.png",
+        "width": 2528,
+        "height": 1685,
+        "credit": "Woom"
+      },
+      "source": "data/kids-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "salsa-cutthroat-c-grx",
+      "brand": "Salsa",
+      "name": "Cutthroat C GRX",
+      "category": "bikepacking",
+      "type": "Ultra-distance race bike",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Salsa’s page for stores and price",
+      "soldBy": "Salsa",
+      "productUrl": "https://www.salsacycles.com/products/2025-cutthroat-c-grx-610-1x",
+      "image": {
+        "url": "images/bikepacking/salsa-cutthroat-c-grx.png",
+        "width": 1920,
+        "height": 1080,
+        "credit": "Salsa"
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "cannondale-topstone-4",
+      "brand": "Cannondale",
+      "name": "Topstone 4",
+      "category": "bikepacking",
+      "type": "Adventure / gravel bike",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Cannondale’s page for stores and price",
+      "soldBy": "Cannondale",
+      "productUrl": "https://www.cannondale.com/en/bikes/road/gravel/topstone-alloy/topstone-4",
+      "image": {
+        "url": "images/bikepacking/cannondale-topstone-4.png",
+        "width": 2000,
+        "height": 1162,
+        "credit": "Cannondale"
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "all-city-space-horse",
+      "brand": "All-City",
+      "name": "Space Horse",
+      "category": "bikepacking",
+      "type": "Touring bike",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See All-City’s page for stores and price",
+      "soldBy": "All-City",
+      "productUrl": "https://allcitycycles.com/bikes/space_horse_grx",
+      "image": {
+        "url": "images/bikepacking/all-city-space-horse.jpg",
+        "width": 1500,
+        "height": 1000,
+        "credit": "All-City"
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-sutra",
+      "brand": "Kona",
+      "name": "Sutra",
+      "category": "bikepacking",
+      "type": "Touring bike",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://konaworld.com/products/sutra-36sh",
+      "image": {
+        "url": "images/bikepacking/kona-sutra.jpg",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-sutra-ltd",
+      "brand": "Kona",
+      "name": "Sutra LTD",
+      "category": "bikepacking",
+      "type": "Touring bike",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://konaworld.com/products/sutra-ltd",
+      "image": {
+        "url": "images/bikepacking/kona-sutra-ltd.jpg",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "surly-disc-trucker",
+      "brand": "Surly",
+      "name": "Disc Trucker",
+      "category": "bikepacking",
+      "type": "Touring bike",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Surly’s page for stores and price",
+      "soldBy": "Surly",
+      "productUrl": "https://surlybikes.com/products/disc-trucker-700c-hi-viz-black",
+      "image": {
+        "url": "images/bikepacking/surly-disc-trucker.jpg",
+        "width": 1946,
+        "height": 1946,
+        "credit": "Surly"
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "surly-ecr",
+      "brand": "Surly",
+      "name": "ECR",
+      "category": "bikepacking",
+      "type": "Touring bike",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Surly’s page for stores and price",
+      "soldBy": "Surly",
+      "productUrl": "https://surlybikes.com/products/ecr",
+      "image": {
+        "url": "images/bikepacking/surly-ecr.jpg",
+        "width": 1946,
+        "height": 1297,
+        "credit": "Surly",
+        "blend": false
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "norco-scene-2",
+      "brand": "Norco",
+      "name": "Scene 2",
+      "category": "commute",
+      "type": "City commuter",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 679,
+        "currency": "CAD"
+      },
+      "note": "Sold by Norco in Canada",
+      "soldBy": "Norco",
+      "productUrl": "https://www.norco.com/bikes/city/urban/scene/2025-scene-2/",
+      "image": {
+        "url": "https://www.norco.com/cmsb/uploads/bikes/bikes/my25-scene-2-pale-pink-side-view-tp-shadow-main.jpg",
+        "width": 1200,
+        "height": 670,
+        "credit": "Norco",
+        "blend": false
+      },
+      "source": "data/commute-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "norco-indie-1-gen-2",
+      "brand": "Norco",
+      "name": "Indie 1 Gen 2",
+      "category": "commute",
+      "type": "Commuter for mixed paths",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 779,
+        "currency": "CAD"
+      },
+      "note": "Sold by Norco in Canada",
+      "soldBy": "Norco",
+      "productUrl": "https://www.norco.com/bikes/city/urban/Indie-gen-2/2027-indie-1/",
+      "image": {
+        "url": "https://www.norco.com/cmsb/uploads/bikes/bikes/my27-norco-indie-1-2-navy-grey-main.jpg",
+        "width": 1200,
+        "height": 670,
+        "credit": "Norco",
+        "blend": false
+      },
+      "source": "data/commute-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "salsa-timberjack",
+      "brand": "Salsa",
+      "name": "Timberjack",
+      "category": "bikepacking",
+      "type": "Adventure / gravel bike",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Salsa’s page for stores and price",
+      "soldBy": "Salsa",
+      "productUrl": "https://www.salsacycles.com/products/2025-timberjack-slx-29",
+      "image": {
+        "url": "images/bikepacking/salsa-timberjack.png",
+        "width": 1920,
+        "height": 1080,
+        "credit": "Salsa"
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "cannondale-topstone-carbon-lefty-3",
+      "brand": "Cannondale",
+      "name": "Topstone Carbon Lefty 3",
+      "category": "bikepacking",
+      "type": "Adventure / gravel bike",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold in Canada. See Cannondale’s page for stores and price",
+      "soldBy": "Cannondale",
+      "productUrl": "https://www.cannondale.com/en-la/bikes/road/gravel/topstone-carbon/topstone-carbon-lefty-3",
+      "image": {
+        "url": "images/bikepacking/cannondale-topstone-carbon-lefty-3.png",
+        "width": 2000,
+        "height": 1176,
+        "credit": "Cannondale",
+        "blend": false
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-unit",
+      "brand": "Kona",
+      "name": "Unit",
+      "category": "bikepacking",
+      "type": "Adventure / gravel bike",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://konaworld.com/collections/unit",
+      "image": {
+        "url": "images/bikepacking/kona-unit.jpg",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-diverge-4-comp-alloy",
+      "brand": "Specialized",
+      "name": "Diverge 4 Comp Alloy",
+      "category": "bikepacking",
+      "type": "Adventure / gravel bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 3499.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/diverge-4-comp-alloy-sram-apex/p/4223512?color=5459909-4223512",
+      "image": {
+        "url": "https://resources.specialized.com/image/95426-51_DIVERGE-E5-COMP-MVEMET-OBSD_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-diverge-4-sport-alloy",
+      "brand": "Specialized",
+      "name": "Diverge 4 Sport Alloy",
+      "category": "bikepacking",
+      "type": "Adventure / gravel bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2749.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/diverge-4-sport-alloy-shimano-cues/p/4223511?color=5459925-4223511",
+      "image": {
+        "url": "https://resources.specialized.com/image/95426-62_DIVERGE-E5-SPORT-BNTGLDMET-SHDWSIL_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-fire-mountain",
+      "brand": "Kona",
+      "name": "Fire Mountain",
+      "category": "mountain",
+      "type": "Cross-country hardtail bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 749,
+        "currency": "CAD"
+      },
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/fire-mountain-37",
+      "image": {
+        "url": "https://en-ca.konaworld.com/cdn/shop/files/2k26_fire_mountain-1.jpg?v=1770752891&width=2048",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-lava-dome",
+      "brand": "Kona",
+      "name": "Lava Dome",
+      "category": "mountain",
+      "type": "Cross-country hardtail bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 999,
+        "currency": "CAD"
+      },
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/lava-dome-37",
+      "image": {
+        "url": "https://en-ca.konaworld.com/cdn/shop/files/2k26_lava_dome-1.jpg?v=1770752892&width=2048",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-process-134",
+      "brand": "Kona",
+      "name": "Process 134",
+      "category": "mountain",
+      "type": "Trail full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 1899,
+        "currency": "CAD"
+      },
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/g2-process-134-27-5",
+      "image": {
+        "url": "https://en-ca.konaworld.com/cdn/shop/files/2k26_g2_process_134_275.jpg?v=1773428361&width=2048",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-rockhopper-sport",
+      "brand": "Specialized",
+      "name": "Rockhopper Sport",
+      "category": "mountain",
+      "type": "Trail hardtail bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 1149.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/rockhopper-sport/p/4263615?color=5479015-4263615",
+      "image": {
+        "url": "https://cyclingelements.ca/cdn/shop/files/91826-81_ROCKHOPPER-BASE-KH-SKYBLU-MAJBLUMET_HERO-PDP.webp?v=1761943466&width=1946",
+        "width": 1946,
+        "height": 1095,
+        "credit": "Specialized"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-process-153",
+      "brand": "Kona",
+      "name": "Process 153",
+      "category": "mountain",
+      "type": "Enduro full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2399,
+        "currency": "CAD"
+      },
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/g2-process-153-27-5",
+      "image": {
+        "url": "https://en-ca.konaworld.com/cdn/shop/files/2k26_g2_process_153_275.jpg?v=1773428360&width=2048",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-chisel-comp-evo",
+      "brand": "Specialized",
+      "name": "Chisel Comp Evo",
+      "category": "mountain",
+      "type": "Cross-country full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 3599.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Cycling Elements in Canada",
+      "soldBy": "Cycling Elements",
+      "productUrl": "https://cyclingelements.ca/products/chisel-comp-evo",
+      "image": {
+        "url": "https://cyclingelements.ca/cdn/shop/files/93825-57_CHISEL-COMP-EVO-BLK-METOBSD_HERO-PDP.webp?v=1762293007&width=1945",
+        "width": 1945,
+        "height": 1094,
+        "credit": "Cycling Elements"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-stumpjumper-15-alloy",
+      "brand": "Specialized",
+      "name": "Stumpjumper 15 Alloy",
+      "category": "mountain",
+      "type": "Trail full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2299.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/stumpjumper-15-alloy-shimano-deore-rockshoxx-fusion/p/4276239?color=5437114-4276239",
+      "image": {
+        "url": "https://resources.specialized.com/image/93325-76_SJ-15-ALLOY-WHTMTN-DKMOS_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-stumpjumper-15-comp-alloy",
+      "brand": "Specialized",
+      "name": "Stumpjumper 15 Comp Alloy",
+      "category": "mountain",
+      "type": "Trail full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 3599.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/stumpjumper-15-comp-alloy-shimano-slx-fox-rhythm/p/4221397?color=5366729-4221397",
+      "image": {
+        "url": "https://resources.specialized.com/image/93325-54_SJ-15-COMP-ALLOY-SMK-CLGRY_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-epic-9-sport",
+      "brand": "Specialized",
+      "name": "Epic 9 Sport",
+      "category": "mountain",
+      "type": "Cross-country full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 6399.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/epic-9-sport/p/4295549?color=5472095-4295549",
+      "image": {
+        "url": "https://resources.specialized.com/image/90327-60_EPIC-9-SPORT-DLMMET-METOBSD_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "rocky-mountain-solo",
+      "brand": "Rocky Mountain",
+      "name": "Solo",
+      "category": "bikepacking",
+      "type": "Adventure / gravel bike",
+      "modelYear": null,
+      "isNew": false,
+      "note": "Sold by Rocky Mountain in Canada",
+      "soldBy": "Rocky Mountain",
+      "productUrl": "https://bikes.com/products/solo-30-24",
+      "image": {
+        "url": "images/bikepacking/rocky-mountain-solo.jpg",
+        "width": 2500,
+        "height": 1406,
+        "credit": "Rocky Mountain"
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-p-3",
+      "brand": "Specialized",
+      "name": "P.3",
+      "category": "mountain",
+      "type": "Dirt-jump hardtail bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2799.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/p3/p/4263605?color=5479145-4263605",
+      "image": {
+        "url": "https://resources.specialized.com/image/91927-60_P3-METOBSD-METWHTSIL_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-chisel",
+      "brand": "Specialized",
+      "name": "Chisel",
+      "category": "mountain",
+      "type": "Cross-country full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2699.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/chisel/p/4221775?color=5382716-4221775",
+      "image": {
+        "url": "https://resources.specialized.com/image/93825-70_CHISEL-DOVGRY-ASHGRY_PLP-HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "norco-search-a3-gen-3",
+      "brand": "Norco",
+      "name": "Search A3 Gen 3",
+      "category": "bikepacking",
+      "type": "Adventure / gravel bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 1799,
+        "currency": "CAD"
+      },
+      "note": "Sold by Norco in Canada",
+      "soldBy": "Norco",
+      "productUrl": "https://www.norco.com/bikes/road/gravel/search/27-search-a3/",
+      "image": {
+        "url": "https://www.norco.com/cmsb/uploads/bikes/bikes/my27-norco-search-a3-black-tp-shadow-main.jpg",
+        "width": 1200,
+        "height": 670,
+        "credit": "Norco",
+        "blend": false
+      },
+      "source": "data/bikepacking-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "norco-storm-3",
+      "brand": "Norco",
+      "name": "Storm 3",
+      "category": "mountain",
+      "type": "Cross-country hardtail bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 679,
+        "currency": "CAD"
+      },
+      "note": "Sold by Norco in Canada",
+      "soldBy": "Norco",
+      "productUrl": "https://www.norco.com/bikes/mountain/cross-country/storm/27-storm-3/",
+      "image": {
+        "url": "https://www.norco.com/cmsb/uploads/bikes/bikes/my27_storm_3_xs27_silver_main_shadow-full.jpg",
+        "width": 1200,
+        "height": 670,
+        "credit": "Norco",
+        "blend": false
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "norco-charger-a2",
+      "brand": "Norco",
+      "name": "Charger A2",
+      "category": "mountain",
+      "type": "Trail hardtail bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 1249,
+        "currency": "CAD"
+      },
+      "note": "Sold by Norco in Canada",
+      "soldBy": "Norco",
+      "productUrl": "https://www.norco.com/bikes/mountain/trail/charger/27-charger-2/",
+      "image": {
+        "url": "https://www.norco.com/cmsb/uploads/bikes/bikes/my27_charger_a2_ash_grey_main_shadow.jpg",
+        "width": 1200,
+        "height": 670,
+        "credit": "Norco",
+        "blend": false
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "norco-storm-1",
+      "brand": "Norco",
+      "name": "Storm 1",
+      "category": "mountain",
+      "type": "Cross-country hardtail bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 949,
+        "currency": "CAD"
+      },
+      "note": "Sold by Norco in Canada",
+      "soldBy": "Norco",
+      "productUrl": "https://www.norco.com/bikes/mountain/cross-country/storm/27-storm-1/",
+      "image": {
+        "url": "https://www.norco.com/cmsb/uploads/bikes/bikes/my27_storm_1_29_mauve_main_shadow-full.jpg",
+        "width": 1200,
+        "height": 670,
+        "credit": "Norco",
+        "blend": false
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "norco-fluid-a3-gen-3",
+      "brand": "Norco",
+      "name": "Fluid A3 Gen 3",
+      "category": "mountain",
+      "type": "Trail full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2299,
+        "currency": "CAD"
+      },
+      "note": "Sold by Norco in Canada",
+      "soldBy": "Norco",
+      "productUrl": "https://www.norco.com/bikes/mountain/trail/fluid-gen-3/27-fluid-a3/",
+      "image": {
+        "url": "https://www.norco.com/cmsb/uploads/bikes/bikes/my27-fluid-a3-pistachio-green-main.jpg",
+        "width": 1200,
+        "height": 670,
+        "credit": "Norco",
+        "blend": false
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "norco-revolver-lt-c3-gen-4",
+      "brand": "Norco",
+      "name": "Revolver LT C3 Gen 4",
+      "category": "mountain",
+      "type": "Cross-country full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 4299,
+        "currency": "CAD"
+      },
+      "note": "Sold by Norco in Canada",
+      "soldBy": "Norco",
+      "productUrl": "https://www.norco.com/bikes/mountain/cross-country/revolver-gen-4-130/27-revolver-lt-c3/",
+      "image": {
+        "url": "https://www.norco.com/cmsb/uploads/bikes/bikes/my27-revolver-lt-c3-khaki-brown-main-shadow.jpg",
+        "width": 1200,
+        "height": 670,
+        "credit": "Norco",
+        "blend": false
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "norco-rampage-2",
+      "brand": "Norco",
+      "name": "Rampage 2",
+      "category": "mountain",
+      "type": "Dirt-jump hardtail bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 849,
+        "currency": "CAD"
+      },
+      "note": "Sold by Norco in Canada",
+      "soldBy": "Norco",
+      "productUrl": "https://www.norco.com/bikes/mountain/dirt-jump/rampage/27-rampage-2/",
+      "image": {
+        "url": "https://www.norco.com/cmsb/uploads/bikes/bikes/my27-norco-rampage-2-navy-grey-main-shadow-main.jpg",
+        "width": 2003,
+        "height": 1353,
+        "credit": "Norco",
+        "blend": false
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-tarmac-sl9-comp",
+      "brand": "Specialized",
+      "name": "Tarmac SL9 Comp",
+      "category": "racing",
+      "type": "All-round road bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 5799.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/tarmac-sl9-comp-shimano-105-di2/p/4293528?color=5470173-4293528",
+      "image": {
+        "url": "https://resources.specialized.com/image/94927-52_TARMAC-SL9-COMP-DI2-DLMMET-CAYNMET_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/racing-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-allez-sport",
+      "brand": "Specialized",
+      "name": "Allez Sport",
+      "category": "racing",
+      "type": "Endurance road bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 1599.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/allez-sport-shimano-tiagra/p/4221797?color=5368181-4221797",
+      "image": {
+        "url": "https://resources.specialized.com/image/90022-62_ALLEZ-E5-DISC-SPORT-TARBLK_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/racing-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-roubaix-sl8-sport",
+      "brand": "Specialized",
+      "name": "Roubaix SL8 Sport",
+      "category": "racing",
+      "type": "Audax / long-distance road bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 4299.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Specialized in Canada",
+      "soldBy": "Specialized",
+      "productUrl": "https://www.specialized.com/ca/en/roubaix-sl8-sport-shimano-105/p/4263269?color=5476660-4263269",
+      "image": {
+        "url": "https://resources.specialized.com/image/94427-62_ROUBAIX-SPORT-BTLGRN-METOBSD_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
+        "width": 1400,
+        "height": 1400,
+        "credit": "Specialized"
+      },
+      "source": "data/racing-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-coco-coco-b36",
+      "brand": "Kona",
+      "name": "CoCo",
+      "category": "commute",
+      "type": "City / commuter bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 999,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model on Kona.com (Canada)",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/coco-b36",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/B36COBLSHIN-2k27_coco-1.jpg?v=1789421368",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "norco-torrent-dh-a1",
+      "brand": "Norco",
+      "name": "Torrent DH A1",
+      "category": "mountain",
+      "type": "Downhill full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 4599,
+        "currency": "CAD"
+      },
+      "note": "Sold by Norco in Canada",
+      "soldBy": "Norco",
+      "productUrl": "https://www.norco.com/bikes/mountain/downhill-park/torrent-dh/27-torrent-dh-a1/",
+      "image": {
+        "url": "https://www.norco.com/cmsb/uploads/bikes/bikes/my27-torrent-dh-a1-raw-alloy-silver-main-shadow-full.jpg",
+        "width": 1200,
+        "height": 670,
+        "credit": "Norco",
+        "blend": false
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-makena-makena-b36",
+      "brand": "Kona",
+      "name": "Makena",
+      "category": "kids",
+      "type": "Kids’ bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 549.99,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model on Kona.com (Canada)",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/makena-b36",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/B36MAGYSHIN11-2k27_makena-1.jpg?v=1789422161",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "mec-lynx",
+      "brand": "MEC",
+      "name": "Lynx",
+      "category": "mountain",
+      "type": "Cross-country hardtail bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 749.95,
+        "currency": "CAD"
+      },
+      "note": "Sold by MEC in Canada",
+      "soldBy": "MEC",
+      "productUrl": "https://www.mec.ca/en/product/6038-467/mec-lynx-mountain-bicycle-unisex?colour=Glacier",
+      "image": {
+        "url": "https://cdn11.bigcommerce.com/s-xw5rh7060c/products/65374/images/619655/6038467_GLC00__51227.1785507656.1280.1280.jpg?c=1",
+        "width": 1280,
+        "height": 710,
+        "credit": "MEC"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "rocky-mountain-altitude-alloy-30",
+      "brand": "Rocky Mountain",
+      "name": "Altitude Alloy 30",
+      "category": "mountain",
+      "type": "Enduro full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 3899,
+        "currency": "CAD"
+      },
+      "note": "Sold by Rocky Mountain in Canada",
+      "soldBy": "Rocky Mountain",
+      "productUrl": "https://bikes.com/products/altitude-a30-1",
+      "image": {
+        "url": "https://bikes.com/cdn/shop/files/Altitude-Alloy-30-LG-29-C2-Black-Black-Profile.png?v=1789412454&width=1920",
+        "width": 1920,
+        "height": 1110,
+        "credit": "Rocky Mountain"
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-honzo-20-honzo-20-b36",
+      "brand": "Kona",
+      "name": "Honzo 20",
+      "category": "kids",
+      "type": "Kids’ bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 749,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model on Kona.com (Canada)",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/honzo-20-b36",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/B36HZTNSHIN20-2k27_honzo_20-1.jpg?v=1789422039",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "polygon-siskiu-t7",
+      "brand": "Polygon",
+      "name": "Siskiu T7",
+      "category": "mountain",
+      "type": "Trail full-suspension bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2599.95,
+        "currency": "CAD"
+      },
+      "note": "Sold by MEC in Canada",
+      "soldBy": "MEC",
+      "productUrl": "https://www.mec.ca/en/product/6040-353/polygon-siskiu-t7-mountain-bicycle-unisex?colour=Candy+Red",
+      "image": {
+        "url": "https://cdn11.bigcommerce.com/s-xw5rh7060c/products/64863/images/663533/6040353_CYR02__83106.1793968753.1280.1280.jpg?c=1",
+        "width": 1280,
+        "height": 686,
+        "credit": "MEC",
+        "blend": false
+      },
+      "source": "data/mountain-bikes.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-dew-dl-dew-dl-b37",
+      "brand": "Kona",
+      "name": "Dew DL",
+      "category": "commute",
+      "type": "City / commuter bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 1199,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model on Kona.com (Canada)",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/dew-dl-b37",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/B37DWDSLSHIN-2k27_dew_dl-1.jpg?v=1789428517",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-unit-x-unit-x-b36",
+      "brand": "Kona",
+      "name": "Unit X",
+      "category": "bikepacking",
+      "type": "Bikepacking bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 2299,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model on Kona.com (Canada)",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/unit-x-b36",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/B36UNXGYSHFA-2k27_unit_x-1_3823713d-35eb-458c-b4dc-bb9df511ecca.jpg?v=1789065266",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-sutra-se-sutra-se-b36",
+      "brand": "Kona",
+      "name": "Sutra SE",
+      "category": "bikepacking",
+      "type": "Bikepacking bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 2299,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model on Kona.com (Canada)",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/sutra-se-b36",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/B36SUBLMSFA-2k27_sutra_se-1.jpg?v=1790096912",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-unity-unity-b37",
+      "brand": "Kona",
+      "name": "Unity",
+      "category": "bikepacking",
+      "type": "Bikepacking bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 3199,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model on Kona.com (Canada)",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/unity-b37",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/B37UNYGNSHFA-2k27_unity-1_1df5c5d6-9bac-4fe5-a488-752808bccde1.jpg?v=1789065265",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-lbf-lbf-b37",
+      "brand": "Kona",
+      "name": "LBF",
+      "category": "bikepacking",
+      "type": "Gravel bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 4499,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model on Kona.com (Canada)",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/lbf-b37",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/B37LBFPUSRFA-2k27_lbf_early-1.jpg?v=1789065733",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-dr-dew-dr-dew",
+      "brand": "Kona",
+      "name": "Dr Dew",
+      "category": "commute",
+      "type": "City / commuter bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 1699,
+        "currency": "CAD"
+      },
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/dr-dew",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/my23_dr_dew.jpg?v=1732928120",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-libre-libre-g2",
+      "brand": "Kona",
+      "name": "Libre",
+      "category": "bikepacking",
+      "type": "Gravel bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2599,
+        "currency": "CAD"
+      },
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/libre-g2",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/2k25_libre_al-1.jpg?v=1761160460",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-ecoco-ecoco-37",
+      "brand": "Kona",
+      "name": "Ecoco",
+      "category": "commute",
+      "type": "Electric commuter / gravel bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 3299,
+        "currency": "CAD"
+      },
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/ecoco-37",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/2k26_ecoco-1.jpg?v=1770752904",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-dew-e-dew-e-37",
+      "brand": "Kona",
+      "name": "Dew-E",
+      "category": "commute",
+      "type": "Electric commuter / gravel bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 3299,
+        "currency": "CAD"
+      },
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/dew-e-37",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/2k26_dew_e-1.jpg?v=1770752914",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-process-246-process-246-37",
+      "brand": "Kona",
+      "name": "Process 246",
+      "category": "kids",
+      "type": "Kids’ bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 3299,
+        "currency": "CAD"
+      },
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/process-246-37",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/P246-Vital-Badge.jpg?v=1793122723",
+        "width": 2000,
+        "height": 1500,
+        "credit": "Kona",
+        "blend": false
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-hula-hula",
+      "brand": "Kona",
+      "name": "Hula",
+      "category": "kids",
+      "type": "Kids’ bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 559,
+        "currency": "CAD"
+      },
+      "note": "Sold by Kona in Canada",
+      "soldBy": "Kona",
+      "productUrl": "https://en-ca.konaworld.com/products/hula",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0906/2593/3630/files/my23_hula.jpg?v=1732927843",
+        "width": 2048,
+        "height": 1536,
+        "credit": "Kona"
+      },
+      "source": "https://en-ca.konaworld.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-stance-e-0",
+      "brand": "Giant",
+      "name": "Stance E+ 0",
+      "category": "mountain",
+      "type": "Trail bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 7299,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/stance-eplus-0-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/ypsujudna4ll1jopacih/MY27StanceE0_ColorADeepLake_Black_ColorA.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-anytour-x-e-1",
+      "brand": "Giant",
+      "name": "AnyTour X E+ 1",
+      "category": "commute",
+      "type": "Adventure bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 6499,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/anytour-x-eplus-1-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/bec8hqpstqxkyxpmkcx5/MY27AnyTourXE1_ColorAStormCloud.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-newtour-e-3-lst",
+      "brand": "Giant",
+      "name": "NewTour E+ 3 LST",
+      "category": "commute",
+      "type": "City & Hybrid bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 3899,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/newtour-eplus-3-lst-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/xieouifxwey8oeklwkco/MY27NewTourE3LST_ColorAKelpForest_V2-NOLOCK.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-newtour-e-1-lst",
+      "brand": "Giant",
+      "name": "NewTour E+ 1 LST",
+      "category": "commute",
+      "type": "City & Hybrid bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 4499,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/newtour-eplus-1-lst-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/zp09ylmgrrxnzw0ttoqf/MY27NewTourE1LST_ColorAEclipse_V2-NOLOCK.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-stance-e-2",
+      "brand": "Giant",
+      "name": "Stance E+ 2",
+      "category": "mountain",
+      "type": "Trail bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 5699,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/stance-eplus-2-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/x0jkawlmf07vdrwqgx8b/MY27StanceE2_ColorADesertSage_Black.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-anytour-x-e-3",
+      "brand": "Giant",
+      "name": "AnyTour X E+ 3",
+      "category": "commute",
+      "type": "Adventure bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 5299,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/anytour-x-eplus-3-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/isri94ttsblgmw4dgmbu/MY27AnyTourXE3_ColorAGoodGray.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-anytour-e-4-lst",
+      "brand": "Giant",
+      "name": "AnyTour E+ 4 LST",
+      "category": "commute",
+      "type": "City & Hybrid bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 5299,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/anytour-eplus-4-lst-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/jxextzdb2j3peuexe0ky/MY27AnytourE4LST_ColorA.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-anytour-e-1-lst",
+      "brand": "Giant",
+      "name": "AnyTour E+ 1 LST",
+      "category": "commute",
+      "type": "City & Hybrid bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 5499,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/anytour-eplus-1-lst-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/bd0kgmvd5roi1f5wrft7/MY27AnytourE1LST_ColorA.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-propel-advanced-0",
+      "brand": "Giant",
+      "name": "Propel Advanced 0",
+      "category": "racing",
+      "type": "Aero Race bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 6499,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/propel-advanced-0-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/qhsbclijjamfdimm7isq/MY27PropelAdvanced0_ColorAAzuriteBlue.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-propel-advanced-pro-0-axs",
+      "brand": "Giant",
+      "name": "Propel Advanced Pro 0-AXS",
+      "category": "racing",
+      "type": "Aero Race bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 9499,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/propel-advanced-pro-0-axs-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/u9r0a1uqpr0rustxbxbn/MY27PropelAdvancedPro0-AXS_ColorAObsidianPulse.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-propel-advanced-2",
+      "brand": "Giant",
+      "name": "Propel Advanced 2",
+      "category": "racing",
+      "type": "Aero Race bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 3899,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/propel-advanced-2-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/msnng8mraon1ugaxand9/MY27PropelAdvanced2_ColorAWhite.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-propel-advanced-pro-1-di2",
+      "brand": "Giant",
+      "name": "Propel Advanced Pro 1-Di2",
+      "category": "racing",
+      "type": "Bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 6999,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/propel-advanced-pro-1-di2-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/l3u1izj5fwc74bmi47rv/MY27PropelAdvancedPro1-Di2_ColorACryoSilver.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-propel-advanced-sl-0-da",
+      "brand": "Giant",
+      "name": "Propel Advanced SL 0-DA",
+      "category": "racing",
+      "type": "Aero Race bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 15899,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/propel-advanced-sl-0-da-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/ooeoyqudeemy7y27vw84/MY27PropelAdvancedSL0-DA_ColorAPrismPearl1.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-propel-advanced-pro-da",
+      "brand": "Giant",
+      "name": "Propel Advanced Pro-DA",
+      "category": "racing",
+      "type": "Aero Race bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 10699,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/propel-advanced-pro-da-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/r6mp77dp5uotb9rxjyh2/MY27PropelAdvancedPro-DA_ColorASupernovaGrey.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-propel-advanced-sl-0-red",
+      "brand": "Giant",
+      "name": "Propel Advanced SL 0-Red",
+      "category": "racing",
+      "type": "Aero Race bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 16899,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/propel-advanced-sl-0-red-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/j2c5ehwjiwkxlxtxknee/MY27PropelAdvancedSL0-Red_ColorASuperspeedBlue.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-propel-advanced-pro-0-di2",
+      "brand": "Giant",
+      "name": "Propel Advanced Pro 0-Di2",
+      "category": "racing",
+      "type": "Aero Race bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 9299,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/propel-advanced-pro-0-di2-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/ijoqdwyslb8pvmf8vzd9/MY27PropelAdvancedPro0-Di2_ColorAObsidianPulse.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-newtour-e-3-dd",
+      "brand": "Giant",
+      "name": "NewTour E+ 3 DD",
+      "category": "commute",
+      "type": "City & Hybrid bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 3899,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/newtour-eplus-3-dd-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/koiklabmll3csjgc0thr/MY27NewTourE3DD_ColorAKelpForest_v2-NOLOCK.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-talon-0",
+      "brand": "Giant",
+      "name": "Talon 0",
+      "category": "mountain",
+      "type": "XC bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 1549,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/talon-0-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/k8hxhnz9vhczev8q2i1g/MY27Talon290_ColorAStealthChrome.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-talon-1",
+      "brand": "Giant",
+      "name": "Talon 1",
+      "category": "mountain",
+      "type": "XC bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 1289,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/talon-1-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/lvrmdnge44jxa8njpuga/MY27Talon291_ColorADustyBlue.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-talon-2",
+      "brand": "Giant",
+      "name": "Talon 2",
+      "category": "mountain",
+      "type": "XC bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 929,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/talon-2-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/k2yv9neg7wfebootkjhw/MY27Talon292_ColorAEclipse.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-talon-4",
+      "brand": "Giant",
+      "name": "Talon 4",
+      "category": "mountain",
+      "type": "XC bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 749,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/talon-4-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/cmvu0i33oajru4ewurco/MY27Talon294_ColorABlack.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-tcr-advanced-sl-0-red",
+      "brand": "Giant",
+      "name": "TCR Advanced SL 0-Red",
+      "category": "racing",
+      "type": "Race bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 15999,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/tcr-advanced-sl-0-red-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/c8gfy25c3p9u2uy6xe7h/MY27TCRAdvancedSL0-Red_ColorAPrismPearl.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-trinity-advanced-sl-0",
+      "brand": "Giant",
+      "name": "Trinity Advanced SL 0",
+      "category": "racing",
+      "type": "Triathlon / TT bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 15999,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/trinity-advanced-sl-0-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/tovcs835lq8mvbixemhd/MY27TrinityAdvancedSL0_ColorAPrismPearl.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-anthem-advanced-sl-1",
+      "brand": "Giant",
+      "name": "Anthem Advanced SL 1",
+      "category": "mountain",
+      "type": "XC bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 8699,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/anthem-advanced-sl-1-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/ksqn1f4ev4ihrr7h9z2g/MY27AnthemAdvancedSL1_ColorBMercuryArcticLight.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-trance-advanced-e-1",
+      "brand": "Giant",
+      "name": "Trance Advanced E+ 1",
+      "category": "mountain",
+      "type": "Trail bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 10499,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/trance-advanced-eplus-1-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/pxhoobylmtpwokqxpeew/MY27TranceAdvancedE1_ColorAColorA.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-trance-advanced-e-2",
+      "brand": "Giant",
+      "name": "Trance Advanced E+ 2",
+      "category": "mountain",
+      "type": "Trail bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 8299,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/trance-advanced-eplus-2-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/g57qnhuyapmkmmtsftiq/MY27TranceAdvancedE2_ColorA.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-talon-e-2",
+      "brand": "Giant",
+      "name": "Talon E+ 2",
+      "category": "mountain",
+      "type": "Trail bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 3699,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/talon-eplus-2-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/bkhpweq3hxe38fbfyz7k/MY27TalonE2_ColorAMoonstone.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "giant-anthem-advanced-sl-2",
+      "brand": "Giant",
+      "name": "Anthem Advanced SL 2",
+      "category": "mountain",
+      "type": "XC bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 7499,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model-year page on Giant Canada",
+      "soldBy": "Giant",
+      "productUrl": "https://www.giant-bicycles.com/ca/anthem-advanced-sl-2-2027",
+      "image": {
+        "url": "https://images2.giant-bicycles.com/b_white%2Cc_pad%2Ch_1067%2Cq_80%2Cw_1600/umo9ztfuzr9obzh7ygzl/MY27AnthemAdvancedSL2_ColorBCarbon_Shoreline.jpg",
+        "width": 1600,
+        "height": 1067,
+        "credit": "Giant"
+      },
+      "source": "https://static.giant-bicycles.com/sitemaps/sitemap-giant-en-ca.xml",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "rad-power-bikes-radkick-7-speed-radkick-7-speed-electric-lightweight-bike",
+      "brand": "Rad Power Bikes",
+      "name": "RadKick 7-Speed",
+      "category": "commute",
+      "type": "Electric city bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 1899,
+        "currency": "CAD"
+      },
+      "note": "Sold by Rad Power Bikes in Canada",
+      "soldBy": "Rad Power Bikes",
+      "productUrl": "https://radpowerbikes.ca/products/radkick-7-speed-electric-lightweight-bike",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/2422/8407/files/CA_Kick_7_Speed_Arctic_Blue_Right_Side_3d300c0c-a36f-418a-814b-9c908ac27f85.jpg?v=1750800330",
+        "width": 3000,
+        "height": 2000,
+        "credit": "Rad Power Bikes"
+      },
+      "source": "https://radpowerbikes.ca/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "rad-power-bikes-radrunner-max-radrunner-max-electric-cargo-utility-bike",
+      "brand": "Rad Power Bikes",
+      "name": "RadRunner Max",
+      "category": "commute",
+      "type": "Electric cargo bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2999,
+        "currency": "CAD"
+      },
+      "note": "Sold by Rad Power Bikes in Canada",
+      "soldBy": "Rad Power Bikes",
+      "productUrl": "https://radpowerbikes.ca/products/radrunner-max-electric-cargo-utility-bike",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/2422/8407/files/Runner_Max_2025_Deep_Emerald_Green_Right_Side_534d7ab8-c73f-4fd2-b78c-473998fa60c4.png?v=1750264881",
+        "width": 3042,
+        "height": 2000,
+        "credit": "Rad Power Bikes"
+      },
+      "source": "https://radpowerbikes.ca/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "rad-power-bikes-radster-road-radster-road-electric-commuter-bike",
+      "brand": "Rad Power Bikes",
+      "name": "Radster Road",
+      "category": "commute",
+      "type": "Electric city bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2699,
+        "currency": "CAD"
+      },
+      "note": "Sold by Rad Power Bikes in Canada",
+      "soldBy": "Rad Power Bikes",
+      "productUrl": "https://radpowerbikes.ca/products/radster-road-electric-commuter-bike",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/2422/8407/files/Radster_Road_Regular_Bay_Blue_Right_Side.png?v=1708651838",
+        "width": 3000,
+        "height": 2000,
+        "credit": "Rad Power Bikes"
+      },
+      "source": "https://radpowerbikes.ca/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "rad-power-bikes-radster-trail-radster-trail-electric-off-road-bike",
+      "brand": "Rad Power Bikes",
+      "name": "Radster Trail",
+      "category": "commute",
+      "type": "Electric off-road bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2699,
+        "currency": "CAD"
+      },
+      "note": "Sold by Rad Power Bikes in Canada",
+      "soldBy": "Rad Power Bikes",
+      "productUrl": "https://radpowerbikes.ca/products/radster-trail-electric-off-road-bike",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/2422/8407/files/Radster_Trail_Regular_Fir_Green_Right_Side.png?v=1708659207",
+        "width": 3000,
+        "height": 2000,
+        "credit": "Rad Power Bikes"
+      },
+      "source": "https://radpowerbikes.ca/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "panorama-cycles-anticosti-anticosti-my27",
+      "brand": "Panorama Cycles",
+      "name": "Anticosti",
+      "category": "bikepacking",
+      "type": "Bikepacking bike",
+      "modelYear": 2027,
+      "isNew": true,
+      "price": {
+        "amount": 1749,
+        "currency": "CAD"
+      },
+      "newReason": "2027 model on panoramacycles.com",
+      "soldBy": "Panorama Cycles",
+      "productUrl": "https://panoramacycles.com/products/anticosti-my27",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0672/2787/7610/files/ANTICOSTI_a-2.jpg?v=1792769291",
+        "width": 1920,
+        "height": 1280,
+        "credit": "Panorama Cycles"
+      },
+      "source": "https://panoramacycles.com/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "opus-zenith-grx-12-zenith-grx12-midnight-green-lg",
+      "brand": "Opus",
+      "name": "Zenith GRX 12",
+      "category": "commute",
+      "type": "E-Bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 4999.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Cycling Elements (Canadian online shop)",
+      "soldBy": "Cycling Elements",
+      "productUrl": "https://cyclingelements.ca/products/zenith-grx12-midnight-green-lg",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0598/0173/1170/files/OPUS_2025_ZENITH_GRX12_Midnight20Green_SIDE.jpg?v=1790198128",
+        "width": 1440,
+        "height": 1080,
+        "credit": "Cycling Elements"
+      },
+      "source": "https://cyclingelements.ca/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "rad-power-bikes-radwagon-5-radwagon-electric-cargo-bike",
+      "brand": "Rad Power Bikes",
+      "name": "RadWagon 5",
+      "category": "commute",
+      "type": "Electric cargo bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 2949,
+        "currency": "CAD"
+      },
+      "note": "Sold by Rad Power Bikes in Canada",
+      "soldBy": "Rad Power Bikes",
+      "productUrl": "https://radpowerbikes.ca/products/radwagon-electric-cargo-bike",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/2422/8407/files/Wagon_5_Metallic_Blue_Right_Side_1.png?v=1708454397",
+        "width": 3000,
+        "height": 2000,
+        "credit": "Rad Power Bikes"
+      },
+      "source": "https://radpowerbikes.ca/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "kona-splice-kona-splice-black-md",
+      "brand": "Kona",
+      "name": "Splice",
+      "category": "commute",
+      "type": "City & Active bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 799.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Cycling Elements (Canadian online shop)",
+      "soldBy": "Cycling Elements",
+      "productUrl": "https://cyclingelements.ca/products/kona-splice-black-md",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0598/0173/1170/files/my23_splice.webp?v=1743198617",
+        "width": 2000,
+        "height": 1500,
+        "credit": "Cycling Elements"
+      },
+      "source": "https://cyclingelements.ca/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-allez-e5-sport-allez-e5-sport",
+      "brand": "Specialized",
+      "name": "Allez E5 Sport",
+      "category": "racing",
+      "type": "Road bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 1799.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Cycling Elements (Canadian online shop)",
+      "soldBy": "Cycling Elements",
+      "productUrl": "https://cyclingelements.ca/products/allez-e5-sport",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0598/0173/1170/files/90022-60_ALLEZ-E5-DISC-SPORT-DOVGRY-CLGRY-CMLNLPS_HERO.webp?v=1743198563",
+        "width": 1400,
+        "height": 1080,
+        "credit": "Cycling Elements"
+      },
+      "source": "https://cyclingelements.ca/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-riprock-coaster-16-riprock-coaster-16-gloss-purple-haze-lagoon-blue",
+      "brand": "Specialized",
+      "name": "Riprock Coaster 16",
+      "category": "kids",
+      "type": "Kids’ bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 400,
+        "currency": "CAD"
+      },
+      "note": "Sold by Cycling Elements (Canadian online shop)",
+      "soldBy": "Cycling Elements",
+      "productUrl": "https://cyclingelements.ca/products/riprock-coaster-16-gloss-purple-haze-lagoon-blue",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0598/0173/1170/files/96523-20_RIPROCK-CSTR-16-FRYRED-WHT_HERO.webp?v=1743198597",
+        "width": 1400,
+        "height": 1080,
+        "credit": "Cycling Elements"
+      },
+      "source": "https://cyclingelements.ca/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-sirrus-x-2-0-2025-sirrus-x-2-0-sm-satin-cast-lilac-ashen-grey-reflective",
+      "brand": "Specialized",
+      "name": "Sirrus X 2.0 (2025)",
+      "category": "commute",
+      "type": "City & Active bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 849.99,
+        "currency": "CAD"
+      },
+      "note": "Sold by Cycling Elements (Canadian online shop)",
+      "soldBy": "Cycling Elements",
+      "productUrl": "https://cyclingelements.ca/products/sirrus-x-2-0-sm-satin-cast-lilac-ashen-grey-reflective",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0598/0173/1170/files/92325-82_SIRRUS-X-20-KM-CSTLLC-ASHGRY_HERO-PDP_773fffb2-a87c-49f9-8e35-0db1bba26313.webp?v=1743198623",
+        "width": 1400,
+        "height": 1080,
+        "credit": "Cycling Elements"
+      },
+      "source": "https://cyclingelements.ca/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    },
+    {
+      "id": "specialized-sirrus-2-0-step-thru-sirrus-2-0-step-thru-xs-mystic-blue-metallic-black-reflective",
+      "brand": "Specialized",
+      "name": "Sirrus 2.0 Step-Thru",
+      "category": "commute",
+      "type": "City & Active bike",
+      "modelYear": null,
+      "isNew": false,
+      "price": {
+        "amount": 550,
+        "currency": "CAD"
+      },
+      "note": "Sold by Cycling Elements (Canadian online shop)",
+      "soldBy": "Cycling Elements",
+      "productUrl": "https://cyclingelements.ca/products/sirrus-2-0-step-thru-xs-mystic-blue-metallic-black-reflective",
+      "image": {
+        "url": "https://cdn.shopify.com/s/files/1/0598/0173/1170/files/90923-85_SIRRUS-20-ST-MYSBLUMET-BLKREFL_HERO.webp?v=1743198627",
+        "width": 1400,
+        "height": 1080,
+        "credit": "Cycling Elements"
+      },
+      "source": "https://cyclingelements.ca/products.json",
+      "verifiedOn": "2026-11-12",
+      "firstListed": "2026-11-12"
+    }
+  ]
+}
