@@ -17,6 +17,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bikelib as bl  # noqa: E402
 import bpy  # noqa: E402
 import landscape as ls  # noqa: E402
+import bikes  # noqa: E402
+import rider  # noqa: E402
 
 args = sys.argv[sys.argv.index('--') + 1:]
 which, out = args[0], args[1]
@@ -32,6 +34,27 @@ if _sun:
     _orig_sky = ls.sky
     ls.sky = lambda e, r, *a, **k: _orig_sky(_e, _r, *a, **k)
 warm_haze = (0.60, 0.64, 0.78)   # cool, blue-violet air: far ridges read as distance
+
+
+_group_n = [0]
+
+
+def spawn(kind, style, loc, yaw_deg, roll_deg=0.0, pose='seated', jersey=(0.9, 0.2, 0.1), frame=(0.6, 0.05, 0.04), accent=(0.95, 0.9, 0.85),
+          pedal=-0.35, helmet=(0.95, 0.95, 0.95), shorts=(0.02, 0.02, 0.025), scale=1.0, **kw):
+    """A bike with a rider on it. yaw_deg is the heading (0 = +X, 90 = +Y); roll_deg leans it into a corner."""
+    before = set(bpy.data.objects)
+    _group_n[0] += 1
+    key = bikes.build(kind, frame=frame, accent=accent, pedal_angle=pedal)
+    rider.build(key, style=style, jersey=jersey, pose=pose, helmet_col=helmet, shorts=shorts, name='r%d_' % _group_n[0], **kw)
+    objs = [o for o in bpy.data.objects if o not in before]
+    pivot = bpy.data.objects.new('bike_pivot_%d' % _group_n[0], None)
+    bpy.context.scene.collection.objects.link(pivot)
+    for o in objs:
+        o.parent = pivot
+    pivot.scale = (scale, scale, scale)
+    pivot.rotation_euler = (math.radians(roll_deg), 0, math.radians(yaw_deg))
+    pivot.location = loc
+    return pivot
 
 
 def road_pass(y):
@@ -75,42 +98,57 @@ elif which == 'kids':
     ls.sky(13, 105, 0.26, cloud=(1.0, 0.78, 0.62), cloud_amount=(0.46, 0.70), sun_intensity=1.7)
     ls.finish_render(out, W, H, S, cam, tgt, lens=30, exposure=-0.55)
 
-# ------------------------------------------------------------------ mountain: a forest trail
+# ------------------------------------------------------------------ mountain: a rider coming down a forest trail
 elif which == 'mountain':
-    cam, tgt = (-1.6, -4.4, 1.25), (1.0, 18.0, 2.6)
+    cam, tgt = (-1.4, -3.8, 1.0), (1.4, 18.0, 1.9)
 
     def trail(y):
-        return 1.8 + 2.6 * np.sin(y / 9.0)
+        return 0.4 + 2.6 * np.sin(y / 9.0)
     T = ls.Terrain(rng, cam, (0.58, 0.66, 0.62), mountains=60, mountain_start=40, snow=999, relief=2.4, road=trail, road_w=0.9,
                    palette=dict(grass=(0.09, 0.22, 0.05), gold=(0.28, 0.28, 0.07), gravel=(0.36, 0.26, 0.17)), clearing=(0.0, 0.0, 4.0, 6.0), road_end=60)
     fol = ls.Foliage(T)
-    ls.scatter(T, fol, rng, 130, (-34, 34, 9, 70), 'conifer', (5.5, 10.0), avoid=[(0, 0, 3.0), (cam[0], cam[1], 9.0)], road=trail, road_clear=2.2, max_slope=0.9, max_z=60)
-    ls.scatter(T, fol, rng, 24, (-24, 24, 9, 45), 'broadleaf', (4.5, 7.0), avoid=[(0, 0, 3.0), (cam[0], cam[1], 9.0)], road=trail, road_clear=2.2, max_slope=0.9, max_z=60)
+    ls.scatter(T, fol, rng, 130, (-34, 34, 9, 70), 'conifer', (5.5, 10.0), avoid=[(0.5, 1.0, 3.2), (cam[0], cam[1], 9.0)], road=trail, road_clear=2.2, max_slope=0.9, max_z=60)
+    ls.scatter(T, fol, rng, 24, (-24, 24, 9, 45), 'broadleaf', (4.5, 7.0), avoid=[(0.5, 1.0, 3.2), (cam[0], cam[1], 9.0)], road=trail, road_clear=2.2, max_slope=0.9, max_z=60)
     fol.finish()
-    ls.grass_tufts(T, rng, 700, (-6, 6, -4, 14), height=(0.15, 0.4), avoid=[(0.1, 0, 0.9)])
-    ls.flowers(T, rng, 120, (-6, 6, -4, 14), avoid=[(0.1, 0, 1.0)])
-    ls.boulder((0.2, 0.75, 0.30), (0.62, 0.55, 0.38), seed=7)
-    ls.place_bike(loc=(0, 0, 0), rot_z=-8, lean=-12, scale=1.0, frame=(0.012, 0.17, 0.15), bags=False)
+    ls.grass_tufts(T, rng, 700, (-6, 6, -4, 14), height=(0.15, 0.4), avoid=[(1.8, 1.0, 1.0)])
+    ls.flowers(T, rng, 120, (-6, 6, -4, 14), avoid=[(1.8, 1.0, 1.0)])
+    # the lead rider rides toward the camera standing on the pedals; a friend follows up the trail
+    spawn('mtb', 'mtb', (0.55, 1.2, 0.0), -62, roll_deg=-9, pose='standing', jersey=(0.93, 0.34, 0.07), frame=(0.02, 0.13, 0.09),
+          accent=(0.95, 0.55, 0.06), pedal=0.0, helmet=(0.08, 0.08, 0.09), shorts=(0.10, 0.12, 0.16))
+    spawn('mtb', 'mtb', (trail(8.0) - 0.3, 8.5, 0.0), -80, roll_deg=-4, pose='standing', jersey=(0.12, 0.45, 0.75), frame=(0.55, 0.05, 0.04),
+          accent=(0.95, 0.9, 0.85), pedal=0.0, helmet=(0.95, 0.95, 0.95), shorts=(0.07, 0.07, 0.08))
     ls.sky(11, 115, 0.20, cloud=(1.0, 0.7, 0.5), cloud_amount=(0.5, 0.8), sun_intensity=2.0)
     ls.finish_render(out, W, H, S, cam, tgt, lens=28, exposure=-0.2)
 
-# ------------------------------------------------------------------ racing: an empty road at sunrise
+# ------------------------------------------------------------------ racing: a peloton on an empty road at sunrise
 elif which == 'racing':
-    cam, tgt = (-1.0, -5.0, 0.95), (3.5, 40.0, 3.0)
+    cam, tgt = (1.0, -3.2, 1.0), (4.9, 40.0, 2.3)
 
     def straight(y):
         return 3.0 + 7.0 * np.sin(y / 70.0)
-    T = ls.Terrain(rng, cam, (0.62, 0.64, 0.78), mountains=90, mountain_start=70, snow=36, relief=2.0, road=straight, road_w=3.4, stripe=True, road_end=70,
-                   palette=dict(gravel=(0.10, 0.10, 0.12), rock=(0.20, 0.20, 0.27)), clearing=(0.0, 0.0, 2.0, 4.0))
+    T = ls.Terrain(rng, cam, (0.62, 0.64, 0.78), mountains=90, mountain_start=70, snow=36, relief=2.0, road=straight, road_w=3.4, stripe=True,
+                   road_end=70, palette=dict(gravel=(0.10, 0.10, 0.12), rock=(0.20, 0.20, 0.27)), clearing=(0.0, 0.0, 2.0, 4.0))
     fol = ls.Foliage(T)
     ls.scatter(T, fol, rng, 120, (-90, 90, 24, 200), 'conifer', (3.5, 7.0), road=straight, road_clear=5.5, max_z=30)
     fol.finish()
     ls.grass_tufts(T, rng, 800, (-9, 9, -6, 12), avoid=[(0.0, 0.0, 1.2)])
-    # the bike leans on a roadside stone on the shoulder, not stood in the road
-    ls.boulder((-2.6, 0.4, 0.34), (0.5, 0.42, 0.36), seed=9)
-    ls.place_bike(loc=(-2.3, 0.0, 0.0), rot_z=-10, lean=-12, scale=1.0, frame=(0.012, 0.17, 0.15), bags=False)
-    ls.sky(4.0, 160, 0.26, cloud=(1.0, 0.45, 0.22), cloud_amount=(0.45, 0.72), sun_intensity=2.0)
-    ls.finish_render(out, W, H, S, cam, tgt, lens=34, exposure=-0.25)
+    # seven riders, two and three abreast, in team colours, heading up the road toward the mountains
+    teams = [  # jersey, frame, helmet
+        ((0.93, 0.34, 0.07), (0.93, 0.34, 0.07), (0.95, 0.95, 0.95)),
+        ((0.96, 0.96, 0.94), (0.05, 0.25, 0.55), (0.08, 0.28, 0.60)),
+        ((0.97, 0.80, 0.08), (0.10, 0.10, 0.10), (0.12, 0.12, 0.12)),
+        ((0.78, 0.07, 0.08), (0.80, 0.07, 0.08), (0.95, 0.95, 0.95)),
+        ((0.10, 0.30, 0.72), (0.95, 0.95, 0.95), (0.95, 0.95, 0.95)),
+        ((0.90, 0.30, 0.55), (0.12, 0.12, 0.14), (0.90, 0.30, 0.55)),
+        ((0.12, 0.55, 0.30), (0.95, 0.95, 0.92), (0.12, 0.55, 0.30)),
+    ]
+    slots = [(2.2, -1.20), (1.7, 0.60), (4.6, -2.30), (4.3, -0.50), (5.0, 1.40), (7.4, -1.20), (7.9, 0.55)]
+    for i, ((y, dx), (jc, fc, hc)) in enumerate(zip(slots, teams)):
+        cx = straight(y) + dx
+        spawn('road', 'road', (cx, y, 0.0), 90 + rng.uniform(-3.5, 3.5), roll_deg=rng.uniform(-3, 3), jersey=jc, frame=fc, accent=(0.95, 0.95, 0.9),
+              pedal=[-0.35, 0.9, 2.1, 2.9, -1.3, 0.2, 1.6][i], helmet=hc)
+    ls.sky(7.0, 95, 0.26, cloud=(1.0, 0.45, 0.22), cloud_amount=(0.45, 0.72), sun_intensity=2.0)
+    ls.finish_render(out, W, H, S, cam, tgt, lens=34, exposure=-0.2)
 
 # ------------------------------------------------------------------ commute: a city street at dawn
 elif which == 'commute':

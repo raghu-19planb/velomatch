@@ -445,16 +445,18 @@ def _write_focus(out, cam):
     import json
     from bpy_extras.object_utils import world_to_camera_view
     bpy.context.view_layer.update()
-    pivot = bpy.data.objects.get('bike_pivot')
-    if pivot is None:
+    pivots = [o for o in bpy.data.objects if o.name.startswith('bike_pivot')]
+    if not pivots:
         return
     xs, ys = [], []
-    for o in pivot.children:
+    for o in [c for p in pivots for c in p.children]:
         for c in o.bound_box:
             p = world_to_camera_view(bpy.context.scene, cam, o.matrix_world @ __import__('mathutils').Vector(c))
             xs.append(p.x)
             ys.append(1 - p.y)
     pad = 0.03
+    xs = [x for x in xs if -0.5 < x < 1.5] or xs
+    ys = [y for y in ys if -0.5 < y < 1.5] or ys
     box = [max(0, min(xs) - pad), max(0, min(ys) - pad), min(1, max(xs) + pad), min(1, max(ys) + pad)]
     with open(out + '.focus.json', 'w') as f:
         json.dump({'box': box}, f)

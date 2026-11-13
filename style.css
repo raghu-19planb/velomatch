@@ -61,7 +61,7 @@ nav{
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
-nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; row-gap:8px; min-height:64px; padding-top:8px; padding-bottom:8px;}
+nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; row-gap:8px; column-gap:56px; min-height:64px; padding-top:8px; padding-bottom:8px;}
 .logo{display:flex; flex-direction:column; align-items:flex-start; gap:1px; flex:none;}
 .logo .tagline{margin:0; font-size:10.5px; line-height:1.2;}
 
@@ -82,13 +82,16 @@ nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-
 .wheel-o svg{width:100%; height:100%; display:block; overflow:visible; animation:wheel-o-spin 3.6s linear infinite; transform-origin:50% 50%;}
 @keyframes wheel-o-spin{ to{ transform:rotate(360deg); } }
 @media (prefers-reduced-motion: reduce){ .wheel-o svg{animation:none;} }
-.wheel-o .wheel-rim{fill:none; stroke:var(--signal); stroke-width:15;}
-.wheel-o .wheel-spoke{fill:none; stroke:var(--signal); stroke-width:5; stroke-linecap:round;}
-.wheel-o .wheel-hub{fill:var(--signal);}
+/* a laced wheel: tyre, rim, 32 crossed spokes, hub shell, axle, valve */
+.wheel-o .wheel-tyre{fill:none; stroke:var(--signal); stroke-width:9;}
+.wheel-o .wheel-rim{fill:none; stroke:var(--signal); stroke-width:2.6;}
+.wheel-o .wheel-spoke{fill:none; stroke:var(--signal); stroke-width:1.35; stroke-linecap:round;}
+.wheel-o .wheel-hubshell{fill:var(--signal);}
+.wheel-o .wheel-hub{fill:#F2ECDD;}
 .wheel-o .wheel-valve{fill:var(--teal);}
 
 .tagline{font-family:var(--font-tagline); font-weight:400; font-size:13px; color:var(--fog); letter-spacing:0.03em; margin:10px 0 0;}
-.nav-links{display:flex; align-items:center; gap:18px; flex-wrap:wrap; row-gap:8px; justify-content:flex-end;}
+.nav-links{display:flex; align-items:center; gap:18px; flex-wrap:wrap; row-gap:8px; justify-content:flex-end; flex:1 1 540px; min-width:0;}   /* never crowds the logo: at least a 56px gutter, else the links drop to their own row */
 .nav-link{font-size:14.5px; color:var(--fog); text-decoration:none; white-space:nowrap;}
 .nav-link:hover{color:var(--ink);}
 .nav-link.current{color:var(--ink); font-weight:600;}
