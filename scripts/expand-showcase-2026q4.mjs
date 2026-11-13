@@ -23,7 +23,7 @@ import { dimsFromBytes } from './lib/imginfo.mjs';
 const DRY = process.argv.includes('--dry');
 const TODAY = '2026-11-12';
 const MIN_WIDTH = 1000;
-const UA = 'Mozilla/5.0 (compatible; BikeSpokeShowcaseCheck/1.0; +https://raghu-19planb.github.io/velomatch/)';
+const UA = 'Mozilla/5.0 (compatible; SelectVeloShowcaseCheck/1.0; +https://raghu-19planb.github.io/velomatch/)';
 
 let sharp = null;
 try { sharp = createRequire((process.env.SHARP_DIR || '.') + '/')('sharp'); } catch { /* optional */ }

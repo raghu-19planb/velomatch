@@ -5,7 +5,7 @@
 
 import fs from 'node:fs';
 
-const UA = 'Mozilla/5.0 (compatible; BikeSpokeShowcaseCheck/1.0; +https://raghu-19planb.github.io/velomatch/)';
+const UA = 'Mozilla/5.0 (compatible; SelectVeloShowcaseCheck/1.0; +https://raghu-19planb.github.io/velomatch/)';
 
 export function dimsFromBytes(b) {
   // PNG

@@ -19,7 +19,7 @@ import { imageInfo, localImageInfo } from './lib/imginfo.mjs';
 const FILE = process.env.SHOWCASE_FILE || 'data/showcase.json';
 const MIN_WIDTH = 1000;
 const args = new Set(process.argv.slice(2));
-const UA = 'Mozilla/5.0 (compatible; BikeSpokeShowcaseCheck/1.0; +https://raghu-19planb.github.io/velomatch/)';
+const UA = 'Mozilla/5.0 (compatible; SelectVeloShowcaseCheck/1.0; +https://raghu-19planb.github.io/velomatch/)';
 const today = new Date().toISOString().slice(0, 10);
 
 // Recall wording only counts when it appears close to the bike's own model name.

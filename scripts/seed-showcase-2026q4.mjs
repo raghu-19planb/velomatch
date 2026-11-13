@@ -121,7 +121,7 @@ const LIST = [
 ];
 
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-const UA = 'Mozilla/5.0 (compatible; BikeSpokeShowcaseCheck/1.0; +https://raghu-19planb.github.io/velomatch/)';
+const UA = 'Mozilla/5.0 (compatible; SelectVeloShowcaseCheck/1.0; +https://raghu-19planb.github.io/velomatch/)';
 
 async function pageOk(url) {
   try {

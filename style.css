@@ -21,8 +21,8 @@
   --font-body:'IBM Plex Sans', -apple-system, sans-serif;
   --font-mono:'IBM Plex Mono', ui-monospace, monospace;
   --font-hand:'Caveat', cursive;
-  --font-wordmark:'Fredoka', sans-serif;
-  --font-tagline:'Chewy', cursive;
+  --font-wordmark:'Outfit', sans-serif;
+  --font-tagline:var(--font-body);
 }
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -65,27 +65,29 @@ nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-
 .logo{display:flex; flex-direction:column; align-items:flex-start; gap:1px; flex:none;}
 .logo .tagline{margin:0; font-size:10.5px; line-height:1.2;}
 
-/* "BikeSp⊙ke" wordmark: a literal spoked wheel replaces the "o" in "Spoke"
-   and keeps spinning (only the wheel — a real bike's fork/frame don't spin
-   with it), reused identically in the nav, footer and splash. Sized like a
-   lowercase "o" (x-height), not a capital, so it reads as a letter first. */
+/* "selectvelo" wordmark: lowercase, one geometric typeface. "select" is light, "vel" is a
+   heavier weight, and the final "o" is a real spinning wheel (only the wheel spins; a bike's
+   frame doesn't). The wheel is sized to the letter "o" it replaces, so it reads as a letter
+   first. Reused identically in the nav, footer and splash. */
 .wordmark{
-  display:inline-flex; align-items:center; font-family:var(--font-wordmark);
-  font-weight:700; letter-spacing:-0.005em; color:var(--teal); line-height:1; font-size:20px;
+  display:inline-flex; align-items:baseline; font-family:var(--font-wordmark);
+  letter-spacing:-0.025em; line-height:1; font-size:25px; white-space:nowrap;
 }
-.wheel-o{display:inline-block; position:relative; width:0.66em; height:0.66em; margin:0 0.02em; flex:none;}
+.wm-select{font-weight:300; color:var(--ink);}
+.wm-velo{font-weight:600; color:var(--teal);}
+.wheel-o{display:inline-block; position:relative; width:0.52em; height:0.52em; margin-left:0.03em; flex:none;}
 /* The wheel is drawn, so it has no text: this hidden "o" keeps the name
    spelled right for screen readers, copy-paste and search indexing. */
 .sr-o{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
-.wheel-o svg{width:100%; height:100%; display:block; overflow:visible; animation:wheel-o-spin 3.2s linear infinite; transform-origin:50% 50%;}
+.wheel-o svg{width:100%; height:100%; display:block; overflow:visible; animation:wheel-o-spin 3.6s linear infinite; transform-origin:50% 50%;}
 @keyframes wheel-o-spin{ to{ transform:rotate(360deg); } }
 @media (prefers-reduced-motion: reduce){ .wheel-o svg{animation:none;} }
-.wheel-o .wheel-rim{fill:none; stroke:var(--signal); stroke-width:11;}
-.wheel-o .wheel-spoke{stroke:var(--signal); stroke-width:3; stroke-linecap:round;}
-.wheel-o .wheel-hub{fill:var(--teal);}
+.wheel-o .wheel-rim{fill:none; stroke:var(--signal); stroke-width:15;}
+.wheel-o .wheel-spoke{fill:none; stroke:var(--signal); stroke-width:5; stroke-linecap:round;}
+.wheel-o .wheel-hub{fill:var(--signal);}
 .wheel-o .wheel-valve{fill:var(--teal);}
 
-.tagline{font-family:var(--font-tagline); font-weight:400; font-size:14px; color:var(--fog); letter-spacing:0.01em; margin:10px 0 0;}
+.tagline{font-family:var(--font-tagline); font-weight:400; font-size:13px; color:var(--fog); letter-spacing:0.03em; margin:10px 0 0;}
 .nav-links{display:flex; align-items:center; gap:18px; flex-wrap:wrap; row-gap:8px; justify-content:flex-end;}
 .nav-link{font-size:14.5px; color:var(--fog); text-decoration:none; white-space:nowrap;}
 .nav-link:hover{color:var(--ink);}
@@ -580,8 +582,8 @@ footer .tagline{margin:0; font-size:16px;}
   cursor:default;
 }
 .splash-brand{display:flex; flex-direction:column; align-items:center; gap:5px;}
-.splash-brand .wordmark{font-size:34px;}
-.splash-brand .tagline{font-size:15.5px;}
+.splash-brand .wordmark{font-size:48px;}
+.splash-brand .tagline{font-size:15px;}
 .splash-text{max-width:640px;}
 .splash-text h2{font-size:clamp(30px,4.6vw,50px); font-weight:700; letter-spacing:-0.015em; line-height:1.14; margin:0 0 14px;}
 .splash-text .lede{margin:0 auto; font-size:16.5px;}
@@ -1080,7 +1082,7 @@ body.rm-page{
 }
 .flag-banner svg{display:block; width:100%; height:auto; overflow:visible;}
 .flag-cloth{fill:var(--signal);}
-.flag-text{font-family:var(--font-wordmark); font-weight:700; font-size:17px; fill:var(--paper); letter-spacing:0.005em;}
+.flag-text{font-family:var(--font-wordmark); font-weight:600; font-size:17px; fill:var(--paper); letter-spacing:0.005em;}
 .flag-rod{fill:var(--ink);}
 .flag-banner:hover{animation-duration:1.6s;}
 .flag-banner:focus-visible{outline:3px solid var(--teal); outline-offset:4px; border-radius:4px;}

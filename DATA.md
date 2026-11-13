@@ -1,4 +1,4 @@
-# Maintaining the BikeSpoke bike catalogs
+# Maintaining the SelectVelo bike catalogs
 
 `index.html` is the homepage — a category chooser, not a quiz itself. Each quiz category lives on its own page with its own catalog file under `data/`:
 
