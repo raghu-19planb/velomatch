@@ -57,6 +57,8 @@ def _ball(name, p, r, mat):
 
 
 STYLES = {
+    # casual: an everyday ride, upright and relaxed, a plain round helmet, bare hands
+    'casual': dict(helmet='round', baggy=False, glasses=False, torso_lean=math.radians(58), grip='bars', leg_w=1.05, gloves=False),
     # racing: tight lycra, aero helmet, thin glasses, shoes with a stiff sole
     'road': dict(helmet='aero', baggy=False, glasses=True, torso_lean=math.radians(38), grip='hoods', leg_w=1.0),
     # mountain: loose shorts, half-shell helmet and goggles, upright attack position
@@ -114,7 +116,9 @@ def build(key, style='road', jersey=(0.9, 0.2, 0.1), shorts=(0.02, 0.02, 0.025),
     _limb(name + 'neck', neck_base - V((0.01, 0, 0.03)), head_c - head_dir * 0.03, 0.056 * sx, 0.050 * sx, M['skin'])
     # --- head, helmet, glasses
     _blob(name + 'head', head_c - V((0.0, 0, 0.0)), head_c + V((0.02, 0, 0.012)), 0.075 * sx * hs, 0.093 * sx * hs, M['skin'])
-    if st['helmet'] == 'aero':
+    if st['helmet'] == 'round':
+        _blob(name + 'helmet', head_c + V((-0.012, 0, 0.020)), head_c + V((0.015, 0, 0.085)), 0.090 * sx * hs, 0.100 * sx * hs, M['helmet'])
+    elif st['helmet'] == 'aero':
         _blob(name + 'helmet', head_c + V((-0.07, 0, 0.012)), head_c + V((0.07, 0, 0.060)), 0.088 * sx * hs, 0.098 * sx * hs, M['helmet'])
         _blob(name + 'helmet_tail', head_c + V((-0.16, 0, 0.0)), head_c + V((-0.03, 0, 0.03)), 0.050 * sx * hs, 0.065 * sx * hs, M['helmet'])
     else:
@@ -152,6 +156,6 @@ def build(key, style='road', jersey=(0.9, 0.2, 0.1), shorts=(0.02, 0.02, 0.025),
         _ball('%sshoulder%d' % (name, side), shj, 0.062 * sx, sleeve)
         _limb('%suarm%d' % (name, side), shj, elbow, 0.058 * sx, 0.048 * sx, sleeve)
         _limb('%sfarm%d' % (name, side), elbow, hand, 0.044 * sx, 0.032 * sx, M['skin'])
-        _blob('%shand%d' % (name, side), hand + V((-0.03, 0, 0.0)), hand + V((0.05, 0, -0.02)), 0.034 * sx, 0.045 * sx, M['glass'])   # gloves
+        _blob('%shand%d' % (name, side), hand + V((-0.03, 0, 0.0)), hand + V((0.05, 0, -0.02)), 0.034 * sx, 0.045 * sx, M['glass'] if st.get('gloves', True) else M['skin'])   # gloves
 
     return [o for o in bpy.data.objects if o not in before]

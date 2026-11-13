@@ -7,4 +7,6 @@ BLENDER="${BLENDER:-/c/Program Files/Blender Foundation/Blender 5.3/blender.exe}
 OUT="${1:-art/out/sizes}"
 mkdir -p "$OUT"
 OUT="$(cd "$OUT" && pwd -W 2>/dev/null || pwd)"
-"$BLENDER" -b -P art/blender/render_sizes.py -- "$OUT" 1280 72 2>&1 | grep -E "WROTE|Error|Traceback" || true
+"$BLENDER" -b -P art/blender/render_sizes.py -- "$OUT" 1280 64 2>&1 | grep -E "WROTE|Error|Traceback" || true
+# the renders become coloured-pencil sketches (art/paint/pencil.py), which is what the page shows
+"${PYTHON:-/c/Program Files/Blender Foundation/Blender 5.3/5.3/python/bin/python.exe}" art/paint/pencil.py "$OUT" "${OUT}_pencil"

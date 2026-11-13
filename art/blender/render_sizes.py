@@ -52,8 +52,8 @@ def one(h, kind, geo, R, wheel_lbl, jersey, frame, helmet):
     saddle_z = (0.292 * geo if kind == 'gravel' else bikes.SPECS['kids']['bb'] * geo) + 0.4027 * h / 100.0   # bottom bracket + 0.885 x inseam
     crank = max(0.100, min(0.175, 0.175 * (h / 178.0) ** 0.7))
     key = bikes.build(kind, frame=frame, accent=(0.95, 0.9, 0.82), pedal_angle=0.55, geo=geo, R=R, saddle_z=saddle_z, crank=crank, extras=(kind != 'gravel'))
-    rider.build(key, style='mtb', jersey=jersey, shorts=(0.10, 0.12, 0.18), helmet_col=helmet, skin=(0.50, 0.33, 0.23), pose='seated',
-                lean_deg=44, scale=s, head_scale=1.0 + 0.55 * (1 - s), name='kid_')
+    rider.build(key, style='casual', jersey=jersey, shorts=(0.16, 0.20, 0.30), helmet_col=helmet, skin=(0.62, 0.43, 0.32), pose='seated',
+                lean_deg=(56 if h <= 152 else 48 - (h - 165) * 0.2), scale=s, head_scale=1.0 + 0.55 * (1 - s), name='kid_')
     bl.studio_ground()
     w = bpy.data.worlds.new('studio')
     w.use_nodes = True

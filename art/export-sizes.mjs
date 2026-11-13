@@ -1,12 +1,12 @@
-// Turns the size renders in art/out/sizes into the web images in images/sizes/.
+// Turns the pencil sketches in art/out/sizes_pencil into the web images in images/sizes/.
 //
-//   SHARP_DIR=<folder containing node_modules/sharp> node art/export-sizes.mjs [art/out/sizes]
+//   SHARP_DIR=<folder containing node_modules/sharp> node art/export-sizes.mjs [art/out/sizes_pencil]
 import fs from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 
 const sharp = createRequire((process.env.SHARP_DIR || '.') + '/')('sharp');
-const IN = process.argv[2] || 'art/out/sizes';
+const IN = process.argv[2] || 'art/out/sizes_pencil';
 const OUT = 'images/sizes';
 fs.mkdirSync(OUT, { recursive: true });
 let total = 0;
