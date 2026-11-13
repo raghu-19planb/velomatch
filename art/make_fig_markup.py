@@ -23,8 +23,8 @@ PAGES = {
     'mountainbiking.html': dict(kind='mtb', img='mtb', wheel='⌀ 27.5 / 29', standover=None, wheelbase='WHEELBASE — stable at speed', note=('shock', 'rear shock', -24, -118, True),
                                 travel=True,
                                 alt='Studio render of a full-suspension mountain bike, annotated with wheel diameter, front and rear suspension travel, and wheelbase'),
-    'bikepacking.html': dict(kind='gravel', img='gravel', wheel='⌀ 650b/700c', standover=None, wheelbase='WHEELBASE — loaded &amp; steady', note=('frame_bag', 'frame bag', -34, -104, True),
-                             alt='Studio render of a loaded bikepacking bike with a frame bag, seat pack and handlebar roll, annotated with wheel diameter, standover height, and wheelbase'),
+    'bikepacking.html': dict(kind='gravel', img='gravel', wheel='⌀ 650b/700c', standover=None, wheelbase='WHEELBASE — loaded &amp; steady', note=('pannier', 'racks & panniers', -30, -128, True),
+                             alt='Studio render of a loaded bikepacking bike with front and rear racks, panniers, a duffel and a handlebar bag, annotated with wheel diameter, standover height, and wheelbase'),
 }
 
 

@@ -65,7 +65,7 @@ STYLES = {
 
 
 def build(key, style='road', jersey=(0.9, 0.2, 0.1), shorts=(0.02, 0.02, 0.025), helmet_col=(0.95, 0.95, 0.95), skin=(0.52, 0.34, 0.24),
-          pose='seated', lean_deg=None, scale=1.0, sock=(0.95, 0.95, 0.95), shoe=(0.9, 0.9, 0.9), name=''):
+          pose='seated', lean_deg=None, scale=1.0, sock=(0.95, 0.95, 0.95), shoe=(0.9, 0.9, 0.9), name='', head_scale=1.0):
     """Seat a rider on the bike described by `key` (from bikes.build). Returns the list of new objects."""
     st = STYLES[style]
     before = set(bpy.data.objects)
@@ -83,6 +83,7 @@ def build(key, style='road', jersey=(0.9, 0.2, 0.1), shorts=(0.02, 0.02, 0.025),
     }
     k = key
     sx = scale
+    hs = head_scale                                   # children have proportionally bigger heads
     # --- body dimensions (metres), for a ~1.78 m rider
     thigh, shin = 0.43 * sx, 0.44 * sx
     torso_len, uarm, farm = 0.50 * sx, 0.30 * sx, 0.27 * sx
@@ -91,7 +92,7 @@ def build(key, style='road', jersey=(0.9, 0.2, 0.1), shorts=(0.02, 0.02, 0.025),
     # --- anchor points on the bike
     saddle = V((k['saddle'][0], 0.0, k['saddle'][1]))
     standing = pose == 'standing'
-    hip = saddle + V((0.005, 0, 0.085)) if not standing else saddle + V((-0.17, 0, 0.19))
+    hip = saddle + V((0.005 * sx, 0, 0.085 * sx)) if not standing else saddle + V((-0.17, 0, 0.19))
     lean = math.radians(lean_deg) if lean_deg is not None else st['torso_lean']
     if standing:
         lean = math.radians(lean_deg if lean_deg is not None else 40)
@@ -108,19 +109,19 @@ def build(key, style='road', jersey=(0.9, 0.2, 0.1), shorts=(0.02, 0.02, 0.025),
     _blob(name + 'torso', chest_a, chest_b, 0.150 * sx, 0.108 * sx, M['jersey'])
     _blob(name + 'back', hip + V((0, 0, 0.0)), hip + (sh_mid - hip) * 0.55, 0.138 * sx, 0.100 * sx, M['jersey2'])   # darker lower back panel
     neck_base = sh_mid + V((0.02, 0, 0.0))
-    head_dir = V((math.cos(lean * 0.35 + 0.30), 0, math.sin(lean * 0.35 + 0.30)))
-    head_c = neck_base + head_dir * 0.20 * sx
-    _limb(name + 'neck', neck_base - V((0.01, 0, 0.02)), head_c - head_dir * 0.07, 0.048 * sx, 0.044 * sx, M['skin'])
+    head_dir = V((math.cos(lean * 0.22 + 0.16), 0, math.sin(lean * 0.22 + 0.16)))
+    head_c = neck_base + head_dir * 0.135 * sx * (0.75 + 0.25 * hs)
+    _limb(name + 'neck', neck_base - V((0.01, 0, 0.03)), head_c - head_dir * 0.03, 0.056 * sx, 0.050 * sx, M['skin'])
     # --- head, helmet, glasses
-    _blob(name + 'head', head_c - V((0.0, 0, 0.0)), head_c + V((0.02, 0, 0.012)), 0.075 * sx, 0.093 * sx, M['skin'])
+    _blob(name + 'head', head_c - V((0.0, 0, 0.0)), head_c + V((0.02, 0, 0.012)), 0.075 * sx * hs, 0.093 * sx * hs, M['skin'])
     if st['helmet'] == 'aero':
-        _blob(name + 'helmet', head_c + V((-0.07, 0, 0.012)), head_c + V((0.07, 0, 0.060)), 0.088 * sx, 0.098 * sx, M['helmet'])
-        _blob(name + 'helmet_tail', head_c + V((-0.16, 0, 0.0)), head_c + V((-0.03, 0, 0.03)), 0.050 * sx, 0.065 * sx, M['helmet'])
+        _blob(name + 'helmet', head_c + V((-0.07, 0, 0.012)), head_c + V((0.07, 0, 0.060)), 0.088 * sx * hs, 0.098 * sx * hs, M['helmet'])
+        _blob(name + 'helmet_tail', head_c + V((-0.16, 0, 0.0)), head_c + V((-0.03, 0, 0.03)), 0.050 * sx * hs, 0.065 * sx * hs, M['helmet'])
     else:
-        _blob(name + 'helmet', head_c + V((-0.03, 0, 0.012)), head_c + V((0.07, 0, 0.078)), 0.088 * sx, 0.10 * sx, M['helmet'])
-        _blob(name + 'visor', head_c + V((0.055, 0, 0.060)), head_c + V((0.135, 0, 0.045)), 0.050 * sx, 0.075 * sx, M['helmet'])
+        _blob(name + 'helmet', head_c + V((-0.03, 0, 0.012)), head_c + V((0.07, 0, 0.078)), 0.088 * sx * hs, 0.10 * sx * hs, M['helmet'])
+        _blob(name + 'visor', head_c + V((0.07, 0, 0.045)), head_c + V((0.125, 0, 0.035)), 0.036 * sx * hs, 0.062 * sx * hs, M['helmet'])
     if st['glasses']:
-        _blob(name + 'glasses', head_c + V((0.045, -0.0, 0.020)), head_c + V((0.090, 0, 0.018)), 0.078 * sx, 0.020 * sx, M['glass'])
+        _blob(name + 'glasses', head_c + V((0.045, -0.0, 0.020)), head_c + V((0.090, 0, 0.018)), 0.078 * sx * hs, 0.020 * sx * hs, M['glass'])
 
     # --- legs: hip joints to pedals, knees bend forward (toward +x)
     ankle_off = V((-0.050, 0, 0.100)) * sx                                  # foot sits above the pedal axle

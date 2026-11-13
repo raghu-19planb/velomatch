@@ -57,6 +57,23 @@ def spawn(kind, style, loc, yaw_deg, roll_deg=0.0, pose='seated', jersey=(0.9, 0
     return pivot
 
 
+
+def spawn_bike(kind, loc, yaw_deg, roll_deg=0.0, frame=(0.012, 0.17, 0.15), accent=(0.89, 0.33, 0.11), load=None, pedal=-0.35, scale=1.0):
+    """A bike on its own (no rider), parented to one pivot so it can be leaned against something."""
+    before = set(bpy.data.objects)
+    _group_n[0] += 1
+    bikes.build(kind, frame=frame, accent=accent, pedal_angle=pedal, load=load)
+    objs = [o for o in bpy.data.objects if o not in before]
+    pivot = bpy.data.objects.new('bike_pivot_%d' % _group_n[0], None)
+    bpy.context.scene.collection.objects.link(pivot)
+    for o in objs:
+        o.parent = pivot
+    pivot.scale = (scale, scale, scale)
+    pivot.rotation_euler = (math.radians(roll_deg), 0, math.radians(yaw_deg))
+    pivot.location = loc
+    return pivot
+
+
 def road_pass(y):
     return 5.5 - 0.10 * y + 9.0 * np.sin(y / 26.0)
 
@@ -76,8 +93,9 @@ if which.startswith('pano') or which == 'bikepacking':
     fol.finish()
     ls.flowers(T, rng, 520, (-12, 12, -9, 16), avoid=[(0.2, 0.0, 1.7)])
     ls.grass_tufts(T, rng, 700, (-12, 12, -9, 16), avoid=[(0.2, 0.0, 1.5)])
-    ls.boulder((0.15, 0.95, 0.42), (0.85, 0.72, 0.62))
-    ls.place_bike(lean=-13, rot_z=-6)
+    ls.boulder((0.15, 1.10, 0.42), (0.85, 0.72, 0.62))
+    # a touring bike with racks and panniers front and back, leaning on the boulder
+    spawn_bike('gravel', (0.0, 0.0, 0.0), -6, -11, frame=(0.012, 0.17, 0.15), accent=(0.89, 0.33, 0.11), load='panniers')
     ls.sky(8, 100, 0.22, sun_intensity=1.6)
     transparent = which in ('pano-mid', 'pano-near')
     ls.finish_render(out, W, H, S, cam, tgt, lens=lens, transparent=transparent, clip=clip)

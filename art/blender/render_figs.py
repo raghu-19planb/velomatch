@@ -33,7 +33,7 @@ COLOURS = {
 }
 
 bl.reset()
-key = bikes.build(kind, pedal_angle=-0.35, **COLOURS[kind])
+key = bikes.build(kind, pedal_angle=-0.35, load='panniers' if kind == 'gravel' else None, **COLOURS[kind])
 bl.studio_ground()
 
 # studio world: a bright overhead sky fading to a darker floor, so polished metal has something to reflect

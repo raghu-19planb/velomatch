@@ -160,7 +160,7 @@ def _chain(bb, rear, ring_r, cog_r, mat, y=-0.040):
     bpy.context.scene.collection.objects.link(o)
 
 
-def _bars(kind, x0, z0, mats):
+def _bars(kind, x0, z0, mats, k=1.0):
     """Handlebar half-curve points from the stem clamp (centre) outward on the -Y side; returns (curve points, grip centre, hand point)."""
     if kind == 'drop':
         half = [(0.0, -0.026, 0.0), (0.0, -0.100, 0.0), (0.0, -0.198, -0.002), (0.026, -0.211, -0.008), (0.086, -0.215, -0.032),
@@ -183,11 +183,24 @@ def _bars(kind, x0, z0, mats):
         hand = (-0.014, -0.235, 0.030)
         mat = mats['dark']
         rad = 0.011
-    return [(x0 + p[0], p[1], z0 + p[2]) for p in half], (x0 + hand[0], hand[1], z0 + hand[2]), mat, rad
+    return [(x0 + p[0] * k, p[1] * k, z0 + p[2] * k) for p in half], (x0 + hand[0] * k, hand[1] * k, z0 + hand[2] * k), mat, rad
 
 
-def build(kind, frame=(0.012, 0.19, 0.16), accent=(0.89, 0.33, 0.11), pedal_angle=-0.35, extras=True):
-    S = SPECS[kind]
+def build(kind, frame=(0.012, 0.19, 0.16), accent=(0.89, 0.33, 0.11), pedal_angle=-0.35, extras=True, geo=1.0, R=None, saddle_z=None, crank=None, load=None):
+    """geo scales the whole frame (a smaller or larger size); R sets the tyre radius, saddle_z the saddle height,
+    crank the crank length; load='panniers' (gravel) adds racks and panniers instead of bikepacking bags."""
+    S = dict(SPECS[kind])
+    if geo != 1.0:
+        for k_ in ('bb', 'rear', 'front', 'R', 't', 'ring', 'cogs', 'saddle', 'post', 'crank'):
+            S[k_] = S[k_] * geo
+        for k_ in ('seat_top', 'tt_seat', 'head_top', 'head_bot', 'stem'):
+            S[k_] = tuple(v * geo for v in S[k_])
+    if R:
+        S['R'] = R
+    if crank:
+        S['crank'] = crank
+    if saddle_z:
+        S['post'] = saddle_z - 0.046 - S['seat_top'][1]
     mats = _mats(frame, accent)
     R, t = S['R'], S['t']
     BB = V((0.0, 0.0, S['bb']))
@@ -265,7 +278,7 @@ def build(kind, frame=(0.012, 0.19, 0.16), accent=(0.89, 0.33, 0.11), pedal_angl
     bl.tube('steerer', [head_top, ste_top], 0.0145, mats['dark'], res=10)
     clamp = ste_top + V((S['stem'][0], 0, -0.004))
     bl.tube('stem', [ste_top - V((0, 0, 0.004)), clamp], 0.0185, mats['dark'], res=10)
-    pts, hand, bmat, brad = _bars(S['bars'], clamp.x, clamp.z, mats)
+    pts, hand, bmat, brad = _bars(S['bars'], clamp.x, clamp.z, mats, k=max(0.72, min(1.0, geo)))
     half = pts
     left = [(p[0], -p[1], p[2]) for p in half]
     bl.tube('bar', list(reversed(left)) + [(clamp.x, 0.0, clamp.z)] + half, brad, bmat, kind='NURBS', res=10)
@@ -313,11 +326,11 @@ def build(kind, frame=(0.012, 0.19, 0.16), accent=(0.89, 0.33, 0.11), pedal_angl
     bl.box('qr', (FRONT.x, 0.058, FRONT.z), (0.010, 0.012, 0.026), mats['alu'], bevel=0.002)
 
     if extras:
-        _extras(kind, S, mats, key, BB, REAR, FRONT, seat_top, tt_seat, head_top, head_bot, clamp, post_top)
+        _extras(kind, S, mats, key, BB, REAR, FRONT, seat_top, tt_seat, head_top, head_bot, clamp, post_top, load)
     return key
 
 
-def _extras(kind, S, mats, key, BB, REAR, FRONT, seat_top, tt_seat, head_top, head_bot, clamp, post_top):
+def _extras(kind, S, mats, key, BB, REAR, FRONT, seat_top, tt_seat, head_top, head_bot, clamp, post_top, load=None):
     R = S['R']
     if kind == 'commute':
         # mudguards
@@ -342,7 +355,28 @@ def _extras(kind, S, mats, key, BB, REAR, FRONT, seat_top, tt_seat, head_top, he
         bl.cyl('bell', (clamp.x - 0.01, 0.075, clamp.z + 0.025), 0.022, 0.016, mats['alu'], axis='Z')
         bl.tube('kickstand', [(BB.x - 0.14, 0.055, BB.z - 0.01), (BB.x - 0.20, 0.10, 0.0)], 0.005, mats['dark'], res=6)
         key['rack'] = (REAR.x + 0.075, rack_z)
-    if kind == 'gravel':
+    if kind == 'gravel' and load == 'panniers':
+        rz = REAR.z + 0.43
+        bl.box('rack', (REAR.x + 0.07, 0, rz), (0.34, 0.120, 0.012), mats['alu'], bevel=0.003)
+        for s in (-1, 1):
+            bl.tube('rack_leg%d' % s, [(REAR.x, s * 0.058, REAR.z + 0.01), (REAR.x + 0.05, s * 0.056, rz - 0.006), (REAR.x + 0.235, s * 0.050, rz - 0.006)], 0.0048, mats['alu'], res=6)
+            bl.tube('rack_stay%d' % s, [(REAR.x + 0.11, s * 0.050, rz - 0.004), (tt_seat.x - 0.01, s * 0.030, tt_seat.z - 0.07)], 0.0048, mats['alu'], res=6)
+            bl.tube('rack_rail%d' % s, [(REAR.x + 0.01, s * 0.100, rz - 0.150), (REAR.x + 0.13, s * 0.100, rz - 0.150)], 0.0042, mats['alu'], res=6)
+            bl.box('pannier_r%d' % s, (REAR.x + 0.07, s * 0.178, rz - 0.165), (0.300, 0.130, 0.320), mats['bagorange'], bevel=0.028)
+            bl.box('pannier_rt%d' % s, (REAR.x + 0.07, s * 0.178, rz + 0.015), (0.250, 0.115, 0.050), mats['canvas'], bevel=0.018)
+            bl.box('pannier_rs%d' % s, (REAR.x + 0.07, s * 0.245, rz - 0.12), (0.200, 0.006, 0.040), mats['dark'], bevel=0.002)
+            bl.tube('lowrider%d' % s, [(FRONT.x, s * 0.056, FRONT.z + 0.01), (FRONT.x - 0.03, s * 0.066, FRONT.z + 0.14), (FRONT.x - 0.13, s * 0.078, FRONT.z + 0.155), (FRONT.x + 0.11, s * 0.078, FRONT.z + 0.155)], 0.0042, mats['alu'], res=6)
+            bl.box('pannier_f%d' % s, (FRONT.x - 0.01, s * 0.135, FRONT.z + 0.045), (0.235, 0.105, 0.250), mats['bagteal'], bevel=0.022)
+            bl.box('pannier_ft%d' % s, (FRONT.x - 0.01, s * 0.135, FRONT.z + 0.185), (0.200, 0.095, 0.040), mats['canvas'], bevel=0.014)
+        bl.cyl('duffel', (REAR.x + 0.07, 0.0, rz + 0.075), 0.072, 0.44, mats['canvas'], axis='Y')
+        bl.cyl('bar_bag', (clamp.x + 0.02, 0.0, clamp.z - 0.012), 0.062, 0.34, mats['bagorange'], axis='Y')
+        bl.cyl('bottle', (0.165, 0.0, 0.505), 0.035, 0.205, mats['bagteal'], axis='Y')
+        bpy.context.active_object.rotation_euler = (0, math.radians(14), 0)
+        key['pannier'] = (REAR.x + 0.07, rz - 0.165)
+        key['front_pannier'] = (FRONT.x - 0.01, FRONT.z + 0.045)
+        key['rack'] = (REAR.x + 0.07, rz)
+        key['bar_roll'] = (clamp.x + 0.02, clamp.z - 0.012)
+    elif kind == 'gravel':
         bl.ellipsoid('frame_bag', (0.115, 0.0, 0.560), (0.225, 0.036, 0.115), mats['bagteal'], rot=(0, math.radians(14), 0))
         bl.cyl('bar_roll', (clamp.x + 0.015, 0.0, clamp.z - 0.020), 0.060, 0.36, mats['bagorange'], axis='Y')
         bl.cyl('saddle_bag', (post_top.x - 0.145, 0.0, post_top.z + 0.015), 0.066, 0.36, mats['bagorange'], axis='Y')

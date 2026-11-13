@@ -696,10 +696,14 @@ body.rm-page{
 .fit-radar-category{font-size:14.5px; color:var(--fog); margin:0;}
 
 .fit-radar-diagram{position:relative; display:flex; flex-direction:column; align-items:center; min-height:220px; justify-content:flex-end;}
-.fit-radar-scale-wrap{
-  width:100%; transform-origin:50% 100%;
-  transition:transform .28s cubic-bezier(.34,1.2,.4,1);
-}
+.fit-radar-scale-wrap{width:100%;}
+/* the diagram is a stack of renders, one per size, all on the same camera and scale: the nearest one to the
+   slider is shown, so a small child on a small bike really is smaller than a tall adult on a big one */
+.radar-stage{position:relative; width:100%; aspect-ratio:640/500;}
+.radar-img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; transition:opacity .28s ease;}
+.radar-img.is-on{opacity:1;}
+.radar-ruler{position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none;}
+@media (prefers-reduced-motion: reduce){ .radar-img{transition:none;} }
 .fit-radar-diagram .bike-diagram{width:100%; height:auto; display:block;}
 .fit-radar-labels{
   display:flex; gap:18px; flex-wrap:wrap; justify-content:center;

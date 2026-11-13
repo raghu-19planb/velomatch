@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=selectvelo8">
+<link rel="stylesheet" href="style.css?v=selectvelo9">
 <script src="nav-transition.js"></script>
 <script src="flag-banner.js" defer></script>
 <script src="ride.js" defer></script>
@@ -65,9 +65,9 @@
 <section class="ride" id="ride" aria-label="Introduction: five kinds of ride">
   <div class="ride-stage" id="rideStage">
     <div class="ride-world" id="rideWorld" aria-hidden="true">
-      <div class="ride-layer" data-depth="0.25"><img src="images/intro/layer_far.webp?v=3" width="3000" height="1000" fetchpriority="high" decoding="async" alt=""></div>
-      <div class="ride-layer" data-depth="0.60"><img src="images/intro/layer_mid.webp?v=3" width="3000" height="1000" decoding="async" alt=""></div>
-      <div class="ride-layer" data-depth="1.00"><img src="images/intro/layer_near.webp?v=3" width="3000" height="1000" decoding="async" alt=""></div>
+      <div class="ride-layer" data-depth="0.25"><img src="images/intro/layer_far.webp?v=5" width="3000" height="1000" fetchpriority="high" decoding="async" alt=""></div>
+      <div class="ride-layer" data-depth="0.60"><img src="images/intro/layer_mid.webp?v=5" width="3000" height="1000" decoding="async" alt=""></div>
+      <div class="ride-layer" data-depth="1.00"><img src="images/intro/layer_near.webp?v=5" width="3000" height="1000" decoding="async" alt=""></div>
       <div class="ride-grade" id="rideGrade"></div>
     </div>
     <div class="ride-hero" id="rideHero">
@@ -77,23 +77,23 @@
     </div>
     <div class="ride-cards" id="rideCards">
       <a class="ride-card" href="kids.html" data-i="0">
-        <img src="images/intro/kids.webp?v=3" width="1200" height="900" loading="eager" decoding="async" alt="An oil painting of a small orange bike in a meadow of wildflowers, with trees and a soft sky behind.">
+        <img src="images/intro/kids.webp?v=5" width="1200" height="900" loading="eager" decoding="async" alt="An oil painting of a small orange bike in a meadow of wildflowers, with trees and a soft sky behind.">
         <span class="rc-body"><span class="rc-title">A first bike</span><span class="rc-line">Height, experience and budget, matched to real geometry.</span><span class="rc-cta">Find their first bike</span></span>
       </a>
       <a class="ride-card" href="commute.html" data-i="1">
-        <img src="images/intro/commute.webp?v=3" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike leaning on a lamp post on a city street at dawn, brick buildings and warm windows on either side.">
+        <img src="images/intro/commute.webp?v=5" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike leaning on a lamp post on a city street at dawn, brick buildings and warm windows on either side.">
         <span class="rc-body"><span class="rc-title">The daily ride</span><span class="rc-line">Distance, route and cargo, matched to your commute.</span><span class="rc-cta">Find your commute bike</span></span>
       </a>
       <a class="ride-card" href="mountainbiking.html" data-i="2">
-        <img src="images/intro/mountain.webp?v=3" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike resting on a rock beside a forest trail, tall pines behind it.">
+        <img src="images/intro/mountain.webp?v=5" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike resting on a rock beside a forest trail, tall pines behind it.">
         <span class="rc-body"><span class="rc-title">Into the trees</span><span class="rc-line">Trail, enduro or cross-country, matched to your terrain.</span><span class="rc-cta">Find your mountain bike</span></span>
       </a>
       <a class="ride-card" href="bikepacking.html" data-i="3">
-        <img src="images/intro/bikepacking.webp?v=3" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a loaded bikepacking bike leaning on a boulder, snow-capped mountains behind.">
+        <img src="images/intro/bikepacking.webp?v=5" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a loaded bikepacking bike leaning on a boulder, snow-capped mountains behind.">
         <span class="rc-body"><span class="rc-title">Off the map</span><span class="rc-line">Gravel, touring or ultra: built to carry what you need.</span><span class="rc-cta">Find your bikepacking bike</span></span>
       </a>
       <a class="ride-card" href="racing.html" data-i="4">
-        <img src="images/intro/racing.webp?v=3" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a road bike resting by an empty road at sunrise, mountains in the distance.">
+        <img src="images/intro/racing.webp?v=5" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a road bike resting by an empty road at sunrise, mountains in the distance.">
         <span class="rc-body"><span class="rc-title">First light on the road</span><span class="rc-line">Road, triathlon or audax, matched to your event.</span><span class="rc-cta">Find your racing bike</span></span>
       </a>
     </div>
@@ -126,29 +126,25 @@
       </div>
       <div class="fit-radar-diagram">
         <div class="fit-radar-scale-wrap" id="radarScaleWrap">
-          <svg class="bike-diagram" viewBox="0 0 640 410" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <line class="dim-ext" x1="40" y1="340" x2="600" y2="340"/>
-            <circle class="wheel-ring" cx="160" cy="268" r="72"/>
-            <circle class="wheel-ring" cx="470" cy="268" r="72"/>
-            <circle class="hub" cx="160" cy="268" r="5.5"/>
-            <circle class="hub" cx="470" cy="268" r="5.5"/>
-            <g class="frame-line">
-              <path d="M300 255 L240 140"/>
-              <path d="M240 140 L410 120"/>
-              <path d="M300 255 L410 190"/>
-              <path d="M410 120 L410 190"/>
-              <path d="M410 190 L470 268"/>
-              <path d="M300 255 L160 268"/>
-              <path d="M240 140 L160 268"/>
-              <path d="M240 140 L222 102"/>
-              <path d="M410 120 L400 90"/>
-              <path d="M375 88 L425 92"/>
-              <path d="M300 255 L322 278"/>
-              <path d="M300 255 L278 232"/>
-            </g>
-            <circle class="wheel-ring" cx="300" cy="255" r="13"/>
-            <ellipse cx="196" cy="108" rx="20" ry="6" transform="rotate(-8 196 108)" fill="none" stroke="var(--signal)" stroke-width="3"/>
-          </svg>
+          <div class="radar-stage" id="radarStage" role="img" aria-label="A child about 125 cm tall riding a bike with 20 inch wheels">
+            <img class="radar-img" src="images/sizes/size_100.webp?v=2" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_112.webp?v=2" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img is-on" src="images/sizes/size_125.webp?v=2" width="1280" height="1000"  decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_140.webp?v=2" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_152.webp?v=2" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_165.webp?v=2" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_178.webp?v=2" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_192.webp?v=2" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <svg class="radar-ruler" viewBox="0 0 640 500" aria-hidden="true">
+              <line class="dim-ext" x1="24" y1="440" x2="616" y2="440"/>
+              <g id="radarRuler">
+                <line class="dim-line" id="radarRulerLine" x1="38" y1="440" x2="38" y2="200"/>
+                <line class="dim-tick" x1="31" y1="440" x2="45" y2="440"/>
+                <line class="dim-tick" id="radarRulerTick" x1="31" y1="200" x2="45" y2="200"/>
+                <text class="dim-label" id="radarRulerText" x="50" y="196">125 cm</text>
+              </g>
+            </svg>
+          </div>
         </div>
         <div class="fit-radar-labels">
           <span id="radarWheel">⌀ 16in</span>
@@ -164,7 +160,7 @@
   <div class="wrap">
     <div class="category-grid">
       <a href="kids.html" class="category-card">
-        <img class="cat-art" src="images/intro/kids.webp?v=3" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a small orange bike in a meadow of wildflowers, with trees and a soft sky behind.">
+        <img class="cat-art" src="images/intro/kids.webp?v=5" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a small orange bike in a meadow of wildflowers, with trees and a soft sky behind.">
         <div class="fig-tag"><span>Sheet 001</span></div>
         <h3>Kids' first bike</h3>
         <p>Height, experience, and budget — matched against real kids' bike geometry, not a size sticker on a rack.</p>
@@ -172,7 +168,7 @@
       </a>
 
       <a href="commute.html" class="category-card">
-        <img class="cat-art" src="images/intro/commute.webp?v=3" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike leaning on a lamp post on a city street at dawn, brick buildings and warm windows on either side.">
+        <img class="cat-art" src="images/intro/commute.webp?v=5" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike leaning on a lamp post on a city street at dawn, brick buildings and warm windows on either side.">
         <div class="fig-tag"><span>Sheet 002</span></div>
         <h3>Commuting</h3>
         <p>Distance, route, cargo, and power preference — matched to a bike built for your actual ride to work or school.</p>
@@ -180,7 +176,7 @@
       </a>
 
       <a href="bikepacking.html" class="category-card">
-        <img class="cat-art" src="images/intro/bikepacking.webp?v=3" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a loaded bikepacking bike leaning on a boulder, snow-capped mountains behind.">
+        <img class="cat-art" src="images/intro/bikepacking.webp?v=5" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a loaded bikepacking bike leaning on a boulder, snow-capped mountains behind.">
         <div class="fig-tag"><span>Sheet 003</span></div>
         <h3>Bikepacking</h3>
         <p>Terrain, trip length, and how you carry your gear — from a weekend loop to a self-supported ultra race.</p>
@@ -188,7 +184,7 @@
       </a>
 
       <a href="mountainbiking.html" class="category-card">
-        <img class="cat-art" src="images/intro/mountain.webp?v=3" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike resting on a rock beside a forest trail, tall pines behind it.">
+        <img class="cat-art" src="images/intro/mountain.webp?v=5" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike resting on a rock beside a forest trail, tall pines behind it.">
         <div class="fig-tag"><span>Sheet 004</span></div>
         <h3>Mountain biking</h3>
         <p>XC, trail, enduro, or downhill — matched on suspension travel and geometry, not a generic "mountain bike" shelf.</p>
@@ -196,7 +192,7 @@
       </a>
 
       <a href="racing.html" class="category-card">
-        <img class="cat-art" src="images/intro/racing.webp?v=3" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a road bike resting by an empty road at sunrise, mountains in the distance.">
+        <img class="cat-art" src="images/intro/racing.webp?v=5" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a road bike resting by an empty road at sunrise, mountains in the distance.">
         <div class="fig-tag"><span>Sheet 005</span></div>
         <h3>Racing</h3>
         <p>Road racing, triathlon, and ultra-endurance — from a criterium to Ironman to an all-night push like LEL or PBP.</p>
@@ -259,7 +255,10 @@ const radarSlider = document.getElementById('radarHeight');
 const radarOut = document.getElementById('radarHeightOut');
 const radarHint = document.getElementById('radarHint');
 const radarCategory = document.getElementById('radarCategory');
-const radarScaleWrap = document.getElementById('radarScaleWrap');
+const radarStage = document.getElementById('radarStage');
+const radarRulerLine = document.getElementById('radarRulerLine');
+const radarRulerTick = document.getElementById('radarRulerTick');
+const radarRulerText = document.getElementById('radarRulerText');
 const radarWheel = document.getElementById('radarWheel');
 const radarStandover = document.getElementById('radarStandover');
 const radarWheelbase = document.getElementById('radarWheelbase');
@@ -279,6 +278,19 @@ function radarAgeHint(h){
   if (h < 165) return "That's a teenager, or a petite adult.";
   return "That's an average-height adult.";
 }
+/* radar-sizes:start */
+const RADAR_SIZES = [
+  {h:100, wheel:'14in', standover:39, wheelbase:62, saddle:56},
+  {h:112, wheel:'16in', standover:44, wheelbase:70, saddle:63},
+  {h:125, wheel:'20in', standover:56, wheelbase:88, saddle:73},
+  {h:140, wheel:'24in', standover:67, wheelbase:106, saddle:83},
+  {h:152, wheel:'26in', standover:74, wheelbase:116, saddle:91},
+  {h:165, wheel:'700c', standover:74, wheelbase:96, saddle:94},
+  {h:178, wheel:'700c', standover:79, wheelbase:103, saddle:101},
+  {h:192, wheel:'700c', standover:85, wheelbase:110, saddle:109}
+];
+const RADAR_PX_PER_M = 246.15, RADAR_GROUND_Y = 440.0;
+/* radar-sizes:end */
 function radarWheelSize(h){
   if (h < 112) return "12in";
   if (h < 130) return "16in";
@@ -292,12 +304,21 @@ function updateRadar(){
   radarOut.textContent = h + ' cm';
   radarHint.textContent = radarAgeHint(h);
 
-  const scale = 0.55 + (h - 95) / (195 - 95) * 0.75;
-  radarScaleWrap.style.transform = 'scale(' + scale.toFixed(3) + ')';
+  // the rendered size nearest to this height: a rider on a bike that fits them
+  let near = RADAR_SIZES[0];
+  RADAR_SIZES.forEach(sz => { if (Math.abs(sz.h - h) < Math.abs(near.h - h)) near = sz; });
+  document.querySelectorAll('.radar-img').forEach(img => img.classList.toggle('is-on', img.src.indexOf('size_' + near.h + '.') !== -1));
+  radarStage.setAttribute('aria-label', 'A ' + (h < 150 ? 'child' : h < 165 ? 'teenager' : 'rider') + ' about ' + h + ' cm tall on a bike with ' + near.wheel.replace('in', ' inch') + ' wheels');
+  // a ruler beside the bike shows the rider's actual height at the picture's own scale
+  const topY = RADAR_GROUND_Y - h / 100 * RADAR_PX_PER_M;
+  radarRulerLine.setAttribute('y2', topY.toFixed(1));
+  radarRulerTick.setAttribute('y1', topY.toFixed(1)); radarRulerTick.setAttribute('y2', topY.toFixed(1));
+  radarRulerText.setAttribute('y', (topY - 4).toFixed(1));
+  radarRulerText.textContent = h + ' cm';
 
-  radarWheel.textContent = '⌀ ' + radarWheelSize(h);
-  radarStandover.textContent = 'Standover ~' + Math.round(h * 0.42) + 'cm';
-  radarWheelbase.textContent = 'Wheelbase ~' + Math.round(h * 0.72) + 'cm';
+  radarWheel.textContent = '⌀ ' + near.wheel;
+  radarStandover.textContent = 'Standover ~' + near.standover + 'cm';
+  radarWheelbase.textContent = 'Wheelbase ~' + near.wheelbase + 'cm';
 
   Object.values(radarCards).forEach(c => c && c.classList.remove('radar-highlight'));
   if (h < 148) {
