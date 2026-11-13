@@ -35,41 +35,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=selectvelo1">
+<link rel="stylesheet" href="style.css?v=selectvelo6">
 <script src="nav-transition.js"></script>
 <script src="flag-banner.js" defer></script>
+<script src="ride.js" defer></script>
 </head>
 <body>
-
-<div class="splash-overlay" id="splashOverlay" role="dialog" aria-modal="true" aria-label="What a bike can mean, introduction">
-  <button type="button" class="splash-close" id="splashClose" aria-label="Close">✕</button>
-  <div class="splash-inner">
-    <div class="splash-brand">
-      <span class="wordmark"><span class="wm-select">select</span><span class="wm-velo">vel<span class="wheel-o"><span class="sr-o">o</span><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="wheel-rim" cx="50" cy="50" r="42"/><path class="wheel-spoke" d="M50 8V92M13.6 29L86.4 71M13.6 71L86.4 29"/><circle class="wheel-hub" cx="50" cy="50" r="6"/><circle class="wheel-valve" cx="50" cy="22" r="4.5"/></svg></span></span></span>
-      <span class="tagline">The right bike for how you ride.</span>
-    </div>
-    <div class="splash-text">
-      <div class="fig-tag"><span>Sheet 001</span><span class="chip-div"></span><span>Why it matters</span></div>
-      <h2>A bike is never <span class="pencil-mark">just</span> a bike.</h2>
-      <p class="lede">It's the first taste of going somewhere on your own. The ride to school. The friends you found on two wheels. The trip you still tell people about. Get the fit right, and it becomes part of the story — not just the equipment.</p>
-    </div>
-    <div class="splash-stage">
-      <div class="story-scene-wrap" id="storySceneWrap">
-        <img class="story-scene active" data-index="0" src="images/splash/01-first-ride.jpg" alt="A rider pausing with coffee on a quiet cobblestone street">
-        <img class="story-scene" data-index="1" src="images/splash/02-school.jpg" alt="Kids riding to school together, backpacks on">
-        <img class="story-scene" data-index="2" src="images/splash/03-friends.jpg" alt="Riding with friends down a tree-lined city street">
-        <img class="story-scene" data-index="3" src="images/splash/04-climb.jpg" alt="Two riders climbing a mountain road together">
-        <img class="story-scene" data-index="4" src="images/splash/05-packed.jpg" alt="A loaded touring bike, packed and ready to go">
-        <img class="story-scene" data-index="5" src="images/splash/06-offmap.jpg" alt="Bikepacking through a snowy mountain pass">
-        <img class="story-scene" data-index="6" src="images/splash/07-race.jpg" alt="A racer training against a city skyline">
-        <img class="story-scene" data-index="7" src="images/splash/08-home.jpg" alt="An aerial view of a rider finding their way home">
-        <img class="story-scene" data-index="8" src="images/splash/09-family.jpg" alt="Three bikes side by side, one for every rider">
-      </div>
-    </div>
-    <p class="story-caption" id="splashCaption">Your first ride into town.</p>
-    <button type="button" class="splash-skip" id="splashSkip">Tap anywhere, or press <kbd>Esc</kbd>, to continue &rarr;</button>
-  </div>
-</div>
 
 <nav>
   <div class="wrap">
@@ -91,7 +62,48 @@
   </div>
 </nav>
 
-<section class="chooser-hero">
+<section class="ride" id="ride" aria-label="Introduction: five kinds of ride">
+  <div class="ride-stage" id="rideStage">
+    <div class="ride-world" id="rideWorld" aria-hidden="true">
+      <div class="ride-layer" data-depth="0.25"><img src="images/intro/layer_far.webp?v=2" width="3000" height="1000" fetchpriority="high" decoding="async" alt=""></div>
+      <div class="ride-layer" data-depth="0.60"><img src="images/intro/layer_mid.webp?v=2" width="3000" height="1000" decoding="async" alt=""></div>
+      <div class="ride-layer" data-depth="1.00"><img src="images/intro/layer_near.webp?v=2" width="3000" height="1000" decoding="async" alt=""></div>
+      <div class="ride-grade" id="rideGrade"></div>
+    </div>
+    <div class="ride-hero" id="rideHero">
+      <p class="ride-mark"><span class="wordmark" aria-hidden="true"><span class="wm-select">select</span><span class="wm-velo">vel<span class="wheel-o"><span class="sr-o">o</span><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="wheel-rim" cx="50" cy="50" r="42"/><path class="wheel-spoke" d="M50 8V92M13.6 29L86.4 71M13.6 71L86.4 29"/><circle class="wheel-hub" cx="50" cy="50" r="6"/><circle class="wheel-valve" cx="50" cy="22" r="4.5"/></svg></span></span></span></p>
+      <p class="ride-line">Every ride starts somewhere.</p>
+      <p class="ride-cue" id="rideCue">Scroll to ride</p>
+    </div>
+    <div class="ride-cards" id="rideCards">
+      <a class="ride-card" href="kids.html" data-i="0">
+        <img src="images/intro/kids.webp?v=2" width="1200" height="900" loading="eager" decoding="async" alt="An oil painting of a small orange bike in a meadow of wildflowers, with trees and a soft sky behind.">
+        <span class="rc-body"><span class="rc-title">A first bike</span><span class="rc-line">Height, experience and budget, matched to real geometry.</span><span class="rc-cta">Find their first bike</span></span>
+      </a>
+      <a class="ride-card" href="commute.html" data-i="1">
+        <img src="images/intro/commute.webp?v=2" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike leaning on a lamp post on a city street at dawn, brick buildings and warm windows on either side.">
+        <span class="rc-body"><span class="rc-title">The daily ride</span><span class="rc-line">Distance, route and cargo, matched to your commute.</span><span class="rc-cta">Find your commute bike</span></span>
+      </a>
+      <a class="ride-card" href="mountainbiking.html" data-i="2">
+        <img src="images/intro/mountain.webp?v=2" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike resting on a rock beside a forest trail, tall pines behind it.">
+        <span class="rc-body"><span class="rc-title">Into the trees</span><span class="rc-line">Trail, enduro or cross-country, matched to your terrain.</span><span class="rc-cta">Find your mountain bike</span></span>
+      </a>
+      <a class="ride-card" href="bikepacking.html" data-i="3">
+        <img src="images/intro/bikepacking.webp?v=2" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a loaded bikepacking bike leaning on a boulder, snow-capped mountains behind.">
+        <span class="rc-body"><span class="rc-title">Off the map</span><span class="rc-line">Gravel, touring or ultra: built to carry what you need.</span><span class="rc-cta">Find your bikepacking bike</span></span>
+      </a>
+      <a class="ride-card" href="racing.html" data-i="4">
+        <img src="images/intro/racing.webp?v=2" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a road bike resting by an empty road at sunrise, mountains in the distance.">
+        <span class="rc-body"><span class="rc-title">First light on the road</span><span class="rc-line">Road, triathlon or audax, matched to your event.</span><span class="rc-cta">Find your racing bike</span></span>
+      </a>
+    </div>
+    <div class="ride-wheel" id="rideWheel" aria-hidden="true"><span class="wheel-o"><span class="sr-o">o</span><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="wheel-rim" cx="50" cy="50" r="42"/><path class="wheel-spoke" d="M50 8V92M13.6 29L86.4 71M13.6 71L86.4 29"/><circle class="wheel-hub" cx="50" cy="50" r="6"/><circle class="wheel-valve" cx="50" cy="22" r="4.5"/></svg></span></div>
+    <button type="button" class="ride-skip" id="rideSkip">Skip intro</button>
+  </div>
+</section>
+
+
+<section class="chooser-hero" id="chooser">
   <div class="wrap">
     <div class="fig-tag"><span>Sheet 000</span><span class="chip-div"></span><span>Choose your ride</span></div>
     <h1>Every <span class="pencil-mark">rider</span> gets the same honest measurement.</h1>
@@ -152,10 +164,7 @@
   <div class="wrap">
     <div class="category-grid">
       <a href="kids.html" class="category-card">
-        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M8 44 L42 18 L47 24 L13 50 Z"/>
-          <path d="M14 40 L19 35 M22 33 L27 28 M30 26 L35 21"/>
-        </svg>
+        <img class="cat-art" src="images/intro/kids.webp?v=2" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a small orange bike in a meadow of wildflowers, with trees and a soft sky behind.">
         <div class="fig-tag"><span>Sheet 001</span></div>
         <h3>Kids' first bike</h3>
         <p>Height, experience, and budget — matched against real kids' bike geometry, not a size sticker on a rack.</p>
@@ -163,11 +172,7 @@
       </a>
 
       <a href="commute.html" class="category-card">
-        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M10 34 Q10 14 30 14 Q50 14 50 34 L50 36 L10 36 Z"/>
-          <path d="M18 22 L18 30 M26 18 L26 30 M34 18 L34 30"/>
-          <path d="M16 36 Q16 46 24 48 M44 36 Q44 46 36 48"/>
-        </svg>
+        <img class="cat-art" src="images/intro/commute.webp?v=2" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike leaning on a lamp post on a city street at dawn, brick buildings and warm windows on either side.">
         <div class="fig-tag"><span>Sheet 002</span></div>
         <h3>Commuting</h3>
         <p>Distance, route, cargo, and power preference — matched to a bike built for your actual ride to work or school.</p>
@@ -175,10 +180,7 @@
       </a>
 
       <a href="bikepacking.html" class="category-card">
-        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M6 48 L22 22 L31 35 L40 24 L58 48 Z"/>
-          <circle cx="20" cy="16" r="4"/>
-        </svg>
+        <img class="cat-art" src="images/intro/bikepacking.webp?v=2" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a loaded bikepacking bike leaning on a boulder, snow-capped mountains behind.">
         <div class="fig-tag"><span>Sheet 003</span></div>
         <h3>Bikepacking</h3>
         <p>Terrain, trip length, and how you carry your gear — from a weekend loop to a self-supported ultra race.</p>
@@ -186,10 +188,7 @@
       </a>
 
       <a href="mountainbiking.html" class="category-card">
-        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M6 48 L18 26 L28 40 L36 22 L46 48 M6 48 L58 48"/>
-          <circle cx="18" cy="26" r="3"/>
-        </svg>
+        <img class="cat-art" src="images/intro/mountain.webp?v=2" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a bike resting on a rock beside a forest trail, tall pines behind it.">
         <div class="fig-tag"><span>Sheet 004</span></div>
         <h3>Mountain biking</h3>
         <p>XC, trail, enduro, or downhill — matched on suspension travel and geometry, not a generic "mountain bike" shelf.</p>
@@ -197,11 +196,7 @@
       </a>
 
       <a href="racing.html" class="category-card">
-        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
-          <path d="M10 40 L26 40 M10 40 Q10 30 20 28 L30 26 Q36 24 38 30 L42 40 L54 40"/>
-          <circle cx="16" cy="46" r="8"/>
-          <circle cx="48" cy="46" r="8"/>
-        </svg>
+        <img class="cat-art" src="images/intro/racing.webp?v=2" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a road bike resting by an empty road at sunrise, mountains in the distance.">
         <div class="fig-tag"><span>Sheet 005</span></div>
         <h3>Racing</h3>
         <p>Road racing, triathlon, and ultra-endurance — from a criterium to Ironman to an all-night push like LEL or PBP.</p>
@@ -321,62 +316,8 @@ function updateRadar(){
 radarSlider.addEventListener('input', updateRadar);
 updateRadar();
 
-// A looping sketch storyboard of what a bike can mean across a life, shown
-// only inside the full-screen landing splash below (not duplicated inline
-// on the homepage — that real estate is reserved for the actual tools).
-// Cycles on its own; reduced-motion visitors just get the first scene, statically.
-const storyScenes = Array.from(document.querySelectorAll('.story-scene'));
-const splashCaptionEl = document.getElementById('splashCaption');
-const storyCaptions = [
-  "Your first ride into town.",
-  "The ride to school.",
-  "Racing with friends, wherever the road goes.",
-  "Chasing the next climb.",
-  "Packed up and ready to wander.",
-  "Bikepacking, off the map.",
-  "Racing for real, one day.",
-  "Every ride finds its way home.",
-  "One for every rider in the family."
-];
-// Cycles regardless of prefers-reduced-motion: this is a plain page-to-page
-// image swap (no parallax/zoom/scroll-triggered motion), and reduced-motion
-// visitors still get it — just as an instant cut instead of a crossfade,
-// via the transition:none override in the stylesheet.
-if (storyScenes.length) {
-  let storyIndex = 0;
-  setInterval(() => {
-    storyIndex = (storyIndex + 1) % storyCaptions.length;
-    storyScenes.forEach(s => s.classList.toggle('active', Number(s.dataset.index) === storyIndex));
-    if (splashCaptionEl) splashCaptionEl.textContent = storyCaptions[storyIndex];
-  }, 2800);
-}
-
-// Full-screen landing splash: plays the life-story scenes over the whole
-// viewport as soon as the homepage loads, and steps aside — Escape, a tap
-// anywhere, or the skip control all dismiss it — to reveal the homepage
-// that's been sitting underneath the whole time.
-const splashOverlay = document.getElementById('splashOverlay');
-if (splashOverlay) {
-  document.body.style.overflow = 'hidden';
-  function closeSplash(){
-    if (splashOverlay.classList.contains('closing')) return;
-    splashOverlay.classList.add('closing');
-    document.body.style.overflow = '';
-    setTimeout(() => {
-      splashOverlay.classList.add('hidden');
-      splashOverlay.setAttribute('aria-hidden', 'true');
-    }, 500);
-  }
-  splashOverlay.addEventListener('click', closeSplash);
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !splashOverlay.classList.contains('closing')) closeSplash();
-  });
-  const splashCloseBtn = document.getElementById('splashClose');
-  if (splashCloseBtn) splashCloseBtn.addEventListener('click', e => { e.stopPropagation(); closeSplash(); });
-}
-
 const pageTransition = document.getElementById('pageTransition');
-document.querySelectorAll('.category-card').forEach(card => {
+document.querySelectorAll('.category-card, .ride-card').forEach(card => {
   card.addEventListener('click', function(e){
     const target = this.getAttribute('href');
     if (!target) return;
