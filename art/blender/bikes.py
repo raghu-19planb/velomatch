@@ -283,6 +283,7 @@ def build(kind, frame=(0.012, 0.19, 0.16), accent=(0.89, 0.33, 0.11), pedal_angl
     left = [(p[0], -p[1], p[2]) for p in half]
     bl.tube('bar', list(reversed(left)) + [(clamp.x, 0.0, clamp.z)] + half, brad, bmat, kind='NURBS', res=10)
     key['hand'] = (hand[0], hand[2])
+    key['hand_y'] = abs(hand[1])
     key['bar_clamp'] = (clamp.x, clamp.z)
     for s in (-1, 1):
         if S['bars'] == 'drop':

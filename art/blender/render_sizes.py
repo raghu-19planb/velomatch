@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bikelib as bl  # noqa: E402
 import bikes  # noqa: E402
 import bpy  # noqa: E402
-import rider  # noqa: E402
+import figure  # noqa: E402
 from mathutils import Vector  # noqa: E402
 
 args = sys.argv[sys.argv.index('--') + 1:]
@@ -39,6 +39,9 @@ LADDER = [
     (192, 'gravel', 1.07, 0.352, '700c', (0.50, 0.52, 0.58), (0.05, 0.25, 0.55), (0.10, 0.10, 0.12)),
 ]
 
+SKINS = [(0.62, 0.43, 0.32), (0.80, 0.60, 0.47), (0.46, 0.30, 0.22), (0.72, 0.52, 0.40), (0.87, 0.68, 0.54), (0.55, 0.37, 0.27), (0.78, 0.58, 0.45), (0.66, 0.46, 0.34)]
+HAIRS = [(0.07, 0.045, 0.03), (0.50, 0.36, 0.17), (0.02, 0.02, 0.02), (0.24, 0.13, 0.06), (0.62, 0.30, 0.10)]
+SHORTS = [(0.16, 0.20, 0.30), (0.25, 0.25, 0.28), (0.12, 0.24, 0.30), (0.30, 0.20, 0.16)]
 W_M = 2.6                                   # width of the frame in metres, the same for every size
 H_M = W_M * 500 / 640
 PHI = math.radians(11)
@@ -52,8 +55,11 @@ def one(h, kind, geo, R, wheel_lbl, jersey, frame, helmet):
     saddle_z = (0.292 * geo if kind == 'gravel' else bikes.SPECS['kids']['bb'] * geo) + 0.4027 * h / 100.0   # bottom bracket + 0.885 x inseam
     crank = max(0.100, min(0.175, 0.175 * (h / 178.0) ** 0.7))
     key = bikes.build(kind, frame=frame, accent=(0.95, 0.9, 0.82), pedal_angle=0.55, geo=geo, R=R, saddle_z=saddle_z, crank=crank, extras=(kind != 'gravel'))
-    rider.build(key, style='casual', jersey=jersey, shorts=(0.16, 0.20, 0.30), helmet_col=helmet, skin=(0.62, 0.43, 0.32), pose='seated',
-                lean_deg=(56 if h <= 152 else 48 - (h - 165) * 0.2), scale=s, head_scale=1.0 + 0.55 * (1 - s), name='kid_')
+    i = [row[0] for row in LADDER].index(h)
+    skin_col = SKINS[i % len(SKINS)]
+    hair_col = HAIRS[(i * 3) % len(HAIRS)]
+    figure.build(key, height_cm=h, jersey=jersey, shorts=SHORTS[i % len(SHORTS)], helmet_col=helmet, sole_col=frame, skin_col=skin_col, hair_col=hair_col,
+                 lean_deg=(56 if h <= 152 else 48 - (h - 165) * 0.2), name='kid_')
     bl.studio_ground()
     w = bpy.data.worlds.new('studio')
     w.use_nodes = True
