@@ -26,6 +26,10 @@
 <script src="info-tips.js"></script>
 <script src="nav-transition.js"></script>
 <script src="flag-banner.js" defer></script>
+<script src="i18n.js" defer></script>
+<script src="i18n-fr-core.js" defer></script>
+<script src="i18n-fr-quiz.js" defer></script>
+<script src="i18n-fr-mountainbiking.js" defer></script>
 </head>
 <body>
 
@@ -438,12 +442,14 @@ function budgetNote(b, budget){
   const over = SV.scoringPrice(b) - budget;
   if (over <= 0 || over > 500) return '';
   const perks = [];
-  if (b.suspensionType === 'full_suspension') perks.push('full suspension instead of a hardtail');
-  if (b.frameMaterial === 'carbon') perks.push('a lighter carbon frame');
-  if (b.dropperPost) perks.push('a dropper post');
-  if (b.travelFront >= 150 && !perks.length) perks.push('more suspension travel for rougher terrain');
-  if (!perks.length) perks.push('a step up in components for the same basic bike');
-  return `<p class="result-budget-note"><b>About C$${Math.round(over)} over your budget</b>: that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+  const T = SV.T;
+  if (b.suspensionType === 'full_suspension') perks.push(T('full suspension instead of a hardtail'));
+  if (b.frameMaterial === 'carbon') perks.push(T('a lighter carbon frame'));
+  if (b.dropperPost) perks.push(T('a dropper post'));
+  if (b.travelFront >= 150 && !perks.length) perks.push(T('more suspension travel for rougher terrain'));
+  if (!perks.length) perks.push(T('a step up in components for the same basic bike'));
+  const list = perks.length > 1 ? T('{a} and {b}', {a: perks[0], b: perks[1]}) : perks[0];
+  return `<p class="result-budget-note">${T('<b>About {x} over your budget</b>: that gets you {p}.', {x: SV.cad(Math.round(over)), p: list})}</p>`;
 }
 
 // Shown when a bike has no photo yet, or its photo URL fails to load —
@@ -581,35 +587,39 @@ document.querySelectorAll('.opt').forEach(btn => {
 
 const disciplineNameMtb = {xc:'cross-country', trail:'trail riding', enduro:'enduro', downhill:'downhill', dirt_jump:'dirt jump and park'};
 // Plain-language reasons for each match, mirroring the factors the scoring actually uses.
+const T = SV.T; // translates when the visitor picked French (match-ui.js / i18n.js)
+const susWatch = {hardtail: 'Hardtail, not the full-suspension you asked for', full_suspension: 'Full suspension, not the hardtail you asked for'};
 function explainMatch(b, c){
   const why = [], watch = [];
   const gap = Math.abs(disciplinePosition[c.discipline] - disciplinePosition[b.discipline]);
-  if (gap === 0) why.push(`Built for ${disciplineNameMtb[b.discipline]}, the riding you do most`);
-  else if (gap === 1) why.push(`Close to ${disciplineNameMtb[c.discipline]}: it is built for ${disciplineNameMtb[b.discipline]}`);
-  else watch.push(`Built for ${disciplineNameMtb[b.discipline]}, which is quite different from ${disciplineNameMtb[c.discipline]}`);
-  if (c.experience === 'new' && ['enduro', 'downhill', 'dirt_jump'].includes(b.discipline)) watch.push('Aggressive-terrain bike: more capable than a new rider needs, and harder to pedal uphill');
-  if (c.suspensionType && c.suspensionType !== 'none') { if (b.suspensionType === c.suspensionType) why.push(c.suspensionType === 'hardtail' ? 'Hardtail, as you wanted' : 'Full suspension, as you wanted'); else watch.push(`${b.suspensionType === 'hardtail' ? 'Hardtail' : 'Full suspension'}, not the ${c.suspensionType === 'hardtail' ? 'hardtail' : 'full-suspension'} you asked for`); }
+  const bd = T(disciplineNameMtb[b.discipline]), cd = T(disciplineNameMtb[c.discipline]);
+  if (gap === 0) why.push(T('Built for {d}, the riding you do most', {d: bd}));
+  else if (gap === 1) why.push(T('Close to {c}: it is built for {d}', {c: cd, d: bd}));
+  else watch.push(T('Built for {d}, which is quite different from {c}', {d: bd, c: cd}));
+  if (c.experience === 'new' && ['enduro', 'downhill', 'dirt_jump'].includes(b.discipline)) watch.push(T('Aggressive-terrain bike: more capable than a new rider needs, and harder to pedal uphill'));
+  if (c.suspensionType && c.suspensionType !== 'none') { if (b.suspensionType === c.suspensionType) why.push(T(c.suspensionType === 'hardtail' ? 'Hardtail, as you wanted' : 'Full suspension, as you wanted')); else watch.push(T(susWatch[b.suspensionType])); }
   if (c.sizemode === 'known' && c.size) {
     const sizes = (b.sizes || []).map(normSize).filter(Boolean);
-    if (sizes.includes(c.size)) why.push(`Comes in your size (${c.size})`); else if (sizes.length) watch.push(`No ${c.size} in this model. Sizes: ${(b.sizes || []).join(', ')}`);
+    if (sizes.includes(c.size)) why.push(T('Comes in your size ({s})', {s: c.size})); else if (sizes.length) watch.push(T('No {s} in this model. Sizes: {l}', {s: c.size, l: (b.sizes || []).join(', ')}));
   } else if (c.sizemode === 'height' && c.height) {
-    if (c.height >= b.minH && c.height <= b.maxH) why.push(`Fits a ${c.height} cm rider (made for ${b.minH}–${b.maxH} cm)`); else watch.push(`Made for riders ${b.minH}–${b.maxH} cm, and you're ${c.height} cm`);
+    const r = {h: c.height, a: b.minH, b: b.maxH};
+    if (c.height >= b.minH && c.height <= b.maxH) why.push(T('Fits a {h} cm rider (made for {a}–{b} cm)', r)); else watch.push(T("Made for riders {a}–{b} cm, and you're {h} cm", r));
   }
-  if (c.dropper === 'want_it') { if (b.dropperPost) why.push('Dropper post included'); else watch.push('No dropper post, which you wanted'); }
-  if (c.wheelsize && c.wheelsize !== 'none') { if (b.wheel === Number(c.wheelsize)) why.push(`${b.wheel}" wheels, as you prefer`); else watch.push(`${b.wheel}" wheels, not the ${c.wheelsize}" you prefer`); }
-  if (SV.scoringPrice(b) <= c.budget) why.push(`Within your C$${c.budget} budget (${SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)})`);
+  if (c.dropper === 'want_it') { if (b.dropperPost) why.push(T('Dropper post included')); else watch.push(T('No dropper post, which you wanted')); }
+  if (c.wheelsize && c.wheelsize !== 'none') { if (b.wheel === Number(c.wheelsize)) why.push(T('{w}" wheels, as you prefer', {w: b.wheel})); else watch.push(T('{w}" wheels, not the {p}" you prefer', {w: b.wheel, p: c.wheelsize})); }
+  if (SV.scoringPrice(b) <= c.budget) why.push(T('Within your {c} budget ({p})', {c: SV.cad(c.budget), p: SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)}));
   return {why: why.slice(0, 5), watch: watch.slice(0, 3)};
 }
 
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
   if (!state.discipline) {
-    err.textContent = "Pick a riding style first.";
+    err.textContent = T("Pick a riding style first.");
     err.style.display = 'block';
     return;
   }
   if (!bikes.length) {
-    err.textContent = "Still loading the bike catalog — try again in a second.";
+    err.textContent = T("Still loading the bike catalog — try again in a second.");
     err.style.display = 'block';
     return;
   }
@@ -700,19 +710,21 @@ document.getElementById('submit').addEventListener('click', () => {
   SV.render({
     results, root: '#quizSteps', items: scored, excluded: sellable.out,
     summary: [
-      {label:'Riding', value: disciplineNameMtb[state.discipline], group:'discipline'}, {label:'Experience', value: {new:'New to it', some:'Rides sometimes', experienced:'Very experienced'}[state.experience] || '', group:'experience'},
-      {label:'Fit', value: state.sizemode === 'known' && state.framesize ? 'size ' + state.framesize : state.riderHeight ? state.riderHeight + ' cm tall' : '', group:'sizemode'},
-      {label:'Budget', value: 'C$' + budget, group:'budget'}
+      {label:'Riding', value: T(disciplineNameMtb[state.discipline]), group:'discipline'}, {label:'Experience', value: {new:'New to it', some:'Rides sometimes', experienced:'Very experienced'}[state.experience] || '', group:'experience'},
+      {label:'Fit', value: state.sizemode === 'known' && state.framesize ? T('size {s}', {s: state.framesize}) : state.riderHeight ? T('{n} cm tall', {n: state.riderHeight}) : '', group:'sizemode'},
+      {label:'Budget', value: SV.cad(budget), group:'budget'}
     ],
     describe: b => {
       const r = explainMatch(b, ctx);
       return {
-        meta: `${b.wheel}" wheels · ${b.sizes && b.sizes.length ? 'sizes ' + b.sizes.join('/') : 'sizes: see the brand'} · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)}<br>${b.suspensionType === 'hardtail' ? 'Hardtail' : 'Full suspension'} · ${b.travelFront}mm front${b.suspensionType === 'full_suspension' ? ' / ' + b.travelRear + 'mm rear' : ''} travel${b.dropperPost ? ' · dropper post' : ''}<br>${disciplineNameMtb[b.discipline] || b.discipline}`,
+        meta: [[T('{w}" wheels', {w: b.wheel}), b.sizes && b.sizes.length ? T('sizes {s}', {s: b.sizes.join('/')}) : T('sizes: see the brand'), T(b.frameMaterial + ' frame'), escapeHtml(b.groupset)].join(' · '),
+          [T(b.suspensionType === 'hardtail' ? 'Hardtail' : 'Full suspension'), b.suspensionType === 'full_suspension' ? T('{f} mm front / {r} mm rear travel', {f: b.travelFront, r: b.travelRear}) : T('{f} mm front travel', {f: b.travelFront}), b.dropperPost ? T('dropper post') : ''].filter(Boolean).join(' · '),
+          T(disciplineNameMtb[b.discipline] || b.discipline)].join('<br>'),
         why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget)
       };
     },
     compareRows: [
-      ['Built for', b => disciplineNameMtb[b.discipline] || b.discipline], ['Frame type', b => b.suspensionType === 'hardtail' ? 'hardtail' : 'full suspension'],
+      ['Built for', b => T(disciplineNameMtb[b.discipline] || b.discipline)], ['Frame type', b => b.suspensionType === 'hardtail' ? 'hardtail' : 'full suspension'],
       ['Front travel', b => b.travelFront + ' mm'], ['Rear travel', b => b.suspensionType === 'full_suspension' ? b.travelRear + ' mm' : 'none'], ['Wheels', b => b.wheel + '"'],
       ['Frame', b => b.frameMaterial], ['Drivetrain', b => b.groupset], ['Dropper post', b => b.dropperPost ? 'yes' : 'no'], ['Sizes', b => b.sizes.join(' / ')]
     ]

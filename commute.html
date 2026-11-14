@@ -26,6 +26,10 @@
 <script src="info-tips.js"></script>
 <script src="nav-transition.js"></script>
 <script src="flag-banner.js" defer></script>
+<script src="i18n.js" defer></script>
+<script src="i18n-fr-core.js" defer></script>
+<script src="i18n-fr-quiz.js" defer></script>
+<script src="i18n-fr-commute.js" defer></script>
 </head>
 <body>
 
@@ -481,14 +485,15 @@ function budgetNote(b, budget){
   const over = SV.scoringPrice(b) - budget;
   if (over <= 0 || over > 500) return '';
   const perks = [];
-  if (b.frameMaterial === 'carbon') perks.push('a lighter carbon frame');
-  if (b.foldable) perks.push('a folding frame for stairs and storage');
-  if (b.suspensionFork) perks.push('a suspension fork for rough streets');
-  if (b.fendersIncluded) perks.push('fenders already included');
-  if (b.brakeType === 'disc' && !perks.length) perks.push('disc brakes with more stopping power');
-  if (b.gearing === 'internal') perks.push('a low-maintenance internal-gear hub');
-  if (!perks.length) perks.push('a step up in components for the same basic bike');
-  return `<p class="result-budget-note"><b>About C$${Math.round(over)} over your budget</b>: that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+  if (b.frameMaterial === 'carbon') perks.push(T('a lighter carbon frame'));
+  if (b.foldable) perks.push(T('a folding frame for stairs and storage'));
+  if (b.suspensionFork) perks.push(T('a suspension fork for rough streets'));
+  if (b.fendersIncluded) perks.push(T('fenders already included'));
+  if (b.brakeType === 'disc' && !perks.length) perks.push(T('disc brakes with more stopping power'));
+  if (b.gearing === 'internal') perks.push(T('a low-maintenance internal-gear hub'));
+  if (!perks.length) perks.push(T('a step up in components for the same basic bike'));
+  const list = perks.length > 1 ? T('{a} and {b}', {a: perks[0], b: perks[1]}) : perks[0];
+  return `<p class="result-budget-note">${T('<b>About {x} over your budget</b>: that gets you {p}.', {x: SV.cad(Math.round(over)), p: list})}</p>`;
 }
 
 // Shown when a bike has no photo yet, or its photo URL fails to load —
@@ -609,57 +614,58 @@ document.querySelectorAll('.opt').forEach(btn => {
   });
 });
 
+const T = SV.T; // translates when the visitor picked French (match-ui.js / i18n.js)
 const routeName = {city_streets:'city streets and bike lanes', mixed_paths:'mixed paved and gravel paths', long_flat:'long, flat roads', hilly_assist:'hilly routes'};
 const cargoNeedName = {none:'nothing extra', light:'a backpack or light bag', rack:'a rack or panniers', heavy:'heavy loads'};
+function cargoLabel(n){
+  return n >= 3 ? 'heavy-duty' : n === 2 ? 'rack & pannier' : n === 1 ? 'light' : 'no';
+}
 // Plain-language reasons for each match, mirroring the factors the scoring actually uses.
 function explainMatch(b, c){
   const why = [], watch = [];
-  if (c.height >= b.minH && c.height <= b.maxH) why.push(`Fits a ${c.height} cm rider (made for ${b.minH}–${b.maxH} cm)`);
-  else watch.push(`Made for riders ${b.minH}–${b.maxH} cm, and you're ${c.height} cm`);
-  if (c.distance <= b.maxComfortDistance) why.push(`Comfortable for your ${c.distance} km commute (rated up to ${b.maxComfortDistance} km one way)`);
-  else watch.push(`Rated for up to ${b.maxComfortDistance} km one way, and your commute is ${c.distance} km`);
-  if (c.power === 'pedal_only') { if (b.powerType === 'pedal') why.push('Pedal-only, as you wanted'); else watch.push('Electric-assist, though you wanted pedal-only'); }
-  else if (c.power === 'want_ebike') { if (b.powerType === 'ebike') why.push('Electric-assist, as you wanted'); else watch.push('Not electric-assist, which you wanted'); }
+  const r = {a: b.minH, b: b.maxH, h: c.height, d: c.distance, m: b.maxComfortDistance};
+  if (c.height >= b.minH && c.height <= b.maxH) why.push(T('Fits a {h} cm rider (made for {a}–{b} cm)', r));
+  else watch.push(T("Made for riders {a}–{b} cm, and you're {h} cm", r));
+  if (c.distance <= b.maxComfortDistance) why.push(T('Comfortable for your {d} km commute (rated up to {m} km one way)', r));
+  else watch.push(T('Rated for up to {m} km one way, and your commute is {d} km', r));
+  if (c.power === 'pedal_only') { if (b.powerType === 'pedal') why.push(T('Pedal-only, as you wanted')); else watch.push(T('Electric-assist, though you wanted pedal-only')); }
+  else if (c.power === 'want_ebike') { if (b.powerType === 'ebike') why.push(T('Electric-assist, as you wanted')); else watch.push(T('Not electric-assist, which you wanted')); }
   const gap = Math.min(...c.route.map(r => Math.abs(routePosition[r] - routePosition[b.type])));
-  if (gap === 0) why.push(`Built for ${routeName[b.type]}, like your route`);
-  else if (gap >= 2) watch.push(`Built for ${routeName[b.type]}, which differs from your route`);
+  if (gap === 0) why.push(T('Built for {t}, like your route', {t: T(routeName[b.type])}));
+  else if (gap >= 2) watch.push(T('Built for {t}, which differs from your route', {t: T(routeName[b.type])}));
   if (c.cargoNeed > 0) {
-    if (b.cargoCapacity >= c.cargoNeed) why.push(`Can carry ${cargoNeedName[c.cargo]} (${cargoLabel(b.cargoCapacity)} cargo rating)`);
-    else watch.push(`Rated for ${cargoLabel(b.cargoCapacity)} cargo, and you need to carry ${cargoNeedName[c.cargo]}`);
+    if (b.cargoCapacity >= c.cargoNeed) why.push(T('Can carry {n} ({c} cargo rating)', {n: T(cargoNeedName[c.cargo]), c: T(cargoLabel(b.cargoCapacity))}));
+    else watch.push(T('Rated for {c} cargo, and you need to carry {n}', {n: T(cargoNeedName[c.cargo]), c: T(cargoLabel(b.cargoCapacity))}));
   }
   if (c.weather === 'always' || c.weather === 'sometimes' || c.weather === 'winter') {
-    if (b.fendersIncluded) why.push('Fenders included for wet roads'); else watch.push('No fenders: budget for a set if you ride in the wet');
+    if (b.fendersIncluded) why.push(T('Fenders included for wet roads')); else watch.push(T('No fenders: budget for a set if you ride in the wet'));
   }
   if (c.weather === 'winter') {
-    if (b.brakeType === 'disc') why.push('Disc brakes cope better with slush and road salt than rim brakes');
-    else watch.push('Rim brakes work poorly in slush and salt');
-    if (b.gearing === 'internal') why.push('Enclosed internal-hub gearing resists salt and grit');
-    watch.push('Winter riding also needs winter or studded tyres, which this catalog does not list');
+    if (b.brakeType === 'disc') why.push(T('Disc brakes cope better with slush and road salt than rim brakes'));
+    else watch.push(T('Rim brakes work poorly in slush and salt'));
+    if (b.gearing === 'internal') why.push(T('Enclosed internal-hub gearing resists salt and grit'));
+    watch.push(T('Winter riding also needs winter or studded tyres, which this catalog does not list'));
   }
-  if (c.roughness === 'rough') { if (b.suspensionFork) why.push('Front suspension to take the edge off rough streets'); else watch.push('No suspension fork, so rough streets will be felt'); }
-  if (c.flats === 'worried') { if (b.tireProfile === 'wide') why.push('Wide tyres for fewer flats and a softer ride'); else watch.push('Narrower tyres, more prone to flats'); }
-  if (c.brakepower === 'disc' && b.brakeType !== 'disc') watch.push('Rim brakes, not the disc brakes you asked for');
+  if (c.roughness === 'rough') { if (b.suspensionFork) why.push(T('Front suspension to take the edge off rough streets')); else watch.push(T('No suspension fork, so rough streets will be felt')); }
+  if (c.flats === 'worried') { if (b.tireProfile === 'wide') why.push(T('Wide tyres for fewer flats and a softer ride')); else watch.push(T('Narrower tyres, more prone to flats')); }
+  if (c.brakepower === 'disc' && b.brakeType !== 'disc') watch.push(T('Rim brakes, not the disc brakes you asked for'));
   if (c.storage === 'stairs' || c.storage === 'apartment') {
-    if (b.foldable) why.push('Folds, which helps with tight storage and transit');
-    else if (b.weight > 16) watch.push(`Weighs ${b.weight} kg: heavy to carry up stairs`);
+    if (b.foldable) why.push(T('Folds, which helps with tight storage and transit'));
+    else if (b.weight > 16) watch.push(T('Weighs {w} kg: heavy to carry up stairs', {w: b.weight}));
   }
-  if (SV.scoringPrice(b) <= c.budget) why.push(`Within your C$${c.budget} budget (${SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)})`);
+  if (SV.scoringPrice(b) <= c.budget) why.push(T('Within your {c} budget ({p})', {c: SV.cad(c.budget), p: SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)}));
   return {why: why.slice(0, 5), watch: watch.slice(0, 4)};
-}
-
-function cargoLabel(n){
-  return n >= 3 ? 'heavy-duty' : n === 2 ? 'rack & pannier' : n === 1 ? 'light' : 'no';
 }
 
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
   if (!state.power || !state.route || !state.route.length || !state.cargo) {
-    err.textContent = "Pick a power preference, route, and cargo need first.";
+    err.textContent = T("Pick a power preference, route, and cargo need first.");
     err.style.display = 'block';
     return;
   }
   if (!bikes.length) {
-    err.textContent = "Still loading the bike catalog — try again in a second.";
+    err.textContent = T("Still loading the bike catalog — try again in a second.");
     err.style.display = 'block';
     return;
   }
@@ -779,22 +785,24 @@ document.getElementById('submit').addEventListener('click', () => {
     results, root: '#quizSteps', items: scored, excluded: sellable.out,
     summary: [
       {label:'Commute', value: distance + ' km one way', group:'distance'},
-      {label:'Route', value: (state.route || []).map(r => routeName[r]).join(' + '), group:'route'},
+      {label:'Route', value: (state.route || []).map(r => T(routeName[r])).join(' + '), group:'route'},
       {label:'Carrying', value: cargoNeedName[state.cargo], group:'cargo'},
       {label:'Power', value: {pedal_only:'Pedal only', open:'Open to e-assist', want_ebike:'E-assist'}[state.power], group:'power'},
       {label:'Weather', value: {rarely:'Rarely rides in rain', sometimes:'Sometimes in rain', always:'Rain or shine', winter:'Through winter'}[state.weather] || '', group:'weather'},
-      {label:'Height', value: height + ' cm', group:'riderHeight'}, {label:'Budget', value: 'C$' + budget, group:'budget'}
+      {label:'Height', value: height + ' cm', group:'riderHeight'}, {label:'Budget', value: SV.cad(budget), group:'budget'}
     ],
     describe: b => {
       const r = explainMatch(b, ctx);
       return {
-        meta: `${b.wheel}mm wheels${b.foldable ? ' · folds' : ''} · fits ${b.minH}–${b.maxH}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)} · ${b.brakeType} brakes<br>Comfortable up to ${b.maxComfortDistance}km one-way · ${cargoLabel(b.cargoCapacity)} cargo · ${b.ridingPosition} position<br>${b.fendersIncluded ? 'Fenders included' : 'No fenders'} · ${b.tireProfile} tires${b.suspensionFork ? ' · front suspension' : ''}`,
+        meta: [[T('{w} mm wheels', {w: b.wheel}), b.foldable ? T('folds') : '', T('fits {a}–{b} cm', {a: b.minH, b: b.maxH}), T(b.frameMaterial + ' frame'), escapeHtml(b.groupset), T(b.brakeType + ' brakes')].filter(Boolean).join(' · '),
+          [T('Comfortable up to {d} km one way', {d: b.maxComfortDistance}), T('{c} cargo', {c: T(cargoLabel(b.cargoCapacity))}), T(b.ridingPosition + ' position')].join(' · '),
+          [b.fendersIncluded ? T('Fenders included') : T('No fenders'), T(b.tireProfile + ' tires'), b.suspensionFork ? T('front suspension') : ''].filter(Boolean).join(' · ')].join('<br>'),
         why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget)
       };
     },
     compareRows: [
       ['Fits riders', b => b.minH + '–' + b.maxH + ' cm'], ['Wheels', b => b.wheel + ' mm'], ['Frame', b => b.frameMaterial], ['Drivetrain', b => b.groupset],
-      ['Brakes', b => b.brakeType], ['Comfortable distance', b => 'up to ' + b.maxComfortDistance + ' km one way'], ['Cargo', b => cargoLabel(b.cargoCapacity)],
+      ['Brakes', b => b.brakeType], ['Comfortable distance', b => T('up to {d} km one way', {d: b.maxComfortDistance})], ['Cargo', b => cargoLabel(b.cargoCapacity)],
       ['Fenders', b => b.fendersIncluded ? 'included' : 'not included'], ['Tyres', b => b.tireProfile], ['Front suspension', b => b.suspensionFork ? 'yes' : 'no'],
       ['Weight (catalog)', b => b.weight ? b.weight + ' kg' : ''], ['Folds', b => b.foldable ? 'yes' : 'no']
     ]

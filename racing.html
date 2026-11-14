@@ -26,6 +26,10 @@
 <script src="info-tips.js"></script>
 <script src="nav-transition.js"></script>
 <script src="flag-banner.js" defer></script>
+<script src="i18n.js" defer></script>
+<script src="i18n-fr-core.js" defer></script>
+<script src="i18n-fr-quiz.js" defer></script>
+<script src="i18n-fr-racing.js" defer></script>
 </head>
 <body>
 
@@ -429,12 +433,14 @@ function budgetNote(b, budget){
   const over = SV.scoringPrice(b) - budget;
   if (over <= 0 || over > 500) return '';
   const perks = [];
-  if (b.electronicShifting) perks.push('electronic shifting');
-  if (b.frameMaterial === 'carbon' || b.frameMaterial === 'titanium') perks.push(`a ${b.frameMaterial} frame`);
-  if (b.wheelDepth === 'deep') perks.push('deeper aero wheels');
-  if (b.dynamoReady) perks.push('a dynamo-ready hub for all-night riding');
-  if (!perks.length) perks.push('a step up in components for the same basic bike');
-  return `<p class="result-budget-note"><b>About C$${Math.round(over)} over your budget</b>: that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+  const T = SV.T;
+  if (b.electronicShifting) perks.push(T('electronic shifting'));
+  if (b.frameMaterial === 'carbon' || b.frameMaterial === 'titanium') perks.push(T('a ' + b.frameMaterial + ' frame'));
+  if (b.wheelDepth === 'deep') perks.push(T('deeper aero wheels'));
+  if (b.dynamoReady) perks.push(T('a dynamo-ready hub for all-night riding'));
+  if (!perks.length) perks.push(T('a step up in components for the same basic bike'));
+  const list = perks.length > 1 ? T('{a} and {b}', {a: perks[0], b: perks[1]}) : perks[0];
+  return `<p class="result-budget-note">${T('<b>About {x} over your budget</b>: that gets you {p}.', {x: SV.cad(Math.round(over)), p: list})}</p>`;
 }
 
 // Shown when a bike has no photo yet, or its photo URL fails to load —
@@ -578,23 +584,27 @@ document.querySelectorAll('.opt').forEach(btn => {
 // triathlon bikes, but not against audax comfort bikes.
 const disciplineName = {road_race:'road racing', triathlon:'triathlon', audax:'audax and randonneuring', ultra_distance:'ultra-distance racing'};
 // Plain-language reasons for each match, mirroring the factors the scoring actually uses.
+const T = SV.T; // translates when the visitor picked French (match-ui.js / i18n.js)
+const charName = {aero: 'Aero', climbing: 'Climbing', all_rounder: 'All-round', endurance: 'Endurance'};
+const charPref = {aero: 'aero', climbing: 'climbing', all_rounder: 'all rounder'};
 function explainMatch(b, c){
   const why = [], watch = [];
   const best = Math.max(...c.discipline.map(d => disciplineScore(d, b)));
-  if (c.discipline.includes(b.discipline)) why.push(`Designed for ${disciplineName[b.discipline]}, as you asked`);
-  else if (best > 0) why.push(`Suited to ${disciplineName[c.discipline[0]]} even though it is built for ${disciplineName[b.discipline]}`);
-  else watch.push(`Built for ${disciplineName[b.discipline]}, not ${c.discipline.map(d => disciplineName[d]).join(' or ')}`);
-  if (c.character) { if (c.character === b.character) why.push(`${b.character === 'aero' ? 'Aero' : b.character === 'climbing' ? 'Climbing' : 'All-round'} character, as you prefer`); else if (b.character !== 'all_rounder' && c.character !== 'all_rounder') watch.push(`${b.character === 'aero' ? 'Aero' : b.character === 'climbing' ? 'Climbing' : 'Endurance'} character, while you prefer ${c.character.replace('_', ' ')}`); }
-  if (c.sizemode === 'height' && c.height) { if (c.height >= b.minH && c.height <= b.maxH) why.push(`Fits a ${c.height} cm rider (made for ${b.minH}–${b.maxH} cm)`); else watch.push(`Made for riders ${b.minH}–${b.maxH} cm, and you're ${c.height} cm`); }
+  const bd = T(disciplineName[b.discipline]);
+  if (c.discipline.includes(b.discipline)) why.push(T('Designed for {d}, as you asked', {d: bd}));
+  else if (best > 0) why.push(T('Suited to {c} even though it is built for {d}', {c: T(disciplineName[c.discipline[0]]), d: bd}));
+  else watch.push(T('Built for {d}, not {c}', {d: bd, c: c.discipline.map(d => T(disciplineName[d])).join(T(' or '))}));
+  if (c.character) { if (c.character === b.character) why.push(T('{x} character, as you prefer', {x: T(charName[b.character])})); else if (b.character !== 'all_rounder' && c.character !== 'all_rounder') watch.push(T('{x} character, while you prefer {y}', {x: T(charName[b.character]), y: T(charPref[c.character])})); }
+  if (c.sizemode === 'height' && c.height) { const r = {h: c.height, a: b.minH, b: b.maxH}; if (c.height >= b.minH && c.height <= b.maxH) why.push(T('Fits a {h} cm rider (made for {a}–{b} cm)', r)); else watch.push(T("Made for riders {a}–{b} cm, and you're {h} cm", r)); }
   else if (c.sizemode === 'known' && c.size && b.sizes && b.sizes.length) {
     const nearest = b.sizes.reduce((x, s) => Math.abs(s - c.size) < Math.abs(x - c.size) ? s : x, b.sizes[0]);
-    if (Math.abs(nearest - c.size) <= 1) why.push(`Comes in a ${nearest} cm frame`); else watch.push(`Nearest frame is ${nearest} cm; you said ${c.size} cm`);
+    if (Math.abs(nearest - c.size) <= 1) why.push(T('Comes in a {n} cm frame', {n: nearest})); else watch.push(T('Nearest frame is {n} cm; you said {s} cm', {n: nearest, s: c.size}));
   }
-  if (c.dynamo === 'want_it') { if (b.dynamoReady) why.push('Dynamo-ready for night riding'); else watch.push('Not dynamo-ready, which you wanted for riding through the night'); }
-  if (c.shifting === 'electronic') { if (b.electronicShifting) why.push('Electronic shifting, as you asked'); else watch.push('Mechanical shifting, not the electronic you asked for'); }
-  if (c.wheelpref === 'deep' && b.wheelDepth !== 'deep') watch.push('Shallow wheels, not the deep aero wheels you asked for');
-  if (c.wheelpref === 'shallow' && b.wheelDepth !== 'shallow') watch.push('Deep aero wheels, not the lighter climbing wheels you asked for');
-  if (SV.scoringPrice(b) <= c.budget) why.push(`Within your C$${c.budget} budget (${SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)})`);
+  if (c.dynamo === 'want_it') { if (b.dynamoReady) why.push(T('Dynamo-ready for night riding')); else watch.push(T('Not dynamo-ready, which you wanted for riding through the night')); }
+  if (c.shifting === 'electronic') { if (b.electronicShifting) why.push(T('Electronic shifting, as you asked')); else watch.push(T('Mechanical shifting, not the electronic you asked for')); }
+  if (c.wheelpref === 'deep' && b.wheelDepth !== 'deep') watch.push(T('Shallow wheels, not the deep aero wheels you asked for'));
+  if (c.wheelpref === 'shallow' && b.wheelDepth !== 'shallow') watch.push(T('Deep aero wheels, not the lighter climbing wheels you asked for'));
+  if (SV.scoringPrice(b) <= c.budget) why.push(T('Within your {c} budget ({p})', {c: SV.cad(c.budget), p: SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)}));
   return {why: why.slice(0, 5), watch: watch.slice(0, 3)};
 }
 
@@ -614,17 +624,17 @@ function disciplineScore(userD, b){
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
   if (!state.discipline || !state.discipline.length) {
-    err.textContent = "Pick what you're training for first.";
+    err.textContent = T("Pick what you're training for first.");
     err.style.display = 'block';
     return;
   }
   if (state.discipline.includes('road_race') && !state.character) {
-    err.textContent = "Pick what matters more for your racing first.";
+    err.textContent = T("Pick what matters more for your racing first.");
     err.style.display = 'block';
     return;
   }
   if (!bikes.length) {
-    err.textContent = "Still loading the bike catalog — try again in a second.";
+    err.textContent = T("Still loading the bike catalog — try again in a second.");
     err.style.display = 'block';
     return;
   }
@@ -709,19 +719,20 @@ document.getElementById('submit').addEventListener('click', () => {
   SV.render({
     results, root: '#quizSteps', items: scored, excluded: sellable.out,
     summary: [
-      {label:'Racing', value: state.discipline.map(d => disciplineName[d]).join(' + '), group:'discipline'},
-      {label:'Fit', value: state.sizemode === 'known' && state.framesize ? state.framesize + ' cm frame' : state.riderHeight ? state.riderHeight + ' cm tall' : '', group:'sizemode'},
-      {label:'Budget', value: 'C$' + budget, group:'budget'}
+      {label:'Event', value: state.discipline.map(d => T(disciplineName[d])).join(' + '), group:'discipline'},
+      {label:'Fit', value: state.sizemode === 'known' && state.framesize ? T('{n} cm frame', {n: state.framesize}) : state.riderHeight ? T('{n} cm tall', {n: state.riderHeight}) : '', group:'sizemode'},
+      {label:'Budget', value: SV.cad(budget), group:'budget'}
     ],
     describe: b => {
       const r = explainMatch(b, ctx);
       return {
-        meta: `${b.sizes && b.sizes.length ? 'Sizes ' + b.sizes.join('/') + 'cm' : 'Sizes: see the brand'} · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)}${b.electronicShifting ? ' (electronic)' : ' (mechanical)'} · ${b.brakeType} brakes<br>${disciplineName[b.discipline]} · ${b.character.replace('_',' ')} character · ${b.wheelDepth === 'deep' ? 'deep aero wheels' : 'lightweight wheels'}${b.dynamoReady ? ' · dynamo-ready' : ''}`,
+        meta: [[b.sizes && b.sizes.length ? T('Sizes {s} cm', {s: b.sizes.join('/')}) : T('Sizes: see the brand'), T(b.frameMaterial + ' frame'), escapeHtml(b.groupset) + ' ' + (b.electronicShifting ? T('(electronic)') : T('(mechanical)')), T(b.brakeType + ' brakes')].join(' · '),
+          [T(disciplineName[b.discipline]), T('{c} character', {c: T(charPref[b.character] || b.character)}), T(b.wheelDepth === 'deep' ? 'deep aero wheels' : 'lightweight wheels'), b.dynamoReady ? T('dynamo-ready') : ''].filter(Boolean).join(' · ')].join('<br>'),
         why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget)
       };
     },
     compareRows: [
-      ['Built for', b => disciplineName[b.discipline]], ['Character', b => b.character.replace('_', ' ')], ['Frame', b => b.frameMaterial], ['Drivetrain', b => b.groupset],
+      ['Built for', b => T(disciplineName[b.discipline])], ['Character', b => T(charPref[b.character] || b.character)], ['Frame', b => b.frameMaterial], ['Drivetrain', b => b.groupset],
       ['Shifting', b => b.electronicShifting ? 'electronic' : 'mechanical'], ['Brakes', b => b.brakeType], ['Wheels', b => b.wheelDepth === 'deep' ? 'deep aero' : 'lightweight'],
       ['Weight (catalog)', b => b.weight ? b.weight + ' kg' : ''], ['Sizes', b => b.sizes && b.sizes.length ? b.sizes.join(' / ') + ' cm' : ''], ['Dynamo-ready', b => b.dynamoReady ? 'yes' : 'no']
     ]

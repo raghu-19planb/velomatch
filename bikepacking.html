@@ -26,6 +26,10 @@
 <script src="info-tips.js"></script>
 <script src="nav-transition.js"></script>
 <script src="flag-banner.js" defer></script>
+<script src="i18n.js" defer></script>
+<script src="i18n-fr-core.js" defer></script>
+<script src="i18n-fr-quiz.js" defer></script>
+<script src="i18n-fr-bikepacking.js" defer></script>
 </head>
 <body>
 
@@ -577,13 +581,15 @@ function budgetNote(b, budget){
   const over = price - budget;
   if (over <= 0 || over > 500) return '';
   const perks = [];
-  if (b.electronicShifting) perks.push('electronic shifting');
-  if (b.frameMaterial === 'carbon' || b.frameMaterial === 'titanium') perks.push(`a ${b.frameMaterial} frame`);
-  if (b.comfortDamping) perks.push('front-end comfort damping for rough roads');
-  if (b.dynamoReady) perks.push('a dynamo-ready hub for lights and charging');
-  if (b.tireDurability === 'reinforced' && !perks.length) perks.push('more reinforced, reliable tires');
-  if (!perks.length) perks.push('a step up in components for the same basic bike');
-  return `<p class="result-budget-note"><b>About C$${Math.round(over)} over your budget</b>: that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+  const T = SV.T;
+  if (b.electronicShifting) perks.push(T('electronic shifting'));
+  if (b.frameMaterial === 'carbon' || b.frameMaterial === 'titanium') perks.push(T('a ' + b.frameMaterial + ' frame'));
+  if (b.comfortDamping) perks.push(T('front-end comfort damping for rough roads'));
+  if (b.dynamoReady) perks.push(T('a dynamo-ready hub for lights and charging'));
+  if (b.tireDurability === 'reinforced' && !perks.length) perks.push(T('more reinforced, reliable tires'));
+  if (!perks.length) perks.push(T('a step up in components for the same basic bike'));
+  const list = perks.length > 1 ? T('{a} and {b}', {a: perks[0], b: perks[1]}) : perks[0];
+  return `<p class="result-budget-note">${T('<b>About {x} over your budget</b>: that gets you {p}.', {x: SV.cad(Math.round(over)), p: list})}</p>`;
 }
 
 // Shown when a bike has no photo yet, or its photo URL fails to load —
@@ -732,40 +738,43 @@ function climbingLabel(r){
 // This mirrors the factors the scoring uses, so what we say is what actually moved the bike up or down.
 const terrainName = {road_paved:'paved roads', gravel:'gravel', mixed:'mixed paved and gravel', trail_mountain:'rough trail'};
 const tripName = {overnight:'weekend trip', week:'week-long trip', multiweek:'multi-week trip', expedition:'months-long trip'};
+const T = SV.T; // translates when the visitor picked French (match-ui.js / i18n.js)
+const climbWhy = {ultra_low: 'Very low (loaded-climb) gearing for climbing with a load', low: 'Low gearing for climbing with a load'};
 function explainMatch(b, c){
   const why = [], watch = [];
   // fit first: it is the biggest factor
   if (c.sizemode === 'height' && c.height) {
-    if (c.height >= b.minH && c.height <= b.maxH) why.push(`Fits a ${c.height} cm rider (this bike covers ${b.minH}–${b.maxH} cm)`);
-    else watch.push(`Sized for riders ${b.minH}–${b.maxH} cm, and you're ${c.height} cm`);
+    const r = {h: c.height, a: b.minH, b: b.maxH};
+    if (c.height >= b.minH && c.height <= b.maxH) why.push(T('Fits a {h} cm rider (this bike covers {a}–{b} cm)', r));
+    else watch.push(T("Sized for riders {a}–{b} cm, and you're {h} cm", r));
   } else if (c.sizemode === 'known' && c.size && b.sizes && b.sizes.length) {
     const nearest = b.sizes.reduce((best, x) => Math.abs(x - c.size) < Math.abs(best - c.size) ? x : best, b.sizes[0]);
-    if (Math.abs(nearest - c.size) <= 1) why.push(`Comes in a ${nearest} cm frame`);
-    else watch.push(`Nearest frame is ${nearest} cm; you said ${c.size} cm`);
+    if (Math.abs(nearest - c.size) <= 1) why.push(T('Comes in a {n} cm frame', {n: nearest}));
+    else watch.push(T('Nearest frame is {n} cm; you said {s} cm', {n: nearest, s: c.size}));
   }
-  if (!b.sizes || !b.sizes.length) watch.push("Sizes aren't listed here yet. Check the brand's size chart before you buy");
-  if (SV.scoringPrice(b) <= c.budget) why.push(`Within your C$${c.budget} budget (${SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)})`);
+  if (!b.sizes || !b.sizes.length) watch.push(T("Sizes aren't listed here yet. Check the brand's size chart before you buy"));
+  if (SV.scoringPrice(b) <= c.budget) why.push(T('Within your {c} budget ({p})', {c: SV.cad(c.budget), p: SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)}));
   const gap = Math.min(...c.terrain.map(t => Math.abs(terrainPosition[t] - terrainPosition[b.terrain])));
-  if (gap === 0) why.push(`Made for ${terrainName[b.terrain]}, like your route`);
+  const tt = T(terrainName[b.terrain]);
+  if (gap === 0) why.push(T('Made for {t}, like your route', {t: tt}));
   else if (gap === 1) {
     const maxWanted = Math.max(...c.terrain.map(t => terrainPosition[t]));
-    watch.push(terrainPosition[b.terrain] > maxWanted ? `Built for ${terrainName[b.terrain]}: more bike than your route needs, so heavier and slower on smooth ground` : `Built for ${terrainName[b.terrain]}: may feel limited on rougher stretches of your route`);
+    watch.push(terrainPosition[b.terrain] > maxWanted ? T('Built for {t}: more bike than your route needs, so heavier and slower on smooth ground', {t: tt}) : T('Built for {t}: may feel limited on rougher stretches of your route', {t: tt}));
   }
-  else if (gap >= 2) watch.push(`Better suited to ${terrainName[b.terrain]} than your route`);
-  if (b.cargoCapacity >= c.neededCargo) why.push(`Rated for ${cargoLabel(b.cargoCapacity)} loads, enough for a ${tripName[c.triplength]}`);
-  else watch.push(`Rated for ${cargoLabel(b.cargoCapacity)} loads, and you described a ${tripName[c.triplength]}`);
+  else if (gap >= 2) watch.push(T('Better suited to {t} than your route', {t: tt}));
+  if (b.cargoCapacity >= c.neededCargo) why.push(T('Rated for {c} loads, enough for a {t}', {c: T(cargoLabel(b.cargoCapacity)), t: T(tripName[c.triplength])}));
+  else watch.push(T('Rated for {c} loads, and you described a {t}', {c: T(cargoLabel(b.cargoCapacity)), t: T(tripName[c.triplength])}));
   if (c.climbing === 'steep_mountain') {
-    const g = climbingLabel(b.climbingRange);
-    if (b.climbingRange !== 'standard') why.push(g.charAt(0).toUpperCase() + g.slice(1) + ' for climbing with a load');
-    else watch.push('Standard gearing: expect to push on steep climbs with a load');
+    if (b.climbingRange !== 'standard') why.push(T(climbWhy[b.climbingRange]));
+    else watch.push(T('Standard gearing: expect to push on steep climbs with a load'));
   }
-  if (/single-speed/i.test(b.groupset)) watch.push('Single-speed: no gears, so hills are hard work with a load');
+  if (/single-speed/i.test(b.groupset)) watch.push(T('Single-speed: no gears, so hills are hard work with a load'));
   const carry = c.carry || [];
-  if (carry.includes('rack_panniers')) { if (b.rackMounts) why.push('Has rack mounts for panniers'); else watch.push('No rack mounts, so panniers need a workaround'); }
-  if (carry.includes('minimalist')) { if (b.frameBagFriendly) why.push('Roomy main triangle for a frame bag'); else watch.push('Tight frame-bag fit, so plan on a smaller bag'); }
-  if (c.tires === 'reliable' && b.tireDurability === 'reinforced') why.push('Reinforced tyres to cut down on flats');
-  if (c.experience === 'new' && b.purpose === 'ultra_race') watch.push('Race-oriented: quicker and twitchier than a relaxed first-trip bike');
-  if (c.experience === 'new' && b.purpose === 'touring') why.push('Relaxed, touring-style handling suits a first trip');
+  if (carry.includes('rack_panniers')) { if (b.rackMounts) why.push(T('Has rack mounts for panniers')); else watch.push(T('No rack mounts, so panniers need a workaround')); }
+  if (carry.includes('minimalist')) { if (b.frameBagFriendly) why.push(T('Roomy main triangle for a frame bag')); else watch.push(T('Tight frame-bag fit, so plan on a smaller bag')); }
+  if (c.tires === 'reliable' && b.tireDurability === 'reinforced') why.push(T('Reinforced tyres to cut down on flats'));
+  if (c.experience === 'new' && b.purpose === 'ultra_race') watch.push(T('Race-oriented: quicker and twitchier than a relaxed first-trip bike'));
+  if (c.experience === 'new' && b.purpose === 'touring') why.push(T('Relaxed, touring-style handling suits a first trip'));
   return {why: why.slice(0, 4), watch: watch.slice(0, 3)};
 }
 function reasonsMarkup(b, c){
@@ -781,12 +790,12 @@ function formatPrice(b){
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
   if (!state.terrain || !state.terrain.length || !state.purpose || !state.triplength) {
-    err.textContent = "Pick a terrain, trip goal, and trip length first.";
+    err.textContent = T("Pick a terrain, trip goal, and trip length first.");
     err.style.display = 'block';
     return;
   }
   if (!bikes.length) {
-    err.textContent = "Still loading the bike catalog — try again in a second.";
+    err.textContent = T("Still loading the bike catalog — try again in a second.");
     err.style.display = 'block';
     return;
   }
@@ -903,10 +912,10 @@ document.getElementById('submit').addEventListener('click', () => {
 
   const results = document.getElementById('results');
   const answer = {
-    terrain: (state.terrain || []).map(t => terrainName[t]).join(' + '),
+    terrain: (state.terrain || []).map(t => T(terrainName[t])).join(' + '),
     trip: tripName[state.triplength],
     purpose: {touring:'Comfortable touring', adventure:'A proper adventure', ultra_race:'Ultra-racing'}[state.purpose],
-    fit: state.sizemode === 'known' && state.framesize ? state.framesize + ' cm frame' : state.riderHeight ? state.riderHeight + ' cm tall' : '',
+    fit: state.sizemode === 'known' && state.framesize ? T('{n} cm frame', {n: state.framesize}) : state.riderHeight ? T('{n} cm tall', {n: state.riderHeight}) : '',
     experience: {new:'First trip', some:'A few trips', experienced:'Very experienced'}[state.experience] || ''
   };
   SV.render({
@@ -914,12 +923,13 @@ document.getElementById('submit').addEventListener('click', () => {
     summary: [
       {label:'Route', value: answer.terrain, group:'terrain'}, {label:'Trip', value: answer.trip, group:'triplength'},
       {label:'Goal', value: answer.purpose, group:'purpose'}, {label:'Fit', value: answer.fit, group:'sizemode'},
-      {label:'Budget', value: 'C$' + budget, group:'budget'}, {label:'Experience', value: answer.experience, group:'experience'}
+      {label:'Budget', value: SV.cad(budget), group:'budget'}, {label:'Experience', value: answer.experience, group:'experience'}
     ],
     describe: b => {
       const r = explainMatch(b, ctx);
       return {
-        meta: `${b.wheel === 700 ? '700c' : '650b'} wheels · ${b.sizes && b.sizes.length ? 'sizes ' + b.sizes.join('/') + 'cm' : 'sizes: see the brand'} · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)}${b.electronicShifting ? ' (electronic)' : ' (mechanical)'}<br>${cargoLabel(b.cargoCapacity)} capacity · ${climbingLabel(b.climbingRange)} · ${b.suspensionFork ? 'suspension fork' : b.comfortDamping ? 'front comfort damping' : 'rigid'}`,
+        meta: [[T('{w} wheels', {w: b.wheel === 700 ? '700c' : '650b'}), b.sizes && b.sizes.length ? T('sizes {s} cm', {s: b.sizes.join('/')}) : T('sizes: see the brand'), T(b.frameMaterial + ' frame'), escapeHtml(b.groupset) + ' ' + (b.electronicShifting ? T('(electronic)') : T('(mechanical)'))].join(' · '),
+          [T('{c} capacity', {c: T(cargoLabel(b.cargoCapacity))}), T(climbingLabel(b.climbingRange)), T(b.suspensionFork ? 'suspension fork' : b.comfortDamping ? 'front comfort damping' : 'rigid')].join(' · ')].join('<br>'),
         why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget)
       };
     },

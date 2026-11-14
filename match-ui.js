@@ -12,6 +12,10 @@
   const SV = window.SV = { quiet: false, rate: null, rateDate: null, hasResults: false, lastItems: [] };
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   SV.esc = esc;
+  // French (Québec) when the visitor chose it: sentences go through i18n.js, numbers and money use Québec formats
+  const FR = () => !!(window.I18N && window.I18N.lang === 'fr');
+  const T = (s, v) => (window.I18N ? window.I18N.t(s, v) : (v ? s.replace(/\{(\w+)\}/g, (m, k) => (v[k] != null ? v[k] : m)) : s));
+  SV.T = T;
 
   // ---- exchange rate: the Bank of Canada's published daily rate, used only to compare a US price to a CAD budget
   SV.fxReady = fetch('https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json?recent=1')
@@ -19,8 +23,12 @@
     .then(j => { const o = j.observations && j.observations[0]; if (o) { SV.rate = Number(o.FXUSDCAD.v); SV.rateDate = o.d; } })
     .catch(() => { /* no rate: budgets then compare the listed number as it is, and the page says so */ });
 
-  const fmt = n => Number(n).toLocaleString('en-CA', { maximumFractionDigits: n % 1 ? 2 : 0 });
-  SV.money = (amount, cur) => (cur === 'CAD' ? 'C$' : cur === 'USD' ? 'US$' : (cur || '') + ' ') + fmt(amount);
+  const fmt = n => Number(n).toLocaleString(FR() ? 'fr-CA' : 'en-CA', { maximumFractionDigits: n % 1 ? 2 : 0 });
+  // 899 $ US / 1 299 $ CA in French; US$899 / C$1,299 in English
+  SV.money = (amount, cur) => FR()
+    ? fmt(amount) + '\u00a0' + (cur === 'CAD' ? '$\u00a0CA' : cur === 'USD' ? '$\u00a0US' : (cur || ''))
+    : (cur === 'CAD' ? 'C$' : cur === 'USD' ? 'US$' : (cur || '') + ' ') + fmt(amount);
+  SV.cad = n => (FR() ? fmt(n) + '\u00a0$\u00a0CA' : 'C$' + fmt(n));
 
   // ---- what we know about a bike's price
   SV.catalogPrice = b => ({ amount: b.price, currency: b.currency || 'USD' });
@@ -66,22 +74,21 @@
   SV.trust = b => {
     const c = b.check || {};
     const t = [];
-    const date = c.checkedOn ? ' on ' + c.checkedOn : '';
-    if (c.status === 'ok') t.push(['ok', 'Seller page confirmed' + date + (c.price ? '' : ', but it shows no price we can read')]);
-    else if (c.status === 'blocked') t.push(['info', "This seller's site doesn't allow automatic checks, so open the page to confirm the model and price"]);
-    else if (c.status === 'mismatch') t.push(['warn', "The seller page didn't clearly show this model. Check that it is the right bike"]);
-    else t.push(['warn', 'No seller page confirmed yet for this bike']);
-    t.push(c.canada === 'confirmed' ? ['ok', 'Canadian listing'] : ['info', 'Canadian availability not confirmed. Check before you buy']);
+    if (c.status === 'ok') t.push(['ok', T(c.checkedOn ? (c.price ? 'Seller page confirmed on {d}' : 'Seller page confirmed on {d}, but it shows no price we can read') : (c.price ? 'Seller page confirmed' : 'Seller page confirmed, but it shows no price we can read'), { d: c.checkedOn })]);
+    else if (c.status === 'blocked') t.push(['info', T("This seller's site doesn't allow automatic checks, so open the page to confirm the model and price")]);
+    else if (c.status === 'mismatch') t.push(['warn', T("The seller page didn't clearly show this model. Check that it is the right bike")]);
+    else t.push(['warn', T('No seller page confirmed yet for this bike')]);
+    t.push(c.canada === 'confirmed' ? ['ok', T('Canadian listing')] : ['info', T('Canadian availability not confirmed. Check before you buy')]);
     return t;
   };
 
   SV.priceHtml = b => {
     const p = SV.bestPrice(b);
     const main = SV.money(p.amount, p.currency);
-    const conv = p.currency === 'USD' && SV.rate ? ` <span class="result-price-conv">≈ C$${fmt(Math.round(p.amount * SV.rate))}</span>` : '';
-    const src = p.source === 'seller' ? `seen on the seller's page${p.on ? ', ' + p.on : ''}` : 'catalog price, not re-checked';
+    const conv = p.currency === 'USD' && SV.rate ? ` <span class="result-price-conv">≈ ${SV.cad(Math.round(p.amount * SV.rate))}</span>` : '';
+    const src = p.source === 'seller' ? (p.on ? T("seen on the seller's page, {d}", { d: p.on }) : T("seen on the seller's page")) : T('catalog price, not re-checked');
     const s = SV.sellerPrice(b);
-    const diff = s && s.far ? `<span class="result-price-note">The seller's page shows ${SV.money(s.amount, s.currency)}, which may be a different trim. Confirm with the seller.</span>` : '';
+    const diff = s && s.far ? `<span class="result-price-note">${esc(T("The seller's page shows {p}, which may be a different trim. Confirm with the seller.", { p: SV.money(s.amount, s.currency) }))}</span>` : '';
     return `<span class="result-price">${main}${conv}</span><span class="result-price-src">${esc(src)}</span>${diff}`;
   };
 
@@ -91,12 +98,12 @@
       let url = b.retailerUrl, aff = false;
       if (typeof applyAffiliateTracking === 'function') { const r = applyAffiliateTracking(b.retailerUrl); url = r[0]; aff = r[1]; }
       let host = ''; try { host = new URL(b.retailerUrl).hostname.replace(/^www\./, ''); } catch (e) { /* ignore */ }
-      const label = kind === 'photo' ? 'See photos' + (host ? ' at ' + host : '') : 'Open seller page' + (host ? ' at ' + host : '');
+      const label = kind === 'photo' ? (host ? T('See photos at {h}', { h: host }) : T('See photos')) : (host ? T('Open seller page at {h}', { h: host }) : T('Open seller page'));
       return { href: url, label, rel: 'noopener' + (aff ? ' sponsored' : '') };
     }
     const name = b.name.toLowerCase().includes(b.brand.toLowerCase()) ? b.name : `${b.brand} ${b.name}`;
     const q = encodeURIComponent(name + ' bike buy Canada');
-    return { href: 'https://www.google.ca/search?q=' + q, label: kind === 'photo' ? 'Search for photos of the ' + b.brand : 'No seller page confirmed. Search for sellers', rel: 'noopener' };
+    return { href: 'https://www.google.ca/search?q=' + q, label: kind === 'photo' ? T('Search for photos of the {b}', { b: b.brand }) : T('No seller page confirmed. Search for sellers'), rel: 'noopener' };
   };
   SV.photo = b => {
     const l = SV.link(b, 'photo');
@@ -130,22 +137,22 @@
     const items = o.items;
     SV.lastItems = items;
     const desc = items.map(b => o.describe(b));
-    const chips = (o.summary || []).filter(c => c && c.value).map(c => `<button type="button" class="ans-chip" data-goto="${esc(c.group)}" title="Change this answer"><span class="ans-k">${esc(c.label)}</span> ${esc(c.value)}</button>`).join('');
+    const chips = (o.summary || []).filter(c => c && c.value).map(c => `<button type="button" class="ans-chip" data-goto="${esc(c.group)}" title="${esc(T('Change this answer'))}"><span class="ans-k">${esc(c.label)}</span> ${esc(c.value)}</button>`).join('');
     const ex = o.excluded || { discontinued: [], 'not-canada': [], 'dead-link': [] };
     const exLines = [];
-    if (ex.discontinued.length) exLines.push(`${ex.discontinued.length} no longer sold new (${ex.discontinued.map(b => esc(b.name)).join(', ')})`);
-    if (ex['not-canada'].length) exLines.push(`${ex['not-canada'].length} that the seller says it cannot ship to Canada (${ex['not-canada'].map(b => esc(b.name)).join(', ')})`);
-    if (ex['dead-link'].length) exLines.push(`${ex['dead-link'].length} whose seller page no longer loads`);
+    if (ex.discontinued.length) exLines.push(esc(T(ex.discontinued.length === 1 ? '1 no longer sold new ({names})' : '{n} no longer sold new ({names})', { n: ex.discontinued.length, names: ex.discontinued.map(b => b.name).join(', ') })));
+    if (ex['not-canada'].length) exLines.push(esc(T(ex['not-canada'].length === 1 ? '1 that the seller says it cannot ship to Canada ({names})' : '{n} that the seller says it cannot ship to Canada ({names})', { n: ex['not-canada'].length, names: ex['not-canada'].map(b => b.name).join(', ') })));
+    if (ex['dead-link'].length) exLines.push(esc(T(ex['dead-link'].length === 1 ? '1 whose seller page no longer loads' : '{n} whose seller page no longer loads', { n: ex['dead-link'].length })));
     const head = `
       <div class="result-head">
-        <h3>Your top ${items.length} matches</h3>
-        ${chips ? `<div class="ans-chips" aria-label="Your answers. Select one to change it"><span class="ans-lead">Based on:</span> ${chips}</div>` : ''}
-        <p class="result-live">Change any answer and the matches update. The order is by how well each bike fits <em>your</em> answers.</p>
+        <h3>${esc(T('Your top {n} matches', { n: items.length }))}</h3>
+        ${chips ? `<div class="ans-chips" aria-label="${esc(T('Your answers. Select one to change it'))}"><span class="ans-lead">${esc(T('Based on:'))}</span> ${chips}</div>` : ''}
+        <p class="result-live">${T('Change any answer and the matches update. The order is by how well each bike fits <em>your</em> answers.')}</p>
         <div class="result-actions">
-          <button type="button" class="result-act" id="svCopy">Copy link to these results</button>
-          <a class="result-act" id="svMail" href="#">Email these matches</a>
+          <button type="button" class="result-act" id="svCopy">${esc(T('Copy link to these results'))}</button>
+          <a class="result-act" id="svMail" href="#">${esc(T('Email these matches'))}</a>
         </div>
-        ${exLines.length ? `<p class="result-left-out"><b>Left out:</b> ${exLines.join('; ')}.</p>` : ''}
+        ${exLines.length ? `<p class="result-left-out"><b>${esc(T('Left out:'))}</b> ${exLines.join('; ')}.</p>` : ''}
       </div>`;
     const cards = items.map((b, i) => {
       const d = desc[i];
@@ -153,14 +160,14 @@
       const why = d.why && d.why.length ? `<ul class="result-why">${d.why.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : '';
       const watch = d.watch && d.watch.length ? `<ul class="result-watch">${d.watch.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : '';
       const rc = b.recall;
-      const recall = rc && rc.url ? `<p class="result-recall"><b>Recall notice:</b> ${rc.match === 'exact'
-        ? 'Health Canada lists a recall that names this model (' + esc(rc.title) + '). Check which model years and parts it covers before you buy.'
-        : 'Health Canada lists a recall for other bikes in the ' + esc(rc.line ? rc.line.charAt(0).toUpperCase() + rc.line.slice(1) : 'same') + ' line (' + esc(rc.title) + '). Check whether this one is included.'}
-        <a href="${esc(rc.url)}" target="_blank" rel="noopener">Read the notice</a></p>` : '';
+      const recall = rc && rc.url ? `<p class="result-recall"><b>${esc(T('Recall notice:'))}</b> ${rc.match === 'exact'
+        ? esc(T('Health Canada lists a recall that names this model ({t}). Check which model years and parts it covers before you buy.', { t: rc.title }))
+        : esc(rc.line ? T('Health Canada lists a recall for other bikes in the {l} line ({t}). Check whether this one is included.', { l: rc.line.charAt(0).toUpperCase() + rc.line.slice(1), t: rc.title }) : T('Health Canada lists a recall for other bikes in the same line ({t}). Check whether this one is included.', { t: rc.title }))}
+        <a href="${esc(rc.url)}" target="_blank" rel="noopener">${esc(T('Read the notice'))}</a></p>` : '';
       const trust = `<ul class="result-trust">${SV.trust(b).map(([k, t]) => `<li class="t-${k}">${esc(t)}</li>`).join('')}</ul>`;
       return `
         <div class="result-card ${i === 0 ? 'top' : ''}">
-          ${i === 0 ? '<span class="badge">Top pick</span>' : ''}
+          ${i === 0 ? '<span class="badge">' + esc(T('Top pick')) + '</span>' : ''}
           <div class="result-media">${b.image ? `<img src="${esc(b.image)}" alt="${esc(b.name)}" loading="lazy">` : SV.photo(b)}</div>
           <div class="result-top"><span class="result-name">${esc(b.name)}</span><span class="result-pricebox">${SV.priceHtml(b)}</span></div>
           <p class="result-meta">${d.meta || ''}</p>
@@ -178,17 +185,17 @@
       const rows = o.compareRows;
       compare = `
         <div class="compare-wrap">
-          <h3>Side by side: your top ${top.length}</h3>
+          <h3>${esc(T('Side by side: your top {n}', { n: top.length }))}</h3>
           <div class="compare-scroll"><table class="compare-table">
             <thead><tr><th scope="col"></th>${top.map(b => `<th scope="col">${esc(b.name)}</th>`).join('')}</tr></thead>
             <tbody>
-              <tr><th scope="row">Price</th>${top.map(b => `<td>${(() => { const p = SV.bestPrice(b); return esc(SV.money(p.amount, p.currency)) + (p.source === 'seller' ? '' : ' <span class="cmp-sub">catalog</span>'); })()}</td>`).join('')}</tr>
-              ${rows.map(([label, fn]) => `<tr><th scope="row">${esc(label)}</th>${top.map(b => `<td>${esc(fn(b) == null || fn(b) === '' ? 'not listed' : fn(b))}</td>`).join('')}</tr>`).join('')}
+              <tr><th scope="row">${esc(T('Price'))}</th>${top.map(b => `<td>${(() => { const p = SV.bestPrice(b); return esc(SV.money(p.amount, p.currency)) + (p.source === 'seller' ? '' : ' <span class="cmp-sub">' + esc(T('catalog')) + '</span>'); })()}</td>`).join('')}</tr>
+              ${rows.map(([label, fn]) => `<tr><th scope="row">${esc(label)}</th>${top.map(b => `<td>${esc(fn(b) == null || fn(b) === '' ? T('not listed') : fn(b))}</td>`).join('')}</tr>`).join('')}
             </tbody></table></div>
         </div>`;
     }
-    const fxNote = SV.rate ? ` US prices are converted at the Bank of Canada's rate for ${esc(SV.rateDate)} (1 US$ = C$${SV.rate.toFixed(4)}) only to compare against your budget.` : ' The exchange rate could not be loaded, so your budget was compared to each listed number as it is.';
-    const foot = `<p class="result-footnote">Prices are in the currency the brand or retailer lists, before tax.${fxNote} Bikes whose seller page we have confirmed get a small ranking boost, because we know you can really buy them. “Catalog price” means we have not re-checked it on the seller's page.${o.note ? ' ' + esc(o.note) : ''} Specifications come from our catalog and can be out of date. Always confirm size, price, specifications and stock with the seller before you buy.</p>`;
+    const fxNote = SV.rate ? ' ' + esc(T("US prices are converted at the Bank of Canada's rate for {d} (1 US$ = C${r}) only to compare against your budget.", { d: SV.rateDate, r: FR() ? SV.rate.toFixed(4).replace('.', ',') : SV.rate.toFixed(4) })) : ' ' + esc(T('The exchange rate could not be loaded, so your budget was compared to each listed number as it is.'));
+    const foot = `<p class="result-footnote">${esc(T('Prices are in the currency the brand or retailer lists, before tax.'))}${fxNote} ${esc(T("Bikes whose seller page we have confirmed get a small ranking boost, because we know you can really buy them. “Catalog price” means we have not re-checked it on the seller's page."))}${o.note ? ' ' + esc(o.note) : ''} ${esc(T('Specifications come from our catalog and can be out of date. Always confirm size, price, specifications and stock with the seller before you buy.'))}</p>`;
     results.innerHTML = head + cards + compare + foot;
 
     results.querySelectorAll('.result-media').forEach((el, i) => {
@@ -199,11 +206,11 @@
     // actions
     const url = SV.shareUrl(o.root);
     const copy = results.querySelector('#svCopy');
-    if (copy) copy.addEventListener('click', () => { (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(() => { copy.textContent = 'Link copied'; }, () => { prompt('Copy this link', url); }); });
+    if (copy) copy.addEventListener('click', () => { (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(() => { copy.textContent = T('Link copied'); }, () => { prompt(T('Copy this link'), url); }); });
     const mail = results.querySelector('#svMail');
     if (mail) {
-      const body = items.map((b, i) => (i + 1) + '. ' + b.name + ' (' + SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency) + ')' + (b.retailerUrl ? '\n   ' + b.retailerUrl : '')).join('\n') + '\n\nSee the full result and why each was picked:\n' + url;
-      mail.href = 'mailto:?subject=' + encodeURIComponent('My bike matches from SelectVelo') + '&body=' + encodeURIComponent(body);
+      const body = items.map((b, i) => (i + 1) + '. ' + b.name + ' (' + SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency) + ')' + (b.retailerUrl ? '\n   ' + b.retailerUrl : '')).join('\n') + '\n\n' + T('See the full result and why each was picked:') + '\n' + url;
+      mail.href = 'mailto:?subject=' + encodeURIComponent(T('My bike matches from SelectVelo')) + '&body=' + encodeURIComponent(body);
     }
     // change an answer from its chip
     results.querySelectorAll('.ans-chip').forEach(ch => ch.addEventListener('click', () => { if (window.svQuizGoTo) window.svQuizGoTo(ch.dataset.goto); }));

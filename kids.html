@@ -25,6 +25,10 @@
 <script src="affiliate.js"></script>
 <script src="nav-transition.js"></script>
 <script src="flag-banner.js" defer></script>
+<script src="i18n.js" defer></script>
+<script src="i18n-fr-core.js" defer></script>
+<script src="i18n-fr-quiz.js" defer></script>
+<script src="i18n-fr-kids.js" defer></script>
 </head>
 <body>
 
@@ -124,7 +128,7 @@
         </svg>
         <div class="step-index"><span>03</span><span class="tick"></span></div>
         <h3>See your top matches</h3>
-        <p>Ranked with plain-language reasons and how many years the bike should last before they outgrow it — not just a spec sheet.</p>
+        <p>Ranked with plain-language reasons and how much growing room it has before they outgrow it — not just a spec sheet.</p>
       </div>
     </div>
   </div>
@@ -222,11 +226,11 @@
         </div>
 
         <button type="button" class="submit-btn" id="submit">See recommendations</button>
-        <p class="err" id="err">Pick an experience level, terrain, and brake preference first.</p>
+        <p class="err" id="err">Pick an experience level and where they will ride first.</p>
       </div>
 
       <div>
-        <div id="placeholder" class="placeholder-note">Your top matches will appear here, ranked with reasons — including how many years the bike should last before they outgrow it.</div>
+        <div id="placeholder" class="placeholder-note">Your top matches will appear here, ranked with reasons — including how much growing room it has before they outgrow it.</div>
         <div class="results" id="results" tabindex="-1" aria-live="polite" style="display:none;"></div>
       </div>
     </div>
@@ -352,26 +356,30 @@ function escapeHtml(str){
 // cache a number that will go stale, link out to wherever it can actually be
 // checked live: a specific page only when a human has verified that exact
 // URL shows this bike, otherwise a plain web search for the model name.
-const expName = {none:'has never ridden', balance:'has used a balance bike', training:'rides with training wheels', confident:'rides confidently without training wheels'};
+const T = SV.T; // translates when the visitor picked French (match-ui.js / i18n.js)
+const expWhy = {none:'Suits a child who has never ridden', balance:'Suits a child who has used a balance bike', training:'Suits a child who rides with training wheels', confident:'Suits a child who rides confidently without training wheels'};
+const expWatch = {none:'Usually chosen for children at a different stage than one who has never ridden', balance:'Usually chosen for children at a different stage than one who has used a balance bike', training:'Usually chosen for children at a different stage than one who rides with training wheels', confident:'Usually chosen for children at a different stage than one who rides confidently without training wheels'};
 const terrainNameKids = {pavement:'pavement and driveways', road_gravel:'road and gravel', park:'neighbourhood paths', trail_road_gravel:'trail, road and gravel', trail:'light dirt trails'};
+const brakeWatch = {hand:{coaster:'Hand brakes, not the coaster brakes you asked for'}, none:{coaster:'No brakes, not the coaster brakes you asked for', hand:'No brakes, not the hand brakes you asked for'}, coaster:{hand:'Coaster brakes, not the hand brakes you asked for'}};
 // Plain-language reasons for each match, mirroring the factors the scoring actually uses.
 function explainMatch(b, c){
   const why = [], watch = [];
+  const r = {a: b.minH, b: b.maxH, h: c.height};
   if (c.height >= b.minH && c.height <= b.maxH) {
     const pos = (c.height - b.minH) / Math.max(1, b.maxH - b.minH);
-    if (pos > 0.85) watch.push(`Your child is near the top of this bike's range (${b.minH}–${b.maxH} cm), so they may outgrow it soon`);
-    else if (pos < 0.1) watch.push(`Near the bottom of this bike's range (${b.minH}–${b.maxH} cm): it may feel big at first, but it has room to grow`);
-    else why.push(`Fits a ${c.height} cm child (made for ${b.minH}–${b.maxH} cm)`);
-  } else watch.push(`Made for ${b.minH}–${b.maxH} cm, and your child is ${c.height} cm`);
-  if (c.height < b.maxH) why.push(`About ${b.maxH - c.height} cm of growing room before they reach this bike's top height`);
-  if (b.exp.includes(c.exp)) why.push(`Suits a child who ${expName[c.exp]}`); else watch.push(`Usually chosen for children at a different stage than one who ${expName[c.exp]}`);
+    if (pos > 0.85) watch.push(T("Your child is near the top of this bike's range ({a}–{b} cm), so they may outgrow it soon", r));
+    else if (pos < 0.1) watch.push(T("Near the bottom of this bike's range ({a}–{b} cm): it may feel big at first, but it has room to grow", r));
+    else why.push(T('Fits a {h} cm child (made for {a}–{b} cm)', r));
+  } else watch.push(T('Made for {a}–{b} cm, and your child is {h} cm', r));
+  if (c.height < b.maxH) why.push(T("About {n} cm of growing room before they reach this bike's top height", {n: b.maxH - c.height}));
+  if (b.exp.includes(c.exp)) why.push(T(expWhy[c.exp])); else watch.push(T(expWatch[c.exp]));
   const brakePref = c.brake || 'either';
-  if (brakePref !== 'either') { if (brakePref === b.brake) why.push(brakePref === 'coaster' ? 'Coaster (pedal-back) brake, as you wanted' : 'Hand brakes, as you wanted'); else watch.push(`${b.brake === 'coaster' ? 'Coaster' : b.brake === 'hand' ? 'Hand' : 'No'} brakes, not the ${brakePref} brakes you asked for`); }
+  if (brakePref !== 'either') { if (brakePref === b.brake) why.push(T(brakePref === 'coaster' ? 'Coaster (pedal-back) brake, as you wanted' : 'Hand brakes, as you wanted')); else watch.push(T(brakeWatch[b.brake][brakePref])); }
   const gap = Math.abs(terrainPosition[c.terrain] - terrainPosition[b.type]);
-  if (gap === 0) why.push(`Made for ${terrainNameKids[b.type]}, like where they will ride`); else if (gap >= 2) watch.push(`Better suited to ${terrainNameKids[b.type]} than where they will ride`);
-  if (b.seatRange) why.push(`Seat adjusts through ${b.seatRange} cm${b.barAdjust ? ' and the handlebars adjust too' : ''}`);
-  if (b.trainWheel) why.push('Training wheels can be fitted');
-  if (SV.scoringPrice(b) <= c.budget) why.push(`Within your C$${c.budget} budget (${SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)})`);
+  if (gap === 0) why.push(T('Made for {t}, like where they will ride', {t: T(terrainNameKids[b.type])})); else if (gap >= 2) watch.push(T('Better suited to {t} than where they will ride', {t: T(terrainNameKids[b.type])}));
+  if (b.seatRange) why.push(b.barAdjust ? T('Seat adjusts through {n} cm and the handlebars adjust too', {n: b.seatRange}) : T('Seat adjusts through {n} cm', {n: b.seatRange}));
+  if (b.trainWheel) why.push(T('Training wheels can be fitted'));
+  if (SV.scoringPrice(b) <= c.budget) why.push(T('Within your {c} budget ({p})', {c: SV.cad(c.budget), p: SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)}));
   return {why: why.slice(0, 5), watch: watch.slice(0, 3)};
 }
 
@@ -394,12 +402,13 @@ function budgetNote(b, budget){
   const over = SV.scoringPrice(b) - budget;
   if (over <= 0 || over > 500) return '';
   const perks = [];
-  if (b.barAdjust) perks.push('an adjustable handlebar for a longer growth window');
-  if (b.seatRange >= 9) perks.push('extra seatpost travel to grow with them longer');
-  if (b.resale === 'high') perks.push('strong resale value if they outgrow it fast');
-  if (b.brake === 'hand' && b.wheel >= 20) perks.push('hand brakes with more stopping power as they ride faster');
-  if (!perks.length) perks.push('a bit more room to grow into');
-  return `<p class="result-budget-note"><b>About C$${Math.round(over)} over your budget</b>: that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+  if (b.barAdjust) perks.push(T('an adjustable handlebar for a longer growth window'));
+  if (b.seatRange >= 9) perks.push(T('extra seatpost travel to grow with them longer'));
+  if (b.resale === 'high') perks.push(T('strong resale value if they outgrow it fast'));
+  if (b.brake === 'hand' && b.wheel >= 20) perks.push(T('hand brakes with more stopping power as they ride faster'));
+  if (!perks.length) perks.push(T('a bit more room to grow into'));
+  const list = perks.length > 1 ? T('{a} and {b}', {a: perks[0], b: perks[1]}) : perks[0];
+  return `<p class="result-budget-note">${T('<b>About {x} over your budget</b>: that gets you {p}.', {x: SV.cad(Math.round(over)), p: list})}</p>`;
 }
 
 async function loadBikeData(){
@@ -482,7 +491,7 @@ document.getElementById('height').addEventListener('input', e => {
   document.getElementById('height-out').textContent = e.target.value + ' cm';
 });
 document.getElementById('budget').addEventListener('input', e => {
-  document.getElementById('budget-out').textContent = 'C$' + e.target.value;
+  document.getElementById('budget-out').textContent = 'C$' + e.target.value; // the French pass reformats this (i18n-fr-quiz.js)
 });
 document.getElementById('growth').addEventListener('input', e => {
   document.getElementById('growth-out').textContent = growthLabels[Number(e.target.value)];
@@ -500,12 +509,12 @@ document.querySelectorAll('.opt').forEach(btn => {
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
   if (!state.exp || !state.terrain) {
-    err.textContent = "Pick their riding experience and where they will ride first.";
+    err.textContent = T("Pick their riding experience and where they will ride first.");
     err.style.display = 'block';
     return;
   }
   if (!bikes.length) {
-    err.textContent = "Still loading the bike catalog — try again in a second.";
+    err.textContent = T("Still loading the bike catalog — try again in a second.");
     err.style.display = 'block';
     return;
   }
@@ -568,12 +577,12 @@ document.getElementById('submit').addEventListener('click', () => {
     results, root: '#quizSteps', items: scored, excluded: sellable.out,
     summary: [
       {label:'Height', value: height + ' cm', group:'height'}, {label:'Riding', value: {none:'Never ridden', balance:'Balance bike', training:'Training wheels', confident:'Confident'}[state.exp], group:'exp'},
-      {label:'Where', value: terrainNameKids[state.terrain], group:'terrain'}, {label:'Budget', value: 'C$' + budget, group:'budget'}
+      {label:'Where', value: terrainNameKids[state.terrain], group:'terrain'}, {label:'Budget', value: SV.cad(budget), group:'budget'}
     ],
     describe: b => {
       const r = explainMatch(b, ctx);
       return {
-        meta: `${b.wheel}in wheels · fits ${b.minH}–${b.maxH}cm · ${b.brake === 'none' ? 'no brakes' : b.brake + ' brakes'}<br>About ${b.room} cm of growing room at their current height`,
+        meta: `${T('{w}in wheels · fits {a}–{b}cm · {br}', {w: b.wheel, a: b.minH, b: b.maxH, br: T(b.brake === 'none' ? 'no brakes' : b.brake + ' brakes')})}<br>${T('About {n} cm of growing room at their current height', {n: b.room})}`,
         why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget)
       };
     },
@@ -582,7 +591,7 @@ document.getElementById('submit').addEventListener('click', () => {
       ['Seat adjustment', b => b.seatRange ? b.seatRange + ' cm' : ''], ['Adjustable handlebars', b => b.barAdjust ? 'yes' : 'no'],
       ['Training wheels', b => b.trainWheel ? 'can be fitted' : 'no'], ['Resale value', b => b.resale || '']
     ],
-    note: "Fit uses the height range each brand publishes. Inseam matters too: have your child stand against a wall, measure from the floor to the top of the inner leg, and check that against the bike's lowest seat height on the seller's page. Children grow at different rates (often around 6 cm a year at these ages), so we show growing room in centimetres instead of guessing years."
+    note: T("Fit uses the height range each brand publishes. Inseam matters too: have your child stand against a wall, measure from the floor to the top of the inner leg, and check that against the bike's lowest seat height on the seller's page. Children grow at different rates (often around 6 cm a year at these ages), so we show growing room in centimetres instead of guessing years.")
   });
 });
 const letterOverlay = document.getElementById('letterOverlay');

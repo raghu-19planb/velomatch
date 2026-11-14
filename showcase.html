@@ -20,6 +20,9 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=selectvelo16">
 <script src="nav-transition.js"></script>
+<script src="i18n.js" defer></script>
+<script src="i18n-fr-core.js" defer></script>
+<script src="i18n-fr-showcase.js" defer></script>
 </head>
 <body class="nb-page">
 
@@ -186,7 +189,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
 
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function money(p){
-    try { return new Intl.NumberFormat('en-CA',{style:'currency',currency:p.currency||'CAD',minimumFractionDigits:0,maximumFractionDigits:2}).format(p.amount).replace('CA$','$'); }
+    try { return new Intl.NumberFormat(window.I18N && window.I18N.lang === 'fr' ? 'fr-CA' : 'en-CA',{style:'currency',currency:p.currency||'CAD',minimumFractionDigits:0,maximumFractionDigits:2}).format(p.amount).replace('CA$','$'); }
     catch(e){ return '$' + p.amount; }
   }
   function seller(b){ return b.soldBy || b.brand; }
@@ -320,7 +323,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
   more.addEventListener('click', function(){ state.limit += PAGE; render(); });
 
   function fmtDate(iso){
-    try { return new Date(iso + 'T12:00:00').toLocaleDateString('en-CA', {day:'numeric', month:'long', year:'numeric'}); }
+    try { return new Date(iso + 'T12:00:00').toLocaleDateString(window.I18N && window.I18N.lang === 'fr' ? 'fr-CA' : 'en-CA', {day:'numeric', month:'long', year:'numeric'}); }
     catch(e){ return iso; }
   }
   function syncNavHeight(){

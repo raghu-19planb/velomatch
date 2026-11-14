@@ -103,3 +103,19 @@ browser; if it cannot be loaded, the listed number is compared as it is and the 
 
 Where the shared behaviour lives: `match-ui.js` (cards, trust lines, compare table, share link, live refresh),
 `quiz-flow.js` (essentials first, "See my matches now").
+
+## French (Québec)
+
+Every page loads `i18n.js` (the engine), `i18n-fr-core.js` (navigation, footer, letter, mini-game), and its own
+`i18n-fr-<page>.js`; the five quizzes also load `i18n-fr-quiz.js` (quiz steps, info cards, results layer). English
+is the default; the EN | FR switch in the navigation stores the choice in `localStorage`. Terms and typography rules
+are in `i18n-glossary.md`.
+
+The French is written by an AI translator and has had no native-speaker review. A string with no French entry stays
+in English on purpose (nothing is machine-translated on the fly).
+
+Adding or changing English text on a page means adding its French to that page's file: the English text is the key,
+copied exactly. Sentences built in a page's script use `SV.T('Template with {n}', {n: 3})` (from `match-ui.js`) so
+the French can reorder the words. To find what is missing, open a page with `?i18n-debug` while in French and read
+the browser console after using the page (and press the quiz's "i" buttons): it lists every string with no French.
+Bike, brand and shop names are never translated.

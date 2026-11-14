@@ -1,0 +1,173 @@
+// French (Québec) for the commuting quiz. English text is the key. Loaded after i18n-fr-core.js and i18n-fr-quiz.js.
+// AI-written, not reviewed by a native speaker: see i18n-glossary.md.
+(function () {
+  const I = window.I18N;
+  if (!I) return;
+  const E = I.exact;
+  const add = o => Object.assign(E, o);
+  const P = (re, fn) => I.patterns.push([re, fn]);
+  I.keep.push(/^(Priority|Brompton|Tern|Rad Power Bikes|Aventon|Ride1Up|Marin|Opus|State Bicycle Co\.)$/);
+
+  // ---------------------------------------------------------------- page text
+  add({
+    'SelectVelo — Find your commute bike': 'SelectVelo — Trouvez votre vélo de ville',
+    'Find your ideal commuter bike in 2 minutes. SelectVelo scores real bikes from every brand against your distance, cargo needs, and motor preference.':
+      'Trouvez votre vélo de ville idéal en 2 minutes. SelectVelo évalue de vrais vélos de toutes les marques selon votre distance, vos besoins de charge et votre préférence de motorisation.',
+    'Daily commute': 'Trajet quotidien',
+    'The right <span class="pencil-mark">commute</span> bike makes every ride so fun, you\'ll take the long way.': 'Le bon vélo de <span class="pencil-mark">ville</span> rend chaque trajet si agréable que vous prendrez le chemin le plus long.',
+    'Answer a few questions about your ride — distance, route, cargo, and how much you want a motor to help. We measure real bikes from every brand against your actual commute, then explain exactly why the top match fits.':
+      'Répondez à quelques questions sur votre trajet : distance, parcours, charge, et l’aide que vous souhaitez d’un moteur. Nous mesurons de vrais vélos de toutes les marques selon votre trajet réel, puis nous expliquons exactement pourquoi le premier choix convient.',
+    'rack-ready': 'prêt pour un porte-bagages',
+    'Fig. 001 — geometry we score against your commute': 'Fig. 001 — la géométrie que nous évaluons selon votre trajet',
+    'Three steps to a bike that fits your commute.': 'Trois étapes vers un vélo adapté à votre trajet.',
+    'No sales pitch, no single-brand catalog. Just the questions a good bike shop would ask, run against real geometry and cargo needs.':
+      'Pas de boniment, pas de catalogue d’une seule marque. Seulement les questions que poserait un bon magasin de vélos, évaluées selon la géométrie réelle et les besoins de charge.',
+    'Answer a few questions': 'Répondez à quelques questions',
+    'Distance, route, cargo, power preference, budget, and how much portability matters to you.': 'Distance, parcours, charge, préférence de motorisation, budget, et l’importance que vous accordez à la facilité de transport.',
+    "Each answer weighs differently — a bike that can't handle your hills is ruled out, a great-fit bike a little over budget isn't.":
+      'Chaque réponse pèse différemment : un vélo qui ne peut pas affronter vos côtes est écarté, un vélo très bien adapté qui dépasse un peu le budget ne l’est pas.',
+    "Ranked with plain-language reasons — including how far it's comfortable and how much it can carry.": 'Classés avec des raisons en langage clair, y compris la distance confortable et la charge transportable.',
+    "Let's find your commute bike.": 'Trouvons votre vélo de ville.',
+    "This prototype covers daily commuting by bike. It's a longer quiz than the essentials, answered one question at a time — none of it requires knowing bike jargon going in.":
+      'Ce prototype couvre les déplacements quotidiens à vélo. C’est un questionnaire plus long que l’essentiel, auquel on répond une question à la fois : aucune connaissance du jargon du vélo n’est requise.',
+    'Your commute': 'Votre trajet',
+    'Comfort & conditions': 'Confort et conditions',
+    'Not sure about the terms? Just answer how it feels — we translate it into the right spec.': 'Un doute sur les termes ? Répondez simplement selon ce que vous ressentez : nous le traduisons en caractéristiques techniques.',
+    'Commute distance (one-way)': 'Distance du trajet (aller simple)',
+    'What\'s your route like? <span class="q-hint">(choose all that apply)</span>': 'Comment est votre parcours ? <span class="q-hint">(choisissez toutes les réponses qui s’appliquent)</span>',
+    'City streets & bike lanes': 'Rues de la ville et pistes cyclables',
+    'Mixed paved & gravel paths': 'Chemins mixtes, pavés et en gravier',
+    'Long, flat roads': 'Longues routes plates',
+    'Hilly — could use assist': 'Vallonné : une assistance serait utile',
+    'What do you need to carry?': 'Que devez-vous transporter ?',
+    'Just me': 'Seulement moi',
+    'Backpack or light bag': 'Sac à dos ou sac léger',
+    'Rack or panniers': 'Porte-bagages ou sacoches',
+    'Heavy loads (groceries, gear)': 'Lourdes charges (épicerie, équipement)',
+    'Power preference': 'Préférence de motorisation',
+    'Pedal only': 'Pédalage seulement',
+    'Open to e-assist': 'Ouvert à l’assistance électrique',
+    'Want e-assist': 'Je veux une assistance électrique',
+    'Will you ride in the rain or snow?': 'Roulerez-vous sous la pluie ou la neige ?',
+    'Rarely': 'Rarement',
+    'Sometimes': 'Parfois',
+    'Rain or shine': 'Beau temps, mauvais temps',
+    'Through winter: snow, ice and road salt': 'Tout l’hiver : neige, glace et sel de voirie',
+    'Your height': 'Votre taille',
+    'Frame fit is the biggest factor in comfort, so each bike is checked against the height range its maker recommends.': 'L’ajustement du cadre est le principal facteur de confort : chaque vélo est donc vérifié selon la plage de tailles que recommande son fabricant.',
+    'Where will you keep it?': 'Où le rangerez-vous ?',
+    "Garage or shed — space isn't tight": 'Garage ou remise : l’espace ne manque pas',
+    'Apartment or office, some carrying involved': 'Appartement ou bureau, avec un peu de portage',
+    "I'll carry it up stairs or on transit often": 'Je le monterai souvent dans les escaliers ou l’emporterai dans le transport en commun',
+    'Are your streets rough or full of potholes?': 'Vos rues sont-elles rugueuses ou pleines de nids-de-poule ?',
+    'Pretty rough': 'Plutôt rugueuses',
+    'Mostly smooth': 'Surtout lisses',
+    'How do you like to sit while riding?': 'Quelle position préférez-vous en roulant ?',
+    'Upright & relaxed': 'Droite et détendue',
+    'A bit leaned forward': 'Légèrement penchée vers l’avant',
+    'Sporty & low': 'Sportive et basse',
+    'How much do flat tires worry you?': 'À quel point les crevaisons vous inquiètent-elles ?',
+    'A lot — give me tough, wide tires': 'Beaucoup : donnez-moi des pneus robustes et larges',
+    'Not really': 'Pas vraiment',
+    'Want the extra stopping power of disc brakes?': 'Voulez-vous la puissance de freinage supplémentaire des freins à disque ?',
+    'Yes, disc brakes': 'Oui, des freins à disque',
+    "Doesn't matter": 'Peu importe',
+    'How experienced a cyclist are you?': 'Quelle est votre expérience à vélo ?',
+    'New to regular riding': 'Nouveau dans la pratique régulière du vélo',
+    'Ride sometimes': 'Je roule à l’occasion',
+    'A step-through frame has a low or missing top tube — easier to swing a leg over, traditionally sold as a "women\'s" bike. A step-over frame is the traditional diamond shape, traditionally sold as a "men\'s" bike. Either shape genuinely works for any rider; it\'s a fit and mounting-ease choice, not a rule about who rides which.':
+      'Un cadre ouvert a un tube supérieur bas ou absent : il est plus facile à enjamber et se vend traditionnellement comme un vélo « pour femmes ». Un cadre classique a la forme traditionnelle en losange et se vend traditionnellement comme un vélo « pour hommes ». Les deux formes conviennent vraiment à n’importe quel cycliste : c’est un choix d’ajustement et de facilité à monter, pas une règle sur qui roule sur quoi.',
+    'Low-maintenance (belt / internal hub)': 'Faible entretien (courroie / moyeu à vitesses internes)',
+    'Low-maintenance (belt/internal hub)': 'Faible entretien (courroie/moyeu à vitesses internes)',
+    'The gears sit sealed inside the rear hub, often with a belt instead of a chain. Almost no tuning, and it shrugs off rain and road salt — great for daily commuting.': 'Les vitesses sont scellées dans le moyeu arrière, souvent avec une courroie au lieu d’une chaîne. Presque aucun réglage, et la pluie et le sel de voirie n’y changent rien : idéal pour les déplacements quotidiens.',
+    'Fewer gears, and usually a higher price.': 'Moins de vitesses, et généralement un prix plus élevé.',
+    'Charcoal': 'Anthracite',
+    'Mint': 'Menthe',
+    'Jade': 'Jade',
+    'Cactus': 'Cactus',
+    'Pearl': 'Perle',
+    'Maroon': 'Bordeaux',
+    'Pick a power preference, route, and cargo need first.': 'Choisissez d’abord une préférence de motorisation, un parcours et un besoin de charge.',
+    'Your top matches will appear here, ranked with reasons — including comfortable commute distance and cargo capacity.': 'Vos meilleurs choix apparaîtront ici, classés avec leurs raisons, y compris la distance de trajet confortable et la capacité de charge.',
+    'worth the fit': 'ça vaut l’ajustement',
+    "more likely a commuter bike gets ridden every day — instead of parked in the garage by week two — when it's actually sized right.": 'plus de chances qu’un vélo de ville soit utilisé tous les jours, au lieu de dormir au garage dès la deuxième semaine, quand il est vraiment de la bonne taille.',
+    'Studio render of a commuter bike with fenders, a rear rack and a pannier, annotated with wheel diameter, standover height, wheelbase, and the rear rack':
+      'Rendu en studio d’un vélo de ville avec garde-boue, porte-bagages arrière et sacoche, annoté avec le diamètre des roues, la hauteur d’enjambement, l’empattement et le porte-bagages arrière',
+  });
+  P(/^WHEELBASE (.+)$/, (m, v) => 'EMPATTEMENT ' + v);
+  P(/^(\d+) km one way$/, (m, n) => n + ' km à l’aller');
+  P(/^(\d+) mm$/, (m, n) => n + ' mm');
+  P(/^C\$([\d,]+)(\+?)$/, (m, n, plus) => Number(n.replace(/,/g, '')).toLocaleString('fr-CA') + ' $ CA' + plus);
+
+  // ---------------------------------------------------------------- summary chips, comparison table, card details
+  add({
+    'Commute': 'Trajet', 'Route': 'Parcours', 'Carrying': 'Charge', 'Power': 'Motorisation', 'Weather': 'Météo', 'Height': 'Taille', 'Budget': 'Budget',
+    'city streets and bike lanes': 'rues de la ville et pistes cyclables',
+    'mixed paved and gravel paths': 'chemins mixtes, pavés et en gravier',
+    'long, flat roads': 'longues routes plates',
+    'hilly routes': 'routes vallonnées',
+    'nothing extra': 'rien de plus',
+    'a backpack or light bag': 'un sac à dos ou un sac léger',
+    'a rack or panniers': 'un porte-bagages ou des sacoches',
+    'heavy loads': 'de lourdes charges',
+    'E-assist': 'Assistance électrique',
+    'Rarely rides in rain': 'Roule rarement sous la pluie',
+    'Sometimes in rain': 'Roule parfois sous la pluie',
+    'Through winter': 'Tout l’hiver',
+    'Fits riders': 'Pour cyclistes de', 'Wheels': 'Roues', 'Frame': 'Cadre', 'Drivetrain': 'Transmission', 'Brakes': 'Freins', 'Comfortable distance': 'Distance confortable',
+    'Cargo': 'Charge', 'Fenders': 'Garde-boue', 'Tyres': 'Pneus', 'Front suspension': 'Suspension avant', 'Weight (catalog)': 'Poids (catalogue)', 'Folds': 'Pliable',
+    'aluminum': 'aluminium', 'steel': 'acier', 'carbon': 'carbone', 'disc': 'à disque', 'rim': 'sur jante', 'standard': 'standard', 'wide': 'larges',
+    'included': 'inclus', 'not included': 'non inclus', 'yes': 'oui', 'no': 'non',
+    'up to {d} km one way': 'jusqu’à {d} km à l’aller',
+    'heavy-duty': 'lourde', 'rack & pannier': 'porte-bagages et sacoches', 'light': 'légère',
+    '{w} mm wheels': 'roues de {w} mm', 'folds': 'pliable', 'fits {a}–{b} cm': 'pour {a}–{b} cm',
+    'aluminum frame': 'cadre en aluminium', 'steel frame': 'cadre en acier', 'carbon frame': 'cadre en carbone',
+    'disc brakes': 'freins à disque', 'rim brakes': 'freins sur jante',
+    'Comfortable up to {d} km one way': 'Confortable jusqu’à {d} km à l’aller',
+    '{c} cargo': 'charge : {c}',
+    'relaxed position': 'position détendue', 'upright position': 'position droite', 'sporty position': 'position sportive',
+    'Fenders included': 'Garde-boue inclus', 'No fenders': 'Sans garde-boue',
+    'standard tires': 'pneus standard', 'wide tires': 'pneus larges', 'front suspension': 'suspension avant',
+  });
+
+  // ---------------------------------------------------------------- the reasons under each match (commute.html explainMatch)
+  add({
+    'Fits a {h} cm rider (made for {a}–{b} cm)': 'Convient à un cycliste de {h} cm (conçu pour {a}–{b} cm)',
+    "Made for riders {a}–{b} cm, and you're {h} cm": 'Conçu pour des cyclistes de {a}–{b} cm, et vous mesurez {h} cm',
+    'Comfortable for your {d} km commute (rated up to {m} km one way)': 'Confortable pour votre trajet de {d} km (conçu jusqu’à {m} km à l’aller)',
+    'Rated for up to {m} km one way, and your commute is {d} km': 'Prévu pour un maximum de {m} km à l’aller, et votre trajet est de {d} km',
+    'Pedal-only, as you wanted': 'Pédalage seulement, comme vous le souhaitiez',
+    'Electric-assist, though you wanted pedal-only': 'À assistance électrique, alors que vous vouliez pédaler seulement',
+    'Electric-assist, as you wanted': 'À assistance électrique, comme vous le souhaitiez',
+    'Not electric-assist, which you wanted': 'Sans assistance électrique, alors que vous en vouliez une',
+    'Built for {t}, like your route': 'Conçu pour ce type de parcours : {t}, comme le vôtre',
+    'Built for {t}, which differs from your route': 'Conçu pour ce type de parcours : {t}, ce qui diffère du vôtre',
+    'Can carry {n} ({c} cargo rating)': 'Peut transporter {n} (capacité de charge : {c})',
+    'Rated for {c} cargo, and you need to carry {n}': 'Capacité de charge : {c}, et vous devez transporter {n}',
+    'Fenders included for wet roads': 'Garde-boue inclus pour les routes mouillées',
+    'No fenders: budget for a set if you ride in the wet': 'Aucun garde-boue : prévoyez-en un jeu si vous roulez sur chaussée mouillée',
+    'Disc brakes cope better with slush and road salt than rim brakes': 'Les freins à disque résistent mieux à la neige fondante et au sel de voirie que les freins sur jante',
+    'Rim brakes work poorly in slush and salt': 'Les freins sur jante fonctionnent mal dans la neige fondante et le sel',
+    'Enclosed internal-hub gearing resists salt and grit': 'Le moyeu à vitesses internes, fermé, résiste au sel et aux saletés',
+    'Winter riding also needs winter or studded tyres, which this catalog does not list': 'Rouler l’hiver exige aussi des pneus d’hiver ou à crampons, que notre catalogue n’indique pas',
+    'Front suspension to take the edge off rough streets': 'Suspension avant pour adoucir les rues en mauvais état',
+    'No suspension fork, so rough streets will be felt': 'Pas de fourche à suspension : vous sentirez les rues en mauvais état',
+    'Wide tyres for fewer flats and a softer ride': 'Pneus larges pour moins de crevaisons et une conduite plus douce',
+    'Narrower tyres, more prone to flats': 'Pneus plus étroits, plus sujets aux crevaisons',
+    'Rim brakes, not the disc brakes you asked for': 'Freins sur jante, et non les freins à disque demandés',
+    'Folds, which helps with tight storage and transit': 'Se plie, ce qui aide pour un rangement restreint et le transport en commun',
+    'Weighs {w} kg: heavy to carry up stairs': 'Pèse {w} kg : lourd à monter dans les escaliers',
+    'Within your {c} budget ({p})': 'Dans votre budget de {c} ({p})',
+    '{a} and {b}': '{a} et {b}',
+    '<b>About {x} over your budget</b>: that gets you {p}.': '<b>Environ {x} de plus que votre budget</b> : cela vous procure {p}.',
+    'a lighter carbon frame': 'un cadre en carbone plus léger',
+    'a folding frame for stairs and storage': 'un cadre pliant pour les escaliers et le rangement',
+    'a suspension fork for rough streets': 'une fourche à suspension pour les rues en mauvais état',
+    'fenders already included': 'des garde-boue déjà inclus',
+    'disc brakes with more stopping power': 'des freins à disque plus puissants',
+    'a low-maintenance internal-gear hub': 'un moyeu à vitesses internes qui demande peu d’entretien',
+    'a step up in components for the same basic bike': 'des composants de meilleure qualité pour le même vélo de base',
+    'Pick a power preference, route, and cargo need first.': 'Choisissez d’abord une préférence de motorisation, un parcours et un besoin de charge.',
+    'Still loading the bike catalog — try again in a second.': 'Le catalogue de vélos est encore en chargement : réessayez dans une seconde.',
+  });
+})();
