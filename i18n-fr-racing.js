@@ -11,6 +11,7 @@
 
   // ---------------------------------------------------------------- page text
   add({
+    "A frame that does not suit your reach and stack makes every ride harder, however light or aerodynamic the bike is. Each bike here is checked against the height range its maker recommends.": "Un cadre qui ne convient pas à votre allonge (reach) et à votre hauteur de cadre (stack) rend chaque sortie plus difficile, si léger ou aérodynamique que soit le vélo. Chaque vélo présenté ici est vérifié selon la plage de tailles que recommande son fabricant.",
     'SelectVelo — Find your racing bike': 'SelectVelo — Trouvez votre vélo de course',
     'Road racing, triathlon, or ultra-endurance — SelectVelo scores real race bikes from every brand against your discipline, frame fit, and budget.':
       'Course sur route, triathlon ou ultra-endurance : SelectVelo évalue de vrais vélos de course de toutes les marques selon votre discipline, l’ajustement du cadre et votre budget.',
@@ -54,12 +55,8 @@
     "Pick what you're training for first.": 'Choisissez d’abord pour quoi vous vous entraînez.',
     'Pick what matters more for your racing first.': 'Choisissez d’abord ce qui compte le plus pour votre pratique de la course.',
     'Your top matches will appear here, ranked with reasons — including frame size fit, groupset, and aero vs. climbing character.': 'Vos meilleurs choix apparaîtront ici, classés avec leurs raisons, y compris l’ajustement du cadre, le groupe de composants et le caractère aérodynamique ou grimpeur.',
-    'is a whole category': 'c’est une catégorie à part entière',
-    "the aero and weight gap between race bikes is measured in single-digit percentages — a frame that doesn't fit your reach and stack costs you more than any of it, for free, every ride.":
-      'l’écart d’aérodynamisme et de poids entre les vélos de course se mesure en pourcentages à un chiffre : un cadre qui ne convient pas à votre allonge (reach) et à votre hauteur de cadre (stack) vous coûte plus que tout cela, gratuitement, à chaque sortie.',
     'Studio render of a road racing bike, annotated with wheel diameter, standover height, and wheelbase': 'Rendu en studio d’un vélo de course sur route, annoté avec le diamètre des roues, la hauteur d’enjambement et l’empattement',
   });
-  P(/^(\d+)–(\d+)%$/, (m, a, b) => a + '–' + b + ' %');
 
   // ---------------------------------------------------------------- summary chips, comparison table, card details
   add({

@@ -9,6 +9,7 @@
 
   // ---------------------------------------------------------------- page text
   add({
+    "A bike that fits now, with room left to grow, is easier to ride and easier to keep riding. That is why the quiz shows the growing room of every bike in centimetres.": "Un vélo qui convient maintenant, avec de la marge pour grandir, est plus facile à conduire et plus facile à garder. C’est pourquoi le questionnaire indique la marge de croissance de chaque vélo en centimètres.",
     'SelectVelo — Find their first bike': 'SelectVelo — Trouvez son premier vélo',
     "Answer a few questions about your kid's height and experience — SelectVelo scores real kids' bikes from every brand and explains exactly why the top match fits.":
       'Répondez à quelques questions sur la taille et l’expérience de votre enfant : SelectVelo évalue de vrais vélos d’enfant de toutes les marques et explique exactement pourquoi le premier choix convient.',
@@ -64,8 +65,6 @@
     'Pick an experience level and where they will ride first.': 'Choisissez d’abord un niveau d’expérience et l’endroit où votre enfant roulera.',
     'Your top matches will appear here, ranked with reasons — including how much growing room it has before they outgrow it.':
       'Vos meilleurs choix apparaîtront ici, classés avec leurs raisons, y compris la marge de croissance de chaque vélo avant que votre enfant ne l’ait dépassé.',
-    'worth getting right': 'ça vaut la peine de bien choisir',
-    'average years a well-chosen bike lasts a growing kid, versus 1–2 for a bike picked on looks or price alone.': 'ans en moyenne : la durée d’un vélo bien choisi pour un enfant qui grandit, contre 1 à 2 ans pour un vélo choisi sur l’apparence ou le prix seulement.',
     "Studio render of a kids' bike, annotated with wheel diameter, standover height, wheelbase, and seat height range":
       'Rendu en studio d’un vélo d’enfant, annoté avec le diamètre des roues, la hauteur d’enjambement, l’empattement et la plage de hauteur de selle',
     // the quiz page title area / labels used by the results

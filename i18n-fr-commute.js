@@ -10,6 +10,7 @@
 
   // ---------------------------------------------------------------- page text
   add({
+    "A bike that is the right size is more comfortable to ride, and a comfortable bike is easier to keep riding. Each bike here is checked against the height range its maker recommends.": "Un vélo de la bonne taille est plus confortable, et un vélo confortable est plus facile à garder pour rouler. Chaque vélo présenté ici est vérifié selon la plage de tailles que recommande son fabricant.",
     'SelectVelo — Find your commute bike': 'SelectVelo — Trouvez votre vélo de ville',
     'Find your ideal commuter bike in 2 minutes. SelectVelo scores real bikes from every brand against your distance, cargo needs, and motor preference.':
       'Trouvez votre vélo de ville idéal en 2 minutes. SelectVelo évalue de vrais vélos de toutes les marques selon votre distance, vos besoins de charge et votre préférence de motorisation.',
@@ -89,8 +90,6 @@
     'Maroon': 'Bordeaux',
     'Pick a power preference, route, and cargo need first.': 'Choisissez d’abord une préférence de motorisation, un parcours et un besoin de charge.',
     'Your top matches will appear here, ranked with reasons — including comfortable commute distance and cargo capacity.': 'Vos meilleurs choix apparaîtront ici, classés avec leurs raisons, y compris la distance de trajet confortable et la capacité de charge.',
-    'worth the fit': 'ça vaut l’ajustement',
-    "more likely a commuter bike gets ridden every day — instead of parked in the garage by week two — when it's actually sized right.": 'plus de chances qu’un vélo de ville soit utilisé tous les jours, au lieu de dormir au garage dès la deuxième semaine, quand il est vraiment de la bonne taille.',
     'Studio render of a commuter bike with fenders, a rear rack and a pannier, annotated with wheel diameter, standover height, wheelbase, and the rear rack':
       'Rendu en studio d’un vélo de ville avec garde-boue, porte-bagages arrière et sacoche, annoté avec le diamètre des roues, la hauteur d’enjambement, l’empattement et le porte-bagages arrière',
   });

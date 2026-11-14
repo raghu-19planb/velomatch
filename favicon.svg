@@ -1,9 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- the SelectVelo wheel: the "o" of the wordmark, a laced wheel on the deep teal of the quiz screens -->
-  <rect width="32" height="32" rx="8" fill="#0F3630"/>
-  <circle cx="16" cy="16" r="10.6" fill="none" stroke="#E2551D" stroke-width="2.2"/>
-  <circle cx="16" cy="16" r="8.6" fill="none" stroke="#E2551D" stroke-width="0.7"/>
-  <path d="M18.40 16.00L19.57 23.38M18.28 16.74L21.68 10.08M17.94 17.41L14.55 24.07M17.41 17.94L24.07 14.55M16.74 18.28L10.08 21.68M16.00 18.40L23.38 19.57M15.26 18.28L7.88 17.12M14.59 17.94L19.87 23.23M14.06 17.41L8.77 12.13M13.72 16.74L14.88 24.12M13.60 16.00L12.43 8.62M13.72 15.26L10.32 21.92M14.06 14.59L17.45 7.93M14.59 14.06L7.93 17.45M15.26 13.72L21.92 10.32M16.00 13.60L8.62 12.43M16.74 13.72L24.12 14.88M17.41 14.06L12.13 8.77M17.94 14.59L23.23 19.87M18.28 15.26L17.12 7.88" fill="none" stroke="#E2551D" stroke-width="0.55" stroke-linecap="round"/>
-  <circle cx="16" cy="16" r="2.1" fill="#E2551D"/>
-  <circle cx="16" cy="6.1" r="0.9" fill="#F2ECDD"/>
+  <!-- a bike, drawn bold enough to read at tab size: cream line bike on a blue square -->
+  <rect width="32" height="32" rx="7" fill="#1E5FD0"/>
+  <g fill="none" stroke="#F2ECDD" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="8.5" cy="21" r="5" stroke-width="2.1"/>
+    <circle cx="23.5" cy="21" r="5" stroke-width="2.1"/>
+    <path d="M8.5 21 L12.6 11.2 L20.6 11.8 L23.5 21" stroke-width="1.9"/>
+    <path d="M12.6 11.2 L15.2 21 L20.6 11.8" stroke-width="1.9"/>
+    <path d="M10.6 9.2 H14.6" stroke-width="2"/>
+    <path d="M20.6 11.8 L19.6 8.6 H23" stroke-width="1.9"/>
+  </g>
+  <circle cx="15.2" cy="21" r="1.3" fill="#F2ECDD"/>
 </svg>
