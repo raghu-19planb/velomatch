@@ -113,6 +113,14 @@
       return best || w;
     });
   }
+  // weaker hints, used only when no strong word names a quiz. Road-and-gravel recreation fits our gravel/touring catalog best
+  // (it holds the gravel and road-touring bikes); fast/training words point to racing, dirt and forest to mountain biking.
+  const WEAK = {
+    bikepacking: /\b(gravel|gravier|paved|asphalt|asphalte|roads?|routes?|paths?|pistes?|weekends?|week-?ends?|leisure|recreation\w*|loisirs?|scenic|countryside|campagne|explor\w*|rides?|riding|ballades?|promenades?|cyclotourisme)\b/g,
+    racing: /\b(fast|speed|training|train|club|fitness|sportive|performance|vitesse|entrainement|aero|climb\w*)\b/g,
+    mountainbiking: /\b(dirt|rocky|rocks|roots|forests?|woods|off-?road|terre|rocheux)\b/g,
+    commute: /\b(hybrid|hybride|city|errands?|flat|bike lanes?|ville)\b/g,
+  };
   const count = (t, re) => (t.match(re) || []).length;
   const first = (t, re) => { const m = t.match(re); return m ? m[0].trim() : null; };
   const num = s => { s = String(s).replace(/\s/g, ''); if (/,\d{1,2}$/.test(s) && !/,\d{3}/.test(s)) s = s.replace(',', '.'); return parseFloat(s.replace(/,(?=\d{3})/g, '')); };
@@ -151,6 +159,12 @@
       out.category = ranked[0][0];
       out.confidence = ranked[0][1] >= 3 && ranked[0][1] - ranked[1][1] >= 2 ? 'high' : ranked[0][1] >= 2 ? 'medium' : 'low';
       out.alternatives = ranked.filter(([c, n]) => n > 0 && c !== out.category).map(([c]) => c);
+    }
+    // no word names a quiz ("occasional weekend rides on road and gravel path"): rather than a dead end, offer the closest fit,
+    // clearly marked as a guess (never auto-continued), with the answers the text does give already filled in
+    if (!out.category) {
+      const weak = Object.entries(WEAK).map(([c, re]) => [c, count(t, re)]).sort((a, b) => b[1] - a[1]);
+      if (weak[0][1] > 0) { out.category = weak[0][0]; out.confidence = 'guess'; out.alternatives = weak.filter(([c, n]) => n > 0 && c !== out.category).map(([c]) => c); }
     }
     fillFor(out, out.category);
     // one category word, no rival, and plenty of answers that only make sense for that quiz: that is enough to be fairly sure
@@ -226,15 +240,22 @@
       rule('experience', 'new', /new to (?:cycling|riding|biking)|beginner|debutant\w*|never commuted|nouveau (?:en|dans)/);
     }
     if (cat === 'bikepacking') {
-      rule('triplength', 'overnight', /overnight|weekend|week-end|fin de semaine|one night|une nuit|1 night/);
+      // "weekend rides" are day rides, not a weekend trip
+      rule('triplength', 'overnight', /overnight|weekend(?! rides?| riding)|week-end(?! rides?)|fin de semaine|one night|une nuit|1 night/);
       rule('triplength', 'week', /\b(?:a|one|1) week\b|une semaine|7 days|sept jours|1 week/);
       rule('triplength', 'multiweek', /\b(?:two|three|four|2|3|4|several|few|plusieurs) (?:weeks|semaines)|multi-?week/);
       // a number of days: up to 3 is a weekend, up to 9 about a week, ten or more several weeks (shown with its words, so it can be changed)
       { const dd = t.match(/\b(\d{1,3})\s?(?:-|\s)?(?:days?|jours?|nights?|nuits?)\b/); if (dd && !out.answers.some(a => a.group === 'triplength')) { const n = +dd[1]; add('triplength', n <= 3 ? 'overnight' : n <= 9 ? 'week' : n < 60 ? 'multiweek' : 'expedition', dd[0]); } }
       rule('triplength', 'expedition', /months?|mois|continent|round the world|tour du monde/);
       rule('terrain', 'trail_mountain', /singletrack|rough trail|technical|trail\b|sentiers?|backcountry|tout-?terrain/);
-      rule('terrain', 'gravel', /gravel|gravier/);
-      rule('terrain', 'road_paved', /paved only|fully paved|asphalt|pavement|bike paths?|pistes? cyclables?/);
+      // "road and gravel" is the quiz's own "mixed paved & gravel"; naming both surfaces must not also tick gravel-only
+      const combo = /(?:road|roads|paved|pavement|asphalt) (?:and|&|\/|\+) gravel|gravel (?:and|&|\/|\+) (?:road|roads|paved|pavement|asphalt)|(?:route|routes|asphalte) et gravier|gravier et (?:route|routes|asphalte)/;
+      const comboEv = first(t, combo);
+      if (comboEv) add('terrain', 'mixed', comboEv);
+      else {
+        rule('terrain', 'gravel', /gravel|gravier/);
+        rule('terrain', 'road_paved', /paved only|fully paved|asphalt|pavement|bike paths?|pistes? cyclables?/);
+      }
       // the quiz itself describes the Ring Road as "mixed paved and gravel", so the same words give the same answer here
       rule('terrain', 'mixed', /mixed|mix of|paved and gravel|asphalte et gravier|mixte|ring road|route 1 in iceland/);
       rule('purpose', 'touring', /touring|relaxed|comfortabl\w*|leisure|cyclotourisme|tranquille/);
@@ -286,10 +307,19 @@
       out.missingKeys.sort((a, b) => V.flow.indexOf(a) - V.flow.indexOf(b));
     }
     // clauses that contributed nothing: shown, never scored
-    out.unused = String(out.original).split(/[,.;!?]+|\band\b|\bet\b|\bbut\b|\bmais\b/i).map(s => s.trim()).filter(c => {
-      const nc = fixTypos(norm(c)); if (nc.length < 5 || /^(i'?m|i am|je suis|i want|i would|j'ai|je veux|my|ma|mon)\b/.test(nc) && nc.split(' ').length < 4) return false;
-      return !evidence.some(e => e && (nc.includes(e) || e.includes(nc)));
-    }).slice(0, 4);
+    // (judged by position, so a phrase that spans a split word, like "road and gravel", counts as used on both sides)
+    const tn = fixTypos(norm(out.original)), spans = [];
+    evidence.forEach(e => { if (!e) return; let i = tn.indexOf(e); while (i !== -1) { spans.push([i, i + e.length]); i = tn.indexOf(e, i + e.length); } });
+    const parts = []; let from = 0, sm;
+    const sep = /[,.;!?]+|\band\b|\bet\b|\bbut\b|\bmais\b/g;
+    while ((sm = sep.exec(tn))) { parts.push([from, sm.index]); from = sm.index + sm[0].length; }
+    parts.push([from, tn.length]);
+    // the original wording of each part is shown, found by the same order of splitting
+    const origParts = String(out.original).split(/[,.;!?]+|\band\b|\bet\b|\bbut\b|\bmais\b/i);
+    out.unused = parts.map(([a, b], i) => ({ a, b, shown: (origParts[i] || tn.slice(a, b)).trim(), nc: tn.slice(a, b).trim() })).filter(p => {
+      if (p.nc.length < 5 || /^(i'?m|i am|je suis|i want|i would|j'ai|je veux|my|ma|mon)\b/.test(p.nc) && p.nc.split(' ').length < 4) return false;
+      return !spans.some(([x, y]) => x < p.b && y > p.a);
+    }).map(p => p.shown).slice(0, 4);
   }
 
   // a model's answer must stay inside the quizzes' vocabulary and the criteria engine's list
@@ -391,14 +421,16 @@
       const V = state.category && VOCAB[state.category];
       // nothing understood: ask the one question that unlocks everything, and keep the words and wishes
       if (!V) {
-        out.append(el('p', { class: 'describe-h', text: state.original ? T('Thanks. I could not tell which kind of bike this is for, so tell me and I will carry your words and wishes over.') : T('Tell me a little about your ride first.') }));
+        // a guided question in plain words (not quiz names), then, for casual riding, one about the surface
+        const casual = state.guide === 'casual';
+        out.append(el('p', { class: 'describe-h', text: !state.original ? T('Tell me a little about your ride first.') : casual ? T('Where will you mostly ride?') : T('What will you mostly use the bike for? One quick question, and your words and wishes carry over.') }));
         if (state.original) out.append(chooser());
         return;
       }
       const sure = state.confidence === 'high' || state.confidence === 'medium';
       const sel = el('select', { id: 'describeCat', 'aria-label': T('Quiz') }, ...Object.keys(VOCAB).map(c => el('option', Object.assign({ value: c }, c === state.category ? { selected: true } : {}), T(VOCAB[c].name))));
       sel.addEventListener('change', () => { stopAuto(); fillFor(state, sel.value); state.confidence = 'low'; refresh(); render(); });
-      out.append(el('div', { class: 'describe-cat' }, el('span', { text: T('This looks like:') }), sel, el('span', { class: 'describe-conf', text: T(state.confidence === 'high' ? 'confident' : state.confidence === 'medium' ? 'fairly sure' : 'not sure, please check') })));
+      out.append(el('div', { class: 'describe-cat' }, el('span', { text: T('This looks like:') }), sel, el('span', { class: 'describe-conf', text: T(state.confidence === 'high' ? 'confident' : state.confidence === 'medium' ? 'fairly sure' : state.confidence === 'guess' ? 'closest fit, not certain: change it if it is wrong' : 'not sure, please check') })));
       out.append(el('p', { class: 'describe-h', text: T('Here is what we understood') }));
       const list = el('ul', { class: 'describe-chips' });
       state.answers.filter(a => !a.derived).forEach(a => {
@@ -440,7 +472,13 @@
       }
     }
     function chooser() {
-      return el('div', { class: 'describe-choose' }, ...Object.keys(VOCAB).map(c => { const b = el('button', { type: 'button', class: 'btn-secondary', text: T(VOCAB[c].name) }); b.addEventListener('click', () => { fillFor(state, c); state.confidence = 'low'; refresh(); render(); }); return b; }));
+      // each option leads to a quiz; "casual or weekend rides" has no quiz of its own, so one more question picks the closest catalog
+      const pick = c => () => { state.guide = null; fillFor(state, c); state.confidence = 'low'; refresh(); render(); };
+      const opts = state.guide === 'casual'
+        ? [['Mostly paved paths and roads, flat to rolling', pick('commute')], ['A mix of road and gravel', pick('bikepacking')], ['Dirt trails and rough ground', pick('mountainbiking')]]
+        : [['Getting to work, school or running errands', pick('commute')], ['Casual or weekend rides', () => { state.guide = 'casual'; render(); }], ['Trips with camping gear', pick('bikepacking')],
+           ['Trails and off-road riding', pick('mountainbiking')], ['Racing, triathlon or hard training', pick('racing')], ['A bike for a child', pick('kids')]];
+      return el('div', { class: 'describe-choose' }, ...opts.map(([label, fn]) => { const b = el('button', { type: 'button', class: 'btn-secondary', text: T(label) }); b.addEventListener('click', fn); return b; }));
     }
 
     async function run() {
