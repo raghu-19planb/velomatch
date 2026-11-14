@@ -17,6 +17,79 @@
   const T = (s, v) => (window.I18N ? window.I18N.t(s, v) : (v ? s.replace(/\{(\w+)\}/g, (m, k) => (v[k] != null ? v[k] : m)) : s));
   SV.T = T;
 
+  // ---- several answers to one question: any selected option counts as satisfied ("aluminum or steel", "XC and trail").
+  // The pages score with ONE value per question. When someone picks several, the page is run once for every combination of their picks
+  // and each bike keeps its best result, so the scoring code itself never has to know about multiple answers. With one answer per question
+  // (the normal case) there is exactly one run and nothing changes.
+  const RAW = Symbol('raw');
+  SV.sel = null;   // the combination being scored right now
+  // state: the page's answers. aware: the questions whose scoring already reads a list (route, colours...); those are left as lists.
+  SV.multiState = (init, aware) => {
+    const skip = aware || [];
+    const proxy = new Proxy(init, {
+      get: (t, k) => { if (k === RAW) return { t, skip }; return SV.sel && Object.prototype.hasOwnProperty.call(SV.sel, k) ? SV.sel[k] : t[k]; },
+      set: (t, k, v) => { t[k] = v; return true; },
+    });
+    // a short note under every question that takes more than one answer (the ones that already say "choose all that apply" keep their own)
+    const addNotes = () => document.querySelectorAll('.opt-row[data-multi="true"]').forEach(row => {
+      const grp = row.closest('.q-group'); if (!grp || grp.querySelector('.q-hint, .q-multi-note')) return;
+      const note = document.createElement('p'); note.className = 'q-hint q-multi-note'; note.textContent = T('You can pick more than one.');
+      row.parentNode.insertBefore(note, row);
+    });
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addNotes); else addNotes();
+    return proxy;
+  };
+  const NONE = ['none', 'no_preference'];
+  const combosOf = state => {
+    const { t, skip } = state[RAW];
+    const keys = Object.keys(t).filter(k => Array.isArray(t[k]) && !skip.includes(k));
+    let opts = keys.map(k => { const a = t[k]; if (!a.length) return [null]; const ex = a.find(v => NONE.includes(v)); return ex ? [ex] : a.slice(); });
+    let n = opts.reduce((m, o) => m * o.length, 1);
+    if (n > 120) { opts = opts.map(o => [o[0]]); n = 1; }       // far too many ways to combine: use the first pick of each question
+    const out = [];
+    for (let c = 0; c < n; c++) { let r = c; const sel = {}; keys.forEach((k, i) => { sel[k] = opts[i][r % opts[i].length]; r = Math.floor(r / opts[i].length); }); out.push(sel); }
+    return { combos: out, keys };
+  };
+  // the click listener for "See recommendations": runs the page's own code once per combination and shows the merged result
+  SV.multiRun = (state, fn) => () => {
+    const { combos, keys } = combosOf(state);
+    if (combos.length <= 1) { SV.sel = combos[0] || null; try { fn(); } finally { SV.sel = null; } return; }
+    const real = SV.render, passes = [];
+    SV.render = o => { passes.push({ o, sel: SV.sel }); };
+    try { combos.forEach(sel => { SV.sel = sel; fn(); }); }
+    finally { SV.sel = null; SV.render = real; }
+    if (!passes.length) return;                                   // the page showed a message instead (a required question is unanswered)
+    const base = passes[0].o;
+    const best = new Map();
+    passes.forEach((p, pi) => p.o.items.forEach(b => { const k = b.name + '|' + (b.brand || ''); const cur = best.get(k); if (!cur || b.score > cur.score) best.set(k, Object.assign({}, b, { _pass: pi })); }));
+    // every pick stays represented: with a few combinations, each one keeps its own best bikes, then the rest of the list is filled by overall score
+    const N = Math.max(...passes.map(p => p.o.items.length)), P = passes.length;
+    const keyOf = b => b.name + '|' + (b.brand || '');
+    const chosen = new Map();
+    if (P <= 6) {
+      const per = Math.max(1, Math.floor(N / P));
+      passes.forEach(p => p.o.items.slice(0, per).forEach(b => { const k = keyOf(b); if (!chosen.has(k)) chosen.set(k, best.get(k)); }));
+    }
+    [...best.values()].sort((x, y) => y.score - x.score).forEach(b => { if (chosen.size < N && !chosen.has(keyOf(b))) chosen.set(keyOf(b), b); });
+    const items = [...chosen.values()].sort((x, y) => y.score - x.score).slice(0, N);
+    const under = (sel, f) => { const prev = SV.sel; SV.sel = sel; try { return f(); } finally { SV.sel = prev; } };
+    const { t } = state[RAW];
+    // chips and "must" rules: only what holds for EVERY combination is claimed
+    const summary = (base.summary || []).map(c => {
+      const v = t[c.group];
+      if (keys.includes(c.group) && Array.isArray(v) && v.length > 1) {
+        const txt = [...document.querySelectorAll('.opt[data-group="' + c.group + '"].active')].map(x => x.textContent.trim()).join(' + ');
+        return Object.assign({}, c, { value: txt });
+      }
+      return c;
+    });
+    const musts = (base.musts || []).filter(m => passes.every(p => (p.o.musts || []).some(x => x.label === m.label && x.applies)));
+    real(Object.assign({}, base, {
+      items, summary, musts,
+      describe: b => under(passes[b._pass].sel, () => passes[b._pass].o.describe(b)),
+    }));
+  };
+
   // ---- extra criteria from the shopper's own words (criteria.js): "must have fenders", "not carbon", "under 12 kg", "Canadian brand".
   // They are added on the fly to the ranking: each page passes its scored list through SV.applyExtras before it sorts.
   SV.extras = [];
@@ -235,6 +308,9 @@
         </div>
         ${exLines.length ? `<p class="result-left-out"><b>${esc(T('Left out:'))}</b> ${exLines.join('; ')}.</p>` : ''}
       </div>`;
+    // general advice about the right type of bike for these answers (the page writes it; it is not a claim about any listed bike)
+    const g = o.guide;
+    const guide = g && items.length ? `<div class="result-guide" role="note"><p class="guide-k">${esc(T('What fits you'))}</p><h4 class="guide-h">${esc(g.lead)}</h4><p>${esc(g.body)}</p>${g.tradeoff ? `<p><b>${esc(T('The trade-off:'))}</b> ${esc(g.tradeoff)}</p>` : ''}${g.step ? `<p><b>${esc(T('Step up or across:'))}</b> ${esc(g.step)}</p>` : ''}${g.extra ? `<p>${esc(g.extra)}</p>` : ''}<p class="guide-fine">${esc(T('General guidance about bike types, based on your answers. The bikes below are scored only on their own recorded specs.'))}</p></div>` : '';
     const cards = items.map((b, i) => {
       const d = desc[i];
       const l = SV.link(b);
@@ -252,6 +328,7 @@
           ${i === 0 ? '<span class="badge">' + esc(T('Top pick')) + '</span>' : ''}
           <div class="result-media">${b.image ? `<img src="${esc(b.image)}" alt="${esc(b.name)}" loading="lazy">` : SV.photo(b)}</div>
           <div class="result-top"><span class="result-name">${esc(b.name)}</span><span class="result-pricebox">${SV.priceHtml(b)}</span></div>
+          ${d.tag ? `<p class="result-tag">${esc(d.tag)}</p>` : ''}
           <p class="result-meta">${d.meta || ''}</p>
           ${why}${watch}${musts.length && missOf(b).length ? `<p class="result-miss"><b>${esc(T('Misses:'))}</b> ${esc(missOf(b).map(m => T(m.label)).join(', '))}</p>` : ''}
           ${d.budgetNote || ''}
@@ -278,7 +355,7 @@
     }
     const fxNote = SV.rate ? ' ' + esc(T("US prices are converted at the Bank of Canada's rate for {d} (1 US$ = C${r}) only to compare against your budget.", { d: SV.rateDate, r: FR() ? SV.rate.toFixed(4).replace('.', ',') : SV.rate.toFixed(4) })) : ' ' + esc(T('The exchange rate could not be loaded, so your budget was compared to each listed number as it is.'));
     const foot = `<p class="result-footnote">${esc(T('Prices are in the currency the brand or retailer lists, before tax.'))}${fxNote} ${esc(T("Bikes whose seller page we have confirmed get a small ranking boost, because we know you can really buy them. “Catalog price” means we have not re-checked it on the seller's page."))}${o.note ? ' ' + esc(o.note) : ''} ${esc(T('Specifications come from our catalog and can be out of date. Always confirm size, price, specifications and stock with the seller before you buy.'))}</p>`;
-    results.innerHTML = head + notice + cards + compare + foot;
+    results.innerHTML = head + guide + notice + cards + compare + foot;
 
     results.querySelectorAll('.result-media').forEach((el, i) => {
       const img = el.querySelector('img');

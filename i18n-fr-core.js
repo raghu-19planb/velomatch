@@ -18,10 +18,12 @@
     'The right bike for how you ride.': 'Le bon vélo pour votre façon de rouler.',
     "Kids' bikes": 'Vélos d’enfant',
     'Commuting': 'Vélo de ville',
+    'Casual riding': 'Balade',
     'Bikepacking': 'Cyclocamping',
     'Mountain biking': 'Vélo de montagne',
     'Racing': 'Course',
-    'Showcase': 'Vitrine',
+    'Current bikes': 'Vélos actuels',
+    'You can pick more than one.': 'Vous pouvez en choisir plusieurs.',
     'Schematics': 'Schémas',
     'Route maps': 'Cartes d’itinéraires',
     'Blog': 'Blogue',
@@ -60,21 +62,4 @@
   });
   P(/^Fig\. (\d+) — where this is headed$/, (m, n) => 'Fig. ' + n + ' — là où nous allons');
   P(/^Sheet (\d+)$/, (m, n) => 'Planche ' + n);
-
-  // ---------------------------------------------------------------- the steering mini-game
-  add({
-    'Take a spin': 'Faites un tour',
-    'How steady is your hand?': 'Avez-vous la main sûre ?',
-    'Steer with your mouse, your finger, or the arrow keys. The lane never ends, and it never stops narrowing — stay off the edges.':
-      'Dirigez avec la souris, le doigt ou les touches fléchées. La voie ne se termine jamais et ne cesse de se rétrécir : évitez les bords.',
-    'Ready?': 'Prêt ?',
-    'Move your mouse, drag your finger, or use the arrow keys to steer.': 'Bougez la souris, glissez le doigt ou utilisez les touches fléchées pour diriger.',
-    'Start riding': 'Partir à vélo',
-    'A steering mini-game: move your mouse, drag your finger, or use the arrow keys to keep a bike inside a winding, narrowing lane':
-      'Un mini-jeu de direction : bougez la souris, glissez le doigt ou utilisez les touches fléchées pour garder un vélo dans une voie sinueuse qui se rétrécit',
-  });
-  add({ 'You hit the edge!': 'Vous avez touché le bord !' });
-  P(/^Survived (\d+\.\d)s\. Give it another go\?$/, (m, s) => 'Vous avez tenu ' + s.replace('.', ',') + ' s. Réessayer ?');
-  P(/^(\d+\.\d)s$/, (m, s) => s.replace('.', ',') + ' s');
-  P(/^Best: (\d+\.\d)s$/, (m, s) => 'Meilleur : ' + s.replace('.', ',') + ' s');
 })();

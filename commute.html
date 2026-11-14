@@ -18,19 +18,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
-<link rel="stylesheet" href="style.css?v=d7d9dd34">
+<link rel="stylesheet" href="style.css?v=20c4899a">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="quiz-flow.js?v=d06f0503"></script>
-<script src="criteria.js?v=ff78af4b"></script>
-<script src="match-ui.js?v=2a3ad09d"></script>
+<script src="criteria.js?v=45d32dc5"></script>
+<script src="match-ui.js?v=196a881c"></script>
 <script src="affiliate.js?v=404729a3"></script>
 <script src="info-tips.js?v=d63f39a8"></script>
 <script src="nav-transition.js?v=ddf7b18b"></script>
-<script src="flag-banner.js?v=0744c1be" defer></script>
+<script src="flag-banner.js?v=fea7b6d4" defer></script>
 <script src="i18n.js?v=d9197a30"></script>
-<script src="i18n-fr-core.js?v=799c5762" defer></script>
+<script src="i18n-fr-core.js?v=b1846649" defer></script>
 <script src="i18n-fr-quiz.js?v=1e07558a" defer></script>
 <script src="i18n-fr-commute.js?v=4d41cfaf" defer></script>
+<script src="height-input.js?v=467fb1e2" defer></script>
 <script src="nav-menu.js?v=5d71bc06" defer></script>
 </head>
 <body>
@@ -64,10 +65,11 @@
     <div class="nav-links">
       <a href="kids.html" class="nav-link">Kids' bikes</a>
       <a href="commute.html" class="nav-link current">Commuting</a>
+      <a href="casual.html" class="nav-link">Casual riding</a>
       <a href="bikepacking.html" class="nav-link">Bikepacking</a>
       <a href="mountainbiking.html" class="nav-link">Mountain biking</a>
       <a href="racing.html" class="nav-link">Racing</a>
-      <a href="showcase.html" class="nav-link">Showcase</a>
+      <a href="showcase.html" class="nav-link">Current bikes</a>
       <a href="schematics.html" class="nav-link">Schematics</a>
       <a href="routemaps.html" class="nav-link">Route maps</a>
       <a href="blog.html" class="nav-link">Blog</a>
@@ -168,7 +170,7 @@
 
         <div class="q-group">
           <label class="q-label">Power preference</label>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="power" data-value="pedal_only">Pedal only</button>
             <button type="button" class="opt" data-group="power" data-value="open">Open to e-assist</button>
             <button type="button" class="opt" data-group="power" data-value="want_ebike">Want e-assist</button>
@@ -187,7 +189,7 @@
 
         <div class="q-group">
           <label class="q-label">What do you need to carry?</label>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="cargo" data-value="none">Just me</button>
             <button type="button" class="opt" data-group="cargo" data-value="light">Backpack or light bag</button>
             <button type="button" class="opt" data-group="cargo" data-value="rack">Rack or panniers</button>
@@ -200,7 +202,7 @@
 
         <div class="q-group">
           <label class="q-label">How do you like to sit while riding?</label>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="position" data-value="upright">Upright &amp; relaxed</button>
             <button type="button" class="opt" data-group="position" data-value="relaxed">A bit leaned forward</button>
             <button type="button" class="opt" data-group="position" data-value="sporty">Sporty &amp; low</button>
@@ -209,7 +211,7 @@
 
         <div class="q-group">
           <label class="q-label">Will you ride in the rain or snow?</label>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="weather" data-value="rarely">Rarely</button>
             <button type="button" class="opt" data-group="weather" data-value="sometimes">Sometimes</button>
             <button type="button" class="opt" data-group="weather" data-value="always">Rain or shine</button>
@@ -219,7 +221,7 @@
 
         <div class="q-group">
           <label class="q-label">Are your streets rough or full of potholes?</label>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="roughness" data-value="rough">Pretty rough</button>
             <button type="button" class="opt" data-group="roughness" data-value="smooth">Mostly smooth</button>
           </div>
@@ -227,7 +229,7 @@
 
         <div class="q-group">
           <label class="q-label">How much do flat tires worry you?</label>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="flats" data-value="worried">A lot — give me tough, wide tires</button>
             <button type="button" class="opt" data-group="flats" data-value="unworried">Not really</button>
           </div>
@@ -237,7 +239,7 @@
 
         <div class="q-group">
           <label class="q-label" data-info="frame">Frame material</label>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="frame" data-value="none">No preference</button>
             <button type="button" class="opt" data-group="frame" data-value="aluminum">Aluminum</button>
             <button type="button" class="opt" data-group="frame" data-value="steel">Steel</button>
@@ -247,7 +249,7 @@
 
         <div class="q-group">
           <label class="q-label" data-info="groupset">Groupset preference</label>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="groupset" data-value="none">No preference</button>
             <button type="button" class="opt" data-group="groupset" data-value="shimano">Shimano</button>
             <button type="button" class="opt" data-group="groupset" data-value="sram">SRAM</button>
@@ -257,7 +259,7 @@
 
         <div class="q-group">
           <label class="q-label">Want the extra stopping power of disc brakes?</label>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="brakepower" data-value="disc">Yes, disc brakes</button>
             <button type="button" class="opt" data-group="brakepower" data-value="either">Doesn't matter</button>
           </div>
@@ -266,7 +268,7 @@
         <div class="q-group">
           <label class="q-label">Frame shape <span class="q-hint">(sometimes marketed as "women's" or "men's")</span></label>
           <p class="q-hint">A step-through frame has a low or missing top tube — easier to swing a leg over, traditionally sold as a "women's" bike. A step-over frame is the traditional diamond shape, traditionally sold as a "men's" bike. Either shape genuinely works for any rider; it's a fit and mounting-ease choice, not a rule about who rides which.</p>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="frameStyle" data-value="either">No preference</button>
             <button type="button" class="opt" data-group="frameStyle" data-value="step-through">Step-through — lower bar, easier to mount</button>
             <button type="button" class="opt" data-group="frameStyle" data-value="step-over">Step-over — traditional diamond frame</button>
@@ -290,7 +292,7 @@
 
         <div class="q-group">
           <label class="q-label">How experienced a cyclist are you?</label>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="experience" data-value="new">New to regular riding</button>
             <button type="button" class="opt" data-group="experience" data-value="some">Ride sometimes</button>
             <button type="button" class="opt" data-group="experience" data-value="experienced">Very experienced</button>
@@ -299,7 +301,7 @@
 
         <div class="q-group">
           <label class="q-label">Where will you keep it?</label>
-          <div class="opt-row">
+          <div class="opt-row" data-multi="true">
             <button type="button" class="opt" data-group="storage" data-value="garage">Garage or shed — space isn't tight</button>
             <button type="button" class="opt" data-group="storage" data-value="apartment">Apartment or office, some carrying involved</button>
             <button type="button" class="opt" data-group="storage" data-value="stairs">I'll carry it up stairs or on transit often</button>
@@ -360,23 +362,6 @@
     <p>Every brand is eligible for a match — we don't sell any of them</p>
     <div class="trust-row">
       <span>Trek</span><span>Specialized</span><span>Cannondale</span><span>Giant</span><span>Priority</span><span>Brompton</span><span>Tern</span><span>Rad Power Bikes</span><span>Aventon</span><span>Ride1Up</span><span>Marin</span><span>Surly</span><span>Norco</span><span>Opus</span><span>State Bicycle Co.</span>
-    </div>
-  </div>
-</section>
-
-<section class="game-section">
-  <div class="wrap">
-    <div class="fig-tag"><span>Fig. 006</span><span class="chip-div"></span><span>Take a spin</span></div>
-    <h2>How steady is your hand?</h2>
-    <p class="lede">Steer with your mouse, your finger, or the arrow keys. The lane never ends, and it never stops narrowing — stay off the edges.</p>
-    <div class="game-card">
-      <canvas id="rideGame" width="640" height="340" aria-label="A steering mini-game: move your mouse, drag your finger, or use the arrow keys to keep a bike inside a winding, narrowing lane"></canvas>
-      <div class="game-hud"><span id="gameScore">0.0s</span><span id="gameBest">Best: 0.0s</span></div>
-      <div class="game-overlay" id="gameOverlay">
-        <p class="game-overlay-title" id="gameOverlayTitle">Ready?</p>
-        <p class="game-overlay-sub" id="gameOverlaySub">Move your mouse, drag your finger, or use the arrow keys to steer.</p>
-        <button type="button" class="submit-btn game-btn" id="gameStartBtn">Start riding</button>
-      </div>
     </div>
   </div>
 </section>
@@ -562,11 +547,11 @@ initQuizFlow('#quizSteps', {
 });
 SV.watch('#quizSteps');
 
-const state = {
+const state = SV.multiState({
   power:null, route:null, cargo:null, origin:null, frame:null, groupset:null, color:null,
   position:null, weather:null, roughness:null, flats:null, brakepower:null, experience:null, storage:null,
   frameStyle:null
-};
+}, ['route','color']);
 
 // Route options sit on one approximate spectrum so a bike built for one route
 // still scores reasonably for a neighboring one, instead of an all-or-nothing match.
@@ -655,7 +640,7 @@ function explainMatch(b, c){
   return {why: why.slice(0, 5), watch: watch.slice(0, 4)};
 }
 
-document.getElementById('submit').addEventListener('click', () => {
+document.getElementById('submit').addEventListener('click', SV.multiRun(state, () => {
   const err = document.getElementById('err');
   if (!state.power || !state.route || !state.route.length || !state.cargo) {
     err.textContent = T("Pick a power preference, route, and cargo need first.");
@@ -813,7 +798,7 @@ document.getElementById('submit').addEventListener('click', () => {
       ['Weight (catalog)', b => b.weight ? b.weight + ' kg' : ''], ['Folds', b => b.foldable ? 'yes' : 'no']
     ]
   });
-});
+}));
 const letterOverlay = document.getElementById('letterOverlay');
 const openLetterBtn = document.getElementById('openLetter');
 const closeLetterBtn = document.getElementById('closeLetter');
@@ -836,183 +821,6 @@ openLetterBtn.addEventListener('click', openLetter);
 closeLetterBtn.addEventListener('click', closeLetter);
 letterOverlay.addEventListener('click', e => { if (e.target === letterOverlay) closeLetter(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOverlay.classList.contains('open')) closeLetter(); });
-</script>
-
-<script>
-(function(){
-  const canvas = document.getElementById('rideGame');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const overlay = document.getElementById('gameOverlay');
-  const overlayTitle = document.getElementById('gameOverlayTitle');
-  const overlaySub = document.getElementById('gameOverlaySub');
-  const startBtn = document.getElementById('gameStartBtn');
-  const scoreEl = document.getElementById('gameScore');
-  const bestEl = document.getElementById('gameBest');
-
-  const W = canvas.width, H = canvas.height;
-  const START_HALF_WIDTH = 105, MIN_HALF_WIDTH = 50, NARROW_DURATION = 75;
-  const AMPLITUDE = 85, FREQUENCY = 0.01;
-  const SPEED = 130;
-  const BIKE_ROW_OFFSET = 70;
-  const BIKE_RADIUS = 20;
-
-  let best = 0;
-  try { best = Number(localStorage.getItem('velomatch_ride_best')) || 0; } catch(e){}
-  bestEl.textContent = 'Best: ' + best.toFixed(1) + 's';
-
-  let running = false;
-  let dist = 0;
-  let elapsed = 0;
-  let bikeX = W / 2;
-  let targetX = W / 2;
-  let lastTime = null;
-  let crashed = false;
-  let pedalAngle = 0;
-
-  function pathCenter(worldPos){
-    return W / 2 + AMPLITUDE * Math.sin(worldPos * FREQUENCY);
-  }
-  function currentHalfWidth(){
-    const frac = Math.min(1, elapsed / NARROW_DURATION);
-    return START_HALF_WIDTH - (START_HALF_WIDTH - MIN_HALF_WIDTH) * frac;
-  }
-
-  function setTargetFromClientX(clientX){
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = W / rect.width;
-    targetX = Math.max(0, Math.min(W, (clientX - rect.left) * scaleX));
-  }
-  canvas.addEventListener('mousemove', e => setTargetFromClientX(e.clientX));
-  canvas.addEventListener('touchmove', e => {
-    if (e.touches[0]) setTargetFromClientX(e.touches[0].clientX);
-    e.preventDefault();
-  }, {passive:false});
-  document.addEventListener('keydown', e => {
-    if (!running) return;
-    if (e.key === 'ArrowLeft') targetX = Math.max(0, targetX - 30);
-    else if (e.key === 'ArrowRight') targetX = Math.min(W, targetX + 30);
-  });
-
-  function reset(){
-    dist = 0; elapsed = 0; bikeX = W / 2; targetX = W / 2; crashed = false; lastTime = null; pedalAngle = 0;
-  }
-
-  function endGame(){
-    running = false;
-    crashed = true;
-    if (elapsed > best) {
-      best = elapsed;
-      try { localStorage.setItem('velomatch_ride_best', String(best)); } catch(e){}
-      bestEl.textContent = 'Best: ' + best.toFixed(1) + 's';
-    }
-    overlayTitle.textContent = 'You hit the edge!';
-    overlaySub.textContent = 'Survived ' + elapsed.toFixed(1) + 's. Give it another go?';
-    startBtn.textContent = 'Ride again';
-    overlay.hidden = false;
-  }
-
-  function drawBike(x, y, angle, isCrashed){
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.strokeStyle = isCrashed ? '#B8410F' : '#E2551D';
-    ctx.fillStyle = ctx.strokeStyle;
-    ctx.lineWidth = 2.4;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    ctx.beginPath(); ctx.arc(-11, 6, 9, 0, Math.PI * 2); ctx.stroke();
-    ctx.beginPath(); ctx.arc(11, 6, 9, 0, Math.PI * 2); ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(-11, 6); ctx.lineTo(-2, -8); ctx.lineTo(11, 6);
-    ctx.lineTo(0, 0); ctx.lineTo(-11, 6);
-    ctx.moveTo(-2, -8); ctx.lineTo(4, -8);
-    ctx.stroke();
-
-    const r = 5;
-    const px = Math.cos(angle) * r, py = Math.sin(angle) * r;
-    ctx.beginPath();
-    ctx.moveTo(0, 6); ctx.lineTo(px, 6 + py);
-    ctx.moveTo(0, 6); ctx.lineTo(-px, 6 - py);
-    ctx.stroke();
-    ctx.beginPath(); ctx.arc(0, 6, 2.5, 0, Math.PI * 2); ctx.fill();
-    ctx.restore();
-  }
-
-  function draw(){
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#0F3630';
-    ctx.fillRect(0, 0, W, H);
-
-    const hw = currentHalfWidth();
-    const step = 8;
-    const leftPts = [], rightPts = [];
-    for (let y = H; y >= 0; y -= step) {
-      const worldPos = dist + (H - y);
-      const c = pathCenter(worldPos);
-      leftPts.push([c - hw, y]);
-      rightPts.push([c + hw, y]);
-    }
-
-    ctx.beginPath();
-    ctx.moveTo(leftPts[0][0], leftPts[0][1]);
-    for (const p of leftPts) ctx.lineTo(p[0], p[1]);
-    for (let i = rightPts.length - 1; i >= 0; i--) ctx.lineTo(rightPts[i][0], rightPts[i][1]);
-    ctx.closePath();
-    ctx.fillStyle = 'rgba(242,236,221,0.05)';
-    ctx.fill();
-
-    ctx.strokeStyle = '#7ED7BE';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    leftPts.forEach((p, i) => i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]));
-    ctx.stroke();
-    ctx.beginPath();
-    rightPts.forEach((p, i) => i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]));
-    ctx.stroke();
-
-    drawBike(bikeX, H - BIKE_ROW_OFFSET, pedalAngle, crashed);
-  }
-
-  function loop(ts){
-    if (!running) return;
-    if (lastTime === null) lastTime = ts;
-    const dt = Math.min(0.05, (ts - lastTime) / 1000);
-    lastTime = ts;
-
-    elapsed += dt;
-    dist += SPEED * dt;
-    bikeX += (targetX - bikeX) * Math.min(1, dt * 10);
-    pedalAngle += dt * (6 + SPEED / 40);
-
-    const bikeWorldPos = dist + BIKE_ROW_OFFSET;
-    const centerAtBike = pathCenter(bikeWorldPos);
-    const hw = currentHalfWidth();
-    const leftEdge = centerAtBike - hw;
-    const rightEdge = centerAtBike + hw;
-
-    if (bikeX - BIKE_RADIUS < leftEdge || bikeX + BIKE_RADIUS > rightEdge) {
-      draw();
-      endGame();
-      return;
-    }
-
-    draw();
-    scoreEl.textContent = elapsed.toFixed(1) + 's';
-    requestAnimationFrame(loop);
-  }
-
-  function start(){
-    reset();
-    running = true;
-    overlay.hidden = true;
-    requestAnimationFrame(loop);
-  }
-  startBtn.addEventListener('click', start);
-
-  draw();
-})();
 </script>
 
 </body>

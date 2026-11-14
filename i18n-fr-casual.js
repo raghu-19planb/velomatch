@@ -1,0 +1,96 @@
+// French (Québec) for the casual and fitness riding quiz. English text is the key. Loaded after i18n-fr-core.js, i18n-fr-quiz.js and i18n-fr-commute.js
+// (the quiz shares many reasons and labels with the commuting quiz).
+// AI-written, not reviewed by a native speaker: see i18n-glossary.md.
+(function () {
+  const I = window.I18N;
+  if (!I) return;
+  const add = o => Object.assign(I.exact, o);
+
+  add({
+    'SelectVelo — Find your casual and fitness bike': 'SelectVelo — Trouvez votre vélo de balade et de mise en forme',
+    'Find a bike for weekend rides, fitness and relaxed riding. SelectVelo scores real hybrid, city and gravel bikes against where you ride, how far you go and what you want to spend.':
+      'Trouvez un vélo pour les balades de fin de semaine, la mise en forme et la détente. SelectVelo évalue de vrais vélos hybrides, de ville et de gravier selon l’endroit où vous roulez, la distance que vous parcourez et votre budget.',
+    'Casual and fitness riding': 'Balade et mise en forme',
+    'Sheet 006': 'Planche 006',
+    'The right <span class="pencil-mark">weekend</span> bike is the one you\'ll actually want to ride.': 'Le bon vélo de <span class="pencil-mark">balade</span> est celui que vous aurez vraiment envie d’enfourcher.',
+    'Not racing, not commuting, not camping: just riding for fun, for fitness, or to clear your head. Tell us where you ride, how far you go and how you like to sit, and we measure real city, hybrid and gravel bikes against that, then explain why the top match fits.':
+      'Ni course, ni trajet quotidien, ni camping : simplement rouler pour le plaisir, pour la forme ou pour se vider la tête. Dites-nous où vous roulez, jusqu’où vous allez et comment vous aimez être assis, et nous mesurons de vrais vélos de ville, hybrides et de gravier selon cela, puis nous expliquons pourquoi le meilleur choix vous convient.',
+    'An oil painting of a road bike resting by an empty road at sunrise, mountains in the distance.': 'Une peinture à l’huile d’un vélo de route appuyé au bord d’une route déserte au lever du soleil, des montagnes au loin.',
+    'Fig. 001: the kind of ride this quiz is for': 'Fig. 001 : le genre de balade pour lequel ce questionnaire est fait',
+    'Three steps to a bike that suits how you ride.': 'Trois étapes vers un vélo qui convient à votre façon de rouler.',
+    'No sales pitch and no single-brand catalog. The bikes come from our verified commuting and gravel catalogs, because those are the bikes people actually buy for relaxed and fitness riding.':
+      'Pas de boniment et pas de catalogue d’une seule marque. Les vélos proviennent de nos catalogues vérifiés de vélos de ville et de gravier, car ce sont ceux que les gens achètent vraiment pour la balade et la mise en forme.',
+    'Where you ride, how far from home you go, power preference, your height and your budget.': 'L’endroit où vous roulez, la distance depuis chez vous, la préférence de motorisation, votre taille et votre budget.',
+    "A bike that doesn't fit you or can't take your surface is ruled down; a great fit a little over budget isn't ruled out.":
+      'Un vélo qui ne vous convient pas ou qui ne convient pas à votre surface est mal classé; un vélo très bien adapté qui dépasse un peu le budget n’est pas écarté.',
+    "Ranked with plain-language reasons, and a clear note wherever a bike's record doesn't say something.": 'Classés avec des raisons en langage clair, et une note claire chaque fois que la fiche d’un vélo ne précise pas quelque chose.',
+    "Let's find your weekend bike.": 'Trouvons votre vélo de balade.',
+    'Five short questions to start, answered one at a time. The rest are optional, and none of it needs bike jargon.': 'Cinq courtes questions pour commencer, une à la fois. Les autres sont facultatives, et aucune ne demande de jargon du vélo.',
+    'Your rides': 'Vos sorties',
+    'Where will you mostly ride?': 'Où roulerez-vous surtout ?',
+    'Paved paths and roads': 'Pistes et routes asphaltées',
+    'A mix of road and gravel': 'Un mélange de route et de gravier',
+    'Packed gravel and rail trails': 'Gravier compacté et anciennes voies ferrées',
+    'How far from home do you usually ride?': 'Jusqu’où roulez-vous habituellement depuis chez vous ?',
+    'The farthest point of a typical outing, one way. A 20 km out-and-back ride is 10 km.': 'Le point le plus éloigné d’une sortie typique, à l’aller. Une sortie aller-retour de 20 km correspond à 10 km.',
+    '~2 km': '~2 km',
+    '60+ km': '60+ km',
+    'Comfort & preferences': 'Confort et préférences',
+    'Optional. Just answer how it feels; we translate it into the right spec.': 'Facultatif. Répondez simplement selon votre ressenti; nous le traduisons en caractéristique adaptée.',
+    'Frame shape': 'Forme du cadre',
+    'Where will you mostly ride? <span class="q-hint">(choose all that apply)</span>': 'Où roulerez-vous surtout ? <span class="q-hint">(choisissez tout ce qui s’applique)</span>',
+    'Step-through: lower bar, easier to mount': 'Cadre ouvert : tube plus bas, plus facile à enfourcher',
+    'Step-over: traditional diamond frame': 'Cadre classique : cadre traditionnel en losange',
+    'Pick where you ride and a power preference first.': 'Indiquez d’abord où vous roulez et votre préférence de motorisation.',
+    'Your top matches will appear here, ranked with reasons.': 'Vos meilleurs choix apparaîtront ici, classés avec leurs raisons.',
+    'Where these bikes come from': 'D’où viennent ces vélos',
+    "Casual riding has no catalog of its own yet. This quiz draws on our verified commuting bikes (hybrids and city bikes) and the widely sold gravel and touring bikes from our bikepacking catalog, and it says so wherever a bike's record does not list something, such as a comfortable ride distance for gravel bikes.":
+      'La balade n’a pas encore son propre catalogue. Ce questionnaire puise dans nos vélos de ville vérifiés (hybrides et vélos urbains) et dans les vélos de gravier et de voyage largement vendus de notre catalogue de cyclocamping, et il le précise chaque fois que la fiche d’un vélo n’indique pas quelque chose, comme la distance confortable des vélos de gravier.',
+    'Casual riding': 'Balade',
+    'Casual riding has no catalog of its own yet.': 'La balade n’a pas encore son propre catalogue.',
+    // results
+    'paved paths and roads': 'des pistes et routes asphaltées',
+    'a mix of road and gravel': 'un mélange de route et de gravier',
+    'packed gravel and rail trails': 'du gravier compacté et d’anciennes voies ferrées',
+    'Rated comfortable up to {m} km from home, and you ride about {d} km': 'Confortable jusqu’à {m} km de la maison selon sa fiche, et vous roulez environ {d} km',
+    'Comfortable ride distance is not listed for this bike': 'La distance de balade confortable n’est pas indiquée pour ce vélo',
+    'Rides': 'Sorties',
+    'Feel': 'Sensation',
+    'Comfortable and easy': 'Confortable et facile',
+    'Quicker and farther': 'Plus rapide et plus loin',
+    'Distance from home': 'Distance depuis chez vous',
+    'upright': 'droite', 'relaxed': 'détendue', 'sporty': 'sportive',
+    // "how should the ride feel?" and the type-of-bike explainer
+    'Six short questions to start, answered one at a time. The rest are optional, and none of it needs bike jargon.': 'Six courtes questions pour commencer, une à la fois. Les autres sont facultatives, et aucune ne demande de jargon du vélo.',
+    'How should the ride feel?': 'Comment la sortie devrait-elle se sentir ?',
+    'This decides the type of bike: relaxed and easy, or quicker and farther.': 'Cela détermine le type de vélo : détendu et facile, ou plus rapide et plus loin.',
+    'Comfortable and easy: upright, simple controls': 'Confortable et facile : position droite, commandes simples',
+    'A bit of both': 'Un peu des deux',
+    'Quicker and farther: leaning forward, more efficient': 'Plus rapide et plus loin : penché vers l’avant, plus efficace',
+    'Upright position, for a comfortable ride': 'Position droite, pour une sortie confortable',
+    'Sporty, leaned-forward position, less relaxed than you asked for': 'Position sportive, penchée vers l’avant, moins détendue que ce que vous demandiez',
+    'Sporty position, for quicker riding': 'Position sportive, pour rouler plus vite',
+    'Upright position, more relaxed than quick': 'Position droite, plus détendue que rapide',
+    'From our commuting catalog': 'De notre catalogue de vélos de ville',
+    'From our gravel and touring catalog': 'De notre catalogue de vélos de gravier et de voyage',
+    'Step up: from our gravel and touring catalog': 'Pour monter en gamme : de notre catalogue de vélos de gravier et de voyage',
+    'Alternative: from our commuting catalog': 'Autre option : de notre catalogue de vélos de ville',
+    'What fits you': 'Ce qui vous convient',
+    'The trade-off:': 'Le compromis :',
+    'Step up or across:': 'Pour monter en gamme ou changer d’approche :',
+    'General guidance about bike types, based on your answers. The bikes below are scored only on their own recorded specs.': 'Conseils généraux sur les types de vélos, fondés sur vos réponses. Les vélos ci-dessous sont évalués uniquement selon leurs propres caractéristiques consignées.',
+    'A hybrid or city bike is the most likely fit.': 'Un vélo hybride ou de ville est le choix le plus probable.',
+    'For relaxed rides on paved paths and roads, these give an upright, comfortable position and easy controls, usually with tires wide enough for rough patches.': 'Pour des sorties détendues sur pistes et routes asphaltées, ils offrent une position droite et confortable et des commandes faciles, généralement avec des pneus assez larges pour les passages rugueux.',
+    'They are slower than a road bike and are not meant for rough gravel.': 'Ils sont plus lents qu’un vélo de route et ne sont pas conçus pour le gravier accidenté.',
+    'If you add gravel, or want to ride faster and farther, look at a gravel-capable hybrid or a gravel bike.': 'Si vous ajoutez du gravier, ou voulez rouler plus vite et plus loin, regardez un hybride apte au gravier ou un vélo de gravier.',
+    'A gravel-capable hybrid is the most likely fit.': 'Un hybride apte au gravier est le choix le plus probable.',
+    'For relaxed rides on roads and gravel paths, a bike with a flat handlebar and medium-wide tires (often about 32–45 mm) is comfortable, simple to ride and easier on the budget.': 'Pour des sorties détendues sur routes et chemins de gravier, un vélo à guidon plat et à pneus de largeur moyenne (souvent d’environ 32 à 45 mm) est confortable, simple à piloter et plus doux pour le budget.',
+    'They are slower than road or gravel bikes on pavement, and less capable on rough ground.': 'Ils sont plus lents que les vélos de route ou de gravier sur l’asphalte, et moins à l’aise sur terrain accidenté.',
+    'A gravel bike is the step up if you want more speed or longer rides.': 'Un vélo de gravier est l’étape suivante si vous voulez plus de vitesse ou des sorties plus longues.',
+    'A gravel or all-road bike is the most likely fit.': 'Un vélo de gravier ou tout-chemin est le choix le plus probable.',
+    'You want to ride faster, farther or on looser surfaces, which is what these bikes are built for: wider tires than a road bike, usually drop or flared handlebars, and gearing for varied terrain.': 'Vous voulez rouler plus vite, plus loin ou sur des surfaces plus meubles, ce pour quoi ces vélos sont conçus : des pneus plus larges qu’un vélo de route, généralement un guidon de route ou évasé, et un étagement adapté à des terrains variés.',
+    'They usually cost more and put you in a more forward, less upright position.': 'Ils coûtent généralement plus cher et vous placent dans une position plus penchée et moins droite.',
+    'A gravel-capable hybrid is the cheaper, more upright alternative if comfort matters more than speed.': 'Un hybride apte au gravier est l’option moins chère et plus droite si le confort compte plus que la vitesse.',
+    'You asked for e-assist. Our casual list has {n} e-assist models, all from the commuting catalog, so expect hybrids and city bikes rather than gravel bikes.': 'Vous avez demandé une assistance électrique. Notre liste de balade compte {n} modèles à assistance, tous de notre catalogue de vélos de ville : attendez-vous à des hybrides et des vélos urbains plutôt qu’à des vélos de gravier.',
+  });
+})();

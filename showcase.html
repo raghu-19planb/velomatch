@@ -3,26 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SelectVelo — Bike showcase: new and current bikes in Canada</title>
-<meta name="description" content="New and current bikes from the brands and Canadian shops, with photos, Canadian prices and links straight to each maker’s or shop’s own page. Checked and refreshed every quarter.">
+<title>SelectVelo — Current bikes you can buy in Canada</title>
+<meta name="description" content="Current bike models from the brands and Canadian shops, with photos, Canadian prices and links straight to each maker’s or shop’s own page. Only this year’s and next year’s models, checked and refreshed every quarter.">
 <link rel="canonical" href="https://raghu-19planb.github.io/velomatch/showcase.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="SelectVelo — Bike showcase: new and current bikes in Canada">
-<meta property="og:description" content="New and current bikes from the brands and Canadian shops, with photos, Canadian prices and links straight to each maker’s or shop’s own page. Checked and refreshed every quarter.">
+<meta property="og:title" content="SelectVelo — Current bikes you can buy in Canada">
+<meta property="og:description" content="Current bike models from the brands and Canadian shops, with photos, Canadian prices and links straight to each maker’s or shop’s own page. Only this year’s and next year’s models, checked and refreshed every quarter.">
 <meta property="og:url" content="https://raghu-19planb.github.io/velomatch/showcase.html">
 <meta property="og:site_name" content="SelectVelo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SelectVelo — Bike showcase: new and current bikes in Canada">
-<meta name="twitter:description" content="New and current bikes from the brands and Canadian shops, with photos, Canadian prices and links straight to each maker’s or shop’s own page. Checked and refreshed every quarter.">
+<meta name="twitter:title" content="SelectVelo — Current bikes you can buy in Canada">
+<meta name="twitter:description" content="Current bike models from the brands and Canadian shops, with photos, Canadian prices and links straight to each maker’s or shop’s own page. Only this year’s and next year’s models, checked and refreshed every quarter.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=d7d9dd34">
+<link rel="stylesheet" href="style.css?v=20c4899a">
 <script src="nav-transition.js?v=ddf7b18b"></script>
 <script src="i18n.js?v=d9197a30"></script>
-<script src="i18n-fr-core.js?v=799c5762" defer></script>
-<script src="i18n-fr-showcase.js?v=7de72c8f" defer></script>
+<script src="i18n-fr-core.js?v=b1846649" defer></script>
+<script src="i18n-fr-showcase.js?v=0560d7f7" defer></script>
+<script src="height-input.js?v=467fb1e2" defer></script>
 <script src="nav-menu.js?v=5d71bc06" defer></script>
 </head>
 <body class="nb-page">
@@ -56,10 +57,11 @@
     <div class="nav-links">
       <a href="kids.html" class="nav-link">Kids' bikes</a>
       <a href="commute.html" class="nav-link">Commuting</a>
+      <a href="casual.html" class="nav-link">Casual riding</a>
       <a href="bikepacking.html" class="nav-link">Bikepacking</a>
       <a href="mountainbiking.html" class="nav-link">Mountain biking</a>
       <a href="racing.html" class="nav-link">Racing</a>
-      <a href="showcase.html" class="nav-link current" aria-current="page">Showcase</a>
+      <a href="showcase.html" class="nav-link current" aria-current="page">Current bikes</a>
       <a href="schematics.html" class="nav-link">Schematics</a>
       <a href="routemaps.html" class="nav-link">Route maps</a>
       <a href="blog.html" class="nav-link">Blog</a>
@@ -72,10 +74,59 @@
   <div class="wrap">
     <div class="nb-hero-text">
       <h1>Bikes you can buy in Canada</h1>
-      <p class="lede">New 2027 models and current favourites from the brands and Canadian shops. A bike tagged New is one its maker calls new. Photos and prices come from the brand’s or shop’s own site, and every bike links back to it.</p>
+      <p class="lede">Current models from the brands and Canadian shops: what you can buy in Canada now, with Canadian prices and a link to each maker’s or shop’s own page. A bike tagged New is one its maker calls new. Photos and prices come from the brand’s or shop’s own site.</p>
       <p class="nb-checked" id="nbChecked">Checking the latest list…</p>
     </div>
     <figure class="nb-stage" id="nbStage" aria-live="polite"></figure>
+  </div>
+</section>
+
+<section class="fit-radar-section nb-fit" id="nbFit" aria-label="Find bikes that fit your height">
+  <div class="wrap">
+    <div class="fit-radar-card">
+      <div class="fit-radar-controls">
+        <div class="fig-tag"><span>Your height</span><span class="chip-div"></span><span>See what fits</span></div>
+        <label class="q-label" for="nbHeight">Select your height</label>
+        <div class="range-row">
+          <input type="range" id="nbHeight" min="80" max="200" value="172" step="1">
+          <span class="range-out" id="nbHeightOut">172 cm</span>
+        </div>
+        <p class="fit-radar-hint" id="nbHeightHint"></p>
+        <div class="nb-fit-actions">
+          <button type="button" class="nb-chip" id="nbFitBtn" aria-pressed="false">Show only bikes that fit me</button>
+          <button type="button" class="nb-chip" id="nbFitUnknownBtn" aria-pressed="false" hidden>Also show bikes with no recorded fit</button>
+        </div>
+        <p class="fit-radar-category" id="nbFitNote" aria-live="polite"></p>
+      </div>
+      <div class="fit-radar-diagram">
+        <div class="fit-radar-scale-wrap">
+          <div class="radar-stage" id="nbRadarStage" role="img" aria-label="A rider about 172 cm tall on a bike with 700c wheels">
+            <img class="radar-img" src="images/sizes/size_100.webp?v=5" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_112.webp?v=5" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_125.webp?v=5" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_140.webp?v=5" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_152.webp?v=5" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_165.webp?v=5" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <img class="radar-img is-on" src="images/sizes/size_178.webp?v=5" width="1280" height="1000" decoding="async" alt="">
+            <img class="radar-img" src="images/sizes/size_192.webp?v=5" width="1280" height="1000" loading="lazy" decoding="async" alt="">
+            <svg class="radar-ruler" viewBox="0 0 640 500" aria-hidden="true">
+              <line class="dim-ext" x1="24" y1="440" x2="616" y2="440"/>
+              <g>
+                <line class="dim-line" id="nbRulerLine" x1="38" y1="440" x2="38" y2="200"/>
+                <line class="dim-tick" x1="31" y1="440" x2="45" y2="440"/>
+                <line class="dim-tick" id="nbRulerTick" x1="31" y1="200" x2="45" y2="200"/>
+                <text class="dim-label" id="nbRulerText" x="50" y="196">172 cm</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="fit-radar-labels">
+          <span id="nbWheel">⌀ 700c</span>
+          <span id="nbStandover">Standover ~79cm</span>
+          <span id="nbWheelbase">Wheelbase ~103cm</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -90,7 +141,7 @@
     <p class="nb-count" id="nbCount" aria-live="polite"></p>
     <div class="nb-grid" id="nbGrid"></div>
     <div class="nb-more-wrap"><button type="button" class="nb-more" id="nbMore" hidden></button></div>
-    <p class="nb-empty" id="nbEmpty" hidden><b>No bikes match those filters.</b> Try another type or brand, or turn off “New only”.</p>
+    <p class="nb-empty" id="nbEmpty" hidden><b>No bikes match those filters.</b> Try another type or brand, turn off “New only”, or turn off the height filter.</p>
     <noscript><p class="nb-empty">This page needs JavaScript to show the bikes. You can still browse by type: <a href="kids.html">kids</a>, <a href="commute.html">commuting</a>, <a href="bikepacking.html">bikepacking</a>, <a href="mountainbiking.html">mountain</a>, <a href="racing.html">racing</a>.</p></noscript>
   </div>
 </section>
@@ -102,6 +153,8 @@
       <p>A bike is tagged New only if its maker says so: a “New” label, an all-new range, or a 2027 model-year page. The rest are bikes on sale now from the brand or a Canadian shop. Every bike has a live product page and a photo we checked.</p>
       <p>Prices are shown only when they are in Canadian dollars, as the “from” price on the day we checked, so they can change before you buy. Where a brand’s page doesn’t show a Canadian price, we say so instead of guessing.</p>
       <p>Photos load from each brand’s or shop’s own website and belong to them. We link to them and don’t pass them off as ours. If a photo goes missing, the bike still links to its page.</p>
+      <p id="nbFitHow">Height ranges come from our quiz catalogs: the maker’s recommended range where it was published, otherwise a typical range for that kind of bike. A bike that is not in those catalogs shows “Fit range not recorded”, and is left out when you filter by height unless you choose to include it.</p>
+      <p id="nbCurrentOnly"></p>
       <p id="nbNextCheck">We re-check every link and photo each quarter and add the new arrivals.</p>
     </div>
     <div>
@@ -184,7 +237,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
   var empty = document.getElementById('nbEmpty');
   var more = document.getElementById('nbMore');
   var countEl = document.getElementById('nbCount');
-  var state = { cat: 'all', newOnly: false, brand: '', limit: PAGE };
+  var state = { cat: 'all', newOnly: false, brand: '', limit: PAGE, height: 172, fit: false, fitUnknown: false };
   var bikes = [];
   var cards = [];
 
@@ -198,6 +251,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
     var r = applyAffiliateTracking(b.productUrl);
     return { href: r[0], rel: 'noopener noreferrer' + (r[1] ? ' sponsored' : '') };
   }
+  function fitText(b){ return b.fit ? 'Made for riders ' + b.fit.minH + '–' + b.fit.maxH + ' cm' : 'Fit range not recorded'; }
   function badge(b){ return b.modelYear ? 'New for ' + b.modelYear : 'New'; }
   function why(b){ return b.isNew ? (b.newReason || '') : (b.note || ''); }
   function priceLine(b){
@@ -238,6 +292,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
         '<p class="nb-brand">' + esc(b.brand) + '</p>' +
         '<h2 class="nb-name">' + esc(b.name) + '</h2>' +
         '<p class="nb-type">' + esc(b.type) + '</p>' +
+        '<p class="nb-fitline' + (b.fit ? '' : ' is-unknown') + '">' + esc(fitText(b)) + '</p>' +
         '<p class="nb-why">' + esc(why(b)) + '</p>' +
         '<a class="nb-cta" href="' + esc(l.href) + '" target="_blank" rel="' + l.rel + '">View at ' + esc(seller(b)) + ' ' + ICON + '<span class="sr-o"> (opens in a new tab)</span></a>' +
       '</div>';
@@ -272,6 +327,11 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
     if (!skipCat && state.cat !== 'all' && b.category !== state.cat) return false;
     if (state.newOnly && !b.isNew) return false;
     if (state.brand && b.brand !== state.brand) return false;
+    if (state.fit) {
+      // only a recorded range can say a bike fits; a bike without one is shown only if the visitor asks for it
+      if (b.fit) { if (state.height < b.fit.minH || state.height > b.fit.maxH) return false; }
+      else if (!state.fitUnknown) return false;
+    }
     return true;
   }
 
@@ -298,6 +358,45 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
     filters.appendChild(lab); filters.appendChild(sel);
   }
 
+  // ---- height panel: the rider-on-a-bike picture follows the slider; the button filters the list
+  var RADAR_SIZES = [
+    {h:100, wheel:'14in', standover:39, wheelbase:62}, {h:112, wheel:'16in', standover:44, wheelbase:70}, {h:125, wheel:'20in', standover:56, wheelbase:88},
+    {h:140, wheel:'24in', standover:67, wheelbase:106}, {h:152, wheel:'26in', standover:74, wheelbase:116}, {h:165, wheel:'700c', standover:74, wheelbase:96},
+    {h:178, wheel:'700c', standover:79, wheelbase:103}, {h:192, wheel:'700c', standover:85, wheelbase:110}
+  ];
+  var PX_PER_M = 246.15, GROUND_Y = 440.0;
+  function ageHint(h){
+    if (h < 105) return "That's about a 4-year-old.";
+    if (h < 118) return "That's about a 6-year-old.";
+    if (h < 132) return "That's about an 8-year-old.";
+    if (h < 148) return "That's about a 10 to 12-year-old.";
+    if (h < 165) return "That's a teenager, or a petite adult.";
+    return "That's an average-height adult.";
+  }
+  var heightEl = document.getElementById('nbHeight');
+  function updateHeight(){
+    var h = state.height = Number(heightEl.value);
+    document.getElementById('nbHeightOut').textContent = h + ' cm';
+    document.getElementById('nbHeightHint').textContent = ageHint(h);
+    var near = RADAR_SIZES[0];
+    RADAR_SIZES.forEach(function(sz){ if (Math.abs(sz.h - h) < Math.abs(near.h - h)) near = sz; });
+    document.querySelectorAll('#nbRadarStage .radar-img').forEach(function(im){ im.classList.toggle('is-on', im.src.indexOf('size_' + near.h + '.') !== -1); });
+    document.getElementById('nbRadarStage').setAttribute('aria-label', 'A ' + (h < 150 ? 'child' : h < 165 ? 'teenager' : 'rider') + ' about ' + h + ' cm tall on a bike with ' + near.wheel.replace('in', ' inch') + ' wheels');
+    var topY = GROUND_Y - h / 100 * PX_PER_M;
+    document.getElementById('nbRulerLine').setAttribute('y2', topY.toFixed(1));
+    var tick = document.getElementById('nbRulerTick'); tick.setAttribute('y1', topY.toFixed(1)); tick.setAttribute('y2', topY.toFixed(1));
+    var txt = document.getElementById('nbRulerText'); txt.setAttribute('y', (topY - 4).toFixed(1)); txt.textContent = h + ' cm';
+    document.getElementById('nbWheel').textContent = '⌀ ' + near.wheel;
+    document.getElementById('nbStandover').textContent = 'Standover ~' + near.standover + 'cm';
+    document.getElementById('nbWheelbase').textContent = 'Wheelbase ~' + near.wheelbase + 'cm';
+    if (state.fit) state.limit = PAGE;
+    if (bikes.length) render();
+  }
+  heightEl.addEventListener('input', updateHeight);
+  var fitBtn = document.getElementById('nbFitBtn'), fitUnknownBtn = document.getElementById('nbFitUnknownBtn'), fitNote = document.getElementById('nbFitNote');
+  fitBtn.addEventListener('click', function(){ state.fit = !state.fit; if (!state.fit) state.fitUnknown = false; state.limit = PAGE; render(); });
+  fitUnknownBtn.addEventListener('click', function(){ state.fitUnknown = !state.fitUnknown; state.limit = PAGE; render(); });
+
   function render(){
     // chip counts reflect the other filters, so a count always matches what the chip will show
     var counts = { all: 0 };
@@ -307,6 +406,15 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
       btn.querySelector('.nb-chip-n').textContent = counts[btn.dataset.key] || 0;
     });
     document.getElementById('nbNewOnly').setAttribute('aria-pressed', state.newOnly ? 'true' : 'false');
+    // the height filter: what it does, and how many bikes it cannot judge
+    var known = 0, unknown = 0, fitting = 0;
+    bikes.forEach(function(b){ if (b.fit) { known++; if (state.height >= b.fit.minH && state.height <= b.fit.maxH) fitting++; } else unknown++; });
+    fitBtn.setAttribute('aria-pressed', state.fit ? 'true' : 'false');
+    fitUnknownBtn.hidden = !state.fit;
+    fitUnknownBtn.setAttribute('aria-pressed', state.fitUnknown ? 'true' : 'false');
+    fitNote.textContent = state.fit
+      ? 'Bikes made for riders ' + state.height + ' cm tall: ' + fitting + '. ' + unknown + ' more have no recorded fit range' + (state.fitUnknown ? ' and are shown too.' : ' and are hidden.')
+      : 'Of ' + bikes.length + ' bikes, ' + known + ' have a recorded fit range. Press the button to keep only the ones that fit ' + state.height + ' cm.';
 
     var shown = 0, total = 0;
     cards.forEach(function(c){
@@ -338,7 +446,10 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
   fetch('data/showcase.json', {cache: 'no-cache'})
     .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function(data){
-      bikes = data.bikes || [];
+      var thisYear = new Date().getFullYear(), MIN_YEAR = thisYear - 1, MAX_YEAR = thisYear + 1;
+      // current models only: a stated model year has to be last year's, this year's or next year's. A bike with no stated year is kept: it is on its maker's or shop's live page today.
+      bikes = (data.bikes || []).filter(function(b){ return b.modelYear == null || (b.modelYear >= MIN_YEAR && b.modelYear <= MAX_YEAR); });
+      document.getElementById('nbCurrentOnly').textContent = 'Only current models are listed: model years ' + MIN_YEAR + ' to ' + MAX_YEAR + ', and bikes a maker or shop lists today without a model year. Older models are dropped at each refresh.';
       var meta = data._meta || {};
       var brands = new Set(bikes.map(function(b){ return b.brand; })).size;
       var fresh = bikes.filter(function(b){ return b.isNew; }).length;
@@ -348,6 +459,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOver
       var ordered = interleave(bikes);
       ordered.forEach(function(b, i){ var el = card(b, i); el.hidden = true; grid.appendChild(el); cards.push({ bike: b, el: el }); });
       buildControls();
+      updateHeight();
       var wanted = (location.hash || '').replace('#','');
       if (CATS.some(function(c){ return c.key === wanted; })) state.cat = wanted;
       if (wanted === 'new') state.newOnly = true; // the flag in the nav links here

@@ -1,5 +1,7 @@
 # Maintaining the SelectVelo bike catalogs
 
+> **Standing rule:** every recommendation and every catalog change must take into account what Reddit and forums, social media (including Instagram), blogs and expert reviews, YouTube and the maker's own product material say about bikes in that category. Facts (specs, prices, sizes) come from the maker or a seller page; community and review sources inform how a bike behaves and what riders choose. See [docs/bike-curation-logic.md](docs/bike-curation-logic.md).
+
 `index.html` is the homepage — a category chooser, not a quiz itself. Each quiz category lives on its own page with its own catalog file under `data/`:
 
 - `data/kids-bikes.json` — used by `kids.html` (kids' first bike)
@@ -18,6 +20,8 @@
   Also corrected Diverge's `terrain` from `'gravel'` to `'mixed'` — the user's own confirmed real-world use (riding it on Iceland's mixed paved/gravel Ring Road) is stronger evidence than my original guess. And added **Specialized Diverge Expert Carbon** as a real sibling entry, since the base Comp trim is realistically mechanical-only — asking for electronic shifting should surface the actual electronic-equipped model in the family, not force a false spec onto Comp.
 
   With those fixes and a realistic budget for the premium feature combination requested (~$5,000 — carbon + electronic + Future Shock isn't a budget-tier combination in real life, and an unrealistically low test budget was initially the reason a pricier sibling scored lower), the result is: **Specialized Diverge Expert Carbon** #1, **Cannondale Topstone Carbon Lefty 3** #2, **Specialized Diverge Comp** #3 — confirmed correct.
+
+- **`casual.html` (casual and fitness riding) has no catalog file of its own, on purpose.** It reads `data/commute-bikes.json` (every bike) and `data/bikepacking-bikes.json` (only `availability: "mainstream"` bikes whose `terrain` is `road_paved`, `mixed` or `gravel`, leaving out `ultra_race` builds and rough-trail bikes) at load time, and gives each bike a `surface` (paved / mixed / gravel, from `type` or `terrain`) and a `power` (the bikepacking catalog covers pedal bikes only, so those are pedal). One source of truth: fix a bike in its own file and the casual quiz follows. Fields only one source records (a comfortable ride distance, riding position, fenders, brake type) are scored only where recorded, and a bike without the field shows "not listed" instead of a guess. A dedicated casual catalog (fitness and hybrid bikes, leisure e-bikes) would still serve riders better and is a future step.
 
 These files are the **single source of truth** for what each quiz can recommend. When you add a new category page (a third use case, a fourth, etc.), give it its own `data/<category>-bikes.json` following the same pattern.
 

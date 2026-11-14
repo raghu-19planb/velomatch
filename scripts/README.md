@@ -131,3 +131,15 @@ Two safeguards keep this from being forgotten. `.githooks/pre-commit` re-stamps 
 broken script (turn it on once per clone with `git config core.hooksPath .githooks`). `.github/workflows/site-check.yml`
 runs `node scripts/check-site.mjs` on every push, so a stale address or a script that does not parse shows up as a failed
 check on GitHub even if the hook was skipped.
+
+## Keeping the catalogs current (a standing rule)
+
+A stale spec is a data-integrity bug: the quiz would recommend a bike on facts that are no longer true. In November 2026 the owner, who rides a
+Specialized Diverge Comp Carbon with electronic SRAM shifting, pointed out that the catalog still listed the previous generation (Shimano mechanical, $4,200).
+The current Diverge 4 Comp Carbon is SRAM Apex AXS at C$5,499.99, read on specialized.com/ca. Two things keep that from recurring:
+
+- `node scripts/catalog-freshness.mjs` lists every bike with old evidence, no verification, a dead or mismatched link, price drift, or a maker rename in
+  progress. `.github/workflows/catalog-freshness.yml` runs it every Monday and fails (so GitHub emails the owner) when anything needs attention.
+- Fixing an entry means reading its seller page: update the fields the page confirms, rewrite the `_verified` note to say what was confirmed, where and
+  when (and what is still an estimate), drop a photo that shows an older model, then `node scripts/verify-catalogs.mjs --write` and `node scripts/add-showcase-fit.mjs --write`.
+- The Showcase fit ranges (`fit` on each bike) come from `scripts/add-showcase-fit.mjs`: only exact model matches to a quiz-catalog bike, never a guess.

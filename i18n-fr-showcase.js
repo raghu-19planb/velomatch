@@ -11,7 +11,9 @@
 
   // ---------------------------------------------------------------- page text
   add({
-    'SelectVelo — Bike showcase: new and current bikes in Canada': 'SelectVelo — Vitrine : vélos nouveaux et actuels au Canada',
+    'SelectVelo — Current bikes you can buy in Canada': 'SelectVelo — Vélos actuels offerts au Canada',
+    'Current bike models from the brands and Canadian shops, with photos, Canadian prices and links straight to each maker’s or shop’s own page. Only this year’s and next year’s models, checked and refreshed every quarter.': 'Des modèles de vélos actuels des marques et des boutiques canadiennes, avec photos, prix canadiens et liens directs vers la page de chaque fabricant ou boutique. Seulement les modèles de l’année dernière, de cette année et de la prochaine, vérifiés et mis à jour chaque trimestre.',
+    'Current models from the brands and Canadian shops: what you can buy in Canada now, with Canadian prices and a link to each maker’s or shop’s own page. A bike tagged New is one its maker calls new. Photos and prices come from the brand’s or shop’s own site.': 'Des modèles actuels des marques et des boutiques canadiennes : ce que vous pouvez acheter au Canada maintenant, avec les prix canadiens et un lien vers la page de chaque fabricant ou boutique. Un vélo marqué Nouveau est un vélo que son fabricant dit nouveau. Les photos et les prix proviennent du site de la marque ou de la boutique.',
     'New and current bikes from the brands and Canadian shops, with photos, Canadian prices and links straight to each maker’s or shop’s own page. Checked and refreshed every quarter.':
       'Des vélos nouveaux et actuels des marques et des boutiques canadiennes, avec photos, prix canadiens et liens directs vers la page de chaque fabricant ou boutique. Vérifiés et mis à jour chaque trimestre.',
     'Bikes you can buy in Canada': 'Des vélos que vous pouvez acheter au Canada',
@@ -83,4 +85,33 @@
     'Triathlon / TT bike': 'Vélo de triathlon / de contre-la-montre', 'Electric city bike': 'Vélo de ville électrique', 'Electric cargo bike': 'Vélo cargo électrique',
     'Electric off-road bike': 'Vélo électrique hors route', 'E-Bike': 'Vélo électrique', 'City & Active bike': 'Vélo de ville et d’activité', 'Road bike': 'Vélo de route',
   });
+  // ---------------------------------------------------------------- "fits my height" panel
+  add({
+    'Your height': 'Votre taille',
+    'See what fits': 'Voyez ce qui convient',
+    'Select your height': 'Choisissez votre taille',
+    'Find bikes that fit your height': 'Trouvez les vélos qui conviennent à votre taille',
+    'Show only bikes that fit me': 'Afficher seulement les vélos qui me conviennent',
+    'Also show bikes with no recorded fit': 'Afficher aussi les vélos sans plage de taille consignée',
+    'Fit range not recorded': 'Plage de taille non consignée',
+    "That's about a 4-year-old.": 'Cela correspond à un enfant d’environ 4 ans.',
+    "That's about a 6-year-old.": 'Cela correspond à un enfant d’environ 6 ans.',
+    "That's about an 8-year-old.": 'Cela correspond à un enfant d’environ 8 ans.',
+    "That's about a 10 to 12-year-old.": 'Cela correspond à un enfant de 10 à 12 ans.',
+    "That's a teenager, or a petite adult.": 'C’est un adolescent, ou un adulte de petite taille.',
+    "That's an average-height adult.": 'C’est un adulte de taille moyenne.',
+    'Height ranges come from our quiz catalogs: the maker’s recommended range where it was published, otherwise a typical range for that kind of bike. A bike that is not in those catalogs shows “Fit range not recorded”, and is left out when you filter by height unless you choose to include it.':
+      'Les plages de taille proviennent de nos catalogues de questionnaires : la plage recommandée par le fabricant lorsqu’elle est publiée, sinon une plage typique pour ce genre de vélo. Un vélo absent de ces catalogues affiche « Plage de taille non consignée » et est exclu quand vous filtrez par taille, à moins que vous choisissiez de l’inclure.',
+    '<b>No bikes match those filters.</b> Try another type or brand, turn off “New only”, or turn off the height filter.':
+      '<b>Aucun vélo ne correspond à ces filtres.</b> Essayez un autre type ou une autre marque, désactivez « Nouveautés seulement », ou désactivez le filtre de taille.',
+  });
+  P(/^Only current models are listed: model years (\d{4}) to (\d{4}), and bikes a maker or shop lists today without a model year\. Older models are dropped at each refresh\.$/, (m, a, b) => 'Seuls les modèles actuels sont affichés : années-modèles ' + a + ' à ' + b + ', et les vélos qu’un fabricant ou une boutique propose aujourd’hui sans année-modèle. Les modèles plus anciens sont retirés à chaque mise à jour.');
+  P(/^Made for riders (\d+)–(\d+) cm$/, (m, a, b) => 'Conçu pour des cyclistes de ' + a + ' à ' + b + ' cm');
+  P(/^Bikes made for riders (\d+) cm tall: (\d+)\. (\d+) more have no recorded fit range and are (hidden|shown too)\.$/, (m, h, n, u, st) => 'Vélos conçus pour des cyclistes de ' + h + ' cm : ' + n + '. ' + u + ' autres n’ont pas de plage de taille consignée et sont ' + (st === 'hidden' ? 'masqués' : 'aussi affichés') + '.');
+  P(/^Of (\d+) bikes, (\d+) have a recorded fit range\. Press the button to keep only the ones that fit (\d+) cm\.$/, (m, n, k, h) => 'Sur ' + n + ' vélos, ' + k + ' ont une plage de taille consignée. Appuyez sur le bouton pour ne garder que ceux qui conviennent à ' + h + ' cm.');
+  P(/^That's about (?:a|an) (\d+)-year-old\.$/, (m, n) => 'Cela correspond à un enfant d’environ ' + n + ' ans.');
+  P(/^⌀ (\d+)in$/, (m, n) => '⌀ ' + n + ' po');
+  P(/^Standover ~(\d+)cm$/, (m, n) => 'Enjambement ~' + n + ' cm');
+  P(/^Wheelbase ~(\d+)cm$/, (m, n) => 'Empattement ~' + n + ' cm');
+  P(/^A (child|teenager|rider) about (\d+) cm tall (?:riding a bike|on a bike) with (\d+|700c)(?: inch| inches)? wheels$/, (m, who, h, w) => ({ child: 'Un enfant', teenager: 'Un adolescent', rider: 'Un cycliste' }[who]) + ' d’environ ' + h + ' cm sur un vélo à roues de ' + (w === '700c' ? '700c' : w + ' po'));
 })();

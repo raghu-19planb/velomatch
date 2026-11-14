@@ -64,7 +64,12 @@
       "verifiedOn": "2026-11-12",
       "firstListed": "2026-11-12",
       "isNew": true,
-      "soldBy": "Specialized"
+      "soldBy": "Specialized",
+      "fit": {
+        "minH": 155,
+        "maxH": 195,
+        "from": "racing catalog: Specialized Tarmac SL9 Comp (same trim, other drivetrain)"
+      }
     },
     {
       "id": "specialized-s-works-tarmac-sl9-sram-red-axs",
@@ -565,7 +570,12 @@
       },
       "source": "data/kids-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 112,
+        "maxH": 132,
+        "from": "kids catalog: Specialized Riprock 20"
+      }
     },
     {
       "id": "specialized-riprock-24",
@@ -590,7 +600,12 @@
       },
       "source": "data/kids-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 128,
+        "maxH": 148,
+        "from": "kids catalog: Specialized Riprock 24"
+      }
     },
     {
       "id": "specialized-hotwalk",
@@ -615,7 +630,12 @@
       },
       "source": "data/kids-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 80,
+        "maxH": 102,
+        "from": "kids catalog: Specialized Hotwalk"
+      }
     },
     {
       "id": "opus-match-16",
@@ -640,7 +660,12 @@
       },
       "source": "data/kids-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 98,
+        "maxH": 118,
+        "from": "kids catalog: Opus Match 16"
+      }
     },
     {
       "id": "kona-makena-20",
@@ -665,7 +690,12 @@
       },
       "source": "data/kids-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 112,
+        "maxH": 132,
+        "from": "kids catalog: Kona Makena 20"
+      }
     },
     {
       "id": "brompton-c-line",
@@ -687,7 +717,12 @@
       },
       "source": "data/commute-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 155,
+        "maxH": 195,
+        "from": "commute catalog: Brompton C Line"
+      }
     },
     {
       "id": "kona-dew",
@@ -708,7 +743,12 @@
       },
       "source": "data/commute-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 160,
+        "maxH": 183,
+        "from": "commute catalog: Kona Dew"
+      }
     },
     {
       "id": "devinci-e-milano-hd",
@@ -733,7 +773,12 @@
       },
       "source": "data/commute-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 160,
+        "maxH": 188,
+        "from": "commute catalog: Devinci E-Milano HD"
+      }
     },
     {
       "id": "specialized-roll-2-0",
@@ -758,7 +803,12 @@
       },
       "source": "data/commute-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 155,
+        "maxH": 195,
+        "from": "commute catalog: Specialized Roll 2.0"
+      }
     },
     {
       "id": "marin-fairfax-2",
@@ -779,7 +829,12 @@
       },
       "source": "data/commute-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 160,
+        "maxH": 183,
+        "from": "commute catalog: Marin Fairfax 2"
+      }
     },
     {
       "id": "woom-off-4",
@@ -800,7 +855,12 @@
       },
       "source": "data/kids-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 117,
+        "maxH": 130,
+        "from": "kids catalog: woom OFF 4"
+      }
     },
     {
       "id": "specialized-roll-3-0",
@@ -825,7 +885,12 @@
       },
       "source": "data/commute-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 155,
+        "maxH": 195,
+        "from": "commute catalog: Specialized Roll 3.0"
+      }
     },
     {
       "id": "specialized-sirrus-x-1-0",
@@ -850,7 +915,12 @@
       },
       "source": "data/commute-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 150,
+        "maxH": 195,
+        "from": "commute catalog: Specialized Sirrus X 1.0"
+      }
     },
     {
       "id": "cannondale-topstone-3",
@@ -871,7 +941,12 @@
       },
       "source": "data/commute-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 163,
+        "maxH": 188,
+        "from": "commute catalog: Cannondale Topstone 3"
+      }
     },
     {
       "id": "woom-go-4",
@@ -892,7 +967,12 @@
       },
       "source": "data/kids-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 114,
+        "maxH": 130,
+        "from": "kids catalog: woom GO 4"
+      }
     },
     {
       "id": "woom-go-3",
@@ -913,7 +993,12 @@
       },
       "source": "data/kids-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 104,
+        "maxH": 119,
+        "from": "kids catalog: woom GO 3"
+      }
     },
     {
       "id": "salsa-cutthroat-c-grx",
@@ -934,7 +1019,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 163,
+        "maxH": 193,
+        "from": "bikepacking catalog: Salsa Cutthroat C GRX"
+      }
     },
     {
       "id": "cannondale-topstone-4",
@@ -955,7 +1045,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 158,
+        "maxH": 188,
+        "from": "bikepacking catalog: Cannondale Topstone 4"
+      }
     },
     {
       "id": "all-city-space-horse",
@@ -976,7 +1071,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 158,
+        "maxH": 185,
+        "from": "bikepacking catalog: All-City Space Horse"
+      }
     },
     {
       "id": "kona-sutra",
@@ -997,7 +1097,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 160,
+        "maxH": 190,
+        "from": "bikepacking catalog: Kona Sutra"
+      }
     },
     {
       "id": "kona-sutra-ltd",
@@ -1018,7 +1123,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 160,
+        "maxH": 190,
+        "from": "bikepacking catalog: Kona Sutra LTD"
+      }
     },
     {
       "id": "surly-disc-trucker",
@@ -1039,7 +1149,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 158,
+        "maxH": 193,
+        "from": "bikepacking catalog: Surly Disc Trucker"
+      }
     },
     {
       "id": "surly-ecr",
@@ -1061,7 +1176,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 163,
+        "maxH": 193,
+        "from": "bikepacking catalog: Surly ECR"
+      }
     },
     {
       "id": "norco-scene-2",
@@ -1087,7 +1207,12 @@
       },
       "source": "data/commute-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 155,
+        "maxH": 190,
+        "from": "commute catalog: Norco Scene 2"
+      }
     },
     {
       "id": "norco-indie-1-gen-2",
@@ -1113,7 +1238,12 @@
       },
       "source": "data/commute-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 155,
+        "maxH": 195,
+        "from": "commute catalog: Norco Indie 1 Gen 2"
+      }
     },
     {
       "id": "salsa-timberjack",
@@ -1134,7 +1264,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 158,
+        "maxH": 188,
+        "from": "bikepacking catalog: Salsa Timberjack"
+      }
     },
     {
       "id": "cannondale-topstone-carbon-lefty-3",
@@ -1156,7 +1291,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 158,
+        "maxH": 188,
+        "from": "bikepacking catalog: Cannondale Topstone Carbon Lefty 3"
+      }
     },
     {
       "id": "kona-unit",
@@ -1177,7 +1317,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 160,
+        "maxH": 188,
+        "from": "bikepacking catalog: Kona Unit"
+      }
     },
     {
       "id": "specialized-diverge-4-comp-alloy",
@@ -1202,7 +1347,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 163,
+        "maxH": 190,
+        "from": "bikepacking catalog: Diverge 4 Comp Alloy"
+      }
     },
     {
       "id": "specialized-diverge-4-sport-alloy",
@@ -1227,7 +1377,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 163,
+        "maxH": 190,
+        "from": "bikepacking catalog: Diverge 4 Sport Alloy"
+      }
     },
     {
       "id": "kona-fire-mountain",
@@ -1252,7 +1407,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 147,
+        "maxH": 196,
+        "from": "mountain catalog: Fire Mountain"
+      }
     },
     {
       "id": "kona-lava-dome",
@@ -1277,7 +1437,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 147,
+        "maxH": 196,
+        "from": "mountain catalog: Lava Dome"
+      }
     },
     {
       "id": "kona-process-134",
@@ -1302,7 +1467,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 147,
+        "maxH": 196,
+        "from": "mountain catalog: Process 134"
+      }
     },
     {
       "id": "specialized-rockhopper-sport",
@@ -1327,7 +1497,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 150,
+        "maxH": 198,
+        "from": "mountain catalog: Rockhopper Sport"
+      }
     },
     {
       "id": "kona-process-153",
@@ -1352,7 +1527,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 157,
+        "maxH": 196,
+        "from": "mountain catalog: Process 153"
+      }
     },
     {
       "id": "specialized-chisel-comp-evo",
@@ -1377,7 +1557,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 160,
+        "maxH": 188,
+        "from": "mountain catalog: Chisel Comp Evo"
+      }
     },
     {
       "id": "specialized-stumpjumper-15-alloy",
@@ -1402,7 +1587,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 148,
+        "maxH": 200,
+        "from": "mountain catalog: Stumpjumper 15 Alloy"
+      }
     },
     {
       "id": "specialized-stumpjumper-15-comp-alloy",
@@ -1427,7 +1617,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 148,
+        "maxH": 200,
+        "from": "mountain catalog: Stumpjumper 15 Comp Alloy"
+      }
     },
     {
       "id": "specialized-epic-9-sport",
@@ -1452,7 +1647,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 157,
+        "maxH": 196,
+        "from": "mountain catalog: Epic 9 Sport"
+      }
     },
     {
       "id": "rocky-mountain-solo",
@@ -1473,7 +1673,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 160,
+        "maxH": 188,
+        "from": "bikepacking catalog: Rocky Mountain Solo"
+      }
     },
     {
       "id": "specialized-p-3",
@@ -1498,7 +1703,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 150,
+        "maxH": 195,
+        "from": "mountain catalog: P.3"
+      }
     },
     {
       "id": "specialized-chisel",
@@ -1523,7 +1733,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 150,
+        "maxH": 196,
+        "from": "mountain catalog: Chisel"
+      }
     },
     {
       "id": "norco-search-a3-gen-3",
@@ -1549,7 +1764,12 @@
       },
       "source": "data/bikepacking-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 155,
+        "maxH": 192,
+        "from": "bikepacking catalog: Norco Search A3 Gen 3"
+      }
     },
     {
       "id": "norco-storm-3",
@@ -1575,7 +1795,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 140,
+        "maxH": 200,
+        "from": "mountain catalog: Storm 3"
+      }
     },
     {
       "id": "norco-charger-a2",
@@ -1601,7 +1826,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 157,
+        "maxH": 200,
+        "from": "mountain catalog: Charger A2"
+      }
     },
     {
       "id": "norco-storm-1",
@@ -1627,7 +1857,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 157,
+        "maxH": 200,
+        "from": "mountain catalog: Storm 1"
+      }
     },
     {
       "id": "norco-fluid-a3-gen-3",
@@ -1653,7 +1888,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 150,
+        "maxH": 196,
+        "from": "mountain catalog: Fluid A3 Gen 3"
+      }
     },
     {
       "id": "norco-revolver-lt-c3-gen-4",
@@ -1679,7 +1919,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 150,
+        "maxH": 196,
+        "from": "mountain catalog: Revolver LT C3 Gen 4"
+      }
     },
     {
       "id": "norco-rampage-2",
@@ -1705,7 +1950,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 150,
+        "maxH": 195,
+        "from": "mountain catalog: Rampage 2"
+      }
     },
     {
       "id": "specialized-tarmac-sl9-comp",
@@ -1730,7 +1980,12 @@
       },
       "source": "data/racing-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 155,
+        "maxH": 195,
+        "from": "racing catalog: Specialized Tarmac SL9 Comp"
+      }
     },
     {
       "id": "specialized-allez-sport",
@@ -1755,7 +2010,12 @@
       },
       "source": "data/racing-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 152,
+        "maxH": 192,
+        "from": "racing catalog: Specialized Allez Sport"
+      }
     },
     {
       "id": "specialized-roubaix-sl8-sport",
@@ -1780,7 +2040,12 @@
       },
       "source": "data/racing-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 160,
+        "maxH": 192,
+        "from": "racing catalog: Specialized Roubaix SL8 Sport"
+      }
     },
     {
       "id": "kona-coco-coco-b36",
@@ -1831,7 +2096,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 155,
+        "maxH": 196,
+        "from": "mountain catalog: Torrent DH A1"
+      }
     },
     {
       "id": "kona-makena-makena-b36",
@@ -1881,7 +2151,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 147,
+        "maxH": 196,
+        "from": "mountain catalog: MEC Lynx"
+      }
     },
     {
       "id": "rocky-mountain-altitude-alloy-30",
@@ -1906,7 +2181,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 155,
+        "maxH": 196,
+        "from": "mountain catalog: Altitude Alloy 30"
+      }
     },
     {
       "id": "kona-honzo-20-honzo-20-b36",
@@ -1931,7 +2211,12 @@
       },
       "source": "https://en-ca.konaworld.com/products.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 122,
+        "maxH": 142,
+        "from": "kids catalog: Honzo 20"
+      }
     },
     {
       "id": "polygon-siskiu-t7",
@@ -1957,7 +2242,12 @@
       },
       "source": "data/mountain-bikes.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 157,
+        "maxH": 196,
+        "from": "mountain catalog: Polygon Siskiu T7"
+      }
     },
     {
       "id": "kona-dew-dl-dew-dl-b37",
@@ -1982,7 +2272,12 @@
       },
       "source": "https://en-ca.konaworld.com/products.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 157,
+        "maxH": 196,
+        "from": "commute catalog: Dew DL"
+      }
     },
     {
       "id": "kona-unit-x-unit-x-b36",
@@ -2107,7 +2402,12 @@
       },
       "source": "https://en-ca.konaworld.com/products.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 152,
+        "maxH": 193,
+        "from": "commute catalog: Dr Dew"
+      }
     },
     {
       "id": "kona-libre-libre-g2",
@@ -3183,7 +3483,12 @@
       },
       "source": "https://cyclingelements.ca/products.json",
       "verifiedOn": "2026-11-12",
-      "firstListed": "2026-11-12"
+      "firstListed": "2026-11-12",
+      "fit": {
+        "minH": 102,
+        "maxH": 120,
+        "from": "kids catalog: Specialized Riprock Coaster 16"
+      }
     },
     {
       "id": "specialized-sirrus-x-2-0-2025-sirrus-x-2-0-sm-satin-cast-lilac-ashen-grey-reflective",

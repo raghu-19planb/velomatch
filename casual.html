@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SelectVelo — Find your casual and fitness bike</title>
+<meta name="description" content="Find a bike for weekend rides, fitness and relaxed riding. SelectVelo scores real hybrid, city and gravel bikes against where you ride, how far you go and what you want to spend.">
+<link rel="canonical" href="https://raghu-19planb.github.io/velomatch/casual.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SelectVelo — Find your casual and fitness bike">
+<meta property="og:description" content="Find a bike for weekend rides, fitness and relaxed riding. SelectVelo scores real hybrid, city and gravel bikes against where you ride, how far you go and what you want to spend.">
+<meta property="og:url" content="https://raghu-19planb.github.io/velomatch/casual.html">
+<meta property="og:site_name" content="SelectVelo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SelectVelo — Find your casual and fitness bike">
+<meta name="twitter:description" content="Find a bike for weekend rides, fitness and relaxed riding. SelectVelo scores real hybrid, city and gravel bikes against where you ride, how far you go and what you want to spend.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
+<link rel="stylesheet" href="style.css?v=20c4899a">
+<script src="quiz-flow.js?v=d06f0503"></script>
+<script src="criteria.js?v=45d32dc5"></script>
+<script src="match-ui.js?v=196a881c"></script>
+<script src="affiliate.js?v=404729a3"></script>
+<script src="info-tips.js?v=d63f39a8"></script>
+<script src="nav-transition.js?v=ddf7b18b"></script>
+<script src="flag-banner.js?v=fea7b6d4" defer></script>
+<script src="i18n.js?v=d9197a30"></script>
+<script src="i18n-fr-core.js?v=b1846649" defer></script>
+<script src="i18n-fr-quiz.js?v=1e07558a" defer></script>
+<script src="i18n-fr-commute.js?v=4d41cfaf" defer></script>
+<script src="i18n-fr-casual.js?v=86904644" defer></script>
+<script src="height-input.js?v=467fb1e2" defer></script>
+<script src="nav-menu.js?v=5d71bc06" defer></script>
+</head>
+<body>
+
+<div class="page-transition page-reveal" aria-hidden="true">
+  <div class="transition-panel">
+    <svg class="transition-rider" viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="30" cy="72" r="20" fill="none" stroke="var(--signal)" stroke-width="3.4"/>
+      <circle cx="100" cy="72" r="20" fill="none" stroke="var(--signal)" stroke-width="3.4"/>
+      <g fill="none" stroke="var(--signal)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M55 60 L45 30 L90 26 L100 72 M55 60 L30 72"/>
+        <path d="M90 26 L82 12"/>
+        <path d="M70 15 L94 19"/>
+        <path d="M78 18 L58 38"/>
+        <path d="M62 34 L84 30"/>
+      </g>
+      <circle cx="78" cy="10" r="7.5" fill="var(--ink)"/>
+      <g class="pedal-leg">
+        <path d="M55 60 L46 76 L58 82" fill="none" stroke="var(--signal)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
+      <span class="wordmark"><span class="wm-select">select</span><span class="wm-velo">vel<span class="wheel-o"><span class="sr-o">o</span><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="wheel-tyre" cx="50" cy="50" r="43.5"/><circle class="wheel-rim" cx="50" cy="50" r="37.6"/><path class="wheel-spoke" d="M56.2 50.0L66.1 83.3M56.1 51.2L72.3 20.5M55.7 52.4L52.1 86.9M55.2 53.4L81.9 31.3M54.4 54.4L37.8 84.9M53.4 55.2L86.6 44.9M52.4 55.7L25.4 77.6M51.2 56.1L85.8 59.3M50.0 56.2L16.7 66.1M48.8 56.1L79.5 72.3M47.6 55.7L13.1 52.1M46.6 55.2L68.7 81.9M45.6 54.4L15.1 37.8M44.8 53.4L55.1 86.6M44.3 52.4L22.4 25.4M43.9 51.2L40.7 85.8M43.8 50.0L33.9 16.7M43.9 48.8L27.7 79.5M44.3 47.6L47.9 13.1M44.8 46.6L18.1 68.7M45.6 45.6L62.2 15.1M46.6 44.8L13.4 55.1M47.6 44.3L74.6 22.4M48.8 43.9L14.2 40.7M50.0 43.8L83.3 33.9M51.2 43.9L20.5 27.7M52.4 44.3L86.9 47.9M53.4 44.8L31.3 18.1M54.4 45.6L84.9 62.2M55.2 46.6L44.9 13.4M55.7 47.6L77.6 74.6M56.1 48.8L59.3 14.2"/><circle class="wheel-hubshell" cx="50" cy="50" r="7.2"/><circle class="wheel-hub" cx="50" cy="50" r="3.2"/><circle class="wheel-valve" cx="50" cy="8.6" r="2.6"/></svg></span></span></span>
+      <span class="tagline">The right bike for how you ride.</span>
+    </a>
+    <div class="nav-links">
+      <a href="kids.html" class="nav-link">Kids' bikes</a>
+      <a href="commute.html" class="nav-link">Commuting</a>
+      <a href="casual.html" class="nav-link current">Casual riding</a>
+      <a href="bikepacking.html" class="nav-link">Bikepacking</a>
+      <a href="mountainbiking.html" class="nav-link">Mountain biking</a>
+      <a href="racing.html" class="nav-link">Racing</a>
+      <a href="showcase.html" class="nav-link">Current bikes</a>
+      <a href="schematics.html" class="nav-link">Schematics</a>
+      <a href="routemaps.html" class="nav-link">Route maps</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="#quiz" class="nav-cta">Start matching</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="fig-tag"><span>Sheet 006</span><span class="chip-div"></span><span>Casual and fitness riding</span></div>
+      <h1>The right <span class="pencil-mark">weekend</span> bike is the one you'll actually want to ride.</h1>
+      <p>Not racing, not commuting, not camping: just riding for fun, for fitness, or to clear your head. Tell us where you ride, how far you go and how you like to sit, and we measure real city, hybrid and gravel bikes against that, then explain why the top match fits.</p>
+      <a href="#quiz" class="btn-primary">Start matching</a>
+      <div class="chip-row spec-chips">
+        <span>Free</span><span class="chip-div"></span><span>2 minutes</span><span class="chip-div"></span><span>Every brand</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="diagram-card">
+        <img class="cat-art" src="images/intro/racing.webp" width="1200" height="900" decoding="async" alt="An oil painting of a road bike resting by an empty road at sunrise, mountains in the distance.">
+      </div>
+      <p class="diagram-cap">Fig. 001: the kind of ride this quiz is for</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="fig-tag"><span>Fig. 002</span><span class="chip-div"></span><span>How it works</span></div>
+    <h2>Three steps to a bike that suits how you ride.</h2>
+    <p class="lede">No sales pitch and no single-brand catalog. The bikes come from our verified commuting and gravel catalogs, because those are the bikes people actually buy for relaxed and fitness riding.</p>
+    <div class="steps">
+      <div class="step">
+        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M8 44 L42 18 L47 24 L13 50 Z"/>
+          <path d="M14 40 L19 35 M22 33 L27 28 M30 26 L35 21"/>
+        </svg>
+        <div class="step-index"><span>01</span><span class="tick"></span></div>
+        <h3>Answer a few questions</h3>
+        <p>Where you ride, how far from home you go, power preference, your height and your budget.</p>
+      </div>
+      <div class="step">
+        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="26" cy="26" r="14"/>
+          <path d="M36 36 L48 48"/>
+          <path d="M19 27 L23 31 L33 19"/>
+        </svg>
+        <div class="step-index"><span>02</span><span class="tick"></span></div>
+        <h3>We score every bike</h3>
+        <p>A bike that doesn't fit you or can't take your surface is ruled down; a great fit a little over budget isn't ruled out.</p>
+      </div>
+      <div class="step">
+        <svg class="sketch-icon" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="26" cy="19" r="11"/>
+          <path d="M21 19 L25 23 L32 14"/>
+          <path d="M18 29 L14 48 L22 42 Z"/>
+          <path d="M34 29 L38 48 L30 42 Z"/>
+        </svg>
+        <div class="step-index"><span>03</span><span class="tick"></span></div>
+        <h3>See your top matches</h3>
+        <p>Ranked with plain-language reasons, and a clear note wherever a bike's record doesn't say something.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quiz-section" id="quiz">
+  <div class="wrap">
+    <div class="quiz-heading">
+      <div>
+        <div class="fig-tag"><span>Fig. 003</span><span class="chip-div"></span><span>The fit quiz</span></div>
+        <h2>Let's find your weekend bike.</h2>
+        <p class="lede">Six short questions to start, answered one at a time. The rest are optional, and none of it needs bike jargon.</p>
+      </div>
+      <svg class="sketch-icon on-dark quiz-sketch" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M20 30 L44 30 L44 50 L20 50 Z"/>
+        <path d="M26 30 V22 A6 6 0 0 1 38 22 V30"/>
+        <circle cx="32" cy="38" r="3"/>
+        <path d="M32 41 L32 45"/>
+      </svg>
+    </div>
+
+    <div class="quiz-grid">
+      <div id="quizSteps">
+        <p class="q-section-label first">Your rides</p>
+
+        <div class="q-group">
+          <label class="q-label">Where will you mostly ride? <span class="q-hint">(choose all that apply)</span></label>
+          <div class="opt-row" data-multi="true">
+            <button type="button" class="opt" data-group="surface" data-value="paved">Paved paths and roads</button>
+            <button type="button" class="opt" data-group="surface" data-value="mixed">A mix of road and gravel</button>
+            <button type="button" class="opt" data-group="surface" data-value="gravel">Packed gravel and rail trails</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">How should the ride feel?</label>
+          <p class="q-hint">This decides the type of bike: relaxed and easy, or quicker and farther.</p>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="feel" data-value="comfort">Comfortable and easy: upright, simple controls</button>
+            <button type="button" class="opt" data-group="feel" data-value="balanced">A bit of both</button>
+            <button type="button" class="opt" data-group="feel" data-value="fast">Quicker and farther: leaning forward, more efficient</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">How far from home do you usually ride?</label>
+          <p class="q-hint">The farthest point of a typical outing, one way. A 20 km out-and-back ride is 10 km.</p>
+          <div class="range-row">
+            <input type="range" id="distance" min="2" max="60" value="15" step="1">
+            <span class="range-out" id="distance-out">15 km</span>
+          </div>
+          <div class="range-ends"><span>~2 km</span><span>60+ km</span></div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Power preference</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="power" data-value="pedal_only">Pedal only</button>
+            <button type="button" class="opt" data-group="power" data-value="open">Open to e-assist</button>
+            <button type="button" class="opt" data-group="power" data-value="want_ebike">Want e-assist</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Your height</label>
+          <p class="q-hint">Frame fit is the biggest factor in comfort, so each bike is checked against the height range its maker recommends.</p>
+          <div class="range-row">
+            <input type="range" id="riderHeight" min="145" max="200" value="172" step="1">
+            <span class="range-out" id="riderHeight-out">172 cm</span>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Budget (in Canadian dollars)</label>
+          <div class="range-row">
+            <input type="range" id="budget" min="400" max="3500" value="1000" step="50">
+            <span class="range-out" id="budget-out">C$1000</span>
+          </div>
+        </div>
+
+        <p class="q-section-label">Comfort &amp; preferences</p>
+        <p class="q-section-hint">Optional. Just answer how it feels; we translate it into the right spec.</p>
+
+        <div class="q-group">
+          <label class="q-label">Frame shape</label>
+          <div class="opt-row" data-multi="true">
+            <button type="button" class="opt" data-group="frameStyle" data-value="either">No preference</button>
+            <button type="button" class="opt" data-group="frameStyle" data-value="step-through">Step-through: lower bar, easier to mount</button>
+            <button type="button" class="opt" data-group="frameStyle" data-value="step-over">Step-over: traditional diamond frame</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Frame material</label>
+          <div class="opt-row" data-multi="true">
+            <button type="button" class="opt" data-group="frame" data-value="none">No preference</button>
+            <button type="button" class="opt" data-group="frame" data-value="aluminum">Aluminum</button>
+            <button type="button" class="opt" data-group="frame" data-value="steel">Steel</button>
+            <button type="button" class="opt" data-group="frame" data-value="carbon">Carbon</button>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Brand origin</label>
+          <div class="opt-row">
+            <button type="button" class="opt" data-group="origin" data-value="canadian">Prefer Canadian</button>
+            <button type="button" class="opt" data-group="origin" data-value="none">No preference</button>
+          </div>
+        </div>
+
+        <button type="button" class="submit-btn" id="submit">See recommendations</button>
+        <p class="err" id="err">Pick where you ride and a power preference first.</p>
+      </div>
+
+      <div>
+        <div id="placeholder" class="placeholder-note">Your top matches will appear here, ranked with reasons.</div>
+        <div class="results" id="results" tabindex="-1" aria-live="polite" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stat">
+  <div class="wrap">
+    <div class="fig-tag"><span>Fig. 004</span><span class="chip-div"></span><span>Where these bikes come from</span></div>
+    <svg class="sketch-icon stat-sketch" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="18"/>
+      <path d="M32 32 L32 20 M32 32 L42 36"/>
+    </svg>
+    <p class="cap">Casual riding has no catalog of its own yet. This quiz draws on our verified commuting bikes (hybrids and city bikes) and the widely sold gravel and touring bikes from our bikepacking catalog, and it says so wherever a bike's record does not list something, such as a comfortable ride distance for gravel bikes.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="logo" style="text-decoration:none; color:inherit;">
+      <span class="wordmark"><span class="wm-select">select</span><span class="wm-velo">vel<span class="wheel-o"><span class="sr-o">o</span><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="wheel-tyre" cx="50" cy="50" r="43.5"/><circle class="wheel-rim" cx="50" cy="50" r="37.6"/><path class="wheel-spoke" d="M56.2 50.0L66.1 83.3M56.1 51.2L72.3 20.5M55.7 52.4L52.1 86.9M55.2 53.4L81.9 31.3M54.4 54.4L37.8 84.9M53.4 55.2L86.6 44.9M52.4 55.7L25.4 77.6M51.2 56.1L85.8 59.3M50.0 56.2L16.7 66.1M48.8 56.1L79.5 72.3M47.6 55.7L13.1 52.1M46.6 55.2L68.7 81.9M45.6 54.4L15.1 37.8M44.8 53.4L55.1 86.6M44.3 52.4L22.4 25.4M43.9 51.2L40.7 85.8M43.8 50.0L33.9 16.7M43.9 48.8L27.7 79.5M44.3 47.6L47.9 13.1M44.8 46.6L18.1 68.7M45.6 45.6L62.2 15.1M46.6 44.8L13.4 55.1M47.6 44.3L74.6 22.4M48.8 43.9L14.2 40.7M50.0 43.8L83.3 33.9M51.2 43.9L20.5 27.7M52.4 44.3L86.9 47.9M53.4 44.8L31.3 18.1M54.4 45.6L84.9 62.2M55.2 46.6L44.9 13.4M55.7 47.6L77.6 74.6M56.1 48.8L59.3 14.2"/><circle class="wheel-hubshell" cx="50" cy="50" r="7.2"/><circle class="wheel-hub" cx="50" cy="50" r="3.2"/><circle class="wheel-valve" cx="50" cy="8.6" r="2.6"/></svg></span></span></span>
+    </a>
+    <p class="tagline">The right bike for how you ride.</p>
+    <p>A smarter way to find a bike that fits your ride.</p>
+    <button type="button" class="letter-trigger" id="openLetter">Why we built this</button>
+  </div>
+</footer>
+
+<div class="letter-overlay" id="letterOverlay" aria-hidden="true">
+  <div class="letter-card" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+    <button type="button" class="letter-close" id="closeLetter" aria-label="Close">✕</button>
+    <svg class="sketch-icon letter-sketch" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M9 17 L56 15 L55 46 L7 45 Z"/>
+      <path d="M9 17 L32 35 L55 15"/>
+    </svg>
+    <p class="letter-fig">Fig. 007 — where this is headed</p>
+    <h3 id="letterTitle">To everyone who's stood in a bike aisle guessing,</h3>
+    <p>Buying a bike usually comes down to a guess: a size sticker on a rack, a salesperson pointing at whatever's in stock, or a color you liked in a catalog. Get it wrong and it's money spent on something that never quite fits.</p>
+    <p>We think fit should come from geometry, not guesswork — reach, stack, standover, all measured and matched to the rider, whoever that rider is.</p>
+    <p>SelectVelo is built to do that matching for every kind of rider and every kind of ride. Right now it's five working prototypes: a first bike for a growing kid, a daily commuter, a bikepacking rig, a mountain bike, and a racing or ultra-endurance bike — because those are the cases where a wrong guess costs the most. The same approach — real measurements, scored against real bikes — is what we're building toward next, for every rider after this one.</p>
+    <p>It won't get everything right yet. But it will show its work — the wheel size, the standover, the years of growth room — so you're choosing a bike, not gambling on one.</p>
+    <p class="letter-sign">This is where we're starting. Not where we're stopping.</p>
+  </div>
+</div>
+
+<script>
+// This quiz has no catalog of its own: it reads the two verified catalogs it draws from, so there is one source of truth.
+// Commuting bikes (hybrids, city bikes): every bike. Bikepacking catalog: widely sold bikes for road, mixed or gravel riding, leaving out
+// the race builds and the rough-trail bikes. The bikepacking catalog covers pedal bikes only, so those are pedal-only here.
+let bikes = [];
+const SURFACE_OF_COMMUTE = {city_streets:'paved', long_flat:'paved', hilly_assist:'paved', mixed_paths:'mixed'};
+const SURFACE_OF_TERRAIN = {road_paved:'paved', mixed:'mixed', gravel:'gravel'};
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// Only shown for bikes priced above the budget (within the $500 grace window scoring allows): what the extra money buys.
+function budgetNote(b, budget){
+  const over = SV.scoringPrice(b) - budget;
+  if (over <= 0 || over > 500) return '';
+  const perks = [];
+  if (b.frameMaterial === 'carbon') perks.push(T('a lighter carbon frame'));
+  if (b.fendersIncluded) perks.push(T('fenders already included'));
+  if (b.brakeType === 'disc') perks.push(T('disc brakes with more stopping power'));
+  if (b.gearing === 'internal') perks.push(T('a low-maintenance internal-gear hub'));
+  if (!perks.length) perks.push(T('a step up in components for the same basic bike'));
+  const list = perks.length > 1 ? T('{a} and {b}', {a: perks[0], b: perks[1]}) : perks[0];
+  return `<p class="result-budget-note">${T('<b>About {x} over your budget</b>: that gets you {p}.', {x: SV.cad(Math.round(over)), p: list})}</p>`;
+}
+
+async function loadBikeData(){
+  try {
+    const [commute, trips] = await Promise.all([
+      fetch('data/commute-bikes.json').then(r => r.json()),
+      fetch('data/bikepacking-bikes.json').then(r => r.json())
+    ]);
+    const a = commute.bikes.map(b => ({...b, _src:'commute', surface: SURFACE_OF_COMMUTE[b.type] || 'paved', power: b.powerType}));
+    const c = trips.bikes
+      .filter(b => SURFACE_OF_TERRAIN[b.terrain] && b.purpose !== 'ultra_race' && b.availability === 'mainstream')
+      .map(b => ({...b, _src:'bikepacking', surface: SURFACE_OF_TERRAIN[b.terrain], power:'pedal'}));
+    bikes = a.concat(c);
+    console.log('SelectVelo: casual quiz loaded ' + a.length + ' commuting and ' + c.length + ' gravel/touring bikes.');
+  } catch (err) {
+    console.warn("SelectVelo: couldn't load the bike catalogs for the casual quiz.", err);
+  }
+}
+loadBikeData().then(() => SV.fxReady).then(() => SV.restore('#quizSteps'));
+initQuizFlow('#quizSteps', {
+  essentials: 6,
+  order: [
+    {key:'surface', tag:'Your rides'}, {key:'feel', tag:'Your rides'}, {key:'distance', tag:'Your rides'}, {key:'power', tag:'Your rides'},
+    {key:'riderHeight', tag:'Your fit'}, {key:'budget', tag:'Your budget'},
+    {key:'frameStyle'}, {key:'frame'}, {key:'origin'}
+  ]
+});
+SV.watch('#quizSteps');
+
+const state = SV.multiState({surface:null, power:null, feel:null, frameStyle:null, frame:null, origin:null}, ['surface']);
+const surfacePosition = {paved:0, mixed:1, gravel:2};
+
+document.getElementById('riderHeight').addEventListener('input', e => { document.getElementById('riderHeight-out').textContent = e.target.value + ' cm'; });
+document.getElementById('distance').addEventListener('input', e => { document.getElementById('distance-out').textContent = e.target.value + ' km'; });
+document.getElementById('budget').addEventListener('input', e => { document.getElementById('budget-out').textContent = 'C$' + e.target.value; });
+
+document.querySelectorAll('.opt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.dataset.group;
+    const groupEl = btn.closest('.opt-row');
+    const isMulti = groupEl && groupEl.dataset.multi === 'true';
+    const isExclusive = btn.dataset.value === 'none' || btn.dataset.value === 'no_preference';
+    if (isMulti && !isExclusive) {
+      btn.classList.toggle('active');
+      groupEl.querySelectorAll('.opt[data-value="none"], .opt[data-value="no_preference"]').forEach(b => b.classList.remove('active'));
+    } else {
+      document.querySelectorAll('.opt[data-group="'+group+'"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    state[group] = isMulti
+      ? Array.from(document.querySelectorAll('.opt[data-group="'+group+'"].active')).map(b => b.dataset.value)
+      : btn.dataset.value;
+  });
+});
+
+const T = SV.T; // translates when the visitor picked French (match-ui.js / i18n.js)
+const surfaceName = {paved:'paved paths and roads', mixed:'a mix of road and gravel', gravel:'packed gravel and rail trails'};
+
+// Plain-language reasons for each match, mirroring the factors the scoring actually uses.
+// General advice about the right TYPE of bike for these answers. A tendency of bike types, not a claim about any listed bike: the cards stay data-only.
+function typeGuide(c){
+  const wantsGravel = c.surface.includes('gravel'), offRoad = wantsGravel || c.surface.includes('mixed');
+  const lean = (c.feel === 'fast' ? 2 : c.feel === 'balanced' ? 1 : 0) + (c.distance >= 25 ? 1 : 0) + (wantsGravel ? 1 : 0);
+  let g;
+  if (!offRoad && lean <= 2) g = {
+    lead: T('A hybrid or city bike is the most likely fit.'),
+    body: T('For relaxed rides on paved paths and roads, these give an upright, comfortable position and easy controls, usually with tires wide enough for rough patches.'),
+    tradeoff: T('They are slower than a road bike and are not meant for rough gravel.'),
+    step: T('If you add gravel, or want to ride faster and farther, look at a gravel-capable hybrid or a gravel bike.'), mainSrc: 'commute' };
+  else if (lean <= 1) g = {
+    lead: T('A gravel-capable hybrid is the most likely fit.'),
+    body: T('For relaxed rides on roads and gravel paths, a bike with a flat handlebar and medium-wide tires (often about 32–45 mm) is comfortable, simple to ride and easier on the budget.'),
+    tradeoff: T('They are slower than road or gravel bikes on pavement, and less capable on rough ground.'),
+    step: T('A gravel bike is the step up if you want more speed or longer rides.'), mainSrc: 'commute', stepSrc: 'bikepacking' };
+  else g = {
+    lead: T('A gravel or all-road bike is the most likely fit.'),
+    body: T('You want to ride faster, farther or on looser surfaces, which is what these bikes are built for: wider tires than a road bike, usually drop or flared handlebars, and gearing for varied terrain.'),
+    tradeoff: T('They usually cost more and put you in a more forward, less upright position.'),
+    step: T('A gravel-capable hybrid is the cheaper, more upright alternative if comfort matters more than speed.'), mainSrc: 'bikepacking', stepSrc: 'commute' };
+  if (c.power === 'want_ebike') {
+    const n = bikes.filter(b => b.power === 'ebike').length;
+    g.extra = T('You asked for e-assist. Our casual list has {n} e-assist models, all from the commuting catalog, so expect hybrids and city bikes rather than gravel bikes.', {n});
+  }
+  return g;
+}
+
+function explainMatch(b, c){
+  const why = [], watch = [];
+  const r = {a: b.minH, b: b.maxH, h: c.height, d: c.distance, m: b.maxComfortDistance};
+  if (c.height >= b.minH && c.height <= b.maxH) why.push(T('Fits a {h} cm rider (made for {a}–{b} cm)', r));
+  else watch.push(T("Made for riders {a}–{b} cm, and you're {h} cm", r));
+  if (b.maxComfortDistance != null) {
+    if (c.distance <= b.maxComfortDistance) why.push(T('Rated comfortable up to {m} km from home, and you ride about {d} km', r));
+    else watch.push(T('Rated comfortable up to {m} km from home, and you ride about {d} km', r));
+  } else {
+    watch.push(T('Comfortable ride distance is not listed for this bike'));
+  }
+  if (c.power === 'pedal_only') { if (b.power === 'pedal') why.push(T('Pedal-only, as you wanted')); else watch.push(T('Electric-assist, though you wanted pedal-only')); }
+  else if (c.power === 'want_ebike') { if (b.power === 'ebike') why.push(T('Electric-assist, as you wanted')); else watch.push(T('Not electric-assist, which you wanted')); }
+  const gap = Math.min(...c.surface.map(s => Math.abs(surfacePosition[s] - surfacePosition[b.surface])));
+  if (gap === 0) why.push(T('Built for {t}, like your route', {t: T(surfaceName[b.surface])}));
+  else if (gap >= 2) watch.push(T('Built for {t}, which differs from your route', {t: T(surfaceName[b.surface])}));
+  if (c.feel === 'comfort' && b.ridingPosition) { if (b.ridingPosition === 'upright') why.push(T('Upright position, for a comfortable ride')); else if (b.ridingPosition === 'sporty') watch.push(T('Sporty, leaned-forward position, less relaxed than you asked for')); }
+  if (c.feel === 'fast' && b.ridingPosition) { if (b.ridingPosition === 'sporty') why.push(T('Sporty position, for quicker riding')); else if (b.ridingPosition === 'upright') watch.push(T('Upright position, more relaxed than quick')); }
+  if (SV.scoringPrice(b) <= c.budget) why.push(T('Within your {c} budget ({p})', {c: SV.cad(c.budget), p: SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)}));
+  return {why: why.slice(0, 5), watch: watch.slice(0, 4)};
+}
+
+document.getElementById('submit').addEventListener('click', SV.multiRun(state, () => {
+  const err = document.getElementById('err');
+  if (!state.surface || !state.surface.length || !state.power) {
+    err.textContent = T("Pick where you ride and a power preference first.");
+    err.style.display = 'block';
+    return;
+  }
+  if (!bikes.length) {
+    err.textContent = T("Still loading the bike catalog — try again in a second.");
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+
+  const distance = Number(document.getElementById('distance').value);
+  const height = Number(document.getElementById('riderHeight').value);
+  const budget = Number(document.getElementById('budget').value);
+  const originPref = state.origin || 'none';
+
+  const sellable = SV.split(bikes);
+  const scoredAll = sellable.keep.map(b => {
+    let score = 0;
+    const price = SV.scoringPrice(b);
+
+    // surface: the three options sit on one spectrum, so a neighbouring surface still scores reasonably
+    const gap = Math.min(...state.surface.map(s => Math.abs(surfacePosition[s] - surfacePosition[b.surface])));
+    score += Math.max(0, 20 - gap * 8);
+
+    if (state.power === 'pedal_only') score += b.power === 'pedal' ? 16 : -14;
+    else if (state.power === 'want_ebike') score += b.power === 'ebike' ? 16 : -14;
+    else score += 6;
+
+    // fit first: the frame has to suit the rider
+    if (height >= b.minH && height <= b.maxH) score += 18;
+    else score -= Math.min(30, Math.abs(height - (b.minH + b.maxH) / 2) * 0.7);
+
+    // ride distance: only the commuting catalog rates it. A rating can only count against a bike (too short for your rides);
+    // passing it earns the same as having no rating, so the bikes that carry the rating are not favoured for carrying it.
+    if (b.maxComfortDistance != null && distance > b.maxComfortDistance) score -= (distance - b.maxComfortDistance) * 1.5;
+    else score += 10;
+
+    // budget is honoured, not just nudged (same rule as the commuting quiz)
+    if (price <= budget) score += 8;
+    else {
+      const over = price - budget;
+      score -= over <= 500 ? over * 0.02 : 500 * 0.02 + (over - 500) * 3;
+    }
+
+    if (originPref === 'canadian' && b.origin === 'Canada') score += 6;
+    const framePref = state.frame || 'none';
+    if (framePref !== 'none') score += b.frameMaterial === framePref ? 12 : -6;
+    // how the ride should feel: the recorded riding position and weight where the catalog has them, plus a small nudge by the catalog a bike
+    // comes from (commuting bikes tend to be the relaxed ones, gravel and touring bikes the quicker, farther ones: a tendency, not a per-bike claim)
+    if (state.feel === 'comfort') {
+      if (b.ridingPosition) score += b.ridingPosition === 'upright' ? 8 : b.ridingPosition === 'relaxed' ? 4 : -4;
+      if (b._src === 'commute') score += 5;
+    } else if (state.feel === 'fast') {
+      if (b.ridingPosition) score += b.ridingPosition === 'sporty' ? 8 : b.ridingPosition === 'relaxed' ? 2 : -4;
+      if (b.weight) score += b.weight <= 10.5 ? 6 : b.weight <= 12.5 ? 3 : 0;
+      if (b._src === 'bikepacking') score += 5;
+    }
+    const frameStylePref = state.frameStyle || 'either';
+    if (frameStylePref !== 'either' && b.frameStyle && b.frameStyle !== 'either') score += b.frameStyle === frameStylePref ? 10 : -5;
+
+    score += SV.confidence(b);
+    return {...b, score};
+  }).map(SV.applyExtras).sort((a,b) => b.score - a.score);
+
+  const results = document.getElementById('results');
+  const ctx = {height, distance, power: state.power, surface: state.surface, feel: state.feel, budget};
+  const guide = typeGuide(ctx);
+  // like a good shop: four bikes of the type that fits best, then two of the step-up (or alternative) type, each labelled as such
+  let shown = scoredAll.slice(0, 6);
+  if (guide.stepSrc) {
+    const main = scoredAll.filter(b => b._src === guide.mainSrc).slice(0, 4), other = scoredAll.filter(b => b._src === guide.stepSrc).slice(0, 2);
+    shown = main.concat(other);
+    scoredAll.forEach(b => { if (shown.length < 6 && !shown.includes(b)) shown.push(b); });
+  }
+  const scored = shown;
+  SV.render({
+    results, root: '#quizSteps', items: scored, excluded: sellable.out, guide,
+    summary: [
+      {label:'Rides', value: (state.surface || []).map(s => T(surfaceName[s])).join(' + '), group:'surface'},
+      {label:'Feel', value: {comfort:'Comfortable and easy', balanced:'A bit of both', fast:'Quicker and farther'}[state.feel] || '', group:'feel'},
+      {label:'Distance from home', value: distance + ' km', group:'distance'},
+      {label:'Power', value: {pedal_only:'Pedal only', open:'Open to e-assist', want_ebike:'E-assist'}[state.power], group:'power'},
+      {label:'Height', value: height + ' cm', group:'riderHeight'}, {label:'Budget', value: SV.cad(budget), group:'budget'}
+    ],
+    describe: b => {
+      const r = explainMatch(b, ctx);
+      const line1 = [T('{w} mm wheels', {w: b.wheel}), b.foldable ? T('folds') : '', T('fits {a}–{b} cm', {a: b.minH, b: b.maxH}), T(b.frameMaterial + ' frame'), escapeHtml(b.groupset || ''), b.brakeType ? T(b.brakeType + ' brakes') : ''].filter(Boolean).join(' · ');
+      const line2 = [b.maxComfortDistance != null ? T('Comfortable up to {d} km one way', {d: b.maxComfortDistance}) : '', b.ridingPosition ? T(b.ridingPosition + ' position') : '', b.weight ? b.weight + ' kg' : ''].filter(Boolean).join(' · ');
+      return { tag: (b._src === guide.stepSrc ? (b._src === 'bikepacking' ? T('Step up: from our gravel and touring catalog') : T('Alternative: from our commuting catalog')) : (b._src === 'commute' ? T('From our commuting catalog') : T('From our gravel and touring catalog'))), meta: [line1, line2].filter(Boolean).join('<br>'), why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget) };
+    },
+    musts: [
+      {label: 'Electric assist', applies: ctx.power === 'want_ebike', test: b => b.power === 'ebike'},
+      {label: 'Pedal-only', applies: ctx.power === 'pedal_only', test: b => b.power === 'pedal'},
+      {label: 'Fits your height', applies: !!ctx.height, test: b => ctx.height >= b.minH && ctx.height <= b.maxH},
+      {label: 'Close to your budget', applies: true, test: b => SV.scoringPrice(b) <= ctx.budget + 500}
+    ],
+    compareRows: [
+      ['Fits riders', b => b.minH + '–' + b.maxH + ' cm'], ['Wheels', b => b.wheel + ' mm'], ['Frame', b => b.frameMaterial], ['Drivetrain', b => b.groupset || ''],
+      ['Brakes', b => b.brakeType || ''], ['Comfortable distance', b => b.maxComfortDistance != null ? T('up to {d} km one way', {d: b.maxComfortDistance}) : ''],
+      ['Weight (catalog)', b => b.weight ? b.weight + ' kg' : ''], ['Fenders', b => b.fendersIncluded === undefined ? '' : b.fendersIncluded ? 'included' : 'not included']
+    ]
+  });
+}));
+const letterOverlay = document.getElementById('letterOverlay');
+const openLetterBtn = document.getElementById('openLetter');
+const closeLetterBtn = document.getElementById('closeLetter');
+let letterLastFocused = null;
+
+function openLetter(){
+  letterLastFocused = document.activeElement;
+  letterOverlay.classList.add('open');
+  letterOverlay.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  closeLetterBtn.focus();
+}
+function closeLetter(){
+  letterOverlay.classList.remove('open');
+  letterOverlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (letterLastFocused) letterLastFocused.focus();
+}
+openLetterBtn.addEventListener('click', openLetter);
+closeLetterBtn.addEventListener('click', closeLetter);
+letterOverlay.addEventListener('click', e => { if (e.target === letterOverlay) closeLetter(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && letterOverlay.classList.contains('open')) closeLetter(); });
+</script>
+
+</body>
+</html>

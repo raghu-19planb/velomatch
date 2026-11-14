@@ -35,16 +35,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
-<link rel="stylesheet" href="style.css?v=d7d9dd34">
+<link rel="stylesheet" href="style.css?v=20c4899a">
 <script src="nav-transition.js?v=ddf7b18b"></script>
-<script src="flag-banner.js?v=0744c1be" defer></script>
+<script src="flag-banner.js?v=fea7b6d4" defer></script>
 <script src="i18n.js?v=d9197a30"></script>
-<script src="i18n-fr-core.js?v=799c5762" defer></script>
-<script src="i18n-fr-index.js?v=db335552" defer></script>
+<script src="i18n-fr-core.js?v=b1846649" defer></script>
+<script src="i18n-fr-index.js?v=120abb9f" defer></script>
 <link rel="stylesheet" href="describe.css?v=f6fc20d8">
-<script src="i18n-fr-describe.js?v=5aa136b8" defer></script>
-<script src="criteria.js?v=ff78af4b" defer></script>
-<script src="describe.js?v=49279bd3" defer></script>
+<script src="i18n-fr-describe.js?v=fe86396b" defer></script>
+<script src="criteria.js?v=45d32dc5" defer></script>
+<script src="describe.js?v=3079f3e1" defer></script>
+<script src="height-input.js?v=467fb1e2" defer></script>
 <script src="nav-menu.js?v=5d71bc06" defer></script>
 </head>
 <body>
@@ -58,10 +59,11 @@
     <div class="nav-links">
       <a href="kids.html" class="nav-link">Kids' bikes</a>
       <a href="commute.html" class="nav-link">Commuting</a>
+      <a href="casual.html" class="nav-link">Casual riding</a>
       <a href="bikepacking.html" class="nav-link">Bikepacking</a>
       <a href="mountainbiking.html" class="nav-link">Mountain biking</a>
       <a href="racing.html" class="nav-link">Racing</a>
-      <a href="showcase.html" class="nav-link">Showcase</a>
+      <a href="showcase.html" class="nav-link">Current bikes</a>
       <a href="schematics.html" class="nav-link">Schematics</a>
       <a href="routemaps.html" class="nav-link">Route maps</a>
       <a href="blog.html" class="nav-link">Blog</a>
@@ -98,7 +100,7 @@
         <div class="fig-tag"><span>Try it</span><span class="chip-div"></span><span>Before you pick</span></div>
         <label class="q-label" for="radarHeight">Drag to any height</label>
         <div class="range-row">
-          <input type="range" id="radarHeight" min="95" max="195" value="120" step="1">
+          <input type="range" id="radarHeight" min="95" max="200" value="120" step="1">
           <span class="range-out" id="radarHeightOut">120 cm</span>
         </div>
         <p class="fit-radar-hint" id="radarHint">That's about a 6-year-old.</p>
@@ -154,6 +156,14 @@
         <div class="fig-tag"><span>Sheet 002</span></div>
         <h3>Commuting</h3>
         <p>Distance, route, cargo, and power preference — matched to a bike built for your actual ride to work or school.</p>
+        <span class="card-cta">Start matching</span>
+      </a>
+
+      <a href="casual.html" class="category-card">
+        <img class="cat-art cat-art-flip" src="images/intro/racing.webp?v=5" width="1200" height="900" loading="lazy" decoding="async" alt="An oil painting of a road bike resting by an empty road at sunrise, mountains in the distance.">
+        <div class="fig-tag"><span>Sheet 006</span></div>
+        <h3>Casual riding</h3>
+        <p>Weekend rides, fitness and relaxed riding on paths, roads and gravel — matched to hybrids, city bikes and gravel bikes that fit you.</p>
         <span class="card-cta">Start matching</span>
       </a>
 
@@ -247,6 +257,7 @@ const radarWheelbase = document.getElementById('radarWheelbase');
 const radarCards = {
   kids: document.querySelector('.category-card[href="kids.html"]'),
   commute: document.querySelector('.category-card[href="commute.html"]'),
+  casual: document.querySelector('.category-card[href="casual.html"]'),
   bikepacking: document.querySelector('.category-card[href="bikepacking.html"]'),
   mountainbiking: document.querySelector('.category-card[href="mountainbiking.html"]'),
   racing: document.querySelector('.category-card[href="racing.html"]')
@@ -311,6 +322,7 @@ function updateRadar(){
   } else {
     radarCategory.textContent = "Sounds like an adult bike — commuting, bikepacking, mountain biking, or racing.";
     radarCards.commute && radarCards.commute.classList.add('radar-highlight');
+    radarCards.casual && radarCards.casual.classList.add('radar-highlight');
     radarCards.bikepacking && radarCards.bikepacking.classList.add('radar-highlight');
     radarCards.mountainbiking && radarCards.mountainbiking.classList.add('radar-highlight');
     radarCards.racing && radarCards.racing.classList.add('radar-highlight');

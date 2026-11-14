@@ -22,18 +22,18 @@
 
   // which catalogs record which field (checked by scripts/check-site.mjs against the data files)
   var HAS = {
-    brakeType: ['commute', 'racing'],
-    fendersIncluded: ['commute'],
-    rackMounts: ['bikepacking'],
-    weight: ['commute', 'bikepacking', 'racing'],
-    frameMaterial: ['commute', 'bikepacking', 'mountainbiking', 'racing'],
-    origin: ['kids', 'commute', 'bikepacking', 'mountainbiking', 'racing'],
-    electronicShifting: ['bikepacking', 'racing'],
-    brand: ['kids', 'commute', 'bikepacking', 'mountainbiking', 'racing'],
-    colors: ['commute', 'bikepacking', 'mountainbiking', 'racing'],
-    foldable: ['commute'],
-    frontSuspension: ['commute', 'bikepacking', 'mountainbiking'],
-    groupset: ['commute', 'bikepacking', 'mountainbiking', 'racing'],
+    brakeType: ['commute', 'casual', 'racing'],
+    fendersIncluded: ['commute', 'casual'],
+    rackMounts: ['bikepacking', 'casual'],
+    weight: ['commute', 'casual', 'bikepacking', 'racing'],
+    frameMaterial: ['commute', 'casual', 'bikepacking', 'mountainbiking', 'racing'],
+    origin: ['kids', 'commute', 'casual', 'bikepacking', 'mountainbiking', 'racing'],
+    electronicShifting: ['bikepacking', 'casual', 'racing'],
+    brand: ['kids', 'commute', 'casual', 'bikepacking', 'mountainbiking', 'racing'],
+    colors: ['commute', 'casual', 'bikepacking', 'mountainbiking', 'racing'],
+    foldable: ['commute', 'casual'],
+    frontSuspension: ['commute', 'casual', 'bikepacking', 'mountainbiking'],
+    groupset: ['commute', 'casual', 'bikepacking', 'mountainbiking', 'racing'],
   };
 
   var has = function (b, k) { return b[k] !== undefined && b[k] !== null && b[k] !== ''; };
@@ -113,7 +113,7 @@
   }
 
   // ---- finding criteria in a shopper's words (English and French). t is the accent-free lower-case text, orig the original.
-  var MUST = /\b(must|needs?|have to|has to|require\w*|essential|non-?negotiable|got to|il faut|doit|doivent|obligatoire|indispensable|il me faut|besoin d)\b/;
+  var MUST = /\b(must|should|needs?|have to|has to|require\w*|essential|non-?negotiable|got to|il faut|doit|doivent|obligatoire|indispensable|il me faut|besoin d|devrait|devraient)\b/;
   var SOFT = /\b(would like|prefer\w*|ideally|nice to have|if possible|j'aimerais|de preference|idealement|serait bien)\b/;
   var NEG = /\b(no|not|without|avoid|sans|pas de|pas en|eviter|jamais)\s*(?:a |an |any |de |d')?$/;
   function modeAt(t, idx) {
@@ -137,7 +137,7 @@
     var at = function (re, id, modeOnly) { var m = re.exec(t); if (m) { var mode = modeAt(t, m.index); if (mode === 'avoid' && id !== 'frame' && id !== 'brand') return; push(id, {}, mode, m[0].trim()); } };
     at(/\bdisc brakes?\b|\bfreins? a disque\b|\bhydraulic brakes?\b/, 'disc_brakes');
     at(/\bfenders?\b|\bmudguards?\b|\bgarde-?boues?\b/, 'fenders');
-    at(/\brack mounts?\b|\beyelets\b|\bpannier mounts?\b/, 'rack_mounts');
+    at(/\brack mounts?\b|\beyelets\b|\bpannier mounts?\b|\bracks? (?:and|&|or) panniers?\b|\b(?:support|carry|take|fit|mount|handle)\w* (?:a |the |front |rear )?(?:racks?|panniers?)\b|\brack[- ](?:compatible|ready)\b/, 'rack_mounts');
     at(/\bcanadian[- ]?(?:made|brand|company|owned)\b|\bmade in canada\b|\bbuy canadian\b|\bmarque canadienne\b|\bfabrique au canada\b|\bentreprise canadienne\b/, 'canadian');
     at(/\belectronic (?:shifting|gears?|groupset)\b|\bdi2\b|\baxs\b|\bchangement (?:de vitesses )?electronique\b/, 'electronic');
     at(/\bfold(?:ing|able|s)?\b|\bpliant\w*|\bpliable\b/, 'foldable');

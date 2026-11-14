@@ -20,6 +20,8 @@ trusted knowledge base for retrieval, a "describe your ride" front door that tur
 
 ## 2. Principles
 
+The rulebook for what evidence a recommendation must rest on (Reddit and forums, social media, blogs and expert reviews, YouTube, and the makers' own material, per category) is [bike-curation-logic.md](bike-curation-logic.md). This design must follow it.
+
 1. **Facts come from verified data.** The model never supplies a spec, price, link, availability, or recall. If a field is
    missing, the product says so.
 2. **The visitor confirms what was understood.** An AI reading never silently becomes a ranking input. It becomes editable

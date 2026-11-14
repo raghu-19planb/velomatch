@@ -28,6 +28,8 @@
     "Kids' first bike": 'Premier vélo d’enfant',
     "Height, experience, and budget — matched against real kids' bike geometry, not a size sticker on a rack.":
       'Taille, expérience et budget, évalués selon la géométrie réelle des vélos d’enfant, et non selon un autocollant de taille sur un support.',
+    'Weekend rides, fitness and relaxed riding on paths, roads and gravel — matched to hybrids, city bikes and gravel bikes that fit you.':
+      'Balades de fin de semaine, mise en forme et sorties détendues sur pistes, routes et gravier : associées aux vélos hybrides, de ville et de gravier qui vous conviennent.',
     'Distance, route, cargo, and power preference — matched to a bike built for your actual ride to work or school.':
       'Distance, parcours, charge et préférence de motorisation, associés à un vélo conçu pour votre vrai trajet vers le travail ou l’école.',
     'Terrain, trip length, and how you carry your gear — from a weekend loop to a self-supported ultra race.':

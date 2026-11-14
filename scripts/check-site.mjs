@@ -49,5 +49,12 @@ try {
   }
 } catch (e) { problems.push('criteria.js check failed: ' + e.message); }
 
+// the Showcase lists current models only: a stated model year must be last year's, this year's or next year's (this rolls forward by itself)
+try {
+  const y = new Date().getFullYear();
+  const d = JSON.parse(fs.readFileSync(path.join(root, 'data', 'showcase.json'), 'utf8'));
+  d.bikes.forEach(b => { if (b.modelYear != null && (b.modelYear < y - 1 || b.modelYear > y + 1)) problems.push('data/showcase.json: ' + b.brand + ' ' + b.name + ' is a ' + b.modelYear + ' model, not a current one (' + (y - 1) + ' to ' + (y + 1) + '): remove it or update it'); });
+} catch (e) { problems.push('showcase model-year check failed: ' + e.message); }
+
 if (problems.length) { console.error('Site check FAILED:\n  ' + problems.join('\n  ')); process.exit(1); }
 console.log(`Site check passed: ${pages.length} pages, asset addresses current, all scripts parse.`);

@@ -1,8 +1,8 @@
-// A small "New" bubble on the "Showcase" word in the nav, so visitors notice the new-bikes page. The bubble is drawn by
+// A small "New" bubble on the "Current bikes" link in the nav, so visitors notice the new-bikes page. The bubble is drawn by
 // CSS as part of the nav link's own line (see .has-new-flag in style.css), so it is inside the header at every screen width
 // and can never cover the page or another nav item: no cord, no flag hanging below the nav. This script only marks the
 // link and chooses the word ("New" or "Nouveau"), so every page gets the same bubble without pasting markup into each file.
-// It does not appear on the Showcase page itself.
+// It does not appear on that page itself.
 (function () {
   if (/showcase\.html$/i.test(location.pathname)) return;
 

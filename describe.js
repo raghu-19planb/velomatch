@@ -23,7 +23,7 @@
   const VOCAB = {
     kids: {
       name: "Kids' first bike", page: 'kids.html', flow: ['height', 'exp', 'terrain', 'budget'],
-      ranges: { height: { label: "Child's height", min: 100, max: 180, step: 1, unit: 'cm' }, budget: { label: 'Budget', min: 80, max: 600, step: 10, unit: 'C$' } },
+      ranges: { height: { label: "Child's height", min: 100, max: 200, step: 1, unit: 'cm' }, budget: { label: 'Budget', min: 80, max: 600, step: 10, unit: 'C$' } },
       groups: {
         exp: { label: 'Riding experience', values: { none: 'Never ridden', balance: 'Balance bike', training: 'Training wheels', confident: 'Confident, no training wheels' } },
         terrain: { label: 'Where they ride', values: { pavement: 'Pavement / driveway', road_gravel: 'Road and gravel', park: 'Neighborhood paths', trail_road_gravel: 'Trail, road and gravel', trail: 'Light dirt trails' } },
@@ -41,11 +41,13 @@
         weather: { label: 'Will you ride in the rain or snow?', values: { rarely: 'Rarely', sometimes: 'Sometimes', always: 'Rain or shine', winter: 'Through winter: snow, ice and road salt' } },
         storage: { label: 'Where will you keep it?', values: { garage: 'Garage or shed', apartment: 'Apartment or office', stairs: 'Stairs or transit' } },
         experience: { label: 'How experienced a cyclist are you?', values: { new: 'New to regular riding', some: 'Ride sometimes', experienced: 'Very experienced' } },
+        frame: { label: 'Frame material', values: { aluminum: 'Aluminum', steel: 'Steel', carbon: 'Carbon' } },
+        brakepower: { label: 'Want the extra stopping power of disc brakes?', values: { disc: 'Yes, disc brakes' } },
       },
       need: { groups: ['route', 'cargo', 'power', 'weather'], ranges: ['distance', 'riderHeight', 'budget'] },
     },
     bikepacking: {
-      name: 'Cyclocamping', page: 'bikepacking.html', flow: ['terrain', 'triplength', 'purpose', 'sizemode', 'budget', 'experience'],
+      name: 'Bikepacking / bike touring', page: 'bikepacking.html', flow: ['terrain', 'triplength', 'purpose', 'sizemode', 'budget', 'experience'],
       ranges: { riderHeight: { label: 'Your height', min: 150, max: 200, step: 1, unit: 'cm' }, budget: { label: 'Budget', min: 1200, max: 6000, step: 50, unit: 'C$' } },
       groups: {
         terrain: { label: "What's the terrain?", multi: true, values: { road_paved: 'Fully paved', gravel: 'Dedicated gravel', mixed: 'Mixed paved & gravel', trail_mountain: 'Rough trail / singletrack' } },
@@ -53,6 +55,9 @@
         purpose: { label: "What's the goal of the trip?", values: { touring: 'Comfortable multi-week touring', adventure: 'A proper adventure ride', ultra_race: 'Self-supported ultra-racing' } },
         experience: { label: 'How experienced a bikepacker are you?', values: { new: 'First trip', some: 'Done a few trips', experienced: 'Very experienced' } },
         carrystyle: { label: 'How do you want to carry your gear?', multi: true, values: { minimalist: 'Frame bag, seat pack, bar roll', rack_panniers: 'Rack and panniers' } },
+        frame: { label: 'Frame material', values: { aluminum: 'Aluminum', steel: 'Steel', titanium: 'Titanium', carbon: 'Carbon' } },
+        shifting: { label: 'Shifting preference', values: { electronic: 'Electronic (Di2 / AXS)', mechanical: 'Mechanical is fine' } },
+        tires: { label: 'How much do flat tires worry you out there?', values: { reliable: 'A lot — give me tough, reliable tires' } },
       },
       need: { groups: ['terrain', 'triplength', 'purpose', 'experience'], ranges: ['riderHeight', 'budget'], height: 'riderHeight' },
     },
@@ -66,6 +71,16 @@
         dropper: { label: 'Want a dropper post?', values: { want_it: 'Yes, want it', dont_need: "Don't need it" } },
       },
       need: { groups: ['discipline', 'experience'], ranges: ['height', 'budget'], height: 'height' },
+    },
+    casual: {
+      name: 'Casual riding', page: 'casual.html', flow: ['surface', 'feel', 'distance', 'power', 'riderHeight', 'budget'],
+      ranges: { distance: { label: 'How far from home do you usually ride?', min: 2, max: 60, step: 1, unit: 'km' }, riderHeight: { label: 'Your height', min: 145, max: 200, step: 1, unit: 'cm' }, budget: { label: 'Budget', min: 400, max: 3500, step: 50, unit: 'C$' } },
+      groups: {
+        surface: { label: 'Where will you mostly ride?', multi: true, values: { paved: 'Paved paths and roads', mixed: 'A mix of road and gravel', gravel: 'Packed gravel and rail trails' } },
+        power: { label: 'Power preference', values: { pedal_only: 'Pedal only', open: 'Open to e-assist', want_ebike: 'Want e-assist' } },
+        feel: { label: 'How should the ride feel?', values: { comfort: 'Comfortable and easy: upright, simple controls', balanced: 'A bit of both', fast: 'Quicker and farther: leaning forward, more efficient' } },
+      },
+      need: { groups: ['surface', 'feel', 'power'], ranges: ['distance', 'riderHeight', 'budget'] },
     },
     racing: {
       name: 'Racing', page: 'racing.html', flow: ['discipline', 'sizemode', 'budget'],
@@ -89,6 +104,8 @@
     bikepacking: /\b(\d{1,3}\s?(?:days?|jours?|nights?|nuits?)|week-?long|bikepack\w*|cyclocamp\w*|camping|camp|overnight|multi-?day|touring|tour|voyage|panniers?|sacoches?|trip|gaspesie|route verte|gravel trip|nuit|tente|tent|iceland|islande|ring road|patagonia|patagonie|tour divide)\b/g,
     mountainbiking: /\b(mountain|mtb|trail|trails|singletrack|enduro|downhill|vtt|sentiers?|montagne|forest|foret|jump|bike park|xc|cross-?country|hardtail|semi-?rigide|dropper|telescopique|full[- ]?sus\w*|suspension)\b/g,
     racing: /\b(race|races|racing|crit|criterium|triathlon|ironman|audax|randonneu\w*|gran fondo|pbp|lel|course|competition|competitive|time trial|contre-la-montre)\b/g,
+    // relaxed riding that is not a commute, a trip or a race: weekend rides, fitness, leisure
+    casual: /\b(casual\w*|occasional\w*|leisure\w*|recreation\w*|fitness|weekend (?:rides?|riding)|relaxed (?:rides?|riding)|joyrides?|for fun|exercise|loisirs?|balades?|promenades?|sorties? (?:du dimanche|tranquilles?)|hybrid|hybride|cruiser|rail trails?|keep fit|mise en forme)\b/g,
   };
   // typo tolerance: a word close to a distinctive keyword is read as that keyword ("backpicking" -> "bikepacking").
   // Kept narrow on purpose: only long, distinctive words, and one edit at most, so ordinary words ("overweight", "facing") are never rewritten.
@@ -116,7 +133,8 @@
   // weaker hints, used only when no strong word names a quiz. Road-and-gravel recreation fits our gravel/touring catalog best
   // (it holds the gravel and road-touring bikes); fast/training words point to racing, dirt and forest to mountain biking.
   const WEAK = {
-    bikepacking: /\b(gravel|gravier|paved|asphalt|asphalte|roads?|routes?|paths?|pistes?|weekends?|week-?ends?|leisure|recreation\w*|loisirs?|scenic|countryside|campagne|explor\w*|rides?|riding|ballades?|promenades?|cyclotourisme)\b/g,
+    casual: /\b(gravel|gravier|paved|asphalt|asphalte|roads?|routes?|paths?|pistes?|weekends?|week-?ends?|scenic|countryside|campagne|rides?|riding|sunny|afternoons?|sunday|dimanche|relaxing|relax)\b/g,
+    bikepacking: /\b(explor\w*|adventure|aventure|cyclotourisme)\b/g,
     racing: /\b(fast|speed|training|train|club|fitness|sportive|performance|vitesse|entrainement|aero|climb\w*)\b/g,
     mountainbiking: /\b(dirt|rocky|rocks|roots|forests?|woods|off-?road|terre|rocheux)\b/g,
     commute: /\b(hybrid|hybride|city|errands?|flat|bike lanes?|ville)\b/g,
@@ -188,6 +206,15 @@
     const V = VOCAB[cat];
     const add = (group, value, ev) => { if (V.groups[group] && V.groups[group].values[value] && !out.answers.some(a => a.group === group && a.value === value)) { if (!V.groups[group].multi) out.answers = out.answers.filter(a => a.group !== group); out.answers.push({ group, value, evidence: ev }); evidence.push(norm(ev)); } };
     const rule = (group, value, re) => { const e = first(t, re); if (e) add(group, value, e); };
+    const FOLD = {
+      bikepacking: { frame: x => ['frame', x.p.m], electronic: () => ['shifting', 'electronic'], rack_mounts: () => ['carrystyle', 'rack_panniers'] },
+      commute: { frame: x => ['frame', x.p.m], disc_brakes: () => ['brakepower', 'disc'] },
+    }[cat] || {};
+    out.extras = out.extras.filter(x => {
+      const f = FOLD[x.id]; if (!f || x.m === 'avoid') return true;
+      const [g, v] = f(x); if (!V.groups[g] || !V.groups[g].values[v]) return true;
+      add(g, v, x.ev); return false;
+    });
 
     // numbers
     const b = parseBudget(t);
@@ -211,6 +238,39 @@
       rule('brake', 'hand', /hand brakes?|freins? a main/);
       if (/\b\d{1,2}\s?(?:-|\s)?(?:years?|yrs?|ans)\b/.test(t) && !out.ranges.height) out.notes.push('You mentioned an age. We do not convert ages to heights, because children of the same age differ a lot: please enter their height in cm.');
     }
+    // power preference (commuting and casual riding ask the same question)
+    const powerRules = () => {
+      rule('power', 'want_ebike', /e-?bike|electric|assist\w*|electrique|assistance|moteur/);
+      // "e-bike welcome / okay / acceptable" is openness, not a requirement
+      const openRe = /(?:e-?bike|electric\w*|assist\w*|velo electrique)[^.,;]{0,20}(?:welcome|okay|\bok\b|fine|acceptable|accepte\w*|bienvenu\w*)|(?:welcome|open to|ok with|okay with|fine with|accepte\w*)[^.,;]{0,12}(?:e-?bike|electric\w*|assist\w*)/;
+      const openEv = first(t, openRe);
+      if (openEv) { out.answers = out.answers.filter(x => x.group !== 'power'); add('power', 'open', openEv); }
+      rule('power', 'pedal_only', /pedal only|no (?:e-?bike|motor|assist\w*)|sans (?:assistance|moteur)|pas electrique|pedalage seulement/);
+      rule('power', 'open', /open to (?:an? )?(?:e-?bike|electric|assist)|ouvert a (?:l'?)?assistance/);
+    };
+    if (cat === 'casual') {
+      // surface: naming road AND gravel is the quiz's own "a mix of road and gravel"; it must not also tick gravel-only
+      const combo = first(t, /(?:road|roads|paved|pavement|asphalt) (?:and|&|\/|\+) gravel|gravel (?:and|&|\/|\+) (?:road|roads|paved|pavement|asphalt)|(?:route|routes|asphalte) et gravier|gravier et (?:route|routes|asphalte)|\bmixed\b|\bmixte\b/);
+      if (combo) add('surface', 'mixed', combo);
+      else {
+        rule('surface', 'gravel', /gravel|gravier|rail trails?|packed|voie ferree/);
+        rule('surface', 'paved', /paved|asphalt|bike paths?|bike lanes?|pistes? cyclables?|sidewalks?|\broads?\b|\broutes?\b|pavement|pavee?s?\b/);
+      }
+      // the quiz asks for the farthest point from home, one way: only a figure said that way is used (an out-and-back total is not halved for them)
+      const dm = t.match(/(\d+(?:[.,]\d+)?)\s?(km|kilomet\w*|miles?|mi)\b/);
+      if (dm) {
+        let v = num(dm[1]); const miles = /^mi/.test(dm[2]); if (miles) v *= 1.609; v = Math.round(v); const r = V.ranges.distance;
+        const oneWay = /one way|each way|from home|away from home|de chez moi|a l'aller|loin de chez/.test(t);
+        if (oneWay && v >= r.min && v <= r.max) { out.ranges.distance = { value: v, evidence: dm[0] }; evidence.push(norm(dm[0])); if (miles) out.notes.push(T('Converted {a} to about {b} km.', { a: dm[0], b: v })); }
+        else if (!oneWay) out.notes.push('You gave a ride length. This quiz asks for the farthest point from home, one way (half of an out-and-back ride): please set it yourself.');
+      }
+      powerRules();
+      // how the ride should feel, inferred from the words used (shown with them, and editable): "occasional", "relaxed", "easy" point to comfort,
+      // "fast", "longer rides", "training" to quicker and farther
+      rule('feel', 'comfort', /occasional\w*|relaxed|leisurely|casual\w*|easy|comfortabl\w*|upright|sit up|simple|detendu\w*|tranquille\w*|confortable\w*|facile|de temps en temps|occasionnel\w*/);
+      rule('feel', 'balanced', /bit of both|a bit of each|balanced|equilibre\w*|un peu des deux/);
+      rule('feel', 'fast', /\bfast\w*|\bspeed\w*|quick\w*|sporty|aggressive|longer rides?|farther|further|training|rapide\w*|sportif\w*|plus loin|entrainement/);
+    }
     if (cat === 'commute') {
       const d = t.match(/(\d+(?:[.,]\d+)?)\s?(km|kilomet\w*|miles?|mi)\b/);
       if (d) {
@@ -219,13 +279,7 @@
         if (v >= r.min && v <= r.max) { out.ranges.distance = { value: v, evidence: d[0] }; evidence.push(norm(d[0])); if (miles) out.notes.push(T('Converted {a} to about {b} km.', { a: d[0], b: v })); if (/round trip|return|aller-?retour|each way|both ways/.test(t)) out.notes.push('The quiz asks for the one-way distance: please check the number we took.'); }
         else out.notes.push(T('A distance of {a} km is outside this quiz’s range.', { a: v }));
       }
-      rule('power', 'want_ebike', /e-?bike|electric|assist\w*|electrique|assistance|moteur/);
-      // "e-bike welcome / okay / acceptable" is openness, not a requirement
-      const openRe = /(?:e-?bike|electric\w*|assist\w*|velo electrique)[^.,;]{0,20}(?:welcome|okay|\bok\b|fine|acceptable|accepte\w*|bienvenu\w*)|(?:welcome|open to|ok with|okay with|fine with|accepte\w*)[^.,;]{0,12}(?:e-?bike|electric\w*|assist\w*)/;
-      const openEv = first(t, openRe);
-      if (openEv) { out.answers = out.answers.filter(x => x.group !== 'power'); add('power', 'open', openEv); }
-      rule('power', 'pedal_only', /pedal only|no (?:e-?bike|motor|assist\w*)|sans (?:assistance|moteur)|pas electrique|pedalage seulement/);
-      rule('power', 'open', /open to (?:an? )?(?:e-?bike|electric|assist)|ouvert a (?:l'?)?assistance/);
+      powerRules();
       rule('weather', 'winter', /winter|snow|ice\b|salt|hiver|neige|glace|sel de voirie/);
       if (!out.answers.some(a => a.group === 'weather')) { rule('weather', 'always', /rain or shine|in any weather|beau temps,? mauvais temps|par tous les temps/); rule('weather', 'sometimes', /rain|pluie|sometimes in/); rule('weather', 'rarely', /fair[- ]weather|rarely in the rain|rarement/); }
       rule('cargo', 'heavy', /groceries|heavy|epicerie|lourd\w*|trailer|remorque|kids? on (?:the )?back|enfants? (?:sur|a l')/);
@@ -261,6 +315,8 @@
       rule('purpose', 'touring', /touring|relaxed|comfortabl\w*|leisure|cyclotourisme|tranquille/);
       rule('purpose', 'adventure', /adventure|aventure/);
       rule('purpose', 'ultra_race', /ultra|tour divide|transcontinental|self-supported race|course d'ultra|bikepacking race/);
+      // "robust", "durable", "tough" are the quiz's question about tires that must not let you down (shown with the words, so it can be removed)
+      rule('tires', 'reliable', /robust\w*|durab\w*|tough|sturdy|rugged|reliab\w*|flat[- ]?proof|puncture|solide|fiable|resistant\w*/);
       rule('experience', 'new', /first (?:ever )?(?:\w+ )?(?:trip|time|tour|overnight|ride|bikepacking|cyclocamping|adventure)|never (?:done|tried)|beginner|premiere (?:sortie|fois)|debutant\w*|je debute/);
       rule('experience', 'some', /a few trips|done a few|some experience|quelques sorties/);
       rule('experience', 'experienced', /experienced|veteran|many trips|done many|experimente\w*|beaucoup de sorties/);
@@ -317,7 +373,7 @@
     // the original wording of each part is shown, found by the same order of splitting
     const origParts = String(out.original).split(/[,.;!?]+|\band\b|\bet\b|\bbut\b|\bmais\b/i);
     out.unused = parts.map(([a, b], i) => ({ a, b, shown: (origParts[i] || tn.slice(a, b)).trim(), nc: tn.slice(a, b).trim() })).filter(p => {
-      if (p.nc.length < 5 || /^(i'?m|i am|je suis|i want|i would|j'ai|je veux|my|ma|mon)\b/.test(p.nc) && p.nc.split(' ').length < 4) return false;
+      if (p.nc.length < 5 || p.nc.split(' ').length < 2 || /^(i'?m|i am|je suis|i want|i would|j'ai|je veux|my|ma|mon)\b/.test(p.nc) && p.nc.split(' ').length < 4) return false;
       return !spans.some(([x, y]) => x < p.b && y > p.a);
     }).map(p => p.shown).slice(0, 4);
   }
@@ -421,9 +477,8 @@
       const V = state.category && VOCAB[state.category];
       // nothing understood: ask the one question that unlocks everything, and keep the words and wishes
       if (!V) {
-        // a guided question in plain words (not quiz names), then, for casual riding, one about the surface
-        const casual = state.guide === 'casual';
-        out.append(el('p', { class: 'describe-h', text: !state.original ? T('Tell me a little about your ride first.') : casual ? T('Where will you mostly ride?') : T('What will you mostly use the bike for? One quick question, and your words and wishes carry over.') }));
+        // a guided question in plain words (not quiz names)
+        out.append(el('p', { class: 'describe-h', text: !state.original ? T('Tell me a little about your ride first.') : T('What will you mostly use the bike for? One quick question, and your words and wishes carry over.') }));
         if (state.original) out.append(chooser());
         return;
       }
@@ -472,12 +527,10 @@
       }
     }
     function chooser() {
-      // each option leads to a quiz; "casual or weekend rides" has no quiz of its own, so one more question picks the closest catalog
-      const pick = c => () => { state.guide = null; fillFor(state, c); state.confidence = 'low'; refresh(); render(); };
-      const opts = state.guide === 'casual'
-        ? [['Mostly paved paths and roads, flat to rolling', pick('commute')], ['A mix of road and gravel', pick('bikepacking')], ['Dirt trails and rough ground', pick('mountainbiking')]]
-        : [['Getting to work, school or running errands', pick('commute')], ['Casual or weekend rides', () => { state.guide = 'casual'; render(); }], ['Trips with camping gear', pick('bikepacking')],
-           ['Trails and off-road riding', pick('mountainbiking')], ['Racing, triathlon or hard training', pick('racing')], ['A bike for a child', pick('kids')]];
+      // each option leads straight to a quiz
+      const pick = c => () => { fillFor(state, c); state.confidence = 'low'; refresh(); render(); };
+      const opts = [['Getting to work, school or running errands', pick('commute')], ['Casual or weekend rides', pick('casual')], ['Trips with camping gear', pick('bikepacking')],
+                    ['Trails and off-road riding', pick('mountainbiking')], ['Racing, triathlon or hard training', pick('racing')], ['A bike for a child', pick('kids')]];
       return el('div', { class: 'describe-choose' }, ...opts.map(([label, fn]) => { const b = el('button', { type: 'button', class: 'btn-secondary', text: T(label) }); b.addEventListener('click', fn); return b; }));
     }
 

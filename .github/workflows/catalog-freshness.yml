@@ -1,0 +1,17 @@
+# Every Monday: lists the bikes whose evidence is old, that were never verified, whose link broke, whose price drifted, or whose maker was
+# renaming the model (scripts/catalog-freshness.mjs). The job fails when anything needs attention, which makes GitHub email the owner,
+# so a stale catalog is noticed instead of discovered by a customer. It only reads files in this repository.
+name: Catalog freshness
+on:
+  schedule:
+    - cron: '0 13 * * 1'
+  workflow_dispatch:
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/catalog-freshness.mjs --strict
