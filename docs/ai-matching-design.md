@@ -212,8 +212,14 @@ deciding. Add a monthly cap and per-visitor rate limit so cost cannot run away.
 
 `describe.js`, `describe.css` and `i18n-fr-describe.js` add a **Describe your ride** section to the home page.
 
-- **What it does:** a visitor writes a sentence in English or French; a **mock interpreter** (simple rules, on the device, nothing sent) turns it into the quizzes' own answers, shows each with the words it came from, lets the visitor change or remove any answer or switch quiz, lists what is still needed (never guessed), and continues to the right quiz with the answers filled in.
-- **How it connects:** it reuses the quizzes' existing share-link format (`#m=…`), so the quizzes needed only a one-line change (a link can now ask the quiz to fill in answers without submitting, when some are missing).
-- **What it proves:** the contract in §4.1, `validate()` as the safety net, the editable-answers experience, bilingual input, and that a real model can be dropped in behind `interpret()` without touching the quizzes or the engine.
-- **What it does not do:** it is not AI. Its coverage is limited to the phrases its rules know, so it misses what a model would catch. That gap is exactly what a real model would close, and why the visitor-confirmation step matters.
+- **What it does:** a visitor writes a sentence in English or French and presses *Find my bike*. A **mock interpreter** (simple rules, on the device, nothing sent) always acts on it:
+  1. it picks the quiz and fills in the quiz's own answers and sliders (miles become km, "between X and Y" takes the upper figure, an age is never turned into a height);
+  2. wishes the quizzes have no question for (disc brakes, fenders, a weight limit, a frame material or "no carbon", a Canadian brand, a named brand, a colour, electronic shifting) become **extra criteria**, with Must have / Nice to have / Avoid, and are added to the scoring on the fly (`criteria.js`);
+  3. every answer and criterion is shown with the words it came from and can be changed, re-weighted or removed; text it could not use is listed, never scored;
+  4. if everything the quiz needs is known, a short cancellable countdown (*Edit first*) takes the visitor to the matches; otherwise they land on the **first question still open**, with the rest already filled in;
+  5. if the text means nothing (or is empty), they are asked one thing, which kind of bike, and their words and wishes still carry over.
+- **Honesty rules:** an extra criterion is only tested on a field the catalog records for that category; where a bike's record lacks it the card says "not listed", never yes or no; wishes with no data for the chosen category are named and do not change the ranking. A must-have missing costs a little, a must-have violated costs a lot (see the deltas in `criteria.js`).
+- **How it connects:** it reuses the quizzes' share-link format (`#m=…`), extended with `x` (extra criteria), `t` (the visitor's words, shown in a banner above the quiz), `g` (the step to open) and `d` (score now). Everything coming from a link or a model passes `validate()` / `SVCriteria.sanitize()`, so nothing outside the quizzes' vocabulary and the engine's criteria list can get in.
+- **What it proves:** the contract in §4.1, the safety net, the editable experience, bilingual input, and that a real model can replace `interpret()` without touching the quizzes or the engine.
+- **What it does not do:** it is not AI. Coverage is limited to the phrases its rules know; a model would catch more. That gap is why the confirmation step exists.
 - **Try it:** open the home page, scroll to "Describe your ride", and use the three example buttons.

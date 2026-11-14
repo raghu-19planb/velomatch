@@ -1176,3 +1176,9 @@ body.rm-page{
 .result-notice p{margin:0; font-size:14px; line-height:1.55; color:var(--ink-soft, var(--paper));}
 .result-miss{margin:10px 0 0; padding:7px 10px; font-size:13px; line-height:1.45; border-radius:6px; background:rgba(226,85,29,0.14); color:var(--paper);}
 .result-miss b{color:var(--quiz-accent, #FFB48F);}
+
+/* extra criteria chips, and the note above a quiz that was filled in from "Describe your ride" */
+.ans-chip-x{border-style:dashed;}
+.from-text{margin:0 0 18px; padding:11px 14px; border:1px solid rgba(126,215,190,0.4); border-left-width:4px; border-radius:8px; background:rgba(126,215,190,0.08); font-size:14px; line-height:1.55; color:var(--paper);}
+.from-text q{font-style:italic; color:var(--paper);}
+.from-text a{color:var(--quiz-accent); text-underline-offset:3px;}

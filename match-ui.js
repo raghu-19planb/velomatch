@@ -17,6 +17,12 @@
   const T = (s, v) => (window.I18N ? window.I18N.t(s, v) : (v ? s.replace(/\{(\w+)\}/g, (m, k) => (v[k] != null ? v[k] : m)) : s));
   SV.T = T;
 
+  // ---- extra criteria from the shopper's own words (criteria.js): "must have fenders", "not carbon", "under 12 kg", "Canadian brand".
+  // They are added on the fly to the ranking: each page passes its scored list through SV.applyExtras before it sorts.
+  SV.extras = [];
+  SV.setExtras = raw => { SV.extras = window.SVCriteria ? window.SVCriteria.sanitize(raw) : []; };
+  SV.applyExtras = b => (SV.extras.length && window.SVCriteria ? Object.assign({}, b, { score: (b.score || 0) + window.SVCriteria.delta(SV.extras, b) }) : b);
+
   // ---- exchange rate: the Bank of Canada's published daily rate, used only to compare a US price to a CAD budget
   SV.fxReady = fetch('https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json?recent=1')
     .then(r => r.json())
@@ -116,7 +122,9 @@
     const opts = [...root.querySelectorAll('.opt.active')].map(o => [o.dataset.group, o.dataset.value]);
     const ranges = {};
     root.querySelectorAll('input[type=range]').forEach(r => { ranges[r.id] = r.value; });
-    return { o: opts, r: ranges };
+    const out = { o: opts, r: ranges };
+    if (SV.extras.length) out.x = SV.extras.map(e => ({ id: e.id, p: e.p, m: e.m }));
+    return out;
   };
   SV.shareUrl = rootSel => location.origin + location.pathname + '#m=' + encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(SV.serialize(rootSel))))));
   SV.restore = (rootSel, submitId) => {
@@ -124,14 +132,34 @@
     if (!m) return false;
     let data; try { data = JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1]))))); } catch (e) { return false; }
     const root = document.querySelector(rootSel);
+    if (data.x) SV.setExtras(data.x);
+    if (typeof data.t === 'string' && data.t.trim()) SV.fromText(data.t.trim().slice(0, 300), root);
     (data.o || []).forEach(([g, v]) => { const b = root.querySelector('.opt[data-group="' + g + '"][data-value="' + v + '"]'); if (b) b.click(); });
     Object.entries(data.r || {}).forEach(([id, v]) => { const r = document.getElementById(id); if (r) { r.value = v; r.dispatchEvent(new Event('input')); } });
     // a link can ask for the answers to be filled in without scoring (s: 0), e.g. when some are still missing: the visitor then
     // finishes the quiz. Nothing is guessed to fill the gap.
-    if (data.s === 0) { const q = document.getElementById('quiz'); if (q) q.scrollIntoView(); return true; }
+    if (data.s === 0) {
+      const q = document.getElementById('quiz'); if (q) q.scrollIntoView();
+      // land the visitor on the first question that is still open (g), instead of at the start of a quiz they have half answered
+      if (data.g && window.svQuizGoTo) setTimeout(() => window.svQuizGoTo(String(data.g)), 250);
+      return true;
+    }
+    // from "Describe your ride" (d: 1): everything needed was understood, so show the matches with the usual curating screen
+    if (data.d === 1) { setTimeout(() => { document.getElementById(submitId || 'submit').click(); }, 80); return true; }
     SV.quiet = true;
     setTimeout(() => { document.getElementById(submitId || 'submit').click(); SV.quiet = false; }, 50);
     return true;
+  };
+
+  // a note above the quiz that says where the answers came from, with the way back to edit the description
+  SV.fromText = (text, root) => {
+    if (!root || document.getElementById('svFromText')) return;
+    const box = document.createElement('div');
+    box.id = 'svFromText'; box.className = 'from-text'; box.setAttribute('role', 'note');
+    const q = document.createElement('q'); q.textContent = text; q.setAttribute('data-no-i18n', '');
+    const a = document.createElement('a'); a.href = 'index.html#describe'; a.textContent = T('edit your description');
+    box.append(T('From your description:') + ' ', q, '. ' + T('We filled in what you said; change any answer here, or') + ' ', a, '.');
+    root.parentNode.insertBefore(box, root);
   };
 
   // ---- the "curating" pause: when someone presses the button, a short loading screen (the spinning wheel and "Curating
@@ -175,7 +203,9 @@
     const items = o.items;
     SV.lastItems = items;
     const desc = items.map(b => o.describe(b));
-    const chips = (o.summary || []).filter(c => c && c.value).map(c => `<button type="button" class="ans-chip" data-goto="${esc(c.group)}" title="${esc(T('Change this answer'))}"><span class="ans-k">${esc(c.label)}</span> ${esc(c.value)}</button>`).join('');
+    const C = window.SVCriteria, xs = SV.extras || [];
+    const xNotes = items.map(b => (xs.length && C ? C.notes(xs, b, T) : { why: [], watch: [] }));
+    const chips = (o.summary || []).filter(c => c && c.value).map(c => `<button type="button" class="ans-chip" data-goto="${esc(c.group)}" title="${esc(T('Change this answer'))}"><span class="ans-k">${esc(c.label)}</span> ${esc(c.value)}</button>`).join('') + (C ? xs.map((x, i) => `<button type="button" class="ans-chip ans-chip-x" data-xi="${i}" title="${esc(T('Remove this criterion'))}"><span class="ans-k">${esc(T(x.m === 'must' ? 'Must have' : x.m === 'avoid' ? 'Avoid' : 'Also'))}</span> ${esc(C.display(x, T))} ×</button>`).join('') : '');
     const ex = o.excluded || { discontinued: [], 'not-canada': [], 'dead-link': [] };
     const exLines = [];
     if (ex.discontinued.length) exLines.push(esc(T(ex.discontinued.length === 1 ? '1 no longer sold new ({names})' : '{n} no longer sold new ({names})', { n: ex.discontinued.length, names: ex.discontinued.map(b => b.name).join(', ') })));
@@ -184,7 +214,8 @@
     // Must-haves: things the visitor asked for that a bike either has or does not (height range, electric assist, budget...).
     // The page passes them in as o.musts. If no bike we can recommend meets one of them, say so plainly instead of showing a
     // confident-looking top pick, and mark on each card what it misses.
-    const musts = (o.musts || []).filter(m => m && m.applies);
+    const xMusts = C ? xs.filter(x => x.m === 'must' || x.m === 'avoid').map(x => ({ label: C.display(x, T), applies: true, test: b => C.evalOne(x, b) === true })) : [];
+    const musts = (o.musts || []).filter(m => m && m.applies).concat(xMusts);
     const missOf = b => musts.filter(m => !m.test(b));
     const unmetByAll = items.length ? musts.filter(m => items.every(b => !m.test(b))) : [];
     let notice = '';
@@ -207,8 +238,9 @@
     const cards = items.map((b, i) => {
       const d = desc[i];
       const l = SV.link(b);
-      const why = d.why && d.why.length ? `<ul class="result-why">${d.why.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : '';
-      const watch = d.watch && d.watch.length ? `<ul class="result-watch">${d.watch.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : '';
+      const whyL = (d.why || []).concat(xNotes[i].why), watchL = (d.watch || []).concat(xNotes[i].watch);
+      const why = whyL.length ? `<ul class="result-why">${whyL.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : '';
+      const watch = watchL.length ? `<ul class="result-watch">${watchL.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : '';
       const rc = b.recall;
       const recall = rc && rc.url ? `<p class="result-recall"><b>${esc(T('Recall notice:'))}</b> ${rc.match === 'exact'
         ? esc(T('Health Canada lists a recall that names this model ({t}). Check which model years and parts it covers before you buy.', { t: rc.title }))
@@ -263,7 +295,10 @@
       mail.href = 'mailto:?subject=' + encodeURIComponent(T('My bike matches from SelectVelo')) + '&body=' + encodeURIComponent(body);
     }
     // change an answer from its chip
-    results.querySelectorAll('.ans-chip').forEach(ch => ch.addEventListener('click', () => { if (window.svQuizGoTo) window.svQuizGoTo(ch.dataset.goto); }));
+    results.querySelectorAll('.ans-chip').forEach(ch => ch.addEventListener('click', () => {
+      if (ch.dataset.xi != null) { SV.extras.splice(Number(ch.dataset.xi), 1); SV.quiet = true; document.getElementById('submit').click(); SV.quiet = false; return; }
+      if (window.svQuizGoTo && ch.dataset.goto) window.svQuizGoTo(ch.dataset.goto);
+    }));
 
     document.getElementById('placeholder').style.display = 'none';
     results.style.display = 'grid';

@@ -11,7 +11,38 @@
     'Not sure where to start? Just tell us about your ride.': 'Vous ne savez pas par où commencer ? Racontez-nous simplement votre balade.',
     'Write a sentence or two, in English or French. We turn it into the quiz answers, show you exactly what we understood, and let you change anything before a single bike is scored.':
       'Écrivez une ou deux phrases, en français ou en anglais. Nous les transformons en réponses au questionnaire, vous montrons exactement ce que nous avons compris, et vous laissons tout modifier avant qu’un seul vélo soit évalué.',
-    'Understand my ride': 'Analyser ma balade',
+    'Write a sentence or two, in English or French. We pick the right quiz, fill in what you said, and add your extra wishes (disc brakes, a weight limit, a brand) to the matching. Then you go straight on, and you can change anything on the way.':
+      'Écrivez une ou deux phrases, en français ou en anglais. Nous choisissons le bon questionnaire, remplissons ce que vous avez dit et ajoutons vos souhaits supplémentaires (freins à disque, limite de poids, marque) à l’évaluation. Vous poursuivez ensuite directement, et pouvez tout modifier en chemin.',
+    'This is a preview. It reads your text on this device with simple rules: nothing you type is sent or stored. A language model could replace that step later, and you would still be able to confirm and change every answer before any bike is scored.':
+      'Ceci est un aperçu. Il lit votre texte sur cet appareil avec des règles simples : rien de ce que vous écrivez n’est envoyé ni conservé. Un modèle de langage pourrait remplacer cette étape plus tard, et vous pourriez quand même confirmer et modifier chaque réponse avant qu’un seul vélo soit évalué.',
+    // the extra criteria (also in i18n-fr-quiz.js, which the home page does not load)
+    'Must have': 'Indispensable', 'Avoid': 'À éviter',
+    'Disc brakes': 'Freins à disque', 'Fenders included': 'Garde-boue inclus', 'Rack mounts': 'Fixations de porte-bagages',
+    'Lighter than {n} kg': 'Moins de {n} kg', '{m} frame': 'Cadre en {m}', 'Canadian brand': 'Marque canadienne',
+    'Electronic shifting': 'Changement de vitesses électronique', 'Brand: {x}': 'Marque : {x}', 'Colour: {c}': 'Couleur : {c}',
+    'Folds': 'Pliable', 'Front suspension': 'Suspension avant', 'Belt drive or internal gears': 'Courroie ou vitesses internes',
+    'steel': 'acier', 'carbon': 'carbone', 'aluminum': 'aluminium', 'titanium': 'titane',
+    'Black': 'Noir', 'Silver': 'Argent', 'Blue': 'Bleu', 'Red': 'Rouge', 'Green': 'Vert', 'Orange': 'Orange', 'White': 'Blanc', 'Yellow': 'Jaune', 'Grey': 'Gris', 'Charcoal': 'Anthracite', 'Teal': 'Sarcelle', 'Pink': 'Rose', 'Purple': 'Violet', 'Brown': 'Brun',
+    'Find my bike': 'Trouver mon vélo',
+    'Ctrl+Enter also works': 'Ctrl+Entrée fonctionne aussi',
+    'Choosing the right quiz': 'Choix du bon questionnaire',
+    'Filling in your answers': 'Remplissage de vos réponses',
+    'Adding your extra wishes': 'Ajout de vos souhaits supplémentaires',
+    'Thanks. I could not tell which kind of bike this is for, so tell me and I will carry your words and wishes over.':
+      'Merci. Je n’ai pas pu déterminer pour quel type de vélo c’est : dites-le-moi et je reporterai vos mots et vos souhaits.',
+    'Tell me a little about your ride first.': 'Parlez-moi d’abord un peu de votre balade.',
+    'How important is this?': 'Quelle importance cela a-t-il ?',
+    'Nice to have': 'Souhaitable',
+    'Your extra wishes are added to the matching. Where a bike’s record does not list something, we say “not listed” instead of guessing.':
+      'Vos souhaits supplémentaires sont ajoutés à l’évaluation. Quand la fiche d’un vélo n’indique pas quelque chose, nous écrivons « non indiqué » plutôt que de deviner.',
+    'We have no data on these for {name} bikes, so they cannot change the ranking: {list}.':
+      'Nous n’avons pas de données là-dessus pour les vélos de type {name}, ils ne peuvent donc pas changer le classement : {list}.',
+    'Not used (we could not turn these into criteria): ': 'Non utilisé (nous n’avons pas pu en faire des critères) : ',
+    'Show my matches': 'Voir mes vélos',
+    'Continue: I will ask only what is missing': 'Continuer : je ne poserai que les questions manquantes',
+    'Taking you to your matches in {n}…': 'Nous vous menons à vos résultats dans {n}…',
+    'Edit first': 'Modifier d’abord',
+    'Converted {a} to about {b} km.': '{a} converti en environ {b} km.',
     'Try an example:': 'Essayer un exemple :',
     'Overnight trip': 'Sortie d’une nuit',
     'Kid’s first bike': 'Premier vélo d’enfant',

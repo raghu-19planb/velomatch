@@ -40,3 +40,22 @@
   .chip-x{position:absolute; top:8px; right:8px;}
   .chip-ev{flex-basis:100%;}
 }
+
+/* always-act additions: the "reading" steps, extras, countdown, category chooser */
+.describe-reading{list-style:none; margin:0; padding:12px 14px; display:flex; flex-direction:column; gap:6px; font-size:14.5px; color:var(--fog);}
+.describe-reading li::before{content:"○"; display:inline-block; width:1.5em; color:var(--fog);}
+.describe-reading li.done{color:var(--ink);}
+.describe-reading li.done::before{content:"✓"; color:var(--teal);}
+.chip-extra{border-style:dashed !important;}
+.describe-extra-note,.describe-unused{margin:10px 0 0; font-size:13.5px; line-height:1.5; color:var(--fog);}
+.describe-notes{list-style:disc;}
+.describe-choose{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+.describe-hint{font-size:12.5px; color:var(--fog);}
+.auto-bar{position:relative; margin-top:14px; padding:10px 14px 14px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; border:1px solid rgba(26,110,98,0.3); border-radius:10px; background:rgba(26,110,98,0.07); font-size:14.5px;}
+.auto-msg{flex:1 1 auto;}
+.auto-cancel{font:inherit; font-size:13.5px; padding:5px 12px; color:var(--ink); background:none; border:1px solid var(--line); border-radius:999px; cursor:pointer;}
+.auto-cancel:hover{border-color:var(--signal-deep); color:var(--signal-deep);}
+.auto-cancel:focus-visible{outline:3px solid var(--signal); outline-offset:2px;}
+.auto-track{position:absolute; left:0; right:0; bottom:0; height:4px; background:rgba(0,0,0,0.06); border-radius:0 0 10px 10px; overflow:hidden;}
+.auto-track i{display:block; height:100%; width:0; background:var(--teal); transition:width linear;}
+@media (prefers-reduced-motion:reduce){ .auto-track i{transition:none;} }

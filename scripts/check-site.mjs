@@ -39,5 +39,15 @@ for (const f of fs.readdirSync(root).filter(f => f.endsWith('.js'))) {
   catch (e) { problems.push(`${f}: does not parse: ${String(e.stderr || e.message).split('\n').find(l => l.trim()) || ''}`); }
 }
 
+// criteria.js knows every brand in the catalogs
+try {
+  const { createRequire } = await import('node:module');
+  const C = createRequire(import.meta.url)(path.join(root, 'criteria.js'));
+  for (const f of ['kids', 'commute', 'racing', 'mountain', 'bikepacking']) {
+    const d = JSON.parse(fs.readFileSync(path.join(root, 'data', f + '-bikes.json'), 'utf8'));
+    d.bikes.forEach(b => { if (!C.BRANDS.includes(b.brand)) problems.push('criteria.js does not know the brand "' + b.brand + '" (data/' + f + '-bikes.json): add it to BRANDS'); });
+  }
+} catch (e) { problems.push('criteria.js check failed: ' + e.message); }
+
 if (problems.length) { console.error('Site check FAILED:\n  ' + problems.join('\n  ')); process.exit(1); }
 console.log(`Site check passed: ${pages.length} pages, asset addresses current, all scripts parse.`);
