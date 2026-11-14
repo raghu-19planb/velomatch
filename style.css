@@ -1140,7 +1140,8 @@ body.rm-page{
 
 /* language switch (pages with a French version) */
 .lang-switch{display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--fog); margin-left:6px;}
-.lang-switch button{font:inherit; background:none; border:none; padding:2px 3px; color:var(--fog); cursor:pointer; border-radius:3px;}
-.lang-switch button.on{color:var(--ink); font-weight:700; text-decoration:underline; text-underline-offset:4px;}
+.lang-switch button{font:inherit; background:none; border:none; padding:3px 8px; color:var(--fog); cursor:pointer; border-radius:999px;}
+.lang-switch button.on{color:var(--paper); background:var(--ink); font-weight:700;}
+.lang-switch button:focus-visible{outline:3px solid var(--signal); outline-offset:2px;}
 .lang-switch button:hover{color:var(--ink);}
 

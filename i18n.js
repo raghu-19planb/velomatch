@@ -16,7 +16,30 @@
 (function () {
   const KEY = 'sv-lang';
   let lang = 'en';
-  try { lang = localStorage.getItem(KEY) === 'fr' ? 'fr' : 'en'; } catch (e) { /* storage blocked: stay English */ }
+  // The choice is kept in localStorage and, as a fallback for browsers that block it, in a cookie. A ?lang=fr or ?lang=en in
+  // the address sets it too (handy for sharing a link). English is the default for anyone who has not chosen.
+  const readCookie = () => { const m = document.cookie.match(/(?:^|;\s*)sv-lang=(fr|en)/); return m ? m[1] : null; };
+  const store = l => {
+    try { localStorage.setItem(KEY, l); } catch (e) { /* blocked: the cookie below still remembers it */ }
+    try { document.cookie = 'sv-lang=' + l + '; path=/; max-age=31536000; SameSite=Lax'; } catch (e) { /* ignore */ }
+  };
+  const fromUrl = (location.search.match(/[?&]lang=(fr|en)\b/) || [])[1];
+  let saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) { /* blocked */ }
+  if (fromUrl) { lang = fromUrl; store(fromUrl); }
+  else lang = (saved === 'fr' || saved === 'en' ? saved : readCookie()) === 'fr' ? 'fr' : 'en';
+  // another tab changed the language: follow it
+  window.addEventListener('storage', e => { if (e.key === KEY && (e.newValue === 'fr' || e.newValue === 'en') && e.newValue !== lang) location.reload(); });
+  // In French the page must say so before the browser looks at it, and ask not to be offered a "translate this page to
+  // English" prompt (the visitor chose French on purpose). This script is loaded without `defer` for that reason.
+  if (lang === 'fr') {
+    const d = document.documentElement;
+    d.lang = 'fr-CA';
+    d.setAttribute('translate', 'no');
+    const m = document.createElement('meta');
+    m.name = 'google'; m.content = 'notranslate';
+    (document.head || d).appendChild(m);
+  }
   const I18N = window.I18N = { lang, exact: {}, patterns: [], missing: new Set(), keep: [], produced: new Set() };
   const debug = /[?&]i18n-debug/.test(location.search);
   const fr = () => I18N.lang === 'fr';
@@ -100,7 +123,11 @@
   }
   I18N.walk = walk;
 
-  function setLang(l) { try { localStorage.setItem(KEY, l); } catch (e) { /* ignore */ } location.reload(); }
+  function setLang(l) {
+    store(l);
+    // a ?lang= in the address would override the choice on reload: drop it
+    if (/[?&]lang=/.test(location.search)) { const u = new URL(location.href); u.searchParams.delete('lang'); location.replace(u.toString()); } else location.reload();
+  }
   I18N.setLang = setLang;
 
   function addSwitch() {
