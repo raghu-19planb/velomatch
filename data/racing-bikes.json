@@ -61,9 +61,13 @@
       "image": "images/racing/specialized-tarmac-sl8-comp.png",
       "_verified": "Confirmed two real Comp builds exist: Shimano 105 Di2 and SRAM Rival AXS (updated here since 105 Di2 was already used elsewhere in this catalog's Comp-tier entries) — both electronic, FACT 10r carbon, 32mm tire clearance. Confirmed via specialized.com search results on 2026-09-09; specialized.com itself blocks automated fetches and no photo could be sourced this pass. Price not re-confirmed (not shown in available sources) — catalog's $6,500 kept.",
       "check": {
-        "checkedOn": "2026-11-13",
-        "status": "no-link",
-        "canada": "unconfirmed"
+        "checkedOn": "2026-11-14",
+        "http": 200,
+        "finalUrl": "https://www.specialized.com/ca/en/shop/bikes/road-bikes/performance-road-bikes/tarmac",
+        "title": "Tarmac - Specialized",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
       },
       "recall": {
         "match": "family",
@@ -71,8 +75,9 @@
         "title": "Specialized Tarmac SL7 Bicycles recalled due to fall hazard",
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/specialized-tarmac-sl7-bicycles-recalled-due-fall-hazard",
         "updated": "2021-10-13",
-        "checkedOn": "2026-11-13"
-      }
+        "checkedOn": "2026-11-14"
+      },
+      "retailerUrl": "https://www.specialized.com/ca/en/shop/bikes/road-bikes/performance-road-bikes/tarmac"
     },
     {
       "frameStyle": "step-over",
@@ -107,17 +112,22 @@
       "image": "images/racing/specialized-tarmac-sl7-sport.png",
       "_verified": "price ($3,499.99, close to catalog's $3,200) confirmed via an authorized Specialized retailer (probikesupply.com, 2026 model year) on 2026-09-09 — specialized.com itself blocks automated fetches. Still in current production alongside the newer SL8. Product photo from bicyclewarehouse.com (a different authorized retailer, listing sold out — availability should be checked via the price-check link, not assumed from this photo).",
       "check": {
-        "checkedOn": "2026-11-13",
-        "status": "no-link",
-        "canada": "unconfirmed"
+        "checkedOn": "2026-11-14",
+        "http": 200,
+        "finalUrl": "https://www.specialized.com/ca/en/tarmac-sl7-sport-shimano-105/p/4221579",
+        "title": "Tarmac SL7 Sport - Shimano 105",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
       },
       "recall": {
         "match": "exact",
         "title": "Specialized Tarmac SL7 Bicycles recalled due to fall hazard",
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/specialized-tarmac-sl7-bicycles-recalled-due-fall-hazard",
         "updated": "2021-10-13",
-        "checkedOn": "2026-11-13"
-      }
+        "checkedOn": "2026-11-14"
+      },
+      "retailerUrl": "https://www.specialized.com/ca/en/tarmac-sl7-sport-shimano-105/p/4221579"
     },
     {
       "frameStyle": "step-over",
@@ -152,7 +162,7 @@
       "image": "images/racing/specialized-allez-sprint-comp.png",
       "_verified": "price ($3,000, close to catalog's $2,800), weight (8.68kg, matches catalog closely), and frame (E5 Premium Aluminum with D'Aluisio Smartweld Sprint tech, FACT carbon fork) confirmed via specialized.com search results and a retailer photo (via specialized.com's own CDN) on 2026-09-09. Groupset (Shimano 105 12-speed) matched.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -190,7 +200,7 @@
       "image": "images/racing/specialized-aethos-comp.jpg",
       "_verified": "FLAG: Specialized launched a redesigned 'Aethos 2' lineup in October 2025 with new tier names (e.g. 'Pro' at $8,499) — the exact 'Aethos Comp' naming/trim from this entry may be being phased out or renamed. specialized.com blocks automated fetches so this couldn't be directly confirmed; price/specs kept as prior estimates. Worth rechecking with a direct link if 'Aethos Comp' stops appearing on specialized.com. Product photo is of a 2022 Aethos Comp from excelsports.com (listed sold out there) — visually representative, but check the price-link for real current stock/trim.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -230,7 +240,7 @@
       "image": "images/racing/trek-madone-sl6.png",
       "_verified": "current version is Gen 8, with a 500 Series OCLV carbon frame and Shimano 105 R7100 Di2 groupset (matches catalog) confirmed via an authorized Trek retailer (trekbikesofmountpleasant.com) on 2026-09-09 — trekbikes.com itself returns JS-shell-only content, and this specific retailer listing was itself out of stock so price wasn't re-confirmed. Product photo from the same retailer.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       },
@@ -240,7 +250,7 @@
         "title": "Trek recalls Madone bicycles",
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/trek-recalls-madone-bicycles",
         "updated": "2014-01-08",
-        "checkedOn": "2026-11-13"
+        "checkedOn": "2026-11-14"
       }
     },
     {
@@ -278,9 +288,13 @@
       "image": "images/racing/trek-emonda-slr6.jpg",
       "_verified": "groupset corrected from 'SRAM Force AXS' to 'Shimano Ultegra Di2' (2x11, sub-700g frame) confirmed via an authorized Trek retailer (trekbikesofmountpleasant.com) on 2026-09-09 — trekbikes.com itself returns JS-shell-only content; a separate 'SLR 6 AXS' SRAM variant also exists if that groupset was intended. Price not re-confirmed (retailer listing out of stock); historical resale prices cluster $6,500-6,800, consistent with catalog. Product photo from the same retailer.",
       "check": {
-        "checkedOn": "2026-11-13",
-        "status": "no-link",
-        "canada": "unconfirmed"
+        "checkedOn": "2026-11-14",
+        "http": 200,
+        "finalUrl": "https://www.trekbikes.com/ca/en_CA/bikes/road-bikes/performance-road-bikes/%C3%A9monda/%C3%A9monda-slr/%C3%A9monda-slr-6/a/37314/",
+        "title": "&Eacute;monda SLR 6 - Trek Bikes (CA)",
+        "nameMatch": 75,
+        "canada": "confirmed",
+        "status": "ok"
       },
       "recall": {
         "match": "family",
@@ -288,8 +302,9 @@
         "title": "Trek Carbon Handlebars/Stems and Bicycles Recalled due to a Fall Hazard",
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/trek-carbon-handlebarsstems-and-bicycles-recalled-due-fall-hazard",
         "updated": "2022-08-25",
-        "checkedOn": "2026-11-13"
-      }
+        "checkedOn": "2026-11-14"
+      },
+      "retailerUrl": "https://www.trekbikes.com/ca/en_CA/bikes/road-bikes/performance-road-bikes/%C3%A9monda/%C3%A9monda-slr/%C3%A9monda-slr-6/p/37314/"
     },
     {
       "frameStyle": "step-over",
@@ -326,9 +341,13 @@
       "image": "images/racing/trek-emonda-alr5.jpg",
       "_verified": "groupset updated to 'Shimano 105 2x12' (current spec, was generic '105') and frame (300 Series Alpha Aluminum, full-carbon fork) confirmed via search results referencing trekbikes.com on 2026-09-09; price ($2,299.99, close to catalog's $1,900) and in-stock status confirmed via an authorized Trek retailer (rockonwheels.net) on 2026-09-09. Product photo from the same retailer.",
       "check": {
-        "checkedOn": "2026-11-13",
-        "status": "no-link",
-        "canada": "unconfirmed"
+        "checkedOn": "2026-11-14",
+        "http": 200,
+        "finalUrl": "https://www.trekbikes.com/ca/en_CA/bikes/road-bikes/performance-road-bikes/%C3%A9monda/%C3%A9monda-alr/%C3%A9monda-alr-5/a/41426/",
+        "title": "&Eacute;monda ALR 5 - Trek Bikes (CA)",
+        "nameMatch": 75,
+        "canada": "confirmed",
+        "status": "ok"
       },
       "recall": {
         "match": "family",
@@ -336,8 +355,9 @@
         "title": "Trek Carbon Handlebars/Stems and Bicycles Recalled due to a Fall Hazard",
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/trek-carbon-handlebarsstems-and-bicycles-recalled-due-fall-hazard",
         "updated": "2022-08-25",
-        "checkedOn": "2026-11-13"
-      }
+        "checkedOn": "2026-11-14"
+      },
+      "retailerUrl": "https://www.trekbikes.com/ca/en_CA/bikes/road-bikes/performance-road-bikes/%C3%A9monda/%C3%A9monda-alr/%C3%A9monda-alr-5/p/41426/"
     },
     {
       "frameStyle": "step-over",
@@ -372,7 +392,7 @@
       "image": "images/racing/cannondale-supersix-evo-himod.png",
       "_verified": "price updated to $8,500 (Hi-MOD 2 tier, a real third-party listing; was stale $6,000) and groupset corrected from 'SRAM Force AXS' to 'SRAM Red AXS' to match that price tier. Frame (810g Hi-MOD carbon, size-specific layups) confirmed via search results referencing cannondale.com on 2026-09-09; a lower-tier Hi-MOD 1 build also exists if a cheaper SRAM Force/Shimano Ultegra build was intended instead. Product photo (of the Hi-MOD 1, Dura-Ace Di2 build at $12,499 — visually representative of the Hi-MOD frame regardless of build) from an authorized retailer (bikeattack.com).",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -410,10 +430,15 @@
       "image": "images/racing/cannondale-caad13.jpg",
       "_verified": "confirmed still in current production at cannondale.com on 2026-09-09 (CAAD13 Disc 105, Disc Ultegra, and Disc Tiagra builds all listed). Price ($2,325, close to catalog's $2,200) confirmed via an authorized retailer (incycle.com, listed sold out — check the price-check link for live stock) on 2026-09-09. Frame (SmartForm C1 alloy, SAVE rear triangle, 30mm tire clearance) confirmed. Product photo from the same retailer.",
       "check": {
-        "checkedOn": "2026-11-13",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "checkedOn": "2026-11-14",
+        "http": 200,
+        "finalUrl": "https://www.cannondale.com/en-ca/bikes/road/race/caad13",
+        "title": "CAAD13 | Road Race Bikes | Cannondale",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.cannondale.com/en-ca/bikes/road/race/caad13"
     },
     {
       "frameStyle": "step-over",
@@ -448,7 +473,7 @@
       "image": "images/racing/cervelo-s5.jpg",
       "_verified": "2026 redesign: price range $9,950-$14,250 across 5 builds (Dura-Ace, Ultegra, Red, Red XPLR, Force) confirms catalog's $11,000 is a reasonable Dura-Ace-tier estimate; an authorized Canadian dealer (goldsports.ca) lists the Ultegra Di2 build at C$12,000 in stock. Weight (7.98kg, matches catalog's 8.0kg closely) confirmed via cycling press coverage referencing cervelo.com on 2026-09-09. Product photo from the same dealer — cervelo.com itself wasn't directly fetchable.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -486,7 +511,7 @@
       "image": "images/racing/cervelo-r5.jpg",
       "_verified": "New 5th-gen R5 (launched 2025 Tour de France): 5 complete builds priced €10,000-€13,500, confirming catalog's $10,500 is in the right range. Weight (frame 657g; complete builds as low as 5.97kg, catalog's 6.9kg is a reasonable mid-build estimate) confirmed via cycling press coverage referencing cervelo.com on 2026-09-09. Product photo is of an R5 frameset (Canadian dealer, mudsweatandgears.ca) rather than a specific complete build — visually representative of the frame regardless of trim.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       },
@@ -495,7 +520,7 @@
         "title": "Cervélo R5 and Caledonia-5 bicycles and ST31 LT replacement stems recalled due to fall hazard",
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/cervelo-r5-and-caledonia-5-bicycles-and-st31-lt-replacement-stems-recalled-due-fall",
         "updated": "2022-09-15",
-        "checkedOn": "2026-11-13"
+        "checkedOn": "2026-11-14"
       }
     },
     {
@@ -531,17 +556,22 @@
       "image": "images/racing/cervelo-caledonia.jpg",
       "_verified": "New 2026 Caledonia: 4 real builds are 105 mechanical ($3,300), 105 Di2 ($4,500), Rival AXS ($4,850), and Force AXS ($6,500) — 'Shimano Ultegra Di2' isn't an offered tier, so groupset corrected to 'SRAM Force AXS' to match catalog's existing $6,500 price point exactly. Frame (~988g painted, up to 36mm tire clearance) and price range ($3,299.99-$12,749.99 across trims) confirmed via an authorized retailer (mikesbikes.com) on 2026-09-09. Product photo from the same retailer.",
       "check": {
-        "checkedOn": "2026-11-13",
-        "status": "no-link",
-        "canada": "unconfirmed"
+        "checkedOn": "2026-11-14",
+        "http": 200,
+        "finalUrl": "https://www.cervelo.com/en-ca/collections/caledonia",
+        "title": "Caledonia &ndash; Cervélo",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
       },
       "recall": {
         "match": "exact",
         "title": "Cervélo R5 and Caledonia-5 bicycles and ST31 LT replacement stems recalled due to fall hazard",
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/cervelo-r5-and-caledonia-5-bicycles-and-st31-lt-replacement-stems-recalled-due-fall",
         "updated": "2022-09-15",
-        "checkedOn": "2026-11-13"
-      }
+        "checkedOn": "2026-11-14"
+      },
+      "retailerUrl": "https://www.cervelo.com/collections/caledonia"
     },
     {
       "frameStyle": "step-over",
@@ -577,7 +607,7 @@
       "image": "images/racing/giant-tcr-advanced-pro.jpg",
       "_verified": "Current top-of-line build is 'TCR Advanced Pro 0 AXS': price ($7,000, was stale $5,500) and groupset corrected from 'Shimano Ultegra Di2' to 'SRAM Force AXS' (with integrated power meter) confirmed live at giant-bicycles.com on 2026-09-09. Frame (Advanced-grade composite, 33mm tire clearance) matched. A Shimano Di2 build also exists in the range if that groupset was specifically wanted. Product photo from the same page.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "http": 200,
         "finalUrl": "https://www.giant-bicycles.com/ca/bikes-tcr-advanced-pro-2027",
         "title": "TCR Advanced Pro (2027) | Giant Bicycles Canada",
@@ -621,7 +651,7 @@
       "image": "images/racing/giant-propel-advanced.jpg",
       "_verified": "Giant fully redesigned the Propel for 2026 (4th-gen, as light as 6.56kg top-spec). Range spans the flagship Advanced SL 0 AXS ($13,500) down to the Advanced 2 (£2,599/~$3,300); catalog's mid-pack $4,500 Shimano 105 Di2 build is plausible but not exactly pinned to a specific current SKU — confirmed via cycling press coverage referencing giant-bicycles.com on 2026-09-09. Product photo is of the 'Propel Advanced 1' (2027 model, $3,499.99) from an authorized retailer (bicyclewarehouse.com) — visually representative of the redesigned frame, not this specific $4,500 trim.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "http": 200,
         "finalUrl": "https://www.giant-bicycles.com/ca/bikes-propel-advanced-2027",
         "title": "Propel Advanced (2027) | Giant Bicycles Canada",
@@ -665,7 +695,7 @@
       "image": "images/racing/giant-contend-ar1.png",
       "_verified": "price ($2,100, was substantially understated at $1,400; a retailer listing now shows $1,999.99-$2,200) and groupset corrected from 'Shimano Tiagra' to 'Shimano 105' confirmed via an authorized retailer (machineryrowbicycles.com) on 2026-09-09. Frame (aluminum with carbon fork, 38mm tire clearance) and weight (~9.2kg) matched. Product photo from the same retailer.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "http": 200,
         "finalUrl": "https://www.giant-bicycles.com/ca/bikes-contend-ar-2027",
         "title": "Contend AR (2027) | Giant Bicycles Canada",
@@ -709,10 +739,15 @@
       "image": "images/racing/canyon-aeroad-cfr.jpg",
       "_verified": "New flagship Aeroad CFR launched for the 2026 Tour de France (developed with Mathieu van der Poel): price (€9,999/~$10,500, updated from catalog's $9,000) and weight (7.20kg, was 7.7) confirmed via cycling press coverage referencing canyon.com on 2026-09-09. A Di2 build also exists at $10,499 (confirmed live at canyon.com) if Shimano was preferred over this entry's SRAM Red AXS. Product photo is of the Di2 build from canyon.com — visually representative of the CFR frame regardless of groupset.",
       "check": {
-        "checkedOn": "2026-11-13",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "checkedOn": "2026-11-14",
+        "http": 200,
+        "finalUrl": "https://www.canyon.com/en-ca/road-bikes/aero-bikes/aeroad/",
+        "title": "Aeroad | CANYON CA",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.canyon.com/en-ca/road-bikes/aero-bikes/aeroad/"
     },
     {
       "frameStyle": "step-over",
@@ -748,7 +783,7 @@
       "image": "images/racing/canyon-ultimate-cf-slx.jpg",
       "_verified": "price ($5,599, was overstated at $6,000) and weight (15.66lb/7.1kg, close to catalog's 7.4) confirmed live at canyon.com on 2026-09-09 for the 'Ultimate CF SLX 8 Di2' build, which matches catalog's groupset exactly. Includes a 4iiii power meter. Product photo from the same page.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -787,7 +822,7 @@
       "image": "images/racing/scott-foil-rc.png",
       "_verified": "groupset corrected from 'Shimano Ultegra Di2' to 'Shimano 105 Di2 24-speed' (the 'Foil RC 20' build) and weight (8.1kg, close to catalog's 7.8) confirmed live at scott-sports.com on 2026-09-09. Frame (Foil RC Disc HMX carbon, 30% fewer carbon pieces than predecessor) matched. Price not listed on the page — catalog's $7,000 kept as a reasonable estimate for this tier. Product photo from the same page.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -825,7 +860,7 @@
       "image": "images/racing/bmc-teammachine-slr01.png",
       "_verified": "5th-gen SLR01 (2025 redesign). The SRAM Force AXS build (matching this entry's groupset) is the 'FIVE' tier at $8,399 (was catalog's stale $6,500), confirmed via an authorized US retailer (contenderbicycles.com) on 2026-09-09; the flagship Dura-Ace Di2 'ONE' build runs up to €12,999/$13,649 if a top-tier estimate is wanted instead. Weight (6.8kg, at the UCI limit) confirmed via cycling press coverage referencing bmc-switzerland.com on 2026-09-09. Character reclassified from 'all_rounder' to 'climbing' — BMC now markets this specifically as their climbing-focused aero bike. Product photo from the same retailer.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -867,7 +902,7 @@
       "image": "images/racing/pinarello-dogma-f.jpg",
       "_verified": "price updated to $15,750 (2026 Dogma F Disc, Dura-Ace Di2 with power meter — was understated at catalog's $13,000; an authorized retailer, strictlybicycles.com, shows a similar Dura-Ace Di2 build at $15,749.99 with low stock, confirming this is a real current price, not just an MSRP). Frame (Torayca T1100 UD Dream Carbon, 790g size 53) confirmed via cycling press coverage referencing pinarello.com on 2026-09-09. Product photo from the same retailer.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -907,7 +942,7 @@
       "image": "images/racing/colnago-v4rs.jpg",
       "_verified": "price confirmed in the $11,999-$15,500 range across Dura-Ace Di2 builds (catalog's $15,000 for a Campagnolo Super Record Wireless build sits at the top of that range, consistent) via an authorized retailer (racycles.com) on 2026-09-09. Frame (798g size 485 unpainted) and electronic-only/disc-only design confirmed via cycling press coverage referencing colnago.com. This is Tadej Pogačar's race bike (UAE Team Emirates-XRG). Product photo from the same retailer.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -945,7 +980,7 @@
       "image": "images/racing/cervelo-p5.png",
       "_verified": "price updated to €13,499 (P5 Red AXS 1 build, matching catalog's groupset — was understated at $8,500; a lower Force AXS build runs ~$11,000). New P5 has a lowered basebar, 34mm tire clearance, and internal frame storage, confirmed via cycling/retailer coverage referencing cervelo.com on 2026-09-09. Note: a separate, more accessible 'P-Series' frameset line also exists from ~$2,600-3,000 if a cheaper tri bike was intended instead of the flagship P5. Product photo (P5 Red Hot, SRAM Force build) from an authorized Canadian dealer (steedcycles.com).",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -984,7 +1019,7 @@
       "image": "images/racing/trek-speed-concept-slr.jpg",
       "_verified": "price updated to ~€11,499 (SLR 9 build, SRAM Red AXS — matches catalog's groupset; was understated at $9,500). A cheaper SLR 7 build (SRAM Force or Shimano Ultegra Di2) exists from $10,199 if that's a better fit. Tri-specific forward IsoSpeed pivot confirmed via cycling press coverage referencing trekbikes.com on 2026-09-09. Product photo (of the SLR 7 build) from an authorized Trek retailer (westerncycle.ca), listed out of stock there — check the price-check link for live availability.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       },
@@ -993,7 +1028,7 @@
         "title": "Trek Carbon Handlebars/Stems and Bicycles Recalled due to a Fall Hazard",
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/trek-carbon-handlebarsstems-and-bicycles-recalled-due-fall-hazard",
         "updated": "2022-08-25",
-        "checkedOn": "2026-11-13"
+        "checkedOn": "2026-11-14"
       }
     },
     {
@@ -1029,7 +1064,7 @@
       "image": "images/racing/specialized-shiv.jpg",
       "_verified": "Frame (S-Works FACT 11r carbon, electronic-only internal routing) confirmed via search results referencing specialized.com on 2026-09-09. Price search results were inconsistent/ambiguous (a 'TT Module' upgrade kit listing showed ~$6,150, likely not a complete-bike price; a certified-pre-owned S-Works Shiv TT sold for $8,549.99 against an original $12,500 MSRP) — catalog's $8,000 kept as a reasonable current-market estimate. Product photo is of a certified pre-owned S-Works Shiv TT (theproscloset.com) — visually representative of the current frame.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -1068,7 +1103,7 @@
       "image": "images/racing/canyon-speedmax-cf.jpg",
       "_verified": "price confirmed at €5,999 (Speedmax CF 8 Di2, matches catalog's groupset almost exactly — was already close at $6,000); a cheaper CF 7 Di2 build is $5,999 USD directly at canyon.com, confirmed on 2026-09-09. Range spans $4,899 up to $13,100+ for the new Gen 6 CFR flagship. Product photo from canyon.com.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       },
@@ -1077,7 +1112,7 @@
         "title": "Canyon Speedmax Bikes recalled due to injury hazard",
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/canyon-speedmax-bikes-recalled-due-injury-hazard",
         "updated": "2025-02-13",
-        "checkedOn": "2026-11-13"
+        "checkedOn": "2026-11-14"
       }
     },
     {
@@ -1112,7 +1147,7 @@
       "retailerUrl": "https://quintanarootri.com/products/v-pr",
       "_verified": "Frame sizes (48/50/52/54/56/58.5cm) and carbon frame confirmed via quintanarootri.com's V-PR product and build pages on 2026-09-08. Available groupsets confirmed as Shimano Ultegra Di2 or SRAM Force eTap AXS, both paired with Shimano Dura-Ace hydraulic disc brakes, per third-party spec listings (99spokes.com) cross-referencing the manufacturer's build options — the V-PR is sold made-to-order, so QR's own site doesn't list a single fixed groupset/price. Price ($7,585 USD) is QR's advertised base-build list price, not sale-discounted; actual price varies by component build chosen. Weight is not published (varies by build) and is omitted rather than estimated. Rider height range and colors are estimated/typical for this size range, not stated on the manufacturer site.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "http": 429,
         "finalUrl": "https://quintanarootri.com/products/v-pr",
         "status": "blocked",
@@ -1161,10 +1196,15 @@
       "image": "images/racing/trek-domane-sl6.jpg",
       "_verified": "Current model is Gen 4: price ($4,799.97, was stale $4,200) and weight (8.90kg, close to catalog's 8.6) confirmed via an authorized Trek retailer (bikemart.com) on 2026-09-09 — trekbikes.com itself returns JS-shell-only content. Frame (500 Series OCLV Carbon, IsoSpeed, internal storage) and groupset (Shimano 105 Di2 R7100) matched exactly. Product photo from the same retailer.",
       "check": {
-        "checkedOn": "2026-11-13",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "checkedOn": "2026-11-14",
+        "http": 200,
+        "finalUrl": "https://www.trekbikes.com/ca/en_CA/bikes/road-bikes/performance-road-bikes/domane/domane-sl/domane-sl-6-gen-4/a/36746/",
+        "title": "Domane SL 6 Gen 4 - Trek Bikes (CA)",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.trekbikes.com/ca/en_CA/bikes/road-bikes/performance-road-bikes/domane/domane-sl/domane-sl-6-gen-4/p/36746/"
     },
     {
       "frameStyle": "step-over",
@@ -1199,10 +1239,15 @@
       "image": "images/racing/specialized-roubaix-comp.png",
       "_verified": "Current model is 'Roubaix SL8 Comp': groupset corrected from 'Shimano Ultegra Di2' to 'Shimano 105 Di2' (that's the actual Comp-tier build name/spec) and price updated to ~€4,800/$4,800 (was overstated at $5,500; a Canadian retailer, ridleys.com, lists it out of stock without a price) confirmed via search results referencing specialized.com on 2026-09-09; a cheaper 'Sport' tier (mechanical 105) exists at $3,499.99. Frame (Future Shock 3.0 + AfterShock, 38-40mm tire clearance) matched. Product photo from an authorized retailer (via specialized.com's own CDN).",
       "check": {
-        "checkedOn": "2026-11-13",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "checkedOn": "2026-11-14",
+        "http": 200,
+        "finalUrl": "https://www.specialized.com/ca/en/shop/bikes/road-bikes/performance-road-bikes/roubaix",
+        "title": "Roubaix - Specialized",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.specialized.com/ca/en/shop/bikes/road-bikes/performance-road-bikes/roubaix"
     },
     {
       "frameStyle": "step-over",
@@ -1237,10 +1282,17 @@
       "image": "images/racing/cannondale-synapse-carbon2.png",
       "_verified": "frame (Proportional Response carbon, sub-1150g, up to 42mm tire clearance, StashPort internal storage) confirmed via search results referencing cannondale.com on 2026-09-09. Note: an authorized Canadian dealer (bici.cc) shows 'Synapse Carbon 2' at $7,224.15-$8,499 CAD, well above catalog's $3,400 — possibly a higher/different-region trim; catalog's $3,400 kept as a mechanical-105 US-market estimate rather than replacing with the ambiguous CAD figure. Worth a follow-up with a direct cannondale.com link. Product photo from the same Canadian dealer.",
       "check": {
-        "checkedOn": "2026-11-13",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "checkedOn": "2026-11-14",
+        "http": 200,
+        "finalUrl": "https://www.cannondale.com/en-ca/bikes/road/endurance/synapse-carbon/synapse-carbon-2",
+        "title": "Synapse Carbon 2 | Endurance Bikes | Cannondale",
+        "nameMatch": 100,
+        "price": 8499,
+        "currency": "CAD",
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.cannondale.com/en-ca/bikes/road/endurance/synapse-carbon/synapse-carbon-2"
     },
     {
       "frameStyle": "step-over",
@@ -1276,7 +1328,7 @@
       "image": "images/racing/giant-defy-advanced2.jpg",
       "_verified": "price updated to ~$2,300 (£1,839, was overstated at catalog's $3,000) confirmed via giant-bicycles.com (UK site) on 2026-09-09; note the Canadian site shows a higher $3,599 CAD, likely a different/higher trim or regional pricing — worth a closer look if precision matters. Frame (Advanced-grade composite with D-Fuse comfort components, 38mm tire clearance) matched. Product photo from giant-bicycles.com (Canada site).",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "http": 200,
         "finalUrl": "https://www.giant-bicycles.com/ca/bikes-defy-advanced-2027",
         "title": "Defy Advanced (2027) | Giant Bicycles Canada",
@@ -1318,7 +1370,7 @@
       "image": "",
       "_verified": "FLAG: could not confirm this model is still current — genesisbikes.co.uk search results only surfaced 2018-2020 Datum listings plus a differently-named 'Genesis CDA 20', suggesting a possible rename or discontinuation. Not conclusively verified either way; price/specs kept as prior estimates. Worth a follow-up with a direct genesisbikes.co.uk link.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -1355,7 +1407,7 @@
       "image": "images/racing/kinesis-gtd.jpg",
       "_verified": "FLAG: the GTD frameset (v1, titanium) shows as out-of-stock/sold-out at kinesisbikes.co.uk as of 2026-09-09; a 'GTD v2 Titanium' frameset is listed as the current version instead. The real GTD is sold as a titanium frameset, not the aluminum complete-bike spec this entry describes — worth double-checking this entry's frameMaterial and groupset directly with kinesisbikes.co.uk. Price/specs not independently re-confirmed. Product photo of the titanium frameset from kinesisbikes.co.uk.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -1392,7 +1444,7 @@
       "image": "images/racing/mason-definition3.jpg",
       "_verified": "IMPORTANT: renamed from 'Definition 2' to 'Definition3' (Mason's current naming; a sportier 'Definition Integrale' variant also exists) and frame material corrected from 'titanium' to aluminum — the real Definition line is Italian-made Dedacciai aluminium, not titanium (Mason sells titanium frames under different model names). Price range is £1,450-£4,300 across builds (105 mechanical through top Di2/AXS); catalog's $5,500 adjusted down to $4,300 to match a top-tier Di2 build. Colors not re-confirmed — 'Raw Titanium' no longer makes sense given the material correction, worth revisiting. Confirmed via masoncycles.cc on 2026-09-09. Product photo from the same page.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -1430,7 +1482,7 @@
       "image": "images/racing/thorn-mercury40.jpg",
       "_verified": "IMPORTANT: renamed from 'Mercury' to 'Mercury 40' — Thorn relaunched this model for their 40th anniversary, replacing the old Mercury Mk3, Club Tour Mk5, and their Audax drop-bar bike as one combined model. This particular build (with a Rohloff hub, similar to the Tumbleweed Prospector correction made earlier) runs £3,275+ — groupset corrected from generic 'Shimano 105' to 'Rohloff Speedhub 14-speed' to reflect this. Frame (858 seamless double-butted CroMo steel, 700c/650b compatible, belt-drive ready) confirmed live at sjscycles.co.uk on 2026-09-09. A derailleur-groupset build may also exist as a cheaper alternative if Rohloff wasn't intended. Product photo from the same page.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
       }
@@ -1462,7 +1514,7 @@
       "retailerUrl": "https://www.giant-bicycles.com/ca/bikes-tcr-advanced-pro-2027",
       "_verified": "Confirmed live at giant-bicycles.com on 2026-09-20 (Raghu-supplied site) — Advanced-grade composite frame, Shimano 105 Di2 HRD electronic groupset, Giant SLR 1 40 Carbon disc wheels, and price confirmed. IMPORTANT: Giant sizes by letter (XS/S/M/M-L/L/XL), not cm — this catalog's known-frame-size question asks for a cm number the letter sizing doesn't map to, so 'sizes' is left empty and this entry scores against the height fallback only, same caveat as the Decathlon gravel entries added to the bikepacking catalog the same day. Weight is a typical-for-class estimate, not published on the page.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "http": 200,
         "finalUrl": "https://www.giant-bicycles.com/ca/bikes-tcr-advanced-pro-2027",
         "title": "TCR Advanced Pro (2027) | Giant Bicycles Canada",
@@ -1498,7 +1550,7 @@
       "retailerUrl": "https://www.giant-bicycles.com/ca/bikes-defy-advanced-2027",
       "_verified": "Confirmed live at giant-bicycles.com on 2026-09-20. Advanced-grade composite (carbon) frame, Shimano Tiagra mechanical groupset, and price confirmed — pitched as a 'lightweight endurance road machine' for smoothing rough roads, hence character:endurance (Giant's dedicated comfort/gran-fondo line, same role Defy plays for road racing as audax bikes play for ultra-distance). Same letter-sizing caveat as the TCR entry above. Weight and exact fender/rack compatibility weren't stated on the page — no fender/rack mounts assumed given this is a pure race-endurance frame, not a commuter.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "http": 200,
         "finalUrl": "https://www.giant-bicycles.com/ca/bikes-defy-advanced-2027",
         "title": "Defy Advanced (2027) | Giant Bicycles Canada",
@@ -1534,7 +1586,7 @@
       "retailerUrl": "https://www.giant-bicycles.com/ca/bikes-contend-ar",
       "_verified": "Confirmed live at giant-bicycles.com on 2026-09-20. Shimano CUES U6030 mechanical groupset, alloy S-R2 disc wheelset, and price confirmed. Frame material wasn't explicitly stated on the page — catalogued as aluminum based on Giant's known lineup structure (Contend/Contend AR is Giant's budget aluminum all-road line, distinct from the composite Defy/TCR/Propel above), not directly confirmed; worth a follow-up if precision matters. Same letter-sizing caveat as the two entries above. A genuinely budget-tier road racing/gran-fondo entry, filling a gap under the catalog's existing $2,800+ price floor.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "http": 200,
         "finalUrl": "https://www.giant-bicycles.com/ca/bikes-contend-ar",
         "title": "Contend AR (2026) | Giant Bicycles Canada",
@@ -1578,7 +1630,7 @@
       "retailerUrl": "https://www.specialized.com/ca/en/tarmac-sl9-comp-shimano-105-di2/p/4293528?color=5470173-4293528",
       "_verified": "Verified via Firecrawl scrape of specialized.com/ca on 2026-11-12: price, FACT 10r carbon frame and FACT 12r carbon fork, Shimano 105 Di2 12-speed electronic shifting with hydraulic discs, 700x30 tires, sizes 44-61cm, weight 8.21kg, color Gloss Dolomite Metallic, intended use road racing. This is the newer SL9 generation of the Tarmac line already represented here by the SL8 and SL7. The page gives no wheel depth or height range: wheelDepth ('shallow') and character ('all_rounder') follow the other Tarmac entries, and minH/maxH is an estimate for 44-61cm frames.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "http": 200,
         "finalUrl": "https://www.specialized.com/ca/en/tarmac-sl9-comp-shimano-105-di2/p/4293528?color=5470173-4293528",
         "title": "Tarmac SL9 Comp - Shimano 105 Di2",
@@ -1592,7 +1644,7 @@
         "title": "Specialized Tarmac SL7 Bicycles recalled due to fall hazard",
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/specialized-tarmac-sl7-bicycles-recalled-due-fall-hazard",
         "updated": "2021-10-13",
-        "checkedOn": "2026-11-13"
+        "checkedOn": "2026-11-14"
       }
     },
     {
@@ -1630,7 +1682,7 @@
       "retailerUrl": "https://www.specialized.com/ca/en/allez-sport-shimano-tiagra/p/4221797?color=5368181-4221797",
       "_verified": "Verified via Firecrawl scrape of specialized.com/ca on 2026-11-12: price, E5 Premium aluminum frame with a full-carbon fork, Shimano Tiagra 10-speed with disc brakes, 700x30 tires (35mm clearance, 32mm with fenders), sizes 44-61cm, weight 9.04kg, color Gloss Tarmac Black, endurance-style geometry, pitched for weekend rides, group rides and fast commutes. This is the catalog's budget entry for road riding — a real entry point below the carbon bikes. wheelDepth and minH/maxH are estimates (not on the page).",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "http": 200,
         "finalUrl": "https://www.specialized.com/ca/en/allez-sport-shimano-tiagra/p/4221797?color=5368181-4221797",
         "title": "Allez Sport - Shimano Tiagra",
@@ -1673,7 +1725,7 @@
       "retailerUrl": "https://www.specialized.com/ca/en/roubaix-sl8-sport-shimano-105/p/4263269?color=5476660-4263269",
       "_verified": "Verified via Firecrawl scrape of specialized.com/ca on 2026-11-12: price, FACT 10R carbon frame with Future Shock 3.1 fork, AfterShock and Pavé seatpost, Shimano 105 12-speed mechanical with BR-R7170 hydraulic discs, 700x32 tires (38-40mm clearance), sizes 49-61cm, weight 8.97kg, color Gloss Rose Shimmer, endurance road. Specialized's page also lists a $3,699.99 listing for an older-generation Sport build; this entry uses the $4,299.99 current-generation one. Catalogued as 'audax'/'endurance' like the existing Roubaix Comp. wheelDepth and minH/maxH are estimates.",
       "check": {
-        "checkedOn": "2026-11-13",
+        "checkedOn": "2026-11-14",
         "http": 200,
         "finalUrl": "https://www.specialized.com/ca/en/roubaix-sl8-sport-shimano-105/p/4263269?color=5476660-4263269",
         "title": "Roubaix SL8 Sport - Shimano 105",

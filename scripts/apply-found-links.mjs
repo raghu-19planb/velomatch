@@ -19,6 +19,28 @@ const found = [
   ['racing', 'Giant Propel Advanced', 'https://www.giant-bicycles.com/ca/bikes-propel-advanced-2027'],
   ['racing', 'Giant Contend AR 1', 'https://www.giant-bicycles.com/ca/bikes-contend-ar-2027'],
   ['racing', 'Giant Defy Advanced 2', 'https://www.giant-bicycles.com/ca/bikes-defy-advanced-2027'],
+  // Racing, found by searching each brand's own site (Canadian locale pages only; family pages where the brand has no per-trim Canadian page)
+  ['racing', 'Specialized Tarmac SL7 Sport', 'https://www.specialized.com/ca/en/tarmac-sl7-sport-shimano-105/p/4221579'],
+  ['racing', 'Specialized Tarmac SL8 Comp', 'https://www.specialized.com/ca/en/shop/bikes/road-bikes/performance-road-bikes/tarmac'],
+  ['racing', 'Specialized Roubaix Comp', 'https://www.specialized.com/ca/en/shop/bikes/road-bikes/performance-road-bikes/roubaix'],
+  ['racing', 'Trek Emonda SLR 6', 'https://www.trekbikes.com/ca/en_CA/bikes/road-bikes/performance-road-bikes/%C3%A9monda/%C3%A9monda-slr/%C3%A9monda-slr-6/p/37314/'],
+  ['racing', 'Trek Emonda ALR 5', 'https://www.trekbikes.com/ca/en_CA/bikes/road-bikes/performance-road-bikes/%C3%A9monda/%C3%A9monda-alr/%C3%A9monda-alr-5/p/41426/'],
+  ['racing', 'Trek Domane SL 6', 'https://www.trekbikes.com/ca/en_CA/bikes/road-bikes/performance-road-bikes/domane/domane-sl/domane-sl-6-gen-4/p/36746/'],
+  ['racing', 'Cannondale CAAD13', 'https://www.cannondale.com/en-ca/bikes/road/race/caad13'],
+  ['racing', 'Cannondale Synapse Carbon 2', 'https://www.cannondale.com/en-ca/bikes/road/endurance/synapse-carbon/synapse-carbon-2'],
+  ['racing', 'Cervélo Caledonia', 'https://www.cervelo.com/collections/caledonia'],
+  ['racing', 'Canyon Aeroad CFR', 'https://www.canyon.com/en-ca/road-bikes/aero-bikes/aeroad/'],
+  // Bikepacking + commute, from the same kind of brand-site / Canadian-retailer search (family pages where no per-trim page exists)
+  ['bikepacking', 'Specialized Diverge Comp', 'https://www.specialized.com/ca/en/shop/bikes/gravel-bikes/diverge'],
+  ['bikepacking', 'Specialized Diverge Expert Carbon', 'https://www.specialized.com/ca/en/shop/bikes/gravel-bikes/diverge'],
+  ['bikepacking', 'Trek Checkpoint SL 5', 'https://www.trekbikes.com/ca/en_CA/bikes/adventure-touring-bikes/checkpoint/checkpoint-sl/checkpoint-sl-5-gen-2/p/35169/'],
+  ['bikepacking', 'Otso Waheela C', 'https://otsocycles.com/collections/waheela-c'],
+  ['commute', 'Trek FX 2 Disc', 'https://www.trekbikes.com/ca/en_CA/bikes/hybrid-bikes/fitness-bikes/fx/fx-2-disc-gen-3/p/35003/'],
+  ['commute', 'Trek Verve 2', 'https://www.trekbikes.com/ca/en_CA/verve/'],
+  ['commute', 'Cannondale Quick CX 3', 'https://www.cannondale.com/en-ca/bikes/active/fitness/quick-cx/quick-cx-3'],
+  ['commute', 'Cannondale Topstone Carbon 4', 'https://www.cannondale.com/en-ca/bikes/road/gravel/topstone-carbon'],
+  ['commute', 'Tern Link D8', 'https://store.ternbicycles.com/products/link-d8'],
+  ['commute', 'Supercycle Savoy Hybrid', 'https://www.canadiantire.ca/en/pdp/supercycle-savoy-hybrid-bike-700c-mint-0712090p.html'],
 ];
 // The brand's own page says so: Surly files the Long Haul Trucker under "Archive" (discontinued).
 const discontinued = [
