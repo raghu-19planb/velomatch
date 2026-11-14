@@ -163,9 +163,14 @@
       "_verified": "price ($3,000, close to catalog's $2,800), weight (8.68kg, matches catalog closely), and frame (E5 Premium Aluminum with D'Aluisio Smartweld Sprint tech, FACT carbon fork) confirmed via specialized.com search results and a retailer photo (via specialized.com's own CDN) on 2026-09-09. Groupset (Shimano 105 12-speed) matched.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.specialized.com/ca/en/allez-sprint-comp-shimano-105/p/4221550",
+        "title": "Allez Sprint Comp - Shimano 105",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.specialized.com/ca/en/allez-sprint-comp-shimano-105/p/4221550"
     },
     {
       "frameStyle": "step-over",
@@ -241,8 +246,12 @@
       "_verified": "current version is Gen 8, with a 500 Series OCLV carbon frame and Shimano 105 R7100 Di2 groupset (matches catalog) confirmed via an authorized Trek retailer (trekbikesofmountpleasant.com) on 2026-09-09 — trekbikes.com itself returns JS-shell-only content, and this specific retailer listing was itself out of stock so price wasn't re-confirmed. Product photo from the same retailer.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
+        "http": 200,
+        "finalUrl": "https://www.trekbikes.com/ca/en_CA/bikes/road-bikes/performance-road-bikes/madone/madone-sl/madone-sl-6-axs-gen-8/a/5320024/",
+        "title": "Madone SL 6 AXS Gen 8 - Trek Bikes (CA)",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
       },
       "recall": {
         "match": "family",
@@ -251,7 +260,8 @@
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/trek-recalls-madone-bicycles",
         "updated": "2014-01-08",
         "checkedOn": "2026-11-14"
-      }
+      },
+      "retailerUrl": "https://www.trekbikes.com/ca/en_CA/bikes/road-bikes/performance-road-bikes/madone/madone-sl/madone-sl-6-axs-gen-8/p/5320024/"
     },
     {
       "frameStyle": "step-over",
@@ -474,9 +484,13 @@
       "_verified": "2026 redesign: price range $9,950-$14,250 across 5 builds (Dura-Ace, Ultegra, Red, Red XPLR, Force) confirms catalog's $11,000 is a reasonable Dura-Ace-tier estimate; an authorized Canadian dealer (goldsports.ca) lists the Ultegra Di2 build at C$12,000 in stock. Weight (7.98kg, matches catalog's 8.0kg closely) confirmed via cycling press coverage referencing cervelo.com on 2026-09-09. Product photo from the same dealer — cervelo.com itself wasn't directly fetchable.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 429,
+        "finalUrl": "https://www.cervelo.com/collections/s5",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      },
+      "retailerUrl": "https://www.cervelo.com/collections/s5"
     },
     {
       "frameStyle": "step-over",
@@ -512,8 +526,11 @@
       "_verified": "New 5th-gen R5 (launched 2025 Tour de France): 5 complete builds priced €10,000-€13,500, confirming catalog's $10,500 is in the right range. Weight (frame 657g; complete builds as low as 5.97kg, catalog's 6.9kg is a reasonable mid-build estimate) confirmed via cycling press coverage referencing cervelo.com on 2026-09-09. Product photo is of an R5 frameset (Canadian dealer, mudsweatandgears.ca) rather than a specific complete build — visually representative of the frame regardless of trim.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
+        "http": 429,
+        "finalUrl": "https://www.cervelo.com/collections/r5",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
       },
       "recall": {
         "match": "exact",
@@ -521,7 +538,8 @@
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/cervelo-r5-and-caledonia-5-bicycles-and-st31-lt-replacement-stems-recalled-due-fall",
         "updated": "2022-09-15",
         "checkedOn": "2026-11-14"
-      }
+      },
+      "retailerUrl": "https://www.cervelo.com/collections/r5"
     },
     {
       "frameStyle": "step-over",
@@ -557,12 +575,11 @@
       "_verified": "New 2026 Caledonia: 4 real builds are 105 mechanical ($3,300), 105 Di2 ($4,500), Rival AXS ($4,850), and Force AXS ($6,500) — 'Shimano Ultegra Di2' isn't an offered tier, so groupset corrected to 'SRAM Force AXS' to match catalog's existing $6,500 price point exactly. Frame (~988g painted, up to 36mm tire clearance) and price range ($3,299.99-$12,749.99 across trims) confirmed via an authorized retailer (mikesbikes.com) on 2026-09-09. Product photo from the same retailer.",
       "check": {
         "checkedOn": "2026-11-14",
-        "http": 200,
-        "finalUrl": "https://www.cervelo.com/en-ca/collections/caledonia",
-        "title": "Caledonia &ndash; Cervélo",
-        "nameMatch": 100,
-        "canada": "confirmed",
-        "status": "ok"
+        "http": 429,
+        "finalUrl": "https://www.cervelo.com/collections/caledonia",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
       },
       "recall": {
         "match": "exact",
@@ -784,9 +801,14 @@
       "_verified": "price ($5,599, was overstated at $6,000) and weight (15.66lb/7.1kg, close to catalog's 7.4) confirmed live at canyon.com on 2026-09-09 for the 'Ultimate CF SLX 8 Di2' build, which matches catalog's groupset exactly. Includes a 4iiii power meter. Product photo from the same page.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.canyon.com/en-ca/road-bikes/race-bikes/ultimate/",
+        "title": "Ultimate | CANYON CA",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.canyon.com/en-ca/road-bikes/race-bikes/ultimate/"
     },
     {
       "frameStyle": "step-over",
@@ -823,9 +845,14 @@
       "_verified": "groupset corrected from 'Shimano Ultegra Di2' to 'Shimano 105 Di2 24-speed' (the 'Foil RC 20' build) and weight (8.1kg, close to catalog's 7.8) confirmed live at scott-sports.com on 2026-09-09. Frame (Foil RC Disc HMX carbon, 30% fewer carbon pieces than predecessor) matched. Price not listed on the page — catalog's $7,000 kept as a reasonable estimate for this tier. Product photo from the same page.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.scott-sports.com/ca/en/product/scott-foil-rc-10-bike?article=4275903020002",
+        "title": "",
+        "nameMatch": 0,
+        "canada": "confirmed",
+        "status": "mismatch"
+      },
+      "retailerUrl": "https://www.scott-sports.com/ca/en/product/scott-foil-rc-10-bike?article=4275903020002"
     },
     {
       "frameStyle": "step-over",
@@ -981,9 +1008,13 @@
       "_verified": "price updated to €13,499 (P5 Red AXS 1 build, matching catalog's groupset — was understated at $8,500; a lower Force AXS build runs ~$11,000). New P5 has a lowered basebar, 34mm tire clearance, and internal frame storage, confirmed via cycling/retailer coverage referencing cervelo.com on 2026-09-09. Note: a separate, more accessible 'P-Series' frameset line also exists from ~$2,600-3,000 if a cheaper tri bike was intended instead of the flagship P5. Product photo (P5 Red Hot, SRAM Force build) from an authorized Canadian dealer (steedcycles.com).",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 429,
+        "finalUrl": "https://www.cervelo.com/collections/p-series",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      },
+      "retailerUrl": "https://www.cervelo.com/collections/p-series"
     },
     {
       "frameStyle": "step-over",
@@ -1020,8 +1051,12 @@
       "_verified": "price updated to ~€11,499 (SLR 9 build, SRAM Red AXS — matches catalog's groupset; was understated at $9,500). A cheaper SLR 7 build (SRAM Force or Shimano Ultegra Di2) exists from $10,199 if that's a better fit. Tri-specific forward IsoSpeed pivot confirmed via cycling press coverage referencing trekbikes.com on 2026-09-09. Product photo (of the SLR 7 build) from an authorized Trek retailer (westerncycle.ca), listed out of stock there — check the price-check link for live availability.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
+        "http": 200,
+        "finalUrl": "https://www.trekbikes.com/ca/en_CA/speed-concept/",
+        "title": "Speed Concept: Built for Speed &amp; Efficiency - Trek Bikes (CA)",
+        "nameMatch": 75,
+        "canada": "confirmed",
+        "status": "ok"
       },
       "recall": {
         "match": "exact",
@@ -1029,7 +1064,8 @@
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/trek-carbon-handlebarsstems-and-bicycles-recalled-due-fall-hazard",
         "updated": "2022-08-25",
         "checkedOn": "2026-11-14"
-      }
+      },
+      "retailerUrl": "https://www.trekbikes.com/ca/en_CA/speed-concept/"
     },
     {
       "frameStyle": "step-over",
@@ -1104,8 +1140,12 @@
       "_verified": "price confirmed at €5,999 (Speedmax CF 8 Di2, matches catalog's groupset almost exactly — was already close at $6,000); a cheaper CF 7 Di2 build is $5,999 USD directly at canyon.com, confirmed on 2026-09-09. Range spans $4,899 up to $13,100+ for the new Gen 6 CFR flagship. Product photo from canyon.com.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
+        "http": 200,
+        "finalUrl": "https://www.canyon.com/en-ca/road-bikes/triathlon-bikes/",
+        "title": "Triathlon Bike &amp; TT Bike | CANYON CA",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
       },
       "recall": {
         "match": "exact",
@@ -1113,7 +1153,8 @@
         "url": "https://recalls-rappels.canada.ca/en/alert-recall/canyon-speedmax-bikes-recalled-due-injury-hazard",
         "updated": "2025-02-13",
         "checkedOn": "2026-11-14"
-      }
+      },
+      "retailerUrl": "https://www.canyon.com/en-ca/road-bikes/triathlon-bikes/"
     },
     {
       "frameStyle": "step-over",

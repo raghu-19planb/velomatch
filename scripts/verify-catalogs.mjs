@@ -74,6 +74,11 @@ async function check(b) {
     if (!r.ok) return { ...out, status: 'dead', canada: 'unconfirmed' };
     const html = (await r.text()).slice(0, 1500000);
     const title = (html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || '';
+    // a bot-check or "verify you are human" page is the seller refusing a script, not a page that lacks the bike: record it as blocked (never worked round)
+    if (/\/blocked\b|captcha|px-captcha|\/challenge\b/i.test(r.url) || /verify your identity|access denied|just a moment|attention required|are you a (?:robot|human)|human verification|security check|pardon our interruption/i.test(title)) {
+      out.title = title.replace(/\s+/g, ' ').trim().slice(0, 120);
+      return { ...out, status: 'blocked', canada: canadianListing(r.url) ? 'confirmed' : 'unconfirmed', note: 'seller showed a bot check instead of the page' };
+    }
     const prods = ldProducts(html);
     const hay = (title + ' ' + metaContent(html, 'og:title') + ' ' + prods.map(p => p.name).join(' ') + ' ' + textOf(html).slice(0, 12000)).toLowerCase();
     const want = tokens(b.name);

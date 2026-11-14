@@ -161,9 +161,13 @@
       "_verified": "wheel size, height range (104-110cm, was 98-112), aluminum frame, and rim (hand) brakes confirmed via pedalnook.com's spec listing on 2026-09-09. Frog Bikes' own frogbikes.com now redirects to Evans Cycles, so this was sourced via a retailer aggregator rather than the manufacturer directly — worth re-verifying if a manufacturer page resurfaces. Price not re-confirmed (catalog's $300 kept). exp, seatRange, barAdjust, and resale remain estimated.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 429,
+        "finalUrl": "https://curbsidecycle.com/collections/frog-bikes",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      },
+      "retailerUrl": "https://curbsidecycle.com/collections/frog-bikes"
     },
     {
       "name": "woom OFF 4",
@@ -258,9 +262,14 @@
       "_verified": "price ($319.99, was stale $200), wheel size, height range (39-46in / 99-117cm, was 100-119), coaster brake, and frame (Alpha Silver aluminum) confirmed via an authorized Trek retailer (roysbikes.com) on 2026-09-09 — trekbikes.com itself blocks automated fetches. exp, seatRange, barAdjust, and resale remain estimated.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.trekbikes.com/ca/en_CA/bikes/kids-bikes/kids-hybrid-bikes/precaliber/f/F427-1/",
+        "title": "Precaliber - Trek kids' bike with training wheels (CA)",
+        "nameMatch": 67,
+        "canada": "confirmed",
+        "status": "mismatch"
+      },
+      "retailerUrl": "https://www.trekbikes.com/ca/en_CA/bikes/kids-bikes/kids-hybrid-bikes/precaliber/f/F427-1/"
     },
     {
       "name": "Specialized Riprock Coaster 16",
@@ -318,6 +327,11 @@
         "checkedOn": "2026-11-14",
         "status": "no-link",
         "canada": "unconfirmed"
+      },
+      "discontinued": {
+        "source": "https://www.norco.com/bike-archives/2022/2022-roller-16/",
+        "note": "Norco lists the Roller 16 only under “Bike Archives” (the newest year shown is 2022); its current youth range has the Storm 16 instead.",
+        "checkedOn": "2026-11-14"
       }
     },
     {
@@ -410,9 +424,14 @@
       "_verified": "corrected brake from 'hand' to 'coaster' and type from 'trail' to 'pavement' — the base Precaliber 20 (this entry) is a coaster-brake model with alloy linear-pull front brake, not the separate hand-brake 7-speed variant. Price ($329.99-$349.99, using $350; was stale $260), wheel size, height range (45-52in / 114-132cm, was 115-135), and frame (Alpha Silver aluminum) confirmed via an authorized Trek retailer (citycycleinc.com) on 2026-09-09 — trekbikes.com itself blocks automated fetches. exp, seatRange, barAdjust, and resale remain estimated. A separate hand-brake 7-speed Precaliber 20 variant exists and could be added as its own entry later.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.trekbikes.com/ca/en_CA/bikes/kids-bikes/kids-hybrid-bikes/precaliber/c/B427/",
+        "title": "Buy Precaliber Kids’ Bikes | Precaliber Balance Bike (CA)",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.trekbikes.com/ca/en_CA/bikes/kids-bikes/kids-hybrid-bikes/precaliber/c/B427/"
     },
     {
       "name": "Huffy 16\" GRM",
@@ -463,9 +482,14 @@
       "image": "",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h1ZmZ5LVJvY2stSXQtMTYtaW5jaC1Cb3lzLUJpa2Utd2l0aC1UcmFpbmluZy1XaGVlbHMtQmxhY2svNjAwMDIwODAyMTUzOQ==&uuid=57fbb060-e07f-11f1-ae88-ad53566fa12b&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Huffy-Rock-It-16-inch-Boys-Bike-with-Training-Wheels-Black/6000208021539"
     },
     {
       "name": "Schwinn Aerostar 16-in",
@@ -567,9 +591,13 @@
       "image": "",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 403,
+        "finalUrl": "https://www.canadiantire.ca/en/pdp/supercycle-valley-kids-bike-16-in-wheel-blue-0711161p.html",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller refused automated access"
+      },
+      "retailerUrl": "https://www.canadiantire.ca/en/pdp/supercycle-valley-kids-bike-16-in-wheel-blue-0711161p.html"
     },
     {
       "name": "Hyper Spinner BMX 20\"",
@@ -597,11 +625,11 @@
       "check": {
         "checkedOn": "2026-11-14",
         "http": 200,
-        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwLzIwLUh5cGVyLUJpY3ljbGVzLUJveS1zLVNwaW5uZXItQk1YLUJpa2UtZm9yLUtpZHMtQmxhY2stQWdlLUdyb3VwLTgtdG8tMTMtQ2hpbGQtVHdlZW4vNjAwMDIwODIwNDA4Mz9jbGFzc1R5cGU9UkVHVUxBUg==&uuid=e83cc404-dfbf-11f1-90c5-270c878f9661&vid=&g=b",
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwLzIwLUh5cGVyLUJpY3ljbGVzLUJveS1zLVNwaW5uZXItQk1YLUJpa2UtZm9yLUtpZHMtQmxhY2stQWdlLUdyb3VwLTgtdG8tMTMtQ2hpbGQtVHdlZW4vNjAwMDIwODIwNDA4Mz9jbGFzc1R5cGU9UkVHVUxBUg==&uuid=581edd04-e07f-11f1-b0d9-ad53566fa12b&vid=&g=b",
         "title": "Verify Your Identity",
-        "nameMatch": 0,
+        "status": "blocked",
         "canada": "confirmed",
-        "status": "mismatch"
+        "note": "seller showed a bot check instead of the page"
       }
     },
     {
@@ -628,9 +656,14 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Rider height range not stated for this size; estimated from typical 12in girls' bikes. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h1ZmZ5LTEyLVNlYS1TdGFyLUtpZHMtQmlrZS1GaXRzLVJpZGVycy0zNy00Mi1QaW5rLVlvdXRoLUdpcmxzLzYwMDAyMDgwMzgzOTM=&uuid=583ddc7f-e07f-11f1-976c-c2d28f7d6a3c&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Huffy-12-Sea-Star-Kids-Bike-Fits-Riders-37-42-Pink-Youth-Girls/6000208038393"
     },
     {
       "name": "Huffy Sea Star 14-inch",
@@ -656,9 +689,14 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Rider height range not stated for this size; estimated. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h1ZmZ5LVNlYS1TdGFyLTE0LWluY2gtR2lybHMtQmlrZS13aXRoLVRyYWluaW5nLVdoZWVscy1CbHVlLVBpbmsvNjAwMDIwODA0MDI4Ng==&uuid=585f143d-e07f-11f1-b264-5c75d8347b59&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Huffy-Sea-Star-14-inch-Girls-Bike-with-Training-Wheels-Blue-Pink/6000208040286"
     },
     {
       "name": "Huffy Sea Star 16-inch",
@@ -684,9 +722,14 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Rider height range (42\"-48\") stated directly on the listing and converted to cm. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h1ZmZ5LTE2LVNlYS1TdGFyLUtpZHMtQmlrZS1GaXRzLVJpZGVycy00Mi00OC1QdXJwbGUtWW91dGgtR2lybHMvNjAwMDIwODAzODkzMg==&uuid=5881ab85-e07f-11f1-87fb-bc221b69522c&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Huffy-16-Sea-Star-Kids-Bike-Fits-Riders-42-48-Purple-Youth-Girls/6000208038932"
     },
     {
       "name": "Huffy Sea Star 18-inch",
@@ -712,9 +755,14 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Rider height range not stated for this size; estimated. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h1ZmZ5LVNlYS1TdGFyLTE4LWluY2gtR2lybHMtQmlrZS13aXRoLVRyYWluaW5nLVdoZWVscy1QdXJwbGUvNjAwMDIwODAyMjUwNQ==&uuid=58c454f4-e07f-11f1-bd3e-3e779c88ea30&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Huffy-Sea-Star-18-inch-Girls-Bike-with-Training-Wheels-Purple/6000208022505"
     },
     {
       "name": "Huffy Rock It 12-inch",
@@ -741,9 +789,14 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Rider height range (37\"-42\") stated directly on the listing and converted to cm. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h1ZmZ5LTEyLVJvY2stSXQtS2lkcy1CaWtlLUZpdHMtUmlkZXJzLTM3LTQyLUdyYXktR3JlZW4tWW91dGgtQm95cy82MDAwMjA4MDIzMDA3&uuid=58d1091b-e07f-11f1-b7c9-5c75d8347b59&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Huffy-12-Rock-It-Kids-Bike-Fits-Riders-37-42-Gray-Green-Youth-Boys/6000208023007"
     },
     {
       "name": "Huffy Rock It 14-inch",
@@ -769,9 +822,14 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Rider height range not stated for this size; estimated. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h1ZmZ5LVJvY2stSXQtMTQtaW5jaC1Cb3lzLUJpa2Utd2l0aC1UcmFpbmluZy1XaGVlbHMtUmVkLzYwMDAyMDgwMjIxMDE=&uuid=58b767c3-e07f-11f1-bc9a-3e779c88ea30&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Huffy-Rock-It-14-inch-Boys-Bike-with-Training-Wheels-Red/6000208022101"
     },
     {
       "name": "Costway 12\" Kids Bike (Hand & Coaster Brake)",
@@ -797,9 +855,16 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Listing states both hand and coaster brakes plus an adjustable seat; height range not stated and is estimated. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand. Product photo sourced from costway.com's own listing of the same model on 2026-09-09 (US price there is $89.99, kept walmart.ca's $119.99 CAD as the catalog's price of record since that's the confirmed regional listing).",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.costway.ca/12-inch-kids-bike-children-bicycle-with-training-wheels-for-boys-and-girls.html",
+        "title": "12 Inch Kids Bike Children Bicycle with Training Wheels for 3-4 Years Old - Costway",
+        "nameMatch": 100,
+        "price": 131.99,
+        "currency": "USD",
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.costway.ca/12-inch-kids-bike-children-bicycle-with-training-wheels-for-boys-and-girls.html"
     },
     {
       "name": "JOYSTAR Angel 16\"",
@@ -825,9 +890,14 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Stated age range 4-7 years; height range estimated from that. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0pPWVNUQVItQW5nZWwtR2lybHMtQmlrZS0xNi1JbmNoLUtpZHMtQmlrZS13aXRoLVRyYWluaW5nLVdoZWVscy1mb3ItNC03LVllYXJzLU9sZC1HaXJscy1Ub2RkbGVyLUJpY3ljbGUtQW5nZWwtcGluay8xSzc0WktOQzg2TFc=&uuid=58effe38-e07f-11f1-bf32-ad53566fa12b&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/JOYSTAR-Angel-Girls-Bike-16-Inch-Kids-Bike-with-Training-Wheels-for-4-7-Years-Old-Girls-Toddler-Bicycle-Angel-pink/1K74ZKNC86LW"
     },
     {
       "name": "Hyper Bicycles 16\" Motobike",
@@ -853,9 +923,14 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Stated age range 5-7 years; height range estimated from that. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwLzE2LU1vdG9iaWtlLU5lb24tR3IvNjAwMDIwNTI2ODU0NQ==&uuid=5919a1db-e07f-11f1-82b3-40354c4405ea&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/16-Motobike-Neon-Gr/6000205268545"
     },
     {
       "name": "Costway 18\" Kids Bike (Basket)",
@@ -881,9 +956,16 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Bikes with Training Wheels\" category listing on 2026-09-08 (user-supplied link). Stated age range 4-8 years (wide range for this model); height range estimated from that. Brake type, experience fit, seat range, bar adjust, and resale are estimated from typical bikes of this size/brand. Product photo sourced from costway.com's own listing of the same model on 2026-09-09 (US price there is $82.99, kept walmart.ca's $161.99 CAD as the catalog's price of record).",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.costway.ca/18-inch-kids-bike-with-training-wheels-and-adjustable-handlebar-seat.html",
+        "title": "18-Inch Kids Bike with Training Wheels and Adjustable Handlebar Seat - Costway",
+        "nameMatch": 100,
+        "price": 149.99,
+        "currency": "USD",
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.costway.ca/18-inch-kids-bike-with-training-wheels-and-adjustable-handlebar-seat.html"
     },
     {
       "name": "Costway 20\" Kids Mountain Bike (Suspension Fork)",
@@ -909,9 +991,16 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Kids' Bikes\" category listing on 2026-09-08 (user-supplied link). Stated age range 8+ years, with a front suspension fork; height range estimated and capped at this quiz's 145cm ceiling. Brake type, terrain fit, experience fit, seat range, and resale are estimated from typical bikes of this size/style. Product photo sourced from costway.com's own listing of the same model (20\"/24\" suspension MTB, dual V-brakes, Shimano 6-speed) on 2026-09-09 (US price there is $165.99, kept walmart.ca's $265.99 CAD as the catalog's price of record).",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.costway.ca/20-24-inch-kids-mountain-bike-with-adjustable-seat.html",
+        "title": "20 Inch Kids Mountain Bike Adjustable with 7 Speed and Suspension Fork - Costway",
+        "nameMatch": 100,
+        "price": 229.99,
+        "currency": "USD",
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.costway.ca/20-24-inch-kids-mountain-bike-with-adjustable-seat.html"
     },
     {
       "name": "Costway 24\" Kids Mountain Bike (Suspension Fork)",
@@ -936,9 +1025,16 @@
       "_verified": "Real height range is 56\"-66\" (142-168cm, capped here at the quiz's 145cm ceiling), metal frame, 6-speed, front/rear V-brakes, adjustable seat AND handlebar, $275.99 CAD. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). Real range extends to 168cm, beyond what this quiz currently models. Product photo sourced from costway.com's own listing of the same 20\"/24\" suspension MTB product family on 2026-09-09.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.costway.ca/24-inch-kids-mountain-bike-adjustable-with-7-speed-and-suspension-fork.html",
+        "title": "24 Inch Kids Mountain Bike Adjustable with 7 Speed and Suspension Fork - Costway",
+        "nameMatch": 100,
+        "price": 245.99,
+        "currency": "USD",
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.costway.ca/24-inch-kids-mountain-bike-adjustable-with-7-speed-and-suspension-fork.html"
     },
     {
       "name": "Hyper Bicycles 20\" Jet Fuel BMX",
@@ -964,9 +1060,14 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Kids' Bikes\" category listing on 2026-09-08 (user-supplied link). Stated age range 8-13 years and \"best seller\" status; height range estimated and capped at this quiz's 145cm ceiling. Brake type, terrain fit, experience fit, seat range, and resale are estimated from typical bikes of this size/style.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h5cGVyLUJpY3ljbGVzLTIwLUpldC1GdWVsLUJNWC1CaWtlLUtpZHMtQWdlcy04LTEzLVllYXJzLzYwMDAyMDgyMDU3MjU=&uuid=595bc301-e07f-11f1-9b31-c2d28f7d6a3c&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Hyper-Bicycles-20-Jet-Fuel-BMX-Bike-Kids-Ages-8-13-Years/6000208205725"
     },
     {
       "name": "Madd Gear 18\" Boys BMX",
@@ -992,9 +1093,14 @@
       "_verified": "name, brand, wheel size, and price confirmed live at walmart.ca's \"Kids' Bikes\" category listing on 2026-09-08 (user-supplied link). Stated age range 4-8 years; height range estimated from that. Brake type, terrain fit, experience fit, seat range, and resale are estimated from typical bikes of this size/style.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL01hZGQtR2Vhci0xOC1Cb3lzLUJNWC1CaWtlLUJsdWUtQWdlcy00LTgvNjAwMDIwODExOTI3Mw==&uuid=595d3746-e07f-11f1-9510-b49879ae6cd5&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Madd-Gear-18-Boys-BMX-Bike-Blue-Ages-4-8/6000208119273"
     },
     {
       "name": "Hyper Bicycles 24\" Swift Mountain Bike",
@@ -1019,9 +1125,14 @@
       "_verified": "Real height range is 5'2\"-5'10\" (157-178cm), 18-speed, steel front-suspension frame, linear-pull brakes, $228 CAD. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). This exceeds the quiz's current 145cm height-slider ceiling entirely — this bike won't surface as a match until that range is extended.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h5cGVyLUJpY3ljbGVzLTI0LUdpcmwtcy1Td2lmdC1Nb3VudGFpbi1CaWtlLWZvci1LaWRzLUJsdWUvNjAwMDIwODIxMjM0NA==&uuid=59abf9ca-e07f-11f1-9959-b49879ae6cd5&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Hyper-Bicycles-24-Girl-s-Swift-Mountain-Bike-for-Kids-Blue/6000208212344"
     },
     {
       "name": "VEVOR 26\" Cruiser Bike (7-Speed)",
@@ -1046,9 +1157,16 @@
       "_verified": "High-carbon steel frame, front/rear V-brakes, 7-speed, adjustable seat with 135mm of travel, $299.99 CAD. Real height range is 4'5\"-5'7\" (135-170cm), capped here at the quiz's 145cm ceiling. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). Real range extends to 170cm, beyond what this quiz currently models. Origin is an estimate. Cross-checked against vevor.ca's own listing of the same model on 2026-09-09: price C$286.90, weight 36.2lb, front/rear V-brakes, high-carbon steel frame all consistent. Only a low-resolution (90x90) thumbnail was retrievable from vevor.ca, not usable as a real product photo — image left as placeholder.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.vevor.ca/cruiser-bikes-c_12585/vevor-26-inch-cruiser-bike-7-speed-light-blue-beach-cruiser-bike-with-basket-p_010733523695",
+        "title": "VEVOR Cruiser Bike, 7-Speed, 26-Inch Light Blue Beach Cruiser Bike with Large Capacity Basket and Rear Rack, Secure &amp",
+        "nameMatch": 100,
+        "price": 286.9,
+        "currency": "CAD",
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.vevor.ca/cruiser-bikes-c_12585/vevor-26-inch-cruiser-bike-7-speed-light-blue-beach-cruiser-bike-with-basket-p_010733523695"
     },
     {
       "name": "Huffy Rock It 20\"",
@@ -1074,9 +1192,14 @@
       "_verified": "Height range 44\"-56\" (112-142cm), age range 5-9, coaster brake, steel frame, single-speed, best seller with 7,348 reviews, $128 CAD. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). seatRange, barAdjust, and resale are estimated.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h1ZmZ5LTIwLVJvY2stSXQtS2lkcy1CaWtlLUZpdHMtUmlkZXJzLTQ0LTU2LUJsdWUtWW91dGgtQm95cy8wWFBXQjJaM1lTMU0=&uuid=59e7c11a-e07f-11f1-8648-5c75d8347b59&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Huffy-20-Rock-It-Kids-Bike-Fits-Riders-44-56-Blue-Youth-Boys/0XPWB2Z3YS1M"
     },
     {
       "name": "Huffy Rock Creek 20\" Mountain Bike",
@@ -1102,9 +1225,14 @@
       "_verified": "Height range 112-142cm (stated directly), age range 5-9, steel hardtail with front suspension fork, front/rear linear-pull brakes, 6-speed, max rider weight 41kg, $148 CAD. Also sold in a girls'/pink colorway at the same price and spec. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). seatRange, barAdjust, and resale are estimated.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h1ZmZ5LVJvY2stQ3JlZWstMjAtaW5jaC1Cb3lzLTYtc3BlZWQtTW91bnRhaW4tQmlrZS1HcmV5LzYwMDAyMDgxNTI5OTE=&uuid=5a0c7c24-e07f-11f1-8f28-3e779c88ea30&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Huffy-Rock-Creek-20-inch-Boys-6-speed-Mountain-Bike-Grey/6000208152991"
     },
     {
       "name": "Huffy Algonquin 18\" Mountain Bike",
@@ -1157,9 +1285,14 @@
       "_verified": "Aluminum frame with front suspension fork, 21-speed, front/rear linear-pull (V) brakes, tool-free adjustable seatpost, $425 CAD. Real height range is 56\"-66\" (142-168cm), capped here at the quiz's 145cm ceiling. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). Real range extends to 168cm, beyond what this quiz currently models.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL01vbmdvb3NlLUtpcGF3YS1HaXJscy1Nb3VudGFpbi1CaWtlLTI0LVdoZWVsLVNpemUtQmx1ZS1CbGFjay1TaXplLUFnZS04LUJsdWUvNjZHTVBMR1NBSTBY&uuid=5a2488ac-e07f-11f1-8cd9-40354c4405ea&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Mongoose-Kipawa-Girls-Mountain-Bike-24-Wheel-Size-Blue-Black-Size-Age-8-Blue/66GMPLGSAI0X"
     },
     {
       "name": "KFFKFF 20\" Mountain Bike (Disc Brakes)",
@@ -1211,9 +1344,14 @@
       "_verified": "Steel frame with front suspension, 18-speed, height range 5'2\"-5'10\" (157-178cm), $198 CAD. Also sold in a girls'/white-and-pink colorway at the same spec. Confirmed live at walmart.ca on 2026-09-08 (user-supplied link). This exceeds the quiz's current 145cm height-slider ceiling entirely — this bike won't surface as a match until that range is extended. seatRange, barAdjust, and resale are estimated.",
       "check": {
         "checkedOn": "2026-11-14",
-        "status": "no-link",
-        "canada": "unconfirmed"
-      }
+        "http": 200,
+        "finalUrl": "https://www.walmart.ca/blocked?url=L2VuL2lwL0h5cGVyLUJpY3ljbGVzLTI0LUdpcmwtcy1Cb3VuZGFyeS1Nb3VudGFpbi1CaWtlLVdoaXRlLWFuZC1QaW5rLzYwMDAyMDgyMTI3NzM=&uuid=5a58ea02-e07f-11f1-9e4f-c2d28f7d6a3c&vid=&g=b",
+        "title": "Verify Your Identity",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller showed a bot check instead of the page"
+      },
+      "retailerUrl": "https://www.walmart.ca/en/ip/Hyper-Bicycles-24-Girl-s-Boundary-Mountain-Bike-White-and-Pink/6000208212773"
     },
     {
       "name": "Honzo 20",
