@@ -1,14 +1,11 @@
 /* ============================================================
-   HOME PAGE INTRO: "the wheel becomes the o"
-   A painted valley you ride through by scrolling. Five painted stops are the five ways in; at the
-   end the wheel flies up and lands as the "o" of the logo. Without scripting, with reduced motion,
-   or on a return visit in the same session, it is a calm still painting instead (the .ride-live
-   class, added by ride.js only for a first visit, is what turns the ride on).
+   HOME PAGE HEADER: a still painting with the wordmark and tagline. The wheel in the wordmark is the only
+   thing that moves (its spin is defined with the logo styles).
    ============================================================ */
 .ride{position:relative;}
 .ride-stage{position:relative; height:min(74vh,680px); min-height:420px; overflow:hidden; background:#cfd6df;}
 .ride-world{position:absolute; inset:0;}
-.ride-layer{position:absolute; inset:0; will-change:transform;}
+.ride-layer{position:absolute; inset:0;}
 .ride-layer img{display:block; height:100%; width:auto; max-width:none;}
 .ride-grade{position:absolute; inset:0; pointer-events:none; background:rgba(255,190,160,0.16);}
 .ride-hero{
@@ -22,48 +19,6 @@
 .ride-hero > *{position:relative; margin:0;}
 .ride-mark .wordmark{font-size:clamp(54px,11vw,124px);}
 .ride-line{font-size:clamp(17px,2.2vw,24px); color:var(--ink); margin-top:10px !important; letter-spacing:0.005em;}
-.ride-cue{font-size:14px; color:var(--fog); margin-top:26px !important; letter-spacing:0.04em;}
-.ride-cards{position:absolute; inset:0; pointer-events:none;}
-.ride-card, .ride-wheel, .ride-skip{display:none;}
-.ride-wheel .wheel-o{display:block; width:100%; height:100%; margin:0;}
-.ride-wheel .wheel-o svg{animation:none;}
-
-/* ---- the live ride: only when ride.js adds .ride-live (first visit, motion allowed) ---- */
-.ride-live .ride{height:560vh;}
-.ride-live .ride-stage{position:sticky; top:var(--nav-h,64px); height:calc(100vh - var(--nav-h,64px)); min-height:520px;}
-.ride-live .ride-skip{
-  display:block; position:absolute; right:20px; bottom:18px; z-index:5; min-height:44px; padding:0 18px;
-  font:600 14px var(--font-body); color:var(--ink); background:rgba(242,236,221,0.88); border:1px solid var(--line);
-  border-radius:999px; cursor:pointer; backdrop-filter:blur(6px);
-}
-.ride-live .ride-skip:hover{border-color:var(--teal);}
-.ride-live .ride-skip:focus-visible{outline:3px solid var(--signal); outline-offset:3px;}
-.ride-live .ride-card{
-  display:grid; grid-template-columns:1.3fr 1fr; position:absolute; left:50%; bottom:11%; width:min(92vw,680px);
-  transform:translate(-50%,30px); opacity:0; visibility:hidden; text-decoration:none; color:inherit; pointer-events:none;
-  background:rgba(242,236,221,0.96); border:1px solid var(--line); border-radius:10px; overflow:hidden;
-  box-shadow:0 26px 60px rgba(27,35,31,0.30);
-}
-.ride-live .ride-card.is-on{pointer-events:auto; visibility:visible;}
-.ride-card img{width:100%; height:100%; object-fit:cover; display:block; aspect-ratio:4/3;}
-.ride-card .rc-body{display:flex; flex-direction:column; justify-content:center; gap:8px; padding:20px 24px;}
-.ride-card .rc-title{font-size:clamp(21px,2.6vw,27px); font-weight:700; letter-spacing:-0.01em; line-height:1.15;}
-.ride-card .rc-line{font-size:14.5px; color:var(--fog); line-height:1.55;}
-.ride-card .rc-cta{margin-top:6px; font-weight:600; font-size:15px; color:var(--signal-deep);}
-.ride-card:hover .rc-cta{text-decoration:underline; text-underline-offset:3px;}
-.ride-card:focus-visible{outline:3px solid var(--signal); outline-offset:3px;}
-.ride-live .ride-wheel{display:block; position:fixed; left:0; top:0; z-index:70; width:320px; height:320px; opacity:0; pointer-events:none; transform-origin:0 0;}
-.wheel-o.is-landed{animation:wheel-land .8s ease-out;}
-@keyframes wheel-land{ 0%{transform:scale(1);} 35%{transform:scale(1.7);} 100%{transform:scale(1);} }
-
-@media (max-width:640px){
-  .ride-live .ride-card{grid-template-columns:1fr; bottom:6%;}
-  .ride-card img{aspect-ratio:16/9;}
-  .ride-card .rc-body{padding:14px 18px 16px; gap:5px;}
-  .ride-card .rc-line{font-size:13.5px;}
-  .ride-live .ride-skip{right:12px; bottom:12px;}
-}
-@media (prefers-reduced-motion: reduce){ .wheel-o.is-landed{animation:none;} }
 
 /* painted art on the category cards (replaces the pencil icons) */
 .category-card .cat-art{display:block; width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:6px; margin-bottom:16px;}
@@ -76,6 +31,3 @@
   .category-card:nth-child(n+4) .cat-art{aspect-ratio:16/9;}
 }
 
-/* "Scroll to ride" only makes sense while the ride is live */
-.ride-cue{display:none;}
-.ride-live .ride-cue{display:block;}
