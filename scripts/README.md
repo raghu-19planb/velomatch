@@ -102,5 +102,4 @@ price to the shopper's Canadian-dollar budget at the Bank of Canada's published 
 browser; if it cannot be loaded, the listed number is compared as it is and the page says so).
 
 Where the shared behaviour lives: `match-ui.js` (cards, trust lines, compare table, share link, live refresh),
-`quiz-flow.js` (essentials first, "See my matches now"), `i18n.js` + `i18n-fr.js` (French for the bikepacking
-page; open any page with `?i18n-debug` while in French to list text that still has no French).
+`quiz-flow.js` (essentials first, "See my matches now").
