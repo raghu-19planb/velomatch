@@ -119,3 +119,15 @@ copied exactly. Sentences built in a page's script use `SV.T('Template with {n}'
 the French can reorder the words. To find what is missing, open a page with `?i18n-debug` while in French and read
 the browser console after using the page (and press the quiz's "i" buttons): it lists every string with no French.
 Bike, brand and shop names are never translated.
+
+## Cache-safe script and stylesheet addresses
+
+Every local `<script>` and stylesheet in the pages carries `?v=<code>`, where the code comes from that file's contents.
+**Run `node scripts/bump-assets.mjs` before committing whenever a `.js` or `.css` file changes** (`--check` just reports).
+Without it, a browser that cached an old script can be paired with a new page, which once froze the racing quiz ("T is not a
+function") and showed a giant black flag.
+
+Two safeguards keep this from being forgotten. `.githooks/pre-commit` re-stamps the pages and blocks a commit that has a
+broken script (turn it on once per clone with `git config core.hooksPath .githooks`). `.github/workflows/site-check.yml`
+runs `node scripts/check-site.mjs` on every push, so a stale address or a script that does not parse shows up as a failed
+check on GitHub even if the hook was skipped.

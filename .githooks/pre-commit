@@ -1,0 +1,6 @@
+#!/bin/sh
+# Runs before every commit: refresh the ?v= stamps on script/stylesheet addresses (so a browser can never pair a page with a
+# stale cached script) and refuse the commit if any script is broken. Set up once per clone: git config core.hooksPath .githooks
+node scripts/bump-assets.mjs >/dev/null || exit 1
+git add -- ./*.html
+node scripts/check-site.mjs || { echo "Commit blocked: fix the problems above."; exit 1; }

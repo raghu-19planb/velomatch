@@ -1,0 +1,13 @@
+# Runs on every push and pull request: fails if any page points at a stale script/stylesheet version code, a missing file,
+# or a script that does not parse. The same check runs locally in .githooks/pre-commit.
+name: Site check
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/check-site.mjs
