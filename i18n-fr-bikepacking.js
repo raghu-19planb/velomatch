@@ -9,6 +9,7 @@
 
   // ---------------------------------------------------------------- page text
   add({
+    "A bike that is the wrong size, or loaded the wrong way, can turn day three into the worst day of the trip. The wrong frame size or the wrong way of carrying your gear doesn't show up until you're already out there.": "Un vélo de la mauvaise taille, ou chargé de la mauvaise façon, peut faire du troisième jour la pire journée de la sortie. La mauvaise taille de cadre ou la mauvaise façon de transporter votre équipement ne se révèle qu’une fois sur place.",
     "Sheet 003": "Planche 003",
     "The right": "Le bon vélo de",
     "bikepacking": "bikepacking",
@@ -132,8 +133,6 @@
     "Pick a terrain, trip goal, and trip length first.": "Choisissez d’abord un terrain, un objectif et une durée de sortie.",
     "Your top matches will appear here, ranked with reasons — including frame size fit, gear capacity, and climbing range.": "Vos meilleurs choix apparaîtront ici, classés avec des raisons — y compris l’ajustement du cadre, la capacité de charge et la plage de braquets.",
     "Fig. 004": "Fig. 004",
-    "km, no regrets": "km, sans regrets",
-    "a bike sized and loaded wrong turns day three into the worst day of the trip — the wrong frame size or the wrong carry setup doesn't show up until you're already out there.": "un vélo mal dimensionné et mal chargé fait du troisième jour la pire journée de la sortie — la mauvaise taille de cadre ou le mauvais système de transport ne se révèle qu’une fois sur place.",
     "Fig. 005": "Fig. 005",
     "Fig. 006": "Fig. 006",
     "0.0s": "0,0 s",

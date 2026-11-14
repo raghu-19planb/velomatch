@@ -11,6 +11,7 @@
 
   // ---------------------------------------------------------------- page text
   add({
+    "A full-suspension bike and a hardtail are a trade-off, not a ranking: full suspension soaks up rough descents a hardtail can't, but you feel its extra weight on the climbs. The better one is the one that suits where you actually ride.": "Une double suspension et un semi-rigide représentent un compromis, pas un classement : la double suspension absorbe des descentes accidentées qu’un semi-rigide ne peut pas absorber, mais on sent son poids supplémentaire dans les montées. Le meilleur est celui qui convient à l’endroit où vous roulez réellement.",
     'SelectVelo — Find your mountain bike': 'SelectVelo — Trouvez votre vélo de montagne',
     'Match your actual riding — XC, trail, enduro, downhill — against real mountain bikes from every brand, scored on suspension, travel, and geometry, not a guess.':
       'Comparez votre façon de rouler (cross-country, trail, enduro, descente) à de vrais vélos de montagne de toutes les marques, évalués selon la suspension, le débattement et la géométrie, et non au hasard.',
@@ -55,10 +56,6 @@
       'Un cadre ouvert a un tube supérieur bas ou absent : il est plus facile à enjamber et se vend traditionnellement comme un vélo « pour femmes ». Un cadre classique a la forme traditionnelle en losange et se vend traditionnellement comme un vélo « pour hommes ». Les deux formes conviennent vraiment à n’importe quel cycliste. Les vrais vélos de montagne ont aussi besoin de la rigidité d’un cadre en losange pour les charges hors route : notre catalogue ne contient pas de vélos de montagne à cadre ouvert, cette question sert donc surtout d’avertissement honnête plutôt que de filtre.',
     'Pick a riding style first.': 'Choisissez d’abord un style de pratique.',
     "Your top matches will appear here, ranked with reasons — including suspension travel, wheel size, and how it's meant to be ridden.": 'Vos meilleurs choix apparaîtront ici, classés avec leurs raisons, y compris le débattement de la suspension, la taille de roues et l’usage prévu.',
-    '~3kg': '~3 kg',
-    'heavier for full suspension — and worth every gram on the way down': 'de plus pour une double suspension, et chaque gramme en vaut la peine à la descente',
-    'that\'s the real tradeoff, not marketing spin: a full-suspension bike soaks up rough descents a hardtail can\'t, but you feel every extra kilogram on the climbs. Picking between them isn\'t about which bike is "better" — it\'s about which one is better for where you actually ride.':
-      'c’est le vrai compromis, sans artifice de marketing : un vélo à double suspension absorbe des descentes accidentées qu’un semi-rigide ne peut pas absorber, mais on sent chaque kilogramme de plus dans les montées. Choisir entre les deux, ce n’est pas décider lequel est « meilleur » : c’est décider lequel convient le mieux à l’endroit où vous roulez réellement.',
     'Studio render of a full-suspension mountain bike, annotated with wheel diameter, front and rear suspension travel, and wheelbase': 'Rendu en studio d’un vélo de montagne à double suspension, annoté avec le diamètre des roues, le débattement de la suspension avant et arrière, et l’empattement',
   });
   P(/^(\d+)"$/, (m, n) => n + ' po');
