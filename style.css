@@ -1039,6 +1039,13 @@ body.rm-page{
 @media (prefers-reduced-motion: reduce){ .flag-banner{animation:none;} .flag-banner, .flag-rope{transition:none;} }
 @media (max-width:640px){ .flag-banner{width:124px;} .flag-text{font-size:18px;} }
 .flag-rope::before{content:""; position:absolute; top:0; bottom:0; left:-9px; right:-9px;} /* wider hit area for the thin cord */
+/* narrow screens (or any width where the nav wraps under the tab): no hanging flag, a small "New" tag on the tab instead */
+.flag-compact .flag-banner, .flag-compact .flag-rope{display:none;}
+.flag-compact .nav-link.has-new-flag::after{
+  content:attr(data-new); display:inline-block; margin-left:5px; padding:1px 7px; border-radius:999px;
+  background:var(--signal); color:var(--paper); font-size:10.5px; font-weight:700; line-height:1.45; letter-spacing:0.01em;
+  vertical-align:middle; position:relative; top:-1px;
+}
 
 /* ============================================================
    HOME PAGE HEADER: a still painting with the wordmark and tagline. The wheel in the wordmark is the only

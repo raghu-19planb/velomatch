@@ -65,7 +65,24 @@
     rope.addEventListener('click', goToShowcase);
 
     // Hang the flag under the tab, and run a cord from the tab down to the flag's rod.
+    // On a narrow screen the nav wraps onto several rows, so a cord hung from the Showcase tab would run through the
+    // buttons below it and the flag would cover the page heading. There the flag gives way to a small "New" tag on the
+    // tab itself (see .flag-compact in style.css). The same happens at any width where something sits under the tab.
+    link.classList.add('has-new-flag');
+    link.setAttribute('data-new', window.I18N && window.I18N.lang === 'fr' ? 'Nouveau' : 'New');
+    function isCompact() {
+      if (window.innerWidth <= 640) return true;
+      var l = link.getBoundingClientRect(), cx = l.left + l.width / 2;
+      var below = nav.querySelectorAll('.nav-links a, .nav-links button');
+      // compact only if something on a lower row is directly under the cord (the flag itself hangs below the nav)
+      for (var i = 0; i < below.length; i++) {
+        var r = below[i].getBoundingClientRect();
+        if (r.top > l.bottom - 2 && r.left - 6 < cx && r.right + 6 > cx) return true;
+      }
+      return false;
+    }
     function place() {
+      document.documentElement.classList.toggle('flag-compact', isCompact());
       var l = link.getBoundingClientRect(), n = nav.getBoundingClientRect();
       var w = a.offsetWidth;
       var center = l.left + l.width / 2 - n.left;
