@@ -18,9 +18,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=selectvelo5">
+<link rel="stylesheet" href="style.css?v=selectvelo15">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="quiz-flow.js"></script>
+<script src="match-ui.js"></script>
 <script src="affiliate.js"></script>
 <script src="nav-transition.js"></script>
 <script src="flag-banner.js" defer></script>
@@ -197,10 +198,10 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">Budget</label>
+          <label class="q-label">Budget (in Canadian dollars)</label>
           <div class="range-row">
             <input type="range" id="budget" min="80" max="600" value="250" step="10">
-            <span class="range-out" id="budget-out">$250</span>
+            <span class="range-out" id="budget-out">C$250</span>
           </div>
         </div>
 
@@ -351,6 +352,29 @@ function escapeHtml(str){
 // cache a number that will go stale, link out to wherever it can actually be
 // checked live: a specific page only when a human has verified that exact
 // URL shows this bike, otherwise a plain web search for the model name.
+const expName = {none:'has never ridden', balance:'has used a balance bike', training:'rides with training wheels', confident:'rides confidently without training wheels'};
+const terrainNameKids = {pavement:'pavement and driveways', road_gravel:'road and gravel', park:'neighbourhood paths', trail_road_gravel:'trail, road and gravel', trail:'light dirt trails'};
+// Plain-language reasons for each match, mirroring the factors the scoring actually uses.
+function explainMatch(b, c){
+  const why = [], watch = [];
+  if (c.height >= b.minH && c.height <= b.maxH) {
+    const pos = (c.height - b.minH) / Math.max(1, b.maxH - b.minH);
+    if (pos > 0.85) watch.push(`Your child is near the top of this bike's range (${b.minH}–${b.maxH} cm), so they may outgrow it soon`);
+    else if (pos < 0.1) watch.push(`Near the bottom of this bike's range (${b.minH}–${b.maxH} cm): it may feel big at first, but it has room to grow`);
+    else why.push(`Fits a ${c.height} cm child (made for ${b.minH}–${b.maxH} cm)`);
+  } else watch.push(`Made for ${b.minH}–${b.maxH} cm, and your child is ${c.height} cm`);
+  if (c.height < b.maxH) why.push(`About ${b.maxH - c.height} cm of growing room before they reach this bike's top height`);
+  if (b.exp.includes(c.exp)) why.push(`Suits a child who ${expName[c.exp]}`); else watch.push(`Usually chosen for children at a different stage than one who ${expName[c.exp]}`);
+  const brakePref = c.brake || 'either';
+  if (brakePref !== 'either') { if (brakePref === b.brake) why.push(brakePref === 'coaster' ? 'Coaster (pedal-back) brake, as you wanted' : 'Hand brakes, as you wanted'); else watch.push(`${b.brake === 'coaster' ? 'Coaster' : b.brake === 'hand' ? 'Hand' : 'No'} brakes, not the ${brakePref} brakes you asked for`); }
+  const gap = Math.abs(terrainPosition[c.terrain] - terrainPosition[b.type]);
+  if (gap === 0) why.push(`Made for ${terrainNameKids[b.type]}, like where they will ride`); else if (gap >= 2) watch.push(`Better suited to ${terrainNameKids[b.type]} than where they will ride`);
+  if (b.seatRange) why.push(`Seat adjusts through ${b.seatRange} cm${b.barAdjust ? ' and the handlebars adjust too' : ''}`);
+  if (b.trainWheel) why.push('Training wheels can be fitted');
+  if (SV.scoringPrice(b) <= c.budget) why.push(`Within your C$${c.budget} budget (${SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)})`);
+  return {why: why.slice(0, 5), watch: watch.slice(0, 3)};
+}
+
 function priceCheckLink(b){
   if (b.retailerUrl) {
     const [trackedUrl, isAffiliate] = applyAffiliateTracking(b.retailerUrl);
@@ -367,7 +391,7 @@ function priceCheckLink(b){
 // grace window scoring already allows) — explains what the extra money
 // actually buys, instead of silently over-recommending.
 function budgetNote(b, budget){
-  const over = b.price - budget;
+  const over = SV.scoringPrice(b) - budget;
   if (over <= 0 || over > 500) return '';
   const perks = [];
   if (b.barAdjust) perks.push('an adjustable handlebar for a longer growth window');
@@ -375,7 +399,7 @@ function budgetNote(b, budget){
   if (b.resale === 'high') perks.push('strong resale value if they outgrow it fast');
   if (b.brake === 'hand' && b.wheel >= 20) perks.push('hand brakes with more stopping power as they ride faster');
   if (!perks.length) perks.push('a bit more room to grow into');
-  return `<p class="result-budget-note"><b>$${Math.round(over)} over your budget</b> — that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+  return `<p class="result-budget-note"><b>About C$${Math.round(over)} over your budget</b>: that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
 }
 
 async function loadBikeData(){
@@ -408,8 +432,15 @@ async function loadBikeData(){
     }
   });
 }
-loadBikeData();
-initQuizFlow('#quizSteps');
+loadBikeData().then(() => SV.fxReady).then(() => SV.restore('#quizSteps'));
+initQuizFlow('#quizSteps', {
+  essentials: 4,
+  order: [
+    {key:'height', tag:'Your child'}, {key:'exp', tag:'Your child'}, {key:'terrain', tag:'Where they ride'}, {key:'budget', tag:'Your budget'},
+    {key:'brake'}, {key:'growth'}, {key:'frameStyle'}, {key:'origin'}
+  ]
+});
+SV.watch('#quizSteps');
 
 const state = {exp:null, terrain:null, brake:null, frameStyle:null, origin:null};
 const growthLabels = ["Not important","Not important","A little","A little","Somewhat","Somewhat","Somewhat","Important","Important","Very important","Very important"];
@@ -451,7 +482,7 @@ document.getElementById('height').addEventListener('input', e => {
   document.getElementById('height-out').textContent = e.target.value + ' cm';
 });
 document.getElementById('budget').addEventListener('input', e => {
-  document.getElementById('budget-out').textContent = '$' + e.target.value;
+  document.getElementById('budget-out').textContent = 'C$' + e.target.value;
 });
 document.getElementById('growth').addEventListener('input', e => {
   document.getElementById('growth-out').textContent = growthLabels[Number(e.target.value)];
@@ -468,8 +499,8 @@ document.querySelectorAll('.opt').forEach(btn => {
 
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
-  if (!state.exp || !state.terrain || !state.brake) {
-    err.textContent = "Pick an experience level, terrain, and brake preference first.";
+  if (!state.exp || !state.terrain) {
+    err.textContent = "Pick their riding experience and where they will ride first.";
     err.style.display = 'block';
     return;
   }
@@ -485,13 +516,19 @@ document.getElementById('submit').addEventListener('click', () => {
   const growthWeight = Number(document.getElementById('growth').value) / 10;
   const originPref = state.origin || 'none';
 
-  const scored = bikes.map(b => {
+  const sellable = SV.split(bikes);
+  const scored = sellable.keep.map(b => {
     let score = 0;
-    if (height >= b.minH && height <= b.maxH) score += 35;
-    else score -= Math.min(40, Math.abs(height - (b.minH+b.maxH)/2) * 0.8);
+    const price = SV.scoringPrice(b);
+    // fit, with a sense of where in the bike's range the child sits: at the very top they outgrow it almost at once
+    if (height >= b.minH && height <= b.maxH) {
+      const pos = (height - b.minH) / Math.max(1, b.maxH - b.minH);
+      score += 35 - (pos > 0.85 ? 22 * (pos - 0.85) / 0.15 : pos < 0.1 ? 8 * (0.1 - pos) / 0.1 : 0);
+    } else score -= Math.min(40, Math.abs(height - (b.minH+b.maxH)/2) * 0.8);
 
     if (b.exp.includes(state.exp)) score += 20;
-    if (state.brake === 'either' || state.brake === b.brake) score += 10;
+    const brakePref = state.brake || 'either';
+    if (brakePref === 'either' || brakePref === b.brake) score += 10;
     else score -= 5;
     if (state.exp === 'none' && b.brake === 'hand') score -= 4;
 
@@ -501,9 +538,9 @@ document.getElementById('submit').addEventListener('click', () => {
     // Budget is honored, not just nudged: bikes creep up to $500 over get a
     // gentle penalty (still surface if they're genuinely the better fit),
     // but anything further over budget drops off the results almost entirely.
-    if (b.price <= budget) score += 8;
+    if (price <= budget) score += 8;
     else {
-      const over = b.price - budget;
+      const over = price - budget;
       score -= over <= 500 ? over * 0.04 : 500 * 0.04 + (over - 500) * 3;
     }
 
@@ -520,43 +557,34 @@ document.getElementById('submit').addEventListener('click', () => {
       score += b.frameStyle === frameStylePref ? 10 : -5;
     }
 
-    const years = Math.max(1, Math.round((b.seatRange/2 + (b.barAdjust?0.5:0)) * 10) / 10);
-    return {...b, score, years};
+    const room = Math.max(0, b.maxH - height);
+    score += SV.confidence(b);
+    return {...b, score, room};
   }).sort((a,b) => b.score - a.score).slice(0,6);
 
-  document.getElementById('placeholder').style.display = 'none';
   const results = document.getElementById('results');
-  results.style.display = 'grid';
-  results.innerHTML = scored.map((b,i) => `
-    <div class="result-card ${i===0?'top':''}">
-      ${i===0 ? '<span class="badge">Top pick</span>' : ''}
-      <div class="result-media">
-        ${b.image ? `<img src="${escapeHtml(b.image)}" alt="${escapeHtml(b.name)}" loading="lazy">` : resultPlaceholderMarkup(b)}
-      </div>
-      <div class="result-top">
-        <span class="result-name">${escapeHtml(b.name)}</span>
-        <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
-      </div>
-      <p class="result-meta">${b.wheel}in wheels · fits ${b.minH}–${b.maxH}cm · ${b.brake === 'none' ? 'no brakes' : b.brake + ' brakes'} · ${b.origin}<br>Grows with them for roughly ${b.years} years</p>
-      ${budgetNote(b, budget)}
-      ${priceCheckLink(b)}
-    </div>
-  `).join('');
-
-  // A bike photo that fails to load (bad URL, taken-down image) falls back to
-  // the same placeholder-plus-link used when no image was supplied at all.
-  results.querySelectorAll('.result-media').forEach((mediaEl, i) => {
-    const img = mediaEl.querySelector('img');
-    if (!img) return;
-    img.addEventListener('error', () => {
-      mediaEl.innerHTML = resultPlaceholderMarkup(scored[i]);
-    }, {once: true});
+  const ctx = {height, exp: state.exp, brake: state.brake, terrain: state.terrain, budget};
+  SV.render({
+    results, root: '#quizSteps', items: scored, excluded: sellable.out,
+    summary: [
+      {label:'Height', value: height + ' cm', group:'height'}, {label:'Riding', value: {none:'Never ridden', balance:'Balance bike', training:'Training wheels', confident:'Confident'}[state.exp], group:'exp'},
+      {label:'Where', value: terrainNameKids[state.terrain], group:'terrain'}, {label:'Budget', value: 'C$' + budget, group:'budget'}
+    ],
+    describe: b => {
+      const r = explainMatch(b, ctx);
+      return {
+        meta: `${b.wheel}in wheels · fits ${b.minH}–${b.maxH}cm · ${b.brake === 'none' ? 'no brakes' : b.brake + ' brakes'}<br>About ${b.room} cm of growing room at their current height`,
+        why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget)
+      };
+    },
+    compareRows: [
+      ['Wheels', b => b.wheel + ' in'], ['Fits children', b => b.minH + '–' + b.maxH + ' cm'], ['Growing room', b => b.room + ' cm'], ['Brakes', b => b.brake],
+      ['Seat adjustment', b => b.seatRange ? b.seatRange + ' cm' : ''], ['Adjustable handlebars', b => b.barAdjust ? 'yes' : 'no'],
+      ['Training wheels', b => b.trainWheel ? 'can be fitted' : 'no'], ['Resale value', b => b.resale || '']
+    ],
+    note: "Fit uses the height range each brand publishes. Inseam matters too: have your child stand against a wall, measure from the floor to the top of the inner leg, and check that against the bike's lowest seat height on the seller's page. Children grow at different rates (often around 6 cm a year at these ages), so we show growing room in centimetres instead of guessing years."
   });
-
-  results.scrollIntoView({behavior: 'smooth', block: 'start'});
-  results.focus();
 });
-
 const letterOverlay = document.getElementById('letterOverlay');
 const openLetterBtn = document.getElementById('openLetter');
 const closeLetterBtn = document.getElementById('closeLetter');

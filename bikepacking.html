@@ -18,9 +18,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=selectvelo5">
+<link rel="stylesheet" href="style.css?v=selectvelo15">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>window.SV_HAS_FRENCH = true;</script>
+<script src="i18n.js"></script>
+<script src="i18n-fr.js"></script>
 <script src="quiz-flow.js"></script>
+<script src="match-ui.js"></script>
 <script src="affiliate.js"></script>
 <script src="info-tips.js"></script>
 <script src="nav-transition.js"></script>
@@ -76,6 +80,7 @@
       <h1>The right <span class="pencil-mark">bikepacking</span> bike makes every mile unforgettable — blisters optional.</h1>
       <p>Iceland's ring road isn't Patagonia, and a weekend loop isn't the Tour Divide. Answer questions about your actual route, trip length, and how you'll carry your gear — we measure real bikes against your actual trip, not a generic "adventure bike" shelf.</p>
       <a href="#quiz" class="btn-primary">Start matching</a>
+      <p class="hero-sublink"><a href="#start-here">New to bikepacking? Start here</a></p>
       <div class="chip-row spec-chips">
         <span>Free</span><span class="chip-div"></span><span>3 minutes</span><span class="chip-div"></span><span>Every brand</span>
       </div>
@@ -86,6 +91,74 @@
         <svg class="bike-diagram" viewBox="0 0 640 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Studio render of a loaded bikepacking bike with front and rear racks, panniers, a duffel and a handlebar bag, annotated with wheel diameter, standover height, and wheelbase"><image href="images/figs/fig_gravel.webp" x="0" y="0" width="640" height="410" preserveAspectRatio="xMidYMid meet"/><g class="dim-minor"><line class="dim-ext" x1="66" y1="151.3" x2="94" y2="151.3"/><line class="dim-ext" x1="66" y1="340.3" x2="94" y2="340.3"/><line class="dim-line" x1="66" y1="151.3" x2="66" y2="340.3"/><line class="dim-tick" x1="59" y1="151.3" x2="73" y2="151.3"/><line class="dim-tick" x1="59" y1="340.3" x2="73" y2="340.3"/><text class="dim-label" x="8" y="127.3">WHEEL</text><text class="dim-label" x="8" y="143.3">⌀ 650b/700c</text></g><g class="dim-minor"><line class="dim-line" x1="341.4" y1="122.4" x2="341.4" y2="340.3"/><line class="dim-tick" x1="334.4" y1="122.4" x2="348.4" y2="122.4"/><line class="dim-tick" x1="334.4" y1="340.3" x2="348.4" y2="340.3"/></g><line class="dim-ext" x1="184.3" y1="245.8" x2="184.3" y2="371.3"/><line class="dim-ext" x1="465.3" y1="245.8" x2="465.3" y2="371.3"/><line class="dim-line" x1="184.3" y1="365.3" x2="465.3" y2="365.3"/><line class="dim-tick" x1="184.3" y1="358.3" x2="184.3" y2="372.3"/><line class="dim-tick" x1="465.3" y1="358.3" x2="465.3" y2="372.3"/><text class="dim-label" x="324.8" y="392.3" text-anchor="middle">WHEELBASE — loaded &amp; steady</text><ellipse class="hand-circle" cx="203.4" cy="174.7" rx="26" ry="17" transform="rotate(-8 203.4 174.7)"/><line x1="201.4" y1="54.7" x2="203.4" y2="157.7" style="stroke:var(--signal); stroke-width:1.4; stroke-dasharray:4 3;"/><text class="hand-note" x="173.4" y="46.7" transform="rotate(-4 173.4 46.7)">racks & panniers</text></svg>
       </div>
       <p class="diagram-cap">Fig. 001 — geometry and gear capacity we score against your trip</p>
+    </div>
+  </div>
+</section>
+
+<section class="primer" id="start-here">
+  <div class="wrap">
+    <div class="fig-tag"><span>First trip</span><span class="chip-div"></span><span>Start here</span></div>
+    <h2>New to bikepacking? Decide before you spend.</h2>
+    <p class="lede">Bikepacking means carrying what you need to sleep and eat on your bike, in bags or panniers, for one night or many. You do not need a special bike to begin, and the right first purchase may be nothing at all. This is how to decide.</p>
+
+    <div class="primer-grid">
+      <div class="primer-card">
+        <h3>Could the bike you already own do it?</h3>
+        <p>Check these before you shop. If most are a yes, try a one- or two-night trip with what you have, then buy once you know what you miss.</p>
+        <ul>
+          <li><b>Tyre room.</b> Can it take tyres at least 35 mm wide? Wider tyres are more comfortable and grip better on gravel and crushed stone.</li>
+          <li><b>Places to mount things.</b> Rack mounts, or bosses for bottle cages and bags. Without them you rely on strapped-on bags.</li>
+          <li><b>Easy gears.</b> A loaded bike is much heavier than an empty one, so a low gear matters on hills.</li>
+          <li><b>Brakes you trust.</b> Check them in the wet, with a load on.</li>
+          <li><b>A frame that fits you.</b> A long trip is a poor time to find out it does not.</li>
+          <li><b>Condition.</b> Tyres, chain, brake pads and wheels. Have a shop check it before a long trip.</li>
+        </ul>
+      </div>
+
+      <div class="primer-card">
+        <h3>Bags or racks and panniers?</h3>
+        <p>Neither is better in general. It depends on your route and how long you will be out.</p>
+        <ul>
+          <li><b>Bikepacking bags</b> (frame, seat pack, handlebar roll) are narrower and suit rougher trails. They fit bikes without racks, but need room in the frame and are harder to pack for a long trip.</li>
+          <li><b>Racks and panniers</b> carry more and are easier to pack and unpack. They suit longer trips on roads and gravel, and the bike needs rack mounts.</li>
+          <li>The quiz asks which you prefer, or recommends from your trip if you are not sure.</li>
+        </ul>
+      </div>
+
+      <div class="primer-card">
+        <h3>Planning a trip in Québec</h3>
+        <p>Distances, opening dates and rules change, so we link to the official sources instead of repeating their details. Check them before you go.</p>
+        <ul class="primer-links">
+          <li><a href="https://www.routeverte.com/en/" target="_blank" rel="noopener">La Route verte</a>: the province's cycling network, with maps and route information.</li>
+          <li><a href="https://www.lequebecavelo.ca/en/map-of-the-green-route" target="_blank" rel="noopener">Le Québec à vélo: map of the Route verte</a>, from Vélo Québec's cycle-tourism site.</li>
+          <li><a href="https://www.lequebecavelo.ca/en/regions/cycling-in-gaspesie" target="_blank" rel="noopener">Cycling in Gaspésie</a>, one of its regional guides.</li>
+          <li><a href="https://www.sepaq.com/reservation/index.dot?language_id=1" target="_blank" rel="noopener">Sépaq reservations</a>: campsites in Québec's parks.</li>
+          <li><a href="https://www.viarail.ca/en/plan/baggages/sports-equipment" target="_blank" rel="noopener">VIA Rail: bicycles and sports equipment</a>, if you plan to start or finish by train.</li>
+        </ul>
+      </div>
+
+      <div class="primer-card">
+        <h3>Ask before you buy</h3>
+        <ul>
+          <li>Does it come in my size, and can I sit on one first?</li>
+          <li>Will the shop fit racks or bags, and what does that cost?</li>
+          <li>What is the return policy if it does not fit?</li>
+          <li>Is there a shop that can service it near where I will ride?</li>
+          <li>Can I test it with a load before the trip?</li>
+        </ul>
+      </div>
+
+      <div class="primer-card">
+        <h3>The rest of the kit</h3>
+        <p>The bike is only part of the cost. We do not price these here; check each with the seller.</p>
+        <ul>
+          <li><b>Sleep:</b> tent or bivy, sleeping bag, sleeping pad.</li>
+          <li><b>Carry:</b> bags or rack and panniers, plus dry bags.</li>
+          <li><b>Food and water:</b> stove, a way to treat water, bottles.</li>
+          <li><b>Repair:</b> spare tube, pump, multi-tool, chain lube, patches.</li>
+          <li><b>Other:</b> lights, rain layer, warm layer, first aid, navigation.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -136,7 +209,7 @@
       <div>
         <div class="fig-tag"><span>Fig. 003</span><span class="chip-div"></span><span>The fit quiz</span></div>
         <h2>Let's find your bikepacking bike.</h2>
-        <p class="lede">This one's longer than the others on purpose — bikepacking bikes vary more than any other category here, so we ask for more. None of it requires expert terminology going in.</p>
+        <p class="lede">Answer six quick questions for a first set of matches, then add detail if you like: bikepacking bikes vary more than any other category here, so there is more to refine. None of it requires expert terminology.</p>
       </div>
       <svg class="sketch-icon on-dark quiz-sketch" viewBox="0 0 64 64" aria-hidden="true">
         <path d="M14 44 L14 20 Q14 14 20 14 L44 14 Q50 14 50 20 L50 44 Z"/>
@@ -339,10 +412,10 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">Budget</label>
+          <label class="q-label">Budget (in Canadian dollars)</label>
           <div class="range-row">
             <input type="range" id="budget" min="1200" max="6000" value="2500" step="50">
-            <span class="range-out" id="budget-out">$2500</span>
+            <span class="range-out" id="budget-out">C$2500</span>
           </div>
         </div>
 
@@ -503,7 +576,8 @@ function priceCheckLink(b){
 // grace window scoring already allows) — explains what the extra money
 // actually buys, instead of silently over-recommending.
 function budgetNote(b, budget){
-  const over = b.price - budget;
+  const price = SV.scoringPrice(b);
+  const over = price - budget;
   if (over <= 0 || over > 500) return '';
   const perks = [];
   if (b.electronicShifting) perks.push('electronic shifting');
@@ -512,7 +586,7 @@ function budgetNote(b, budget){
   if (b.dynamoReady) perks.push('a dynamo-ready hub for lights and charging');
   if (b.tireDurability === 'reinforced' && !perks.length) perks.push('more reinforced, reliable tires');
   if (!perks.length) perks.push('a step up in components for the same basic bike');
-  return `<p class="result-budget-note"><b>$${Math.round(over)} over your budget</b> — that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+  return `<p class="result-budget-note"><b>About C$${Math.round(over)} over your budget</b>: that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
 }
 
 // Shown when a bike has no photo yet, or its photo URL fails to load —
@@ -571,8 +645,18 @@ async function loadBikeData(){
     }
   });
 }
-loadBikeData();
-initQuizFlow('#quizSteps');
+loadBikeData().then(() => SV.fxReady).then(() => SV.restore('#quizSteps'));
+initQuizFlow('#quizSteps', {
+  essentials: 6,
+  order: [
+    {key:'terrain', tag:'Your trip'}, {key:'triplength', tag:'Your trip'}, {key:'purpose', tag:'Your trip'},
+    {key:'sizemode', tag:'Your fit'}, {key:'budget', tag:'Your budget'}, {key:'experience', tag:'About you'},
+    {key:'climbing'}, {key:'remoteness'}, {key:'carrystyle'}, {key:'wheelsize'}, {key:'tires'}, {key:'dynamo'},
+    {key:'frame'}, {key:'frameStyle'}, {key:'suspension'}, {key:'groupset'}, {key:'shifting'}, {key:'color'},
+    {key:'availabilitypref'}, {key:'origin'}
+  ]
+});
+SV.watch('#quizSteps');
 
 const state = {
   terrain:null, purpose:null, triplength:null, climbing:null, remoteness:null,
@@ -583,11 +667,13 @@ const state = {
 
 const terrainPosition = {road_paved:0, gravel:1, mixed:2, trail_mountain:3};
 const purposePosition = {ultra_race:0, adventure:1, touring:2};
-const tripLengthCargo = {overnight:0, week:1, multiweek:2, expedition:3};
+// How much capacity a trip needs, on the same scale as cargoLabel(): 0 ultralight, 1 weekend, 2 week-long, 3 expedition.
+// (This used to be one step lower, so a bike rated for weekend loads counted as enough for a week.)
+const tripLengthCargo = {overnight:0, week:2, multiweek:3, expedition:3};
 const climbingScore = {standard:0, low:1, ultra_low:2};
 
 document.getElementById('budget').addEventListener('input', e => {
-  document.getElementById('budget-out').textContent = '$' + e.target.value;
+  document.getElementById('budget-out').textContent = 'C$' + e.target.value;
 });
 document.getElementById('riderHeight').addEventListener('input', e => {
   document.getElementById('riderHeight-out').textContent = e.target.value + ' cm';
@@ -645,6 +731,56 @@ function climbingLabel(r){
   return r === 'ultra_low' ? 'very low (loaded-climb) gearing' : r === 'low' ? 'low gearing' : 'standard gearing';
 }
 
+// Plain-language reasons for each match: what it does well for THIS trip, and what to watch out for.
+// This mirrors the factors the scoring uses, so what we say is what actually moved the bike up or down.
+const terrainName = {road_paved:'paved roads', gravel:'gravel', mixed:'mixed paved and gravel', trail_mountain:'rough trail'};
+const tripName = {overnight:'weekend trip', week:'week-long trip', multiweek:'multi-week trip', expedition:'months-long trip'};
+function explainMatch(b, c){
+  const why = [], watch = [];
+  // fit first: it is the biggest factor
+  if (c.sizemode === 'height' && c.height) {
+    if (c.height >= b.minH && c.height <= b.maxH) why.push(`Fits a ${c.height} cm rider (this bike covers ${b.minH}–${b.maxH} cm)`);
+    else watch.push(`Sized for riders ${b.minH}–${b.maxH} cm, and you're ${c.height} cm`);
+  } else if (c.sizemode === 'known' && c.size && b.sizes && b.sizes.length) {
+    const nearest = b.sizes.reduce((best, x) => Math.abs(x - c.size) < Math.abs(best - c.size) ? x : best, b.sizes[0]);
+    if (Math.abs(nearest - c.size) <= 1) why.push(`Comes in a ${nearest} cm frame`);
+    else watch.push(`Nearest frame is ${nearest} cm; you said ${c.size} cm`);
+  }
+  if (!b.sizes || !b.sizes.length) watch.push("Sizes aren't listed here yet. Check the brand's size chart before you buy");
+  if (SV.scoringPrice(b) <= c.budget) why.push(`Within your C$${c.budget} budget (${SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)})`);
+  const gap = Math.min(...c.terrain.map(t => Math.abs(terrainPosition[t] - terrainPosition[b.terrain])));
+  if (gap === 0) why.push(`Made for ${terrainName[b.terrain]}, like your route`);
+  else if (gap === 1) {
+    const maxWanted = Math.max(...c.terrain.map(t => terrainPosition[t]));
+    watch.push(terrainPosition[b.terrain] > maxWanted ? `Built for ${terrainName[b.terrain]}: more bike than your route needs, so heavier and slower on smooth ground` : `Built for ${terrainName[b.terrain]}: may feel limited on rougher stretches of your route`);
+  }
+  else if (gap >= 2) watch.push(`Better suited to ${terrainName[b.terrain]} than your route`);
+  if (b.cargoCapacity >= c.neededCargo) why.push(`Rated for ${cargoLabel(b.cargoCapacity)} loads, enough for a ${tripName[c.triplength]}`);
+  else watch.push(`Rated for ${cargoLabel(b.cargoCapacity)} loads, and you described a ${tripName[c.triplength]}`);
+  if (c.climbing === 'steep_mountain') {
+    const g = climbingLabel(b.climbingRange);
+    if (b.climbingRange !== 'standard') why.push(g.charAt(0).toUpperCase() + g.slice(1) + ' for climbing with a load');
+    else watch.push('Standard gearing: expect to push on steep climbs with a load');
+  }
+  if (/single-speed/i.test(b.groupset)) watch.push('Single-speed: no gears, so hills are hard work with a load');
+  const carry = c.carry || [];
+  if (carry.includes('rack_panniers')) { if (b.rackMounts) why.push('Has rack mounts for panniers'); else watch.push('No rack mounts, so panniers need a workaround'); }
+  if (carry.includes('minimalist')) { if (b.frameBagFriendly) why.push('Roomy main triangle for a frame bag'); else watch.push('Tight frame-bag fit, so plan on a smaller bag'); }
+  if (c.tires === 'reliable' && b.tireDurability === 'reinforced') why.push('Reinforced tyres to cut down on flats');
+  if (c.experience === 'new' && b.purpose === 'ultra_race') watch.push('Race-oriented: quicker and twitchier than a relaxed first-trip bike');
+  if (c.experience === 'new' && b.purpose === 'touring') why.push('Relaxed, touring-style handling suits a first trip');
+  return {why: why.slice(0, 4), watch: watch.slice(0, 3)};
+}
+function reasonsMarkup(b, c){
+  const r = explainMatch(b, c);
+  return (r.why.length ? `<ul class="result-why">${r.why.map(t => `<li>${escapeHtml(t)}</li>`).join('')}</ul>` : '')
+       + (r.watch.length ? `<ul class="result-watch">${r.watch.map(t => `<li>${escapeHtml(t)}</li>`).join('')}</ul>` : '');
+}
+function formatPrice(b){
+  const n = Number(b.price).toLocaleString('en-CA');
+  return b.currency === 'CAD' ? 'C$' + n : 'US$' + n;
+}
+
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
   if (!state.terrain || !state.terrain.length || !state.purpose || !state.triplength) {
@@ -666,8 +802,13 @@ document.getElementById('submit').addEventListener('click', () => {
   const groupsetPref = state.groupset || 'none';
   const colorPrefs = (state.color || []).filter(c => c !== 'none');
 
-  const scored = bikes.map(b => {
+  const ctx = {sizemode: state.sizemode, height: state.riderHeight, size: Number(state.framesize) || null, terrain: state.terrain, triplength: state.triplength,
+               neededCargo, climbing: state.climbing, carry: state.carrystyle, tires: state.tires, budget, experience: state.experience};
+
+  const sellable = SV.split(bikes);
+  const scored = sellable.keep.map(b => {
     let score = 0;
+    const price = SV.scoringPrice(b);
 
     // Terrain and trip purpose are the two axes that most determine whether
     // a bike is even the right category of bike for the trip.
@@ -718,9 +859,9 @@ document.getElementById('submit').addEventListener('click', () => {
     // Budget is honored, not just nudged: bikes up to $500 over get a gentle
     // penalty (still surface if genuinely the better fit), anything further
     // over budget drops off the results almost entirely.
-    if (b.price <= budget) score += 8;
+    if (price <= budget) score += 8;
     else {
-      const over = b.price - budget;
+      const over = price - budget;
       score -= over <= 500 ? over * 0.015 : 500 * 0.015 + (over - 500) * 3;
     }
 
@@ -759,38 +900,40 @@ document.getElementById('submit').addEventListener('click', () => {
     // unless the rider explicitly says they're open to boutique builders.
     if (state.availabilitypref !== 'open' && b.availability === 'mainstream') score += 6;
 
+    score += SV.confidence(b);
     return {...b, score};
   }).sort((a,b) => b.score - a.score).slice(0,6);
 
-  document.getElementById('placeholder').style.display = 'none';
   const results = document.getElementById('results');
-  results.style.display = 'grid';
-  results.innerHTML = scored.map((b,i) => `
-    <div class="result-card ${i===0?'top':''}">
-      ${i===0 ? '<span class="badge">Top pick</span>' : ''}
-      <div class="result-media">
-        ${b.image ? `<img src="${escapeHtml(b.image)}" alt="${escapeHtml(b.name)}" loading="lazy">` : resultPlaceholderMarkup(b)}
-      </div>
-      <div class="result-top">
-        <span class="result-name">${escapeHtml(b.name)}</span>
-        <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
-      </div>
-      <p class="result-meta">${b.wheel === 700 ? '700c' : '650b'} wheels · sizes ${b.sizes.join('/')}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)}${b.electronicShifting ? ' (electronic)' : ' (mechanical)'} · ${b.origin}<br>${cargoLabel(b.cargoCapacity)} capacity · ${climbingLabel(b.climbingRange)}${b.comfortDamping ? ' · front-end comfort damping' : ' · rigid'}<br>${b.rackMounts ? 'rack mounts' : 'no rack mounts'} · ${b.frameBagFriendly ? 'frame-bag friendly' : 'tight frame-bag fit'} · ${b.tireDurability === 'reinforced' ? 'reinforced tires' : 'standard tires'}${b.dynamoReady ? ' · dynamo-ready' : ''} · ${b.availability === 'boutique' ? 'boutique/small-builder' : 'widely available'}</p>
-      ${budgetNote(b, budget)}
-      ${priceCheckLink(b)}
-    </div>
-  `).join('');
-
-  results.querySelectorAll('.result-media').forEach((mediaEl, i) => {
-    const img = mediaEl.querySelector('img');
-    if (!img) return;
-    img.addEventListener('error', () => {
-      mediaEl.innerHTML = resultPlaceholderMarkup(scored[i]);
-    }, {once: true});
+  const answer = {
+    terrain: (state.terrain || []).map(t => terrainName[t]).join(' + '),
+    trip: tripName[state.triplength],
+    purpose: {touring:'Comfortable touring', adventure:'A proper adventure', ultra_race:'Ultra-racing'}[state.purpose],
+    fit: state.sizemode === 'known' && state.framesize ? state.framesize + ' cm frame' : state.riderHeight ? state.riderHeight + ' cm tall' : '',
+    experience: {new:'First trip', some:'A few trips', experienced:'Very experienced'}[state.experience] || ''
+  };
+  SV.render({
+    results, root: '#quizSteps', items: scored, excluded: sellable.out,
+    summary: [
+      {label:'Route', value: answer.terrain, group:'terrain'}, {label:'Trip', value: answer.trip, group:'triplength'},
+      {label:'Goal', value: answer.purpose, group:'purpose'}, {label:'Fit', value: answer.fit, group:'sizemode'},
+      {label:'Budget', value: 'C$' + budget, group:'budget'}, {label:'Experience', value: answer.experience, group:'experience'}
+    ],
+    describe: b => {
+      const r = explainMatch(b, ctx);
+      return {
+        meta: `${b.wheel === 700 ? '700c' : '650b'} wheels · ${b.sizes && b.sizes.length ? 'sizes ' + b.sizes.join('/') + 'cm' : 'sizes: see the brand'} · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)}${b.electronicShifting ? ' (electronic)' : ' (mechanical)'}<br>${cargoLabel(b.cargoCapacity)} capacity · ${climbingLabel(b.climbingRange)} · ${b.suspensionFork ? 'suspension fork' : b.comfortDamping ? 'front comfort damping' : 'rigid'}`,
+        why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget)
+      };
+    },
+    compareRows: [
+      ['Wheels', b => b.wheel === 700 ? '700c' : '650b'], ['Frame', b => b.frameMaterial], ['Drivetrain', b => b.groupset],
+      ['Gear capacity', b => cargoLabel(b.cargoCapacity)], ['Climbing gears', b => climbingLabel(b.climbingRange)],
+      ['Rack mounts', b => b.rackMounts ? 'yes' : 'no'], ['Frame-bag friendly', b => b.frameBagFriendly ? 'yes' : 'tight'],
+      ['Tyres', b => b.tireDurability === 'reinforced' ? 'reinforced' : 'standard'], ['Weight (catalog)', b => b.weight ? b.weight + ' kg' : ''],
+      ['Sizes', b => b.sizes && b.sizes.length ? b.sizes.join(' / ') + ' cm' : '']
+    ]
   });
-
-  results.scrollIntoView({behavior: 'smooth', block: 'start'});
-  results.focus();
 });
 
 const letterOverlay = document.getElementById('letterOverlay');

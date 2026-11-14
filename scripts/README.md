@@ -71,3 +71,36 @@ Retire bikes that are no longer on sale. Retire a New tag once the brand stops c
   script can take `SHARP_DIR=<folder with node_modules/sharp>` to detect photo backgrounds.
 - `.github/workflows/showcase-check.yml` — a read-only check on the 8th of the quarter's first month
   that opens an issue if something broke.
+
+## The five quizzes' catalogs (`data/*-bikes.json`)
+
+The quizzes (kids, commute, racing, mountain, bikepacking) rank the bikes in these files. Every claim the
+results make about a bike is something recorded here, and anything not recorded is shown as unconfirmed.
+
+Fields added to each bike by the scripts (never edit these by hand):
+
+- `check` — written by `node scripts/verify-catalogs.mjs --write`. `status` is `ok` (the seller page loaded and
+  shows this model), `mismatch`, `dead` (the link fails: the bike is left out of results), `blocked` (the seller
+  refuses automated checks: shown as "open the page to confirm") or `no-link`. It also records a price and
+  currency only when the page states them, and `canada: 'confirmed'` only for a Canadian listing (a .ca site, a
+  `/ca/` or `en-ca` locale, or a CAD price). It sets no `canada` guess.
+- `recall` — from Health Canada's recall list, same run. `match: 'exact'` means every distinguishing word of the
+  model is in the notice; `'family'` means the model's name is but not its trim or year. Shown to shoppers as a
+  prompt to read the notice, never as proof the bike is affected.
+- `canada: {sold: false, source}` — `node scripts/mark-availability.mjs`. Only with a citable source (REI's own
+  policy that it cannot ship bikes outside the U.S.; the U.S.-only brands in the Q4 2026 availability review).
+- `discontinued: {source}` — the brand's own page says it is no longer sold new (e.g. Surly files the Long Haul
+  Trucker under "Archive"). Left out of results.
+
+Finding links for bikes with none (`no-link`): use a Canadian shop's public `products.json`, a brand's own
+sitemap (Giant Canada), or a search of the brand's own site; record what you found in
+`scripts/apply-found-links.mjs`, then re-run the verifier. Never build a URL from a pattern. Do not get round a
+seller's block on automated access: leave it `blocked`.
+
+Prices: the schema says an unlabelled price is USD. The quizzes show every price as US$ or C$, and compare a US
+price to the shopper's Canadian-dollar budget at the Bank of Canada's published daily rate (fetched in the
+browser; if it cannot be loaded, the listed number is compared as it is and the page says so).
+
+Where the shared behaviour lives: `match-ui.js` (cards, trust lines, compare table, share link, live refresh),
+`quiz-flow.js` (essentials first, "See my matches now"), `i18n.js` + `i18n-fr.js` (French for the bikepacking
+page; open any page with `?i18n-debug` while in French to list text that still has no French).

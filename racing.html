@@ -18,9 +18,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=selectvelo5">
+<link rel="stylesheet" href="style.css?v=selectvelo15">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="quiz-flow.js"></script>
+<script src="match-ui.js"></script>
 <script src="affiliate.js"></script>
 <script src="info-tips.js"></script>
 <script src="nav-transition.js"></script>
@@ -271,10 +272,10 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">Budget</label>
+          <label class="q-label">Budget (in Canadian dollars)</label>
           <div class="range-row">
             <input type="range" id="budget" min="1200" max="13000" value="5000" step="100">
-            <span class="range-out" id="budget-out">$5000</span>
+            <span class="range-out" id="budget-out">C$5000</span>
           </div>
         </div>
 
@@ -425,7 +426,7 @@ function priceCheckLink(b){
 // grace window scoring already allows) — explains what the extra money
 // actually buys, instead of silently over-recommending.
 function budgetNote(b, budget){
-  const over = b.price - budget;
+  const over = SV.scoringPrice(b) - budget;
   if (over <= 0 || over > 500) return '';
   const perks = [];
   if (b.electronicShifting) perks.push('electronic shifting');
@@ -433,7 +434,7 @@ function budgetNote(b, budget){
   if (b.wheelDepth === 'deep') perks.push('deeper aero wheels');
   if (b.dynamoReady) perks.push('a dynamo-ready hub for all-night riding');
   if (!perks.length) perks.push('a step up in components for the same basic bike');
-  return `<p class="result-budget-note"><b>$${Math.round(over)} over your budget</b> — that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+  return `<p class="result-budget-note"><b>About C$${Math.round(over)} over your budget</b>: that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
 }
 
 // Shown when a bike has no photo yet, or its photo URL fails to load —
@@ -492,8 +493,16 @@ async function loadBikeData(){
     }
   });
 }
-loadBikeData();
-initQuizFlow('#quizSteps');
+loadBikeData().then(() => SV.fxReady).then(() => SV.restore('#quizSteps'));
+initQuizFlow('#quizSteps', {
+  essentials: 3,
+  order: [
+    {key:'discipline', tag:'Your racing'}, {key:'sizemode', tag:'Your fit'}, {key:'budget', tag:'Your budget'},
+    {key:'dynamo'}, {key:'wheelpref'}, {key:'shifting'}, {key:'frame'}, {key:'frameStyle'}, {key:'groupset'}, {key:'color'},
+    {key:'availabilitypref'}, {key:'origin'}
+  ]
+});
+SV.watch('#quizSteps');
 
 const state = {
   discipline:null, character:null, dynamo:null,
@@ -507,7 +516,7 @@ const sizeKnownBlock = document.getElementById('sizeKnownBlock');
 const sizeHeightBlock = document.getElementById('sizeHeightBlock');
 
 document.getElementById('budget').addEventListener('input', e => {
-  document.getElementById('budget-out').textContent = '$' + e.target.value;
+  document.getElementById('budget-out').textContent = 'C$' + e.target.value;
 });
 document.getElementById('riderHeight').addEventListener('input', e => {
   document.getElementById('riderHeight-out').textContent = e.target.value + ' cm';
@@ -567,6 +576,28 @@ document.querySelectorAll('.opt').forEach(btn => {
 // unlike audax (LEL, PBP) which is deliberately non-competitive despite similar
 // distances — so ultra_distance scores well against aero road bikes and
 // triathlon bikes, but not against audax comfort bikes.
+const disciplineName = {road_race:'road racing', triathlon:'triathlon', audax:'audax and randonneuring', ultra_distance:'ultra-distance racing'};
+// Plain-language reasons for each match, mirroring the factors the scoring actually uses.
+function explainMatch(b, c){
+  const why = [], watch = [];
+  const best = Math.max(...c.discipline.map(d => disciplineScore(d, b)));
+  if (c.discipline.includes(b.discipline)) why.push(`Designed for ${disciplineName[b.discipline]}, as you asked`);
+  else if (best > 0) why.push(`Suited to ${disciplineName[c.discipline[0]]} even though it is built for ${disciplineName[b.discipline]}`);
+  else watch.push(`Built for ${disciplineName[b.discipline]}, not ${c.discipline.map(d => disciplineName[d]).join(' or ')}`);
+  if (c.character) { if (c.character === b.character) why.push(`${b.character === 'aero' ? 'Aero' : b.character === 'climbing' ? 'Climbing' : 'All-round'} character, as you prefer`); else if (b.character !== 'all_rounder' && c.character !== 'all_rounder') watch.push(`${b.character === 'aero' ? 'Aero' : b.character === 'climbing' ? 'Climbing' : 'Endurance'} character, while you prefer ${c.character.replace('_', ' ')}`); }
+  if (c.sizemode === 'height' && c.height) { if (c.height >= b.minH && c.height <= b.maxH) why.push(`Fits a ${c.height} cm rider (made for ${b.minH}–${b.maxH} cm)`); else watch.push(`Made for riders ${b.minH}–${b.maxH} cm, and you're ${c.height} cm`); }
+  else if (c.sizemode === 'known' && c.size && b.sizes && b.sizes.length) {
+    const nearest = b.sizes.reduce((x, s) => Math.abs(s - c.size) < Math.abs(x - c.size) ? s : x, b.sizes[0]);
+    if (Math.abs(nearest - c.size) <= 1) why.push(`Comes in a ${nearest} cm frame`); else watch.push(`Nearest frame is ${nearest} cm; you said ${c.size} cm`);
+  }
+  if (c.dynamo === 'want_it') { if (b.dynamoReady) why.push('Dynamo-ready for night riding'); else watch.push('Not dynamo-ready, which you wanted for riding through the night'); }
+  if (c.shifting === 'electronic') { if (b.electronicShifting) why.push('Electronic shifting, as you asked'); else watch.push('Mechanical shifting, not the electronic you asked for'); }
+  if (c.wheelpref === 'deep' && b.wheelDepth !== 'deep') watch.push('Shallow wheels, not the deep aero wheels you asked for');
+  if (c.wheelpref === 'shallow' && b.wheelDepth !== 'shallow') watch.push('Deep aero wheels, not the lighter climbing wheels you asked for');
+  if (SV.scoringPrice(b) <= c.budget) why.push(`Within your C$${c.budget} budget (${SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)})`);
+  return {why: why.slice(0, 5), watch: watch.slice(0, 3)};
+}
+
 function disciplineScore(userD, b){
   if (userD === b.discipline) return 24;
   if (userD === 'ultra_distance') {
@@ -605,8 +636,10 @@ document.getElementById('submit').addEventListener('click', () => {
   const groupsetPref = state.groupset || 'none';
   const colorPrefs = (state.color || []).filter(c => c !== 'none');
 
-  const scored = bikes.map(b => {
+  const sellable = SV.split(bikes);
+  const scored = sellable.keep.map(b => {
     let score = 0;
+    const price = SV.scoringPrice(b);
 
     score += Math.max(...state.discipline.map(d => disciplineScore(d, b)));
 
@@ -654,9 +687,9 @@ document.getElementById('submit').addEventListener('click', () => {
     // Budget is honored, not just nudged: bikes up to $500 over get a gentle
     // penalty (still surface if genuinely the better fit), anything further
     // over budget drops off the results almost entirely.
-    if (b.price <= budget) score += 8;
+    if (price <= budget) score += 8;
     else {
-      const over = b.price - budget;
+      const over = price - budget;
       score -= over <= 500 ? over * 0.008 : 500 * 0.008 + (over - 500) * 3;
     }
 
@@ -666,40 +699,34 @@ document.getElementById('submit').addEventListener('click', () => {
 
     if (state.availabilitypref !== 'open' && b.availability === 'mainstream') score += 6;
 
+    score += SV.confidence(b);
     return {...b, score};
   }).sort((a,b) => b.score - a.score).slice(0,6);
 
-  document.getElementById('placeholder').style.display = 'none';
   const results = document.getElementById('results');
-  results.style.display = 'grid';
-  results.innerHTML = scored.map((b,i) => `
-    <div class="result-card ${i===0?'top':''}">
-      ${i===0 ? '<span class="badge">Top pick</span>' : ''}
-      <div class="result-media">
-        ${b.image ? `<img src="${escapeHtml(b.image)}" alt="${escapeHtml(b.name)}" loading="lazy">` : resultPlaceholderMarkup(b)}
-      </div>
-      <div class="result-top">
-        <span class="result-name">${escapeHtml(b.name)}</span>
-        <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
-      </div>
-      <p class="result-meta">Sizes ${b.sizes.join('/')}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)}${b.electronicShifting ? ' (electronic)' : ' (mechanical)'} · ${b.brakeType} brakes · ${b.origin}<br>${b.discipline.replace('_',' ')} · ${b.character.replace('_',' ')} character · ${b.wheelDepth === 'deep' ? 'deep aero wheels' : 'lightweight wheels'}${b.dynamoReady ? ' · dynamo-ready' : ''} · ${b.availability === 'boutique' ? 'boutique/premium' : 'widely available'}</p>
-      ${budgetNote(b, budget)}
-      ${priceCheckLink(b)}
-    </div>
-  `).join('');
-
-  results.querySelectorAll('.result-media').forEach((mediaEl, i) => {
-    const img = mediaEl.querySelector('img');
-    if (!img) return;
-    img.addEventListener('error', () => {
-      mediaEl.innerHTML = resultPlaceholderMarkup(scored[i]);
-    }, {once: true});
+  const ctx = {discipline: state.discipline, character: state.character, sizemode: state.sizemode, height: state.riderHeight, size: Number(state.framesize) || null,
+               dynamo: state.dynamo, shifting: state.shifting, wheelpref: state.wheelpref, budget};
+  SV.render({
+    results, root: '#quizSteps', items: scored, excluded: sellable.out,
+    summary: [
+      {label:'Racing', value: state.discipline.map(d => disciplineName[d]).join(' + '), group:'discipline'},
+      {label:'Fit', value: state.sizemode === 'known' && state.framesize ? state.framesize + ' cm frame' : state.riderHeight ? state.riderHeight + ' cm tall' : '', group:'sizemode'},
+      {label:'Budget', value: 'C$' + budget, group:'budget'}
+    ],
+    describe: b => {
+      const r = explainMatch(b, ctx);
+      return {
+        meta: `${b.sizes && b.sizes.length ? 'Sizes ' + b.sizes.join('/') + 'cm' : 'Sizes: see the brand'} · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)}${b.electronicShifting ? ' (electronic)' : ' (mechanical)'} · ${b.brakeType} brakes<br>${disciplineName[b.discipline]} · ${b.character.replace('_',' ')} character · ${b.wheelDepth === 'deep' ? 'deep aero wheels' : 'lightweight wheels'}${b.dynamoReady ? ' · dynamo-ready' : ''}`,
+        why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget)
+      };
+    },
+    compareRows: [
+      ['Built for', b => disciplineName[b.discipline]], ['Character', b => b.character.replace('_', ' ')], ['Frame', b => b.frameMaterial], ['Drivetrain', b => b.groupset],
+      ['Shifting', b => b.electronicShifting ? 'electronic' : 'mechanical'], ['Brakes', b => b.brakeType], ['Wheels', b => b.wheelDepth === 'deep' ? 'deep aero' : 'lightweight'],
+      ['Weight (catalog)', b => b.weight ? b.weight + ' kg' : ''], ['Sizes', b => b.sizes && b.sizes.length ? b.sizes.join(' / ') + ' cm' : ''], ['Dynamo-ready', b => b.dynamoReady ? 'yes' : 'no']
+    ]
   });
-
-  results.scrollIntoView({behavior: 'smooth', block: 'start'});
-  results.focus();
 });
-
 const letterOverlay = document.getElementById('letterOverlay');
 const openLetterBtn = document.getElementById('openLetter');
 const closeLetterBtn = document.getElementById('closeLetter');

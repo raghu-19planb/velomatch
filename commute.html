@@ -18,9 +18,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="style.css?v=selectvelo5">
+<link rel="stylesheet" href="style.css?v=selectvelo15">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="quiz-flow.js"></script>
+<script src="match-ui.js"></script>
 <script src="affiliate.js"></script>
 <script src="info-tips.js"></script>
 <script src="nav-transition.js"></script>
@@ -201,11 +202,12 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">Will you ride in the rain?</label>
+          <label class="q-label">Will you ride in the rain or snow?</label>
           <div class="opt-row">
             <button type="button" class="opt" data-group="weather" data-value="rarely">Rarely</button>
             <button type="button" class="opt" data-group="weather" data-value="sometimes">Sometimes</button>
             <button type="button" class="opt" data-group="weather" data-value="always">Rain or shine</button>
+            <button type="button" class="opt" data-group="weather" data-value="winter">Through winter: snow, ice and road salt</button>
           </div>
         </div>
 
@@ -299,10 +301,19 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">Budget</label>
+          <label class="q-label">Your height</label>
+          <p class="q-hint">Frame fit is the biggest factor in comfort, so each bike is checked against the height range its maker recommends.</p>
+          <div class="range-row">
+            <input type="range" id="riderHeight" min="145" max="200" value="172" step="1">
+            <span class="range-out" id="riderHeight-out">172 cm</span>
+          </div>
+        </div>
+
+        <div class="q-group">
+          <label class="q-label">Budget (in Canadian dollars)</label>
           <div class="range-row">
             <input type="range" id="budget" min="300" max="3000" value="900" step="50">
-            <span class="range-out" id="budget-out">$900</span>
+            <span class="range-out" id="budget-out">C$900</span>
           </div>
         </div>
 
@@ -467,7 +478,7 @@ function priceCheckLink(b){
 // grace window scoring already allows) — explains what the extra money
 // actually buys, instead of silently over-recommending.
 function budgetNote(b, budget){
-  const over = b.price - budget;
+  const over = SV.scoringPrice(b) - budget;
   if (over <= 0 || over > 500) return '';
   const perks = [];
   if (b.frameMaterial === 'carbon') perks.push('a lighter carbon frame');
@@ -477,7 +488,7 @@ function budgetNote(b, budget){
   if (b.brakeType === 'disc' && !perks.length) perks.push('disc brakes with more stopping power');
   if (b.gearing === 'internal') perks.push('a low-maintenance internal-gear hub');
   if (!perks.length) perks.push('a step up in components for the same basic bike');
-  return `<p class="result-budget-note"><b>$${Math.round(over)} over your budget</b> — that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+  return `<p class="result-budget-note"><b>About C$${Math.round(over)} over your budget</b>: that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
 }
 
 // Shown when a bike has no photo yet, or its photo URL fails to load —
@@ -536,8 +547,17 @@ async function loadBikeData(){
     }
   });
 }
-loadBikeData();
-initQuizFlow('#quizSteps');
+loadBikeData().then(() => SV.fxReady).then(() => SV.restore('#quizSteps'));
+initQuizFlow('#quizSteps', {
+  essentials: 7,
+  order: [
+    {key:'distance', tag:'Your commute'}, {key:'route', tag:'Your commute'}, {key:'cargo', tag:'Your commute'}, {key:'power', tag:'Your commute'},
+    {key:'weather', tag:'Your commute'}, {key:'riderHeight', tag:'Your fit'}, {key:'budget', tag:'Your budget'},
+    {key:'storage'}, {key:'roughness'}, {key:'position'}, {key:'flats'}, {key:'brakepower'}, {key:'experience'},
+    {key:'frameStyle'}, {key:'frame'}, {key:'groupset'}, {key:'color'}, {key:'origin'}
+  ]
+});
+SV.watch('#quizSteps');
 
 const state = {
   power:null, route:null, cargo:null, origin:null, frame:null, groupset:null, color:null,
@@ -554,11 +574,14 @@ const cargoPosition = {none:0, light:1, rack:2, heavy:3};
 // slider used, but as a concrete plain-language scenario instead of a number.
 const storageWeight = {garage:0.15, apartment:0.55, stairs:1};
 
+document.getElementById('riderHeight').addEventListener('input', e => {
+  document.getElementById('riderHeight-out').textContent = e.target.value + ' cm';
+});
 document.getElementById('distance').addEventListener('input', e => {
   document.getElementById('distance-out').textContent = e.target.value + ' km';
 });
 document.getElementById('budget').addEventListener('input', e => {
-  document.getElementById('budget-out').textContent = '$' + e.target.value;
+  document.getElementById('budget-out').textContent = 'C$' + e.target.value;
 });
 
 document.querySelectorAll('.opt').forEach(btn => {
@@ -586,6 +609,44 @@ document.querySelectorAll('.opt').forEach(btn => {
   });
 });
 
+const routeName = {city_streets:'city streets and bike lanes', mixed_paths:'mixed paved and gravel paths', long_flat:'long, flat roads', hilly_assist:'hilly routes'};
+const cargoNeedName = {none:'nothing extra', light:'a backpack or light bag', rack:'a rack or panniers', heavy:'heavy loads'};
+// Plain-language reasons for each match, mirroring the factors the scoring actually uses.
+function explainMatch(b, c){
+  const why = [], watch = [];
+  if (c.height >= b.minH && c.height <= b.maxH) why.push(`Fits a ${c.height} cm rider (made for ${b.minH}–${b.maxH} cm)`);
+  else watch.push(`Made for riders ${b.minH}–${b.maxH} cm, and you're ${c.height} cm`);
+  if (c.distance <= b.maxComfortDistance) why.push(`Comfortable for your ${c.distance} km commute (rated up to ${b.maxComfortDistance} km one way)`);
+  else watch.push(`Rated for up to ${b.maxComfortDistance} km one way, and your commute is ${c.distance} km`);
+  if (c.power === 'pedal_only') { if (b.powerType === 'pedal') why.push('Pedal-only, as you wanted'); else watch.push('Electric-assist, though you wanted pedal-only'); }
+  else if (c.power === 'want_ebike') { if (b.powerType === 'ebike') why.push('Electric-assist, as you wanted'); else watch.push('Not electric-assist, which you wanted'); }
+  const gap = Math.min(...c.route.map(r => Math.abs(routePosition[r] - routePosition[b.type])));
+  if (gap === 0) why.push(`Built for ${routeName[b.type]}, like your route`);
+  else if (gap >= 2) watch.push(`Built for ${routeName[b.type]}, which differs from your route`);
+  if (c.cargoNeed > 0) {
+    if (b.cargoCapacity >= c.cargoNeed) why.push(`Can carry ${cargoNeedName[c.cargo]} (${cargoLabel(b.cargoCapacity)} cargo rating)`);
+    else watch.push(`Rated for ${cargoLabel(b.cargoCapacity)} cargo, and you need to carry ${cargoNeedName[c.cargo]}`);
+  }
+  if (c.weather === 'always' || c.weather === 'sometimes' || c.weather === 'winter') {
+    if (b.fendersIncluded) why.push('Fenders included for wet roads'); else watch.push('No fenders: budget for a set if you ride in the wet');
+  }
+  if (c.weather === 'winter') {
+    if (b.brakeType === 'disc') why.push('Disc brakes cope better with slush and road salt than rim brakes');
+    else watch.push('Rim brakes work poorly in slush and salt');
+    if (b.gearing === 'internal') why.push('Enclosed internal-hub gearing resists salt and grit');
+    watch.push('Winter riding also needs winter or studded tyres, which this catalog does not list');
+  }
+  if (c.roughness === 'rough') { if (b.suspensionFork) why.push('Front suspension to take the edge off rough streets'); else watch.push('No suspension fork, so rough streets will be felt'); }
+  if (c.flats === 'worried') { if (b.tireProfile === 'wide') why.push('Wide tyres for fewer flats and a softer ride'); else watch.push('Narrower tyres, more prone to flats'); }
+  if (c.brakepower === 'disc' && b.brakeType !== 'disc') watch.push('Rim brakes, not the disc brakes you asked for');
+  if (c.storage === 'stairs' || c.storage === 'apartment') {
+    if (b.foldable) why.push('Folds, which helps with tight storage and transit');
+    else if (b.weight > 16) watch.push(`Weighs ${b.weight} kg: heavy to carry up stairs`);
+  }
+  if (SV.scoringPrice(b) <= c.budget) why.push(`Within your C$${c.budget} budget (${SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)})`);
+  return {why: why.slice(0, 5), watch: watch.slice(0, 4)};
+}
+
 function cargoLabel(n){
   return n >= 3 ? 'heavy-duty' : n === 2 ? 'rack & pannier' : n === 1 ? 'light' : 'no';
 }
@@ -605,13 +666,16 @@ document.getElementById('submit').addEventListener('click', () => {
   err.style.display = 'none';
 
   const distance = Number(document.getElementById('distance').value);
+  const height = Number(document.getElementById('riderHeight').value);
   const budget = Number(document.getElementById('budget').value);
   const portabilityWeight = storageWeight[state.storage] ?? 0.55;
   const originPref = state.origin || 'none';
   const neededCargo = cargoPosition[state.cargo];
 
-  const scored = bikes.map(b => {
+  const sellable = SV.split(bikes);
+  const scored = sellable.keep.map(b => {
     let score = 0;
+    const price = SV.scoringPrice(b);
 
     const routeGap = Math.min(...state.route.map(r => Math.abs(routePosition[r] - routePosition[b.type])));
     score += Math.max(0, 15 - routeGap * 5);
@@ -628,15 +692,19 @@ document.getElementById('submit').addEventListener('click', () => {
     if (b.cargoCapacity >= neededCargo) score += 12;
     else score -= (neededCargo - b.cargoCapacity) * 12;
 
+    // fit: the frame has to suit the rider before anything else matters
+    if (height >= b.minH && height <= b.maxH) score += 18;
+    else score -= Math.min(30, Math.abs(height - (b.minH + b.maxH) / 2) * 0.7);
+
     if (distance <= b.maxComfortDistance) score += 20;
     else score -= (distance - b.maxComfortDistance) * 1.5;
 
     // Budget is honored, not just nudged: bikes up to $500 over get a gentle
     // penalty (still surface if genuinely the better fit), anything further
     // over budget drops off the results almost entirely.
-    if (b.price <= budget) score += 8;
+    if (price <= budget) score += 8;
     else {
-      const over = b.price - budget;
+      const over = price - budget;
       score -= over <= 500 ? over * 0.02 : 500 * 0.02 + (over - 500) * 3;
     }
 
@@ -672,7 +740,8 @@ document.getElementById('submit').addEventListener('click', () => {
     // "Will you ride in the rain" only matters if the bike doesn't already
     // ship with fenders — riders who rarely see rain shouldn't be steered
     // away from an otherwise great bike just because it lacks them.
-    if (state.weather === 'always') score += b.fendersIncluded ? 10 : -6;
+    if (state.weather === 'winter') score += (b.fendersIncluded ? 8 : -6) + (b.tireProfile === 'wide' ? 6 : -3) + (b.brakeType === 'disc' ? 6 : -6) + (b.gearing === 'internal' ? 6 : 0);
+    else if (state.weather === 'always') score += b.fendersIncluded ? 10 : -6;
     else if (state.weather === 'sometimes') score += b.fendersIncluded ? 5 : -2;
 
     // Rough streets: a front suspension fork smooths potholes. Very few
@@ -699,40 +768,38 @@ document.getElementById('submit').addEventListener('click', () => {
       score += b.gearing === 'internal' || b.gearing === 'single' ? 5 : 0;
     }
 
+    score += SV.confidence(b);
     return {...b, score};
   }).sort((a,b) => b.score - a.score).slice(0,6);
 
-  document.getElementById('placeholder').style.display = 'none';
   const results = document.getElementById('results');
-  results.style.display = 'grid';
-  results.innerHTML = scored.map((b,i) => `
-    <div class="result-card ${i===0?'top':''}">
-      ${i===0 ? '<span class="badge">Top pick</span>' : ''}
-      <div class="result-media">
-        ${b.image ? `<img src="${escapeHtml(b.image)}" alt="${escapeHtml(b.name)}" loading="lazy">` : resultPlaceholderMarkup(b)}
-      </div>
-      <div class="result-top">
-        <span class="result-name">${escapeHtml(b.name)}</span>
-        <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
-      </div>
-      <p class="result-meta">${b.wheel}mm wheels${b.foldable ? ' · folds' : ''} · fits ${b.minH}–${b.maxH}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)} · ${b.brakeType} brakes · ${b.origin}<br>Comfortable up to ${b.maxComfortDistance}km one-way · ${cargoLabel(b.cargoCapacity)} cargo · ${b.ridingPosition} position<br>${b.fendersIncluded ? 'Fenders included' : 'No fenders'} · ${b.tireProfile} tires${b.suspensionFork ? ' · front suspension' : ''} · ${b.colors.map(escapeHtml).join(', ')}</p>
-      ${budgetNote(b, budget)}
-      ${priceCheckLink(b)}
-    </div>
-  `).join('');
-
-  results.querySelectorAll('.result-media').forEach((mediaEl, i) => {
-    const img = mediaEl.querySelector('img');
-    if (!img) return;
-    img.addEventListener('error', () => {
-      mediaEl.innerHTML = resultPlaceholderMarkup(scored[i]);
-    }, {once: true});
+  const ctx = {height, distance, power: state.power, route: state.route, cargo: state.cargo, cargoNeed: neededCargo, weather: state.weather, roughness: state.roughness,
+               flats: state.flats, brakepower: state.brakepower, storage: state.storage, budget};
+  SV.render({
+    results, root: '#quizSteps', items: scored, excluded: sellable.out,
+    summary: [
+      {label:'Commute', value: distance + ' km one way', group:'distance'},
+      {label:'Route', value: (state.route || []).map(r => routeName[r]).join(' + '), group:'route'},
+      {label:'Carrying', value: cargoNeedName[state.cargo], group:'cargo'},
+      {label:'Power', value: {pedal_only:'Pedal only', open:'Open to e-assist', want_ebike:'E-assist'}[state.power], group:'power'},
+      {label:'Weather', value: {rarely:'Rarely rides in rain', sometimes:'Sometimes in rain', always:'Rain or shine', winter:'Through winter'}[state.weather] || '', group:'weather'},
+      {label:'Height', value: height + ' cm', group:'riderHeight'}, {label:'Budget', value: 'C$' + budget, group:'budget'}
+    ],
+    describe: b => {
+      const r = explainMatch(b, ctx);
+      return {
+        meta: `${b.wheel}mm wheels${b.foldable ? ' · folds' : ''} · fits ${b.minH}–${b.maxH}cm · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)} · ${b.brakeType} brakes<br>Comfortable up to ${b.maxComfortDistance}km one-way · ${cargoLabel(b.cargoCapacity)} cargo · ${b.ridingPosition} position<br>${b.fendersIncluded ? 'Fenders included' : 'No fenders'} · ${b.tireProfile} tires${b.suspensionFork ? ' · front suspension' : ''}`,
+        why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget)
+      };
+    },
+    compareRows: [
+      ['Fits riders', b => b.minH + '–' + b.maxH + ' cm'], ['Wheels', b => b.wheel + ' mm'], ['Frame', b => b.frameMaterial], ['Drivetrain', b => b.groupset],
+      ['Brakes', b => b.brakeType], ['Comfortable distance', b => 'up to ' + b.maxComfortDistance + ' km one way'], ['Cargo', b => cargoLabel(b.cargoCapacity)],
+      ['Fenders', b => b.fendersIncluded ? 'included' : 'not included'], ['Tyres', b => b.tireProfile], ['Front suspension', b => b.suspensionFork ? 'yes' : 'no'],
+      ['Weight (catalog)', b => b.weight ? b.weight + ' kg' : ''], ['Folds', b => b.foldable ? 'yes' : 'no']
+    ]
   });
-
-  results.scrollIntoView({behavior: 'smooth', block: 'start'});
-  results.focus();
 });
-
 const letterOverlay = document.getElementById('letterOverlay');
 const openLetterBtn = document.getElementById('openLetter');
 const closeLetterBtn = document.getElementById('closeLetter');

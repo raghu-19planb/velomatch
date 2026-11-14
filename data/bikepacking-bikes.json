@@ -72,7 +72,23 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "Current model is the '2025 Cutthroat C GRX 610 1x': price ($3,699, was stale $3,400), sizes (52/54/56/58/60cm, catalog's wider 51-62 range kept as a reasonable superset), frame material, and groupset (Shimano GRX RX610 shifters/RX822 derailleur/RX400 brakes, was generically listed as 'GRX 810') confirmed live at salsacycles.com on 2026-09-09. Product photo downloaded from the same page. Weight not stated on the current page; catalog's prior estimate kept."
+      "_verified": "Current model is the '2025 Cutthroat C GRX 610 1x': price ($3,699, was stale $3,400), sizes (52/54/56/58/60cm, catalog's wider 51-62 range kept as a reasonable superset), frame material, and groupset (Shimano GRX RX610 shifters/RX822 derailleur/RX400 brakes, was generically listed as 'GRX 810') confirmed live at salsacycles.com on 2026-09-09. Product photo downloaded from the same page. Weight not stated on the current page; catalog's prior estimate kept.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://www.salsacycles.com/products/2025-cutthroat-c-grx-610-1x",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      },
+      "recall": {
+        "match": "family",
+        "line": "cutthroat",
+        "title": "2020 Salsa Cutthroat Bicycles, Framesets, and Aftermarket Forks recalled due to fall hazard",
+        "url": "https://recalls-rappels.canada.ca/en/alert-recall/2020-salsa-cutthroat-bicycles-framesets-and-aftermarket-forks-recalled-due-fall-hazard",
+        "updated": "2020-11-10",
+        "checkedOn": "2026-11-13"
+      }
     },
     {
       "name": "Cannondale Topstone 4",
@@ -112,7 +128,16 @@
       "electronicShifting": false,
       "comfortDamping": true,
       "tireDurability": "reinforced",
-      "_verified": "price (2025 MSRP range $2,045-$2,375, using $2,200; was stale $1,450), frame (SmartForm C2 Alloy with full carbon fork, confirming 'aluminum'), and groupset corrected from 'Shimano GRX 400' to 'microSHIFT Advent X 10-speed' with Promax mechanical disc brakes confirmed live at cannondale.com on 2026-09-09. Product photo downloaded from the same page. Weight and comfortDamping (Kingpin-style pivot) not re-confirmed this pass — kept from catalog."
+      "_verified": "price (2025 MSRP range $2,045-$2,375, using $2,200; was stale $1,450), frame (SmartForm C2 Alloy with full carbon fork, confirming 'aluminum'), and groupset corrected from 'Shimano GRX 400' to 'microSHIFT Advent X 10-speed' with Promax mechanical disc brakes confirmed live at cannondale.com on 2026-09-09. Product photo downloaded from the same page. Weight and comfortDamping (Kingpin-style pivot) not re-confirmed this pass — kept from catalog.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.cannondale.com/en/bikes/road/gravel/topstone-alloy/topstone-4",
+        "title": "Topstone 4 | Gravel Bikes | Cannondale",
+        "nameMatch": 100,
+        "canada": "unconfirmed",
+        "status": "ok"
+      }
     },
     {
       "name": "Cannondale Topstone Carbon Lefty 3",
@@ -152,7 +177,16 @@
       "electronicShifting": false,
       "comfortDamping": true,
       "tireDurability": "reinforced",
-      "_verified": "Two real corrections: wheel size is actually 650b (650x47c tires), not 700c, and groupset is mechanical Shimano GRX 800/600 11-speed, not Di2 electronic — this trim ('Lefty 3') sits below the electronic AXS/Di2 builds in Cannondale's range, so the catalog's 'electronicShifting: true' was wrong for this specific trim. Frame (BallisTec Carbon with Kingpin suspension + Lefty Oliver fork, confirming suspensionFork/comfortDamping) confirmed live at cannondale.com on 2026-09-09. Price ($4,249.99 via a retailer listing since cannondale.com didn't show pricing; was stale $3,900). Product photo downloaded from cannondale.com. Weight not re-confirmed."
+      "_verified": "Two real corrections: wheel size is actually 650b (650x47c tires), not 700c, and groupset is mechanical Shimano GRX 800/600 11-speed, not Di2 electronic — this trim ('Lefty 3') sits below the electronic AXS/Di2 builds in Cannondale's range, so the catalog's 'electronicShifting: true' was wrong for this specific trim. Frame (BallisTec Carbon with Kingpin suspension + Lefty Oliver fork, confirming suspensionFork/comfortDamping) confirmed live at cannondale.com on 2026-09-09. Price ($4,249.99 via a retailer listing since cannondale.com didn't show pricing; was stale $3,900). Product photo downloaded from cannondale.com. Weight not re-confirmed.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.cannondale.com/en-la/bikes/road/gravel/topstone-carbon/topstone-carbon-lefty-3",
+        "title": "Topstone Carbon Lefty 3 | Gravel Bikes | Cannondale",
+        "nameMatch": 100,
+        "canada": "unconfirmed",
+        "status": "ok"
+      }
     },
     {
       "name": "Trek Checkpoint SL 5",
@@ -191,7 +225,12 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "Current model is the Gen 3 Checkpoint SL 5: price ($3,399 MSRP, was stale $3,300), sizes (XS-XL), and groupset corrected from 'Shimano GRX 400' to 'SRAM Apex' — Trek switched this trim to SRAM in the current generation. Confirmed via an authorized Trek retailer (bikeexchange.com listing) on 2026-09-09; trekbikes.com itself blocks automated fetches. Product photo from the same listing. Weight not re-confirmed."
+      "_verified": "Current model is the Gen 3 Checkpoint SL 5: price ($3,399 MSRP, was stale $3,300), sizes (XS-XL), and groupset corrected from 'Shimano GRX 400' to 'SRAM Apex' — Trek switched this trim to SRAM in the current generation. Confirmed via an authorized Trek retailer (bikeexchange.com listing) on 2026-09-09; trekbikes.com itself blocks automated fetches. Product photo from the same listing. Weight not re-confirmed.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      }
     },
     {
       "name": "Canyon Grizl 7",
@@ -232,7 +271,18 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "price ($2,099 USD MSRP, was stale $2,400), weight (23.55lb/10.7kg), groupset (Shimano GRX 12-speed, RX820 derailleur/RX610 levers, was generically 'GRX 600'), and frame confirmed live at canyon.com (US site) on 2026-09-09. Note: real wheel size is mixed by frame size — 27.5in on XS/smaller frames, 28in/700c on S and up; catalog's single 'wheel: 700' value represents the S-2XL majority only. Canyon also relaunched this platform in July 2025 into 'Grizl OG' vs bikepacking-focused 'Grizl Escape' sub-lines; this entry maps to the base Grizl 7 (OG) line. Product photo downloaded from canyon.com."
+      "_verified": "price ($2,099 USD MSRP, was stale $2,400), weight (23.55lb/10.7kg), groupset (Shimano GRX 12-speed, RX820 derailleur/RX610 levers, was generically 'GRX 600'), and frame confirmed live at canyon.com (US site) on 2026-09-09. Note: real wheel size is mixed by frame size — 27.5in on XS/smaller frames, 28in/700c on S and up; catalog's single 'wheel: 700' value represents the S-2XL majority only. Canyon also relaunched this platform in July 2025 into 'Grizl OG' vs bikepacking-focused 'Grizl Escape' sub-lines; this entry maps to the base Grizl 7 (OG) line. Product photo downloaded from canyon.com.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.canyon.com/en-us/gravel-bikes/adventure/grizl/al/grizl-7-raw/3715.html",
+        "title": "Grizl 7 RAW | CANYON US",
+        "nameMatch": 100,
+        "price": 1699,
+        "currency": "USD",
+        "canada": "unconfirmed",
+        "status": "ok"
+      }
     },
     {
       "name": "Specialized Diverge Comp",
@@ -271,7 +321,12 @@
       "electronicShifting": false,
       "comfortDamping": true,
       "tireDurability": "reinforced",
-      "_verified": "price ($4,200, was stale $3,200) and groupset (Shimano GRX 2x11 mechanical, matching catalog's non-electronic classification) confirmed via an authorized Specialized retailer (incycle.com) on 2026-09-09 — specialized.com itself blocks automated fetches. Frame (FACT 9r carbon with Future Shock, confirming comfortDamping) and 700c wheel (650b also fits) matched. Flag: Specialized has since launched a 4th-generation Diverge lineup ('Diverge 4 Sport/Comp Carbon' etc.) that may eventually replace this naming — worth rechecking if 'Diverge Comp' disappears from specialized.com. Product photo from incycle.com's listing."
+      "_verified": "price ($4,200, was stale $3,200) and groupset (Shimano GRX 2x11 mechanical, matching catalog's non-electronic classification) confirmed via an authorized Specialized retailer (incycle.com) on 2026-09-09 — specialized.com itself blocks automated fetches. Frame (FACT 9r carbon with Future Shock, confirming comfortDamping) and 700c wheel (650b also fits) matched. Flag: Specialized has since launched a 4th-generation Diverge lineup ('Diverge 4 Sport/Comp Carbon' etc.) that may eventually replace this naming — worth rechecking if 'Diverge Comp' disappears from specialized.com. Product photo from incycle.com's listing.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      }
     },
     {
       "name": "Specialized Diverge Expert Carbon",
@@ -310,7 +365,12 @@
       "electronicShifting": true,
       "comfortDamping": true,
       "tireDurability": "reinforced",
-      "_verified": "name kept but groupset corrected: current 'Diverge Expert Carbon' build is electronic SRAM Rival eTAP AXS with GX Eagle AXS rear derailleur, not Shimano GRX Di2 as catalog listed (still correctly electronicShifting: true). Price ($5,000, was stale $4,600) and weight (9.52kg) confirmed via 99spokes/bikeexchange listings on 2026-09-09 — specialized.com itself blocks automated fetches. Frame (FACT 9r carbon + Future Shock) matched. Same naming-transition flag as the Diverge Comp entry: watch for a 'Diverge 4' rename. Product photo from a bikeexchange.com listing."
+      "_verified": "name kept but groupset corrected: current 'Diverge Expert Carbon' build is electronic SRAM Rival eTAP AXS with GX Eagle AXS rear derailleur, not Shimano GRX Di2 as catalog listed (still correctly electronicShifting: true). Price ($5,000, was stale $4,600) and weight (9.52kg) confirmed via 99spokes/bikeexchange listings on 2026-09-09 — specialized.com itself blocks automated fetches. Frame (FACT 9r carbon + Future Shock) matched. Same naming-transition flag as the Diverge Comp entry: watch for a 'Diverge 4' rename. Product photo from a bikeexchange.com listing.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      }
     },
     {
       "name": "Cervélo Aspero-5",
@@ -350,7 +410,17 @@
       "electronicShifting": true,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "price was substantially understated: the Force AXS 1 complete build is $8,700-$9,000, not the catalog's stale $4,800 (the frameset alone is $5,500 — a complete bike was never in that price range). Confirmed via an authorized Cervélo retailer (contebikes.com) on 2026-09-09. Frame (all-carbon, downtube storage, threaded BB) and 700c wheel matched. Sizes/weight not re-confirmed. Product photo from the same listing."
+      "_verified": "price was substantially understated: the Force AXS 1 complete build is $8,700-$9,000, not the catalog's stale $4,800 (the frameset alone is $5,500 — a complete bike was never in that price range). Confirmed via an authorized Cervélo retailer (contebikes.com) on 2026-09-09. Frame (all-carbon, downtube storage, threaded BB) and 700c wheel matched. Sizes/weight not re-confirmed. Product photo from the same listing.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.cervelo.com/en-ca/collections/aspero-5",
+        "title": "Áspero-5 &ndash; Cervélo",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.cervelo.com/collections/aspero-5"
     },
     {
       "name": "3T Exploro Race",
@@ -387,7 +457,12 @@
       "electronicShifting": true,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "price range ($3,499-$6,999 across builds) confirmed via an authorized 3T retailer (momentbikes.com) on 2026-09-09; catalog's $4,200 sits within that range for a Rival AXS build, kept as-is. Groupset (SRAM Rival AXS available) and 700c/650b wheel options matched. Product photo from the same retailer; 3t.bike itself wasn't directly fetchable."
+      "_verified": "price range ($3,499-$6,999 across builds) confirmed via an authorized 3T retailer (momentbikes.com) on 2026-09-09; catalog's $4,200 sits within that range for a Rival AXS build, kept as-is. Groupset (SRAM Rival AXS available) and 700c/650b wheel options matched. Product photo from the same retailer; 3t.bike itself wasn't directly fetchable.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      }
     },
     {
       "name": "Otso Waheela C",
@@ -426,7 +501,12 @@
       "electronicShifting": true,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "IMPORTANT: the Waheela C is discontinued — otsocycles.com confirms 'The Waheela R has replaced the Waheela C' as of 2026; remaining Waheela C stock is on clearance (frameset now $1,350, down from $2,700) and won't be replenished, though warranty/parts support continues. This entry should probably be replaced with the Waheela R in a future pass once its full specs are confirmed — kept as-is for now since I don't have verified Waheela R specs to swap in. Frame (carbon, 29in/700c wheel) confirmed live at otsocycles.com on 2026-09-09. Price and groupset not re-confirmed for a complete Force AXS build (Otso mostly sells framesets + a custom configurator now). Product photo is of the frameset from otsocycles.com."
+      "_verified": "IMPORTANT: the Waheela C is discontinued — otsocycles.com confirms 'The Waheela R has replaced the Waheela C' as of 2026; remaining Waheela C stock is on clearance (frameset now $1,350, down from $2,700) and won't be replenished, though warranty/parts support continues. This entry should probably be replaced with the Waheela R in a future pass once its full specs are confirmed — kept as-is for now since I don't have verified Waheela R specs to swap in. Frame (carbon, 29in/700c wheel) confirmed live at otsocycles.com on 2026-09-09. Price and groupset not re-confirmed for a complete Force AXS build (Otso mostly sells framesets + a custom configurator now). Product photo is of the frameset from otsocycles.com.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      }
     },
     {
       "name": "Ritchey Outback",
@@ -465,7 +545,12 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "frame (heat-treated triple-butted Ritchey Logic steel, 700x48mm or 650bx2.0in clearance) confirmed live at ritcheylogic.com on 2026-09-09; frame weighs 2,175g. Current colorways are 'Aurora' and 'Winter Sage' rather than catalog's Green/Silver — close enough, not changed. Ritchey sells this mainly as a frameset; complete-bike price and groupset (GRX 600) not re-confirmed. Product photo from ritcheylogic.com."
+      "_verified": "frame (heat-treated triple-butted Ritchey Logic steel, 700x48mm or 650bx2.0in clearance) confirmed live at ritcheylogic.com on 2026-09-09; frame weighs 2,175g. Current colorways are 'Aurora' and 'Winter Sage' rather than catalog's Green/Silver — close enough, not changed. Ritchey sells this mainly as a frameset; complete-bike price and groupset (GRX 600) not re-confirmed. Product photo from ritcheylogic.com.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      }
     },
     {
       "name": "All-City Space Horse",
@@ -505,7 +590,16 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "standard",
-      "_verified": "price ($2,099, was stale $1,900), groupset corrected from 'Shimano Tiagra' to the actual current spec 'Shimano GRX RX600/RX400', and terrain corrected from 'road_paved' to 'mixed' — the real bike fits 650bx47mm on all sizes and 700cx45mm on 49-61cm, with front/rear rack and fender mounts, which is a genuine mixed-terrain touring setup, not a road-only tire clearance. Frame (612 Select Chromoly steel) confirmed. Confirmed live at allcitycycles.com on 2026-09-09. Product photo from the same page."
+      "_verified": "price ($2,099, was stale $1,900), groupset corrected from 'Shimano Tiagra' to the actual current spec 'Shimano GRX RX600/RX400', and terrain corrected from 'road_paved' to 'mixed' — the real bike fits 650bx47mm on all sizes and 700cx45mm on 49-61cm, with front/rear rack and fender mounts, which is a genuine mixed-terrain touring setup, not a road-only tire clearance. Frame (612 Select Chromoly steel) confirmed. Confirmed live at allcitycycles.com on 2026-09-09. Product photo from the same page.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.retiredbrandresources.com/all-city",
+        "title": "",
+        "nameMatch": 50,
+        "canada": "unconfirmed",
+        "status": "mismatch"
+      }
     },
     {
       "name": "Fairlight Secan",
@@ -545,7 +639,12 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "price checked against GBP pricing (GRX build from £2,225, roughly $2,800-2,900 at current exchange rates) — catalog's $2,900 is consistent, kept as-is. Frame (custom Reynolds 853 steel) and groupset (GRX RX610, close to catalog's 'GRX 600') confirmed live at fairlightcycles.com on 2026-09-09. This is the 3.0 revision (updated geometry from the 2.x version). Product photo from the same page."
+      "_verified": "price checked against GBP pricing (GRX build from £2,225, roughly $2,800-2,900 at current exchange rates) — catalog's $2,900 is consistent, kept as-is. Frame (custom Reynolds 853 steel) and groupset (GRX RX610, close to catalog's 'GRX 600') confirmed live at fairlightcycles.com on 2026-09-09. This is the 3.0 revision (updated geometry from the 2.x version). Product photo from the same page.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      }
     },
     {
       "name": "Salsa Marrakesh",
@@ -584,7 +683,12 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "standard",
-      "_verified": "price ($1,599 MSRP, close to catalog's $1,700, kept as-is), groupset (Shimano Deore, matched), and frame (CroMoly steel) confirmed via salsacycles.com on 2026-09-09. Product photo is from an archived 2018 listing (current listings are sold out online) but visually representative of the current model, which hasn't fundamentally changed. Available in both flat-bar and drop-bar builds; this entry assumes drop-bar."
+      "_verified": "price ($1,599 MSRP, close to catalog's $1,700, kept as-is), groupset (Shimano Deore, matched), and frame (CroMoly steel) confirmed via salsacycles.com on 2026-09-09. Product photo is from an archived 2018 listing (current listings are sold out online) but visually representative of the current model, which hasn't fundamentally changed. Available in both flat-bar and drop-bar builds; this entry assumes drop-bar.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      }
     },
     {
       "name": "Kona Sutra",
@@ -625,7 +729,15 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "standard",
-      "_verified": "price ($1,599, was stale $2,100) and groupset corrected from 'Shimano Deore' to 'Microshift Sword 2x10' — Kona switched drivetrain suppliers on the current model. Frame (Kona Cromoly, 700x40c tires) confirmed live at konaworld.com on 2026-09-09. Product photo from the same page. Weight not re-confirmed."
+      "_verified": "price ($1,599, was stale $2,100) and groupset corrected from 'Shimano Deore' to 'Microshift Sword 2x10' — Kona switched drivetrain suppliers on the current model. Frame (Kona Cromoly, 700x40c tires) confirmed live at konaworld.com on 2026-09-09. Product photo from the same page. Weight not re-confirmed.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://konaworld.com/products/sutra-36sh",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      }
     },
     {
       "name": "Kona Sutra LTD",
@@ -666,7 +778,15 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "Significant corrections: price ($2,299, was stale $2,400), groupset corrected from 'Shimano Deore' to 'SRAM Rival 1' with an integrated dropper-post lever, and wheel/tire spec is true mountain bike territory (29x2.25\" Maxxis Rekon Race), not the touring-width tires the old data implied. Terrain reclassified from 'mixed' to 'trail_mountain' and frameBagFriendly changed to true — this is now explicitly marketed as an 'off-road rider's dream' with a short seat tube built for a 100mm dropper and real MTB tires, which is a materially different bike than a mixed-terrain tourer. Confirmed live at konaworld.com on 2026-09-09. Product photo from the same page."
+      "_verified": "Significant corrections: price ($2,299, was stale $2,400), groupset corrected from 'Shimano Deore' to 'SRAM Rival 1' with an integrated dropper-post lever, and wheel/tire spec is true mountain bike territory (29x2.25\" Maxxis Rekon Race), not the touring-width tires the old data implied. Terrain reclassified from 'mixed' to 'trail_mountain' and frameBagFriendly changed to true — this is now explicitly marketed as an 'off-road rider's dream' with a short seat tube built for a 100mm dropper and real MTB tires, which is a materially different bike than a mixed-terrain tourer. Confirmed live at konaworld.com on 2026-09-09. Product photo from the same page.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://konaworld.com/products/sutra-ltd",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      }
     },
     {
       "name": "Surly Long Haul Trucker",
@@ -708,7 +828,17 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "standard",
-      "_verified": "IMPORTANT: Surly has discontinued the (rim-brake) Long Haul Trucker, keeping the Disc Trucker as the sole current production touring model going forward — multiple 2024-2025 industry reports confirm this, though surlybikes.com still has an LHT product page live as of 2026-09-09 (likely remaining inventory). This entry should probably be removed or merged with the 'Surly Disc Trucker' entry in a future pass; kept for now since the page is still live and a price/current stock status wasn't confirmable. Frame (4130 Chromoly, 26in on 42-58cm frames / 700c on 56-62cm) confirmed at surlybikes.com. Price and groupset not re-confirmed — the live page didn't list them. Product photo from surlybikes.com."
+      "_verified": "IMPORTANT: Surly has discontinued the (rim-brake) Long Haul Trucker, keeping the Disc Trucker as the sole current production touring model going forward — multiple 2024-2025 industry reports confirm this, though surlybikes.com still has an LHT product page live as of 2026-09-09 (likely remaining inventory). This entry should probably be removed or merged with the 'Surly Disc Trucker' entry in a future pass; kept for now since the page is still live and a price/current stock status wasn't confirmable. Frame (4130 Chromoly, 26in on 42-58cm frames / 700c on 56-62cm) confirmed at surlybikes.com. Price and groupset not re-confirmed — the live page didn't list them. Product photo from surlybikes.com.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      },
+      "discontinued": {
+        "source": "https://surlybikes.com/products/long-haul-trucker",
+        "note": "Surly lists this model under “Archive”: it is no longer sold new.",
+        "checkedOn": "2026-11-13"
+      }
     },
     {
       "name": "Surly Disc Trucker",
@@ -751,7 +881,15 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "price ($2,099 MSRP, was stale $1,900) and groupset corrected from 'Shimano Deore' to 'Shimano Sora/Alivio' mix confirmed live at surlybikes.com on 2026-09-09 (2026 model year, first update to this bike's build kit in 5+ years). Frame (4130 Chromoly, 26in on 42-54cm / 700c on 56-64cm) matched. Now the sole current-production Surly touring truck — see the Long Haul Trucker entry's note about that model's discontinuation. Product photo from surlybikes.com."
+      "_verified": "price ($2,099 MSRP, was stale $1,900) and groupset corrected from 'Shimano Deore' to 'Shimano Sora/Alivio' mix confirmed live at surlybikes.com on 2026-09-09 (2026 model year, first update to this bike's build kit in 5+ years). Frame (4130 Chromoly, 26in on 42-54cm / 700c on 56-64cm) matched. Now the sole current-production Surly touring truck — see the Long Haul Trucker entry's note about that model's discontinuation. Product photo from surlybikes.com.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://surlybikes.com/products/disc-trucker-700c-hi-viz-black",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      }
     },
     {
       "name": "Co-op Cycles ADV 4.2",
@@ -792,7 +930,18 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "Real wheel size is 27.5+ (2.8in tires, up to 3in clearance) — corrected from catalog's 700c to the schema's 650 value, the closer ISO match. Price ($1,899, was stale $1,500), groupset (Shimano SLX 22-speed, not 'Deore'), and weight (~16kg/36lb, was stale 13kg) confirmed via gearjunkie.com and rei.com search results on 2026-09-09 — rei.com itself blocks automated fetches, and no image could be retrieved this pass (worth a direct product link if you have one). Sourced info dates mostly from 2018-2020 reviews; worth double-checking this model is still in current REI production."
+      "_verified": "Real wheel size is 27.5+ (2.8in tires, up to 3in clearance) — corrected from catalog's 700c to the schema's 650 value, the closer ISO match. Price ($1,899, was stale $1,500), groupset (Shimano SLX 22-speed, not 'Deore'), and weight (~16kg/36lb, was stale 13kg) confirmed via gearjunkie.com and rei.com search results on 2026-09-09 — rei.com itself blocks automated fetches, and no image could be retrieved this pass (worth a direct product link if you have one). Sourced info dates mostly from 2018-2020 reviews; worth double-checking this model is still in current REI production.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      },
+      "canada": {
+        "sold": false,
+        "note": "REI says it cannot ship bikes outside the U.S.",
+        "source": "https://www.rei.com/help?a=Restricted-Brands-and-CountriesTerritories---id--TuLsvueORT-kPXXb9esVgA",
+        "checkedOn": "2026-11-13"
+      }
     },
     {
       "name": "Salsa Fargo",
@@ -832,7 +981,17 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "Current 2025/2026 Fargo builds confirmed at salsacycles.com on 2026-09-09 are GRX 610 ($3,299), Apex 1 ($2,599), and a Titanium frameset ($3,099) — the catalog's specific 'SRAM GX Eagle 1x12' combo wasn't among current listings, so groupset/price updated to the closest current SRAM build (Apex 1) rather than left stale; worth rechecking if you want the GRX build represented instead ($3,299). Frame (triple-butted CroMoly steel, 29x2.2-3.0in clearance) confirmed. Product photo from salsacycles.com."
+      "_verified": "Current 2025/2026 Fargo builds confirmed at salsacycles.com on 2026-09-09 are GRX 610 ($3,299), Apex 1 ($2,599), and a Titanium frameset ($3,099) — the catalog's specific 'SRAM GX Eagle 1x12' combo wasn't among current listings, so groupset/price updated to the closest current SRAM build (Apex 1) rather than left stale; worth rechecking if you want the GRX build represented instead ($3,299). Frame (triple-butted CroMoly steel, 29x2.2-3.0in clearance) confirmed. Product photo from salsacycles.com.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.salsacycles.com/collections/fargo",
+        "title": "Fargo &ndash; Salsa Cycles",
+        "nameMatch": 100,
+        "canada": "unconfirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.salsacycles.com/collections/fargo"
     },
     {
       "name": "Tumbleweed Prospector",
@@ -873,7 +1032,21 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "Significant corrections: price ($4,950, was substantially understated at $2,800) and groupset corrected from 'SRAM GX Eagle 1x12' to this bike's actual signature drivetrain, a Rohloff Speedhub 14-speed internally geared hub — that's the whole point of this model, not a derailleur groupset, and it's a big part of the real price. Frame (heat-treated chromoly) and flat/swept-bar-only cockpit (not drop-bar compatible) confirmed live at tumbleweed.cc on 2026-09-09. Note: Tumbleweed sizes as S/M/L/XL, not cm — catalog's numeric 'sizes' array is an approximation, not confirmed. Product photo from tumbleweed.cc."
+      "_verified": "Significant corrections: price ($4,950, was substantially understated at $2,800) and groupset corrected from 'SRAM GX Eagle 1x12' to this bike's actual signature drivetrain, a Rohloff Speedhub 14-speed internally geared hub — that's the whole point of this model, not a derailleur groupset, and it's a big part of the real price. Frame (heat-treated chromoly) and flat/swept-bar-only cockpit (not drop-bar compatible) confirmed live at tumbleweed.cc on 2026-09-09. Note: Tumbleweed sizes as S/M/L/XL, not cm — catalog's numeric 'sizes' array is an approximation, not confirmed. Product photo from tumbleweed.cc.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://tumbleweed.cc/products/prospector",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      },
+      "canada": {
+        "sold": false,
+        "note": "Brand sells in the U.S. only (our earlier Canadian-availability review)",
+        "source": "scripts/README.md",
+        "checkedOn": "2026-11-13"
+      }
     },
     {
       "name": "Bombtrack Hook EXT",
@@ -913,7 +1086,12 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "standard",
-      "_verified": "current flat-bar build is SX Eagle 1x12 at $2,749 (was stale $2,000 with a 'Shimano Deore 1x11' groupset that doesn't match any current build); a carbon Hook EXT-C variant also exists separately at ~$3,300. Frame (Columbus Cromor double-butted steel, 27.5in wheels) confirmed live at bombtrack.com on 2026-09-09. Product photo from the same page (frameset image; complete-bike photo not separately retrieved)."
+      "_verified": "current flat-bar build is SX Eagle 1x12 at $2,749 (was stale $2,000 with a 'Shimano Deore 1x11' groupset that doesn't match any current build); a carbon Hook EXT-C variant also exists separately at ~$3,300. Frame (Columbus Cromor double-butted steel, 27.5in wheels) confirmed live at bombtrack.com on 2026-09-09. Product photo from the same page (frameset image; complete-bike photo not separately retrieved).",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      }
     },
     {
       "name": "Genesis Croix de Fer 30",
@@ -953,7 +1131,12 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "price (£1,899.99, ~$2,400 USD, was stale $1,800), groupset corrected from 'Shimano GRX 400' to 'GRX 810' 11-speed with Shimano 105 STI levers, weight (11.28kg, was stale 12.4kg), and frame (Reynolds 725 steel, 700c/650b tire clearance) confirmed via genesisbikes.co.uk search results on 2026-09-09 — the site itself and a UK retailer mirror both blocked automated fetches, so no product photo could be retrieved this pass."
+      "_verified": "price (£1,899.99, ~$2,400 USD, was stale $1,800), groupset corrected from 'Shimano GRX 400' to 'GRX 810' 11-speed with Shimano 105 STI levers, weight (11.28kg, was stale 12.4kg), and frame (Reynolds 725 steel, 700c/650b tire clearance) confirmed via genesisbikes.co.uk search results on 2026-09-09 — the site itself and a UK retailer mirror both blocked automated fetches, so no product photo could be retrieved this pass.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "status": "no-link",
+        "canada": "unconfirmed"
+      }
     },
     {
       "name": "Surly Karate Monkey",
@@ -993,7 +1176,19 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "standard",
-      "_verified": "price (rigid-fork build $1,849, was stale $1,600) confirmed via an authorized Surly retailer on 2026-09-09; frame (100% Surly chromoly, 27.5+/29in flexible wheel sizing) confirmed. A separate front-suspension build also exists at $2,599 with Shimano XT — this entry correctly represents the rigid version (suspensionFork: false) since Surly sells both. Groupset (SRAM SX Eagle) not independently re-confirmed for this specific rigid build. Product photo of the rigid version from the same retailer."
+      "_verified": "price (rigid-fork build $1,849, was stale $1,600) confirmed via an authorized Surly retailer on 2026-09-09; frame (100% Surly chromoly, 27.5+/29in flexible wheel sizing) confirmed. A separate front-suspension build also exists at $2,599 with Shimano XT — this entry correctly represents the rigid version (suspensionFork: false) since Surly sells both. Groupset (SRAM SX Eagle) not independently re-confirmed for this specific rigid build. Product photo of the rigid version from the same retailer.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://surlybikes.com/collections/karate-monkey",
+        "title": "Karate Monkey Collection | Surly Bikes",
+        "nameMatch": 100,
+        "price": 1449,
+        "currency": "CAD",
+        "canada": "confirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://surlybikes.com/collections/karate-monkey"
     },
     {
       "name": "Surly ECR",
@@ -1033,7 +1228,15 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "frame (4130 Chromoly, dual 27.5+/29+ wheel platform via Gnot-Boost hub spacing, 3in tire clearance) confirmed live at surlybikes.com on 2026-09-09 — still in current production there, though one retailer (treefortbikes.com) shows it discontinued in their own catalog. Price and groupset not re-confirmed (not listed on surlybikes.com's own page). Product photo from surlybikes.com."
+      "_verified": "frame (4130 Chromoly, dual 27.5+/29+ wheel platform via Gnot-Boost hub spacing, 3in tire clearance) confirmed live at surlybikes.com on 2026-09-09 — still in current production there, though one retailer (treefortbikes.com) shows it discontinued in their own catalog. Price and groupset not re-confirmed (not listed on surlybikes.com's own page). Product photo from surlybikes.com.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://surlybikes.com/products/ecr",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      }
     },
     {
       "name": "Salsa Timberjack",
@@ -1074,7 +1277,15 @@
       "electronicShifting": false,
       "comfortDamping": true,
       "tireDurability": "standard",
-      "_verified": "current SLX build is 29in wheels (corrected from catalog's 650/27.5), price ($1,899, was stale $1,500), groupset corrected from 'SRAM SX Eagle' to 'Shimano SLX 1x12', and weight (14.9kg, was 14) confirmed live at salsacycles.com on 2026-09-09. Frame (6061-T6 aluminum) and RockShox 140mm fork (confirming suspensionFork/comfortDamping) matched. Salsa has previously also sold 27.5+ Timberjack variants; this entry now represents the current 29in SLX build specifically. Product photo from salsacycles.com."
+      "_verified": "current SLX build is 29in wheels (corrected from catalog's 650/27.5), price ($1,899, was stale $1,500), groupset corrected from 'SRAM SX Eagle' to 'Shimano SLX 1x12', and weight (14.9kg, was 14) confirmed live at salsacycles.com on 2026-09-09. Frame (6061-T6 aluminum) and RockShox 140mm fork (confirming suspensionFork/comfortDamping) matched. Salsa has previously also sold 27.5+ Timberjack variants; this entry now represents the current 29in SLX build specifically. Product photo from salsacycles.com.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://www.salsacycles.com/products/2025-timberjack-slx-29",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      }
     },
     {
       "name": "Kona Unit",
@@ -1113,7 +1324,16 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "standard",
-      "_verified": "price ($1,299, matches catalog's $1,300 closely) and frame (Reynolds Cromoly steel, 27.5in/29in wheel-compatible) confirmed live at konaworld.com on 2026-09-09. A geared 'Unit X' variant also exists at $1,799 with a 12-speed drivetrain, if single-speed isn't the right fit for a given rider. Product photo from konaworld.com."
+      "_verified": "price ($1,299, matches catalog's $1,300 closely) and frame (Reynolds Cromoly steel, 27.5in/29in wheel-compatible) confirmed live at konaworld.com on 2026-09-09. A geared 'Unit X' variant also exists at $1,799 with a 12-speed drivetrain, if single-speed isn't the right fit for a given rider. Product photo from konaworld.com.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://konaworld.com/collections/unit",
+        "title": "Kona Mountain Bikes | Unit &#124; Kona",
+        "nameMatch": 100,
+        "canada": "unconfirmed",
+        "status": "ok"
+      }
     },
     {
       "name": "Tumbleweed Stargazer",
@@ -1154,7 +1374,21 @@
       "electronicShifting": false,
       "comfortDamping": true,
       "tireDurability": "reinforced",
-      "_verified": "Corrected frameMaterial from 'titanium' to 'steel' (triple/quad-butted heat-treated chromoly) — the regular, always-available Stargazer is steel; titanium is a separate 'Titanium Stargazer' SKU sold only in occasional limited production runs requiring a deposit and wait (confirmed via tumbleweed.cc's own 'Titanium Frames — Limited Availability' page on 2026-09-09), which doesn't fit this site's mainstream-first philosophy for a boutique-but-buyable recommendation. Price ($4,000 standard complete build, was stale $3,100) and colors updated to match the regular steel version. Product photo is of the steel Stargazer from tumbleweed.cc."
+      "_verified": "Corrected frameMaterial from 'titanium' to 'steel' (triple/quad-butted heat-treated chromoly) — the regular, always-available Stargazer is steel; titanium is a separate 'Titanium Stargazer' SKU sold only in occasional limited production runs requiring a deposit and wait (confirmed via tumbleweed.cc's own 'Titanium Frames — Limited Availability' page on 2026-09-09), which doesn't fit this site's mainstream-first philosophy for a boutique-but-buyable recommendation. Price ($4,000 standard complete build, was stale $3,100) and colors updated to match the regular steel version. Product photo is of the steel Stargazer from tumbleweed.cc.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://tumbleweed.cc/products/stargazer",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      },
+      "canada": {
+        "sold": false,
+        "note": "Brand sells in the U.S. only (our earlier Canadian-availability review)",
+        "source": "scripts/README.md",
+        "checkedOn": "2026-11-13"
+      }
     },
     {
       "name": "Norco Search",
@@ -1193,7 +1427,17 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "Norco rebranded this gravel line for 2025 — 'Search XR' is the old name, now simply 'Search' (renamed in the catalog to match). Price ($1,999, was stale $2,200), groupset corrected from 'Shimano GRX 600' to 'GRX 2x12', and weight (12.6kg, was 10.5kg) confirmed via an authorized Norco retailer (cambriabike.com) on 2026-09-09; norco.com itself didn't return full page content. Frame (Search butted aluminum, 700c, 50mm tire clearance) matched. Product photo from the same retailer."
+      "_verified": "Norco rebranded this gravel line for 2025 — 'Search XR' is the old name, now simply 'Search' (renamed in the catalog to match). Price ($1,999, was stale $2,200), groupset corrected from 'Shimano GRX 600' to 'GRX 2x12', and weight (12.6kg, was 10.5kg) confirmed via an authorized Norco retailer (cambriabike.com) on 2026-09-09; norco.com itself didn't return full page content. Frame (Search butted aluminum, 700c, 50mm tire clearance) matched. Product photo from the same retailer.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.norco.com/bikes/road/gravel/search/",
+        "title": "Search | Norco",
+        "nameMatch": 100,
+        "canada": "unconfirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.norco.com/bikes/road/gravel/search/"
     },
     {
       "name": "Devinci Hatchet",
@@ -1232,7 +1476,17 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "Devinci overhauled this line for 2025 as the 'Hatchet Vista' (aluminum) plus a separate carbon 'Hatchet Pro'. Base Vista pricing starts at $1,799 (was catalog's stale $1,900, close); a higher GRX 610 12-speed build runs C$2,599. Frame (Optimum R03 6061-T6 aluminum, 700x45mm clearance) and weight (10.75kg, matches catalog's 10.8) confirmed live at devinci.com on 2026-09-09. Product photo is of the GRX 610 build (higher trim than this entry's base GRX 400) since that's what devinci.com's product photography showed."
+      "_verified": "Devinci overhauled this line for 2025 as the 'Hatchet Vista' (aluminum) plus a separate carbon 'Hatchet Pro'. Base Vista pricing starts at $1,799 (was catalog's stale $1,900, close); a higher GRX 610 12-speed build runs C$2,599. Frame (Optimum R03 6061-T6 aluminum, 700x45mm clearance) and weight (10.75kg, matches catalog's 10.8) confirmed live at devinci.com on 2026-09-09. Product photo is of the GRX 610 build (higher trim than this entry's base GRX 400) since that's what devinci.com's product photography showed.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.devinci.com/en/bikes/gravel-and-road/",
+        "title": "Gravel &amp; Road Bikes",
+        "nameMatch": 100,
+        "canada": "unconfirmed",
+        "status": "ok"
+      },
+      "retailerUrl": "https://www.devinci.com/en/bikes/gravel-and-road/"
     },
     {
       "name": "Rocky Mountain Solo",
@@ -1272,7 +1526,15 @@
       "electronicShifting": false,
       "comfortDamping": false,
       "tireDurability": "reinforced",
-      "_verified": "This entry matches the 'Solo Alloy 30' trim: price ($1,899, close to catalog's stale $2,000), groupset corrected from 'Shimano GRX 400' to 'SRAM Apex 1x11', and weight corrected from an implausibly light 10.6kg to the real 15.4kg confirmed live at bikes.com on 2026-09-09. Frame (FORM Alloy, 700c) matched. Higher-end carbon Solo trims (C50/C70/C90) also exist starting well above $5,000 if a premium option is wanted instead. Product photo from bikes.com."
+      "_verified": "This entry matches the 'Solo Alloy 30' trim: price ($1,899, close to catalog's stale $2,000), groupset corrected from 'Shimano GRX 400' to 'SRAM Apex 1x11', and weight corrected from an implausibly light 10.6kg to the real 15.4kg confirmed live at bikes.com on 2026-09-09. Frame (FORM Alloy, 700c) matched. Higher-end carbon Solo trims (C50/C70/C90) also exist starting well above $5,000 if a premium option is wanted instead. Product photo from bikes.com.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://bikes.com/products/solo-30-24",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      }
     },
     {
       "name": "Diverge 3 Alloy",
@@ -1280,7 +1542,15 @@
       "brand": "Specialized",
       "origin": "USA",
       "wheel": 700,
-      "sizes": [44, 49, 52, 54, 56, 58, 61],
+      "sizes": [
+        44,
+        49,
+        52,
+        54,
+        56,
+        58,
+        61
+      ],
       "minH": 163,
       "maxH": 190,
       "price": 1699.99,
@@ -1300,10 +1570,21 @@
       "tireDurability": "reinforced",
       "dynamoReady": false,
       "weight": 10.5,
-      "colors": ["Blue", "White"],
+      "colors": [
+        "Blue",
+        "White"
+      ],
       "image": "",
       "retailerUrl": "https://cyclingelements.ca/products/diverge-3-alloy-1",
-      "_verified": "Found while pulling catalog updates via an authorized Specialized retailer (cyclingelements.ca) on 2026-09-20 — specialized.com itself blocks automated fetches (403). This is the budget alloy sibling to the existing carbon Diverge Comp/Expert entries: 'plenty of rack mounts, including fork and top tube mounts' and 47mm tire clearance (700c) confirmed on the page, hence rackMounts/frameBagFriendly true. Weight is an estimate (not published) based on typical alloy-vs-carbon Diverge deltas; height range reused from the existing Diverge Comp entry since sizes match."
+      "_verified": "Found while pulling catalog updates via an authorized Specialized retailer (cyclingelements.ca) on 2026-09-20 — specialized.com itself blocks automated fetches (403). This is the budget alloy sibling to the existing carbon Diverge Comp/Expert entries: 'plenty of rack mounts, including fork and top tube mounts' and 47mm tire clearance (700c) confirmed on the page, hence rackMounts/frameBagFriendly true. Weight is an estimate (not published) based on typical alloy-vs-carbon Diverge deltas; height range reused from the existing Diverge Comp entry since sizes match.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://cyclingelements.ca/products/diverge-3-alloy-1",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller refused automated access"
+      }
     },
     {
       "name": "Ouroboros",
@@ -1311,7 +1592,14 @@
       "brand": "Kona",
       "origin": "Canada",
       "wheel": 700,
-      "sizes": [48, 50, 52, 54, 56, 58],
+      "sizes": [
+        48,
+        50,
+        52,
+        54,
+        56,
+        58
+      ],
       "minH": 152,
       "maxH": 193,
       "price": 2399,
@@ -1331,10 +1619,20 @@
       "tireDurability": "reinforced",
       "dynamoReady": false,
       "weight": 12,
-      "colors": ["Olive"],
+      "colors": [
+        "Olive"
+      ],
       "image": "",
       "retailerUrl": "https://en-ca.konaworld.com/products/ouroboros",
-      "_verified": "Found while pulling catalog updates from konaworld.com on 2026-09-20. A genuinely rough-terrain drop-bar adventure bike, not a road-leaning gravel bike: Suntour GVX32 suspension fork (40mm travel), a TranzX dropper post (125mm), and 700x50c Maxxis Ravager tires confirmed live — hence terrain:trail_mountain rather than plain gravel. No rack mounts were listed, so cargoCapacity/rackMounts stayed conservative despite the adventure-bike framing. Weight not published, estimated."
+      "_verified": "Found while pulling catalog updates from konaworld.com on 2026-09-20. A genuinely rough-terrain drop-bar adventure bike, not a road-leaning gravel bike: Suntour GVX32 suspension fork (40mm travel), a TranzX dropper post (125mm), and 700x50c Maxxis Ravager tires confirmed live — hence terrain:trail_mountain rather than plain gravel. No rack mounts were listed, so cargoCapacity/rackMounts stayed conservative despite the adventure-bike framing. Weight not published, estimated.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://en-ca.konaworld.com/products/ouroboros",
+        "status": "blocked",
+        "canada": "confirmed",
+        "note": "seller refused automated access"
+      }
     },
     {
       "name": "GRVL AF Discovery",
@@ -1362,10 +1660,21 @@
       "tireDurability": "reinforced",
       "dynamoReady": false,
       "weight": 11.5,
-      "colors": ["Green"],
+      "colors": [
+        "Green"
+      ],
       "image": "",
       "retailerUrl": "https://www.decathlon.ca/en/p/gravel-bike-microshift-acolyte-1x8s-grvl-af-discovery/342143/c261m8752080",
-      "_verified": "Confirmed live at decathlon.ca on 2026-09-20 (Raghu-supplied site). Frame, drivetrain, TRP Spyre mechanical disc brakes, weight, and price confirmed. Rack/fender mounts and three-per-leg fork inserts for luggage confirmed on the page, hence cargoCapacity:2. IMPORTANT: Decathlon sizes by letter (XS-XL with a height range per size), not cm — this catalog's 'known frame size' question asks for a cm number the letter sizing doesn't map to, so 'sizes' is left empty and this entry only scores against the height fallback. Worth revisiting if Decathlon ever publishes cm-equivalent top-tube lengths."
+      "_verified": "Confirmed live at decathlon.ca on 2026-09-20 (Raghu-supplied site). Frame, drivetrain, TRP Spyre mechanical disc brakes, weight, and price confirmed. Rack/fender mounts and three-per-leg fork inserts for luggage confirmed on the page, hence cargoCapacity:2. IMPORTANT: Decathlon sizes by letter (XS-XL with a height range per size), not cm — this catalog's 'known frame size' question asks for a cm number the letter sizing doesn't map to, so 'sizes' is left empty and this entry only scores against the height fallback. Worth revisiting if Decathlon ever publishes cm-equivalent top-tube lengths.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.decathlon.ca/en/p/gravel-bike-microshift-acolyte-1x8s-grvl-af-discovery/342143/c261m8752080",
+        "title": "Gravel Bike Microshift Acolyte 1x8s, GRVL AF Discovery | Decathlon",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      }
     },
     {
       "name": "GRVL AF SRAM Apex",
@@ -1393,10 +1702,21 @@
       "tireDurability": "reinforced",
       "dynamoReady": false,
       "weight": 10.88,
-      "colors": ["White"],
+      "colors": [
+        "White"
+      ],
       "image": "",
       "retailerUrl": "https://www.decathlon.ca/en/p/gravel-bike-sram-apex-1x12s-grvl-af/342976/c296m8766974",
-      "_verified": "Confirmed live at decathlon.ca on 2026-09-20. Frame, SRAM Apex 1x12 hydraulic disc groupset, weight, and price confirmed. Fenders/pannier-rack compatible with three fork attachment points, and up to 50mm tire clearance (ships with 45mm Hutchinson Touareg tires), hence cargoCapacity:2 and tireDurability:reinforced. Same letter-sizing caveat as the Discovery entry above — 'sizes' left empty, scores against height only."
+      "_verified": "Confirmed live at decathlon.ca on 2026-09-20. Frame, SRAM Apex 1x12 hydraulic disc groupset, weight, and price confirmed. Fenders/pannier-rack compatible with three fork attachment points, and up to 50mm tire clearance (ships with 45mm Hutchinson Touareg tires), hence cargoCapacity:2 and tireDurability:reinforced. Same letter-sizing caveat as the Discovery entry above — 'sizes' left empty, scores against height only.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.decathlon.ca/en/p/gravel-bike-sram-apex-1x12s-grvl-af/342976/c296m8766974",
+        "title": "Gravel Bike SRAM Apex 1x12s, GRVL AF | Decathlon",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      }
     },
     {
       "name": "Panorama Anticosti",
@@ -1424,10 +1744,20 @@
       "tireDurability": "standard",
       "dynamoReady": true,
       "weight": 10.2,
-      "colors": ["Muted Blue"],
+      "colors": [
+        "Muted Blue"
+      ],
       "image": "",
       "retailerUrl": "https://panoramacycles.com/products/anticosti",
-      "_verified": "Confirmed live at panoramacycles.com (the builder's own direct-to-consumer site, assembled to order in Granby, Quebec) on 2026-09-22: price, Reynolds 725 steel frame, 1x12/2x12 Shimano GRX RX610 groupset options (1x12 catalogued here), 57mm/29x2.25in tire clearance, rack + top-tube-bag + fork-cargo-cage mounts, dynamo-hub-ready fork, and color. Sized XS-XL by letter, not cm — 'sizes' left empty per the same convention as Decathlon/Giant above, scores against height only; that height range is a class-typical estimate, not shown on the product page (a separate geometry chart/fit tool is linked but wasn't opened this pass). Weight (~22.5lb / 10.2kg) is the stated complete-medium weight, 'varies depending on options chosen' per the page. availability set to 'boutique' since this is a small-batch, made-to-order Canadian builder rather than a mass-market dealer network, though a dealer list does exist."
+      "_verified": "Confirmed live at panoramacycles.com (the builder's own direct-to-consumer site, assembled to order in Granby, Quebec) on 2026-09-22: price, Reynolds 725 steel frame, 1x12/2x12 Shimano GRX RX610 groupset options (1x12 catalogued here), 57mm/29x2.25in tire clearance, rack + top-tube-bag + fork-cargo-cage mounts, dynamo-hub-ready fork, and color. Sized XS-XL by letter, not cm — 'sizes' left empty per the same convention as Decathlon/Giant above, scores against height only; that height range is a class-typical estimate, not shown on the product page (a separate geometry chart/fit tool is linked but wasn't opened this pass). Weight (~22.5lb / 10.2kg) is the stated complete-medium weight, 'varies depending on options chosen' per the page. availability set to 'boutique' since this is a small-batch, made-to-order Canadian builder rather than a mass-market dealer network, though a dealer list does exist.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://panoramacycles.com/products/anticosti",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      }
     },
     {
       "name": "Panorama Boreal",
@@ -1455,10 +1785,20 @@
       "tireDurability": "standard",
       "dynamoReady": true,
       "weight": 14.5,
-      "colors": ["Rust"],
+      "colors": [
+        "Rust"
+      ],
       "image": "",
       "retailerUrl": "https://panoramacycles.com/products/boreal",
-      "_verified": "Confirmed live at panoramacycles.com on 2026-09-22: price, Reynolds 525 steel frame, all-terrain touring positioning ('capable of taking loads... for your most ambitious projects'), dynamo-hub-ready fork, and 29x2.0-2.8in (or 27.5x2.6in) tire options. Drivetrain is sold as either Shimano Deore 1x11 or Shimano CUES 6000/8000 2x11 (wider range) — catalogued as the base Deore 1x11 option. Sized S/M/L by letter, not cm — 'sizes' left empty, same convention as above. Height range, weight, and frameBagFriendly are class-typical estimates, not confirmed on the fetched page (weight and a mounts diagram may be on a separate specification tab this pass didn't open). purpose set to 'touring' (vs. Anticosti's lighter 'adventure' positioning) and cargoCapacity to 3, matching its explicit expedition/loaded-touring framing. availability set to 'boutique' for the same reason as Anticosti."
+      "_verified": "Confirmed live at panoramacycles.com on 2026-09-22: price, Reynolds 525 steel frame, all-terrain touring positioning ('capable of taking loads... for your most ambitious projects'), dynamo-hub-ready fork, and 29x2.0-2.8in (or 27.5x2.6in) tire options. Drivetrain is sold as either Shimano Deore 1x11 or Shimano CUES 6000/8000 2x11 (wider range) — catalogued as the base Deore 1x11 option. Sized S/M/L by letter, not cm — 'sizes' left empty, same convention as above. Height range, weight, and frameBagFriendly are class-typical estimates, not confirmed on the fetched page (weight and a mounts diagram may be on a separate specification tab this pass didn't open). purpose set to 'touring' (vs. Anticosti's lighter 'adventure' positioning) and cargoCapacity to 3, matching its explicit expedition/loaded-touring framing. availability set to 'boutique' for the same reason as Anticosti.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 429,
+        "finalUrl": "https://panoramacycles.com/products/boreal",
+        "status": "blocked",
+        "canada": "unconfirmed",
+        "note": "seller refused automated access"
+      }
     },
     {
       "name": "Diverge 4 Sport Alloy",
@@ -1466,7 +1806,14 @@
       "brand": "Specialized",
       "origin": "USA",
       "wheel": 700,
-      "sizes": [49, 52, 54, 56, 58, 61],
+      "sizes": [
+        49,
+        52,
+        54,
+        56,
+        58,
+        61
+      ],
       "minH": 163,
       "maxH": 190,
       "price": 2749.99,
@@ -1486,10 +1833,21 @@
       "tireDurability": "standard",
       "dynamoReady": false,
       "weight": 10.74,
-      "colors": ["Gloss Dark Navy"],
+      "colors": [
+        "Gloss Dark Navy"
+      ],
       "image": "https://resources.specialized.com/image/95426-62_DIVERGE-E5-SPORT-BNTGLDMET-SHDWSIL_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
       "retailerUrl": "https://www.specialized.com/ca/en/diverge-4-sport-alloy-shimano-cues/p/4223511?color=5459925-4223511",
-      "_verified": "Verified via Firecrawl scrape of specialized.com/ca on 2026-11-12: price, E5 Premium aluminum frame, Future Shock 3.1 carbon fork (hence comfortDamping:true), Shimano CUES 11-speed with hydraulic disc brakes, 700x45 tires with up to 50mm clearance, sizes 49-61cm, weight 10.74kg, color Gloss Dark Navy, intended use 'Gravel Adventure/Race'. The scrape returned no mount list, so rackMounts/frameBagFriendly follow the existing Diverge entries in this catalog rather than a page-confirmed list (Specialized does describe internal frame storage on the Diverge 4). cargoCapacity, climbingRange and tireDurability are estimates. Height range per size isn't published on the page, so minH/maxH matches this catalog's existing class-typical range for the same frame sizes (an estimate, not page-confirmed)."
+      "_verified": "Verified via Firecrawl scrape of specialized.com/ca on 2026-11-12: price, E5 Premium aluminum frame, Future Shock 3.1 carbon fork (hence comfortDamping:true), Shimano CUES 11-speed with hydraulic disc brakes, 700x45 tires with up to 50mm clearance, sizes 49-61cm, weight 10.74kg, color Gloss Dark Navy, intended use 'Gravel Adventure/Race'. The scrape returned no mount list, so rackMounts/frameBagFriendly follow the existing Diverge entries in this catalog rather than a page-confirmed list (Specialized does describe internal frame storage on the Diverge 4). cargoCapacity, climbingRange and tireDurability are estimates. Height range per size isn't published on the page, so minH/maxH matches this catalog's existing class-typical range for the same frame sizes (an estimate, not page-confirmed).",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.specialized.com/ca/en/diverge-4-sport-alloy-shimano-cues/p/4223511?color=5459925-4223511",
+        "title": "Diverge 4 Sport Alloy - Shimano CUES",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      }
     },
     {
       "name": "Diverge 4 Comp Alloy",
@@ -1497,7 +1855,14 @@
       "brand": "Specialized",
       "origin": "USA",
       "wheel": 700,
-      "sizes": [49, 52, 54, 56, 58, 61],
+      "sizes": [
+        49,
+        52,
+        54,
+        56,
+        58,
+        61
+      ],
       "minH": 163,
       "maxH": 190,
       "price": 3499.99,
@@ -1517,10 +1882,21 @@
       "tireDurability": "standard",
       "dynamoReady": false,
       "weight": 10.6,
-      "colors": ["Satin Shadow Silver"],
+      "colors": [
+        "Satin Shadow Silver"
+      ],
       "image": "https://resources.specialized.com/image/95426-51_DIVERGE-E5-COMP-MVEMET-OBSD_HERO-SQUARE?q=75&w=1400&h=2880&fit=max&fm=webp",
       "retailerUrl": "https://www.specialized.com/ca/en/diverge-4-comp-alloy-sram-apex/p/4223512?color=5459909-4223512",
-      "_verified": "Verified via Firecrawl scrape of specialized.com/ca on 2026-11-12: price, E5 Premium aluminum frame, Future Shock 3.1 carbon fork, SRAM Apex shifters with an Apex Eagle 12-speed derailleur and hydraulic disc brakes (a 1x12 setup — catalogued 'low' climbing range for its wide 12-speed cassette, an estimate), 700x45 tires with up to 50mm clearance, sizes 49-61cm, weight 10.6kg, color Satin Shadow Silver. Mount list wasn't returned by the scrape — same note as Diverge 4 Sport Alloy. Height range per size isn't published on the page, so minH/maxH matches this catalog's existing class-typical range for the same frame sizes (an estimate, not page-confirmed)."
+      "_verified": "Verified via Firecrawl scrape of specialized.com/ca on 2026-11-12: price, E5 Premium aluminum frame, Future Shock 3.1 carbon fork, SRAM Apex shifters with an Apex Eagle 12-speed derailleur and hydraulic disc brakes (a 1x12 setup — catalogued 'low' climbing range for its wide 12-speed cassette, an estimate), 700x45 tires with up to 50mm clearance, sizes 49-61cm, weight 10.6kg, color Satin Shadow Silver. Mount list wasn't returned by the scrape — same note as Diverge 4 Sport Alloy. Height range per size isn't published on the page, so minH/maxH matches this catalog's existing class-typical range for the same frame sizes (an estimate, not page-confirmed).",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.specialized.com/ca/en/diverge-4-comp-alloy-sram-apex/p/4223512?color=5459909-4223512",
+        "title": "Diverge 4 Comp Alloy - SRAM Apex",
+        "nameMatch": 100,
+        "canada": "confirmed",
+        "status": "ok"
+      }
     },
     {
       "name": "Norco Search A3 Gen 3",
@@ -1548,10 +1924,22 @@
       "tireDurability": "standard",
       "dynamoReady": false,
       "weight": 11.8,
-      "colors": ["Black", "Champagne"],
+      "colors": [
+        "Black",
+        "Champagne"
+      ],
       "image": "https://www.norco.com/cmsb/uploads/bikes/bikes/my27-norco-search-a3-black-tp-shadow-main.jpg",
       "retailerUrl": "https://www.norco.com/bikes/road/gravel/search/27-search-a3/",
-      "_verified": "Verified via Firecrawl scrape of norco.com on 2026-11-12 (2027 model; needed a longer page wait for the spec table to render): price, butted aluminum frame with smooth welds, Search carbon fork with 12x100 thru-axle, Shimano CUES shifters/derailleur with a front double (2x), Shimano CUES brakes, 700x45 tires with up to 50mm clearance, and mounts for rack, fender, bottle, top tube and fork — all confirmed. Sold in sizes SZ1-SZ5 (letter-style, not cm), so 'sizes' is empty and it scores on height only. Weight wasn't published (11.8kg is an estimate for the class) and the colors list adds Champagne from the page's product images. A Canadian brand; sits alongside the older 'Norco Search' GRX entry."
+      "_verified": "Verified via Firecrawl scrape of norco.com on 2026-11-12 (2027 model; needed a longer page wait for the spec table to render): price, butted aluminum frame with smooth welds, Search carbon fork with 12x100 thru-axle, Shimano CUES shifters/derailleur with a front double (2x), Shimano CUES brakes, 700x45 tires with up to 50mm clearance, and mounts for rack, fender, bottle, top tube and fork — all confirmed. Sold in sizes SZ1-SZ5 (letter-style, not cm), so 'sizes' is empty and it scores on height only. Weight wasn't published (11.8kg is an estimate for the class) and the colors list adds Champagne from the page's product images. A Canadian brand; sits alongside the older 'Norco Search' GRX entry.",
+      "check": {
+        "checkedOn": "2026-11-13",
+        "http": 200,
+        "finalUrl": "https://www.norco.com/bikes/road/gravel/search/27-search-a3/",
+        "title": "Search A3 | Norco",
+        "nameMatch": 100,
+        "canada": "unconfirmed",
+        "status": "ok"
+      }
     }
   ]
 }

@@ -18,9 +18,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=selectvelo5">
+<link rel="stylesheet" href="style.css?v=selectvelo15">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="quiz-flow.js"></script>
+<script src="match-ui.js"></script>
 <script src="affiliate.js"></script>
 <script src="info-tips.js"></script>
 <script src="nav-transition.js"></script>
@@ -276,10 +277,10 @@
         </div>
 
         <div class="q-group">
-          <label class="q-label">Budget</label>
+          <label class="q-label">Budget (in Canadian dollars)</label>
           <div class="range-row">
             <input type="range" id="budget" min="700" max="6000" value="2000" step="50">
-            <span class="range-out" id="budget-out">$2000</span>
+            <span class="range-out" id="budget-out">C$2000</span>
           </div>
         </div>
 
@@ -434,7 +435,7 @@ function priceCheckLink(b){
 // grace window scoring already allows) — explains what the extra money
 // actually buys, instead of silently over-recommending.
 function budgetNote(b, budget){
-  const over = b.price - budget;
+  const over = SV.scoringPrice(b) - budget;
   if (over <= 0 || over > 500) return '';
   const perks = [];
   if (b.suspensionType === 'full_suspension') perks.push('full suspension instead of a hardtail');
@@ -442,7 +443,7 @@ function budgetNote(b, budget){
   if (b.dropperPost) perks.push('a dropper post');
   if (b.travelFront >= 150 && !perks.length) perks.push('more suspension travel for rougher terrain');
   if (!perks.length) perks.push('a step up in components for the same basic bike');
-  return `<p class="result-budget-note"><b>$${Math.round(over)} over your budget</b> — that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
+  return `<p class="result-budget-note"><b>About C$${Math.round(over)} over your budget</b>: that gets you ${perks.slice(0,2).join(' and ')}.</p>`;
 }
 
 // Shown when a bike has no photo yet, or its photo URL fails to load —
@@ -501,8 +502,16 @@ async function loadBikeData(){
     }
   });
 }
-loadBikeData();
-initQuizFlow('#quizSteps');
+loadBikeData().then(() => SV.fxReady).then(() => SV.restore('#quizSteps'));
+initQuizFlow('#quizSteps', {
+  essentials: 4,
+  order: [
+    {key:'discipline', tag:'Your riding'}, {key:'experience', tag:'About you'}, {key:'sizemode', tag:'Your fit'}, {key:'budget', tag:'Your budget'},
+    {key:'suspensionType'}, {key:'dropper'}, {key:'wheelsize'}, {key:'frame'}, {key:'frameStyle'}, {key:'groupset'}, {key:'color'},
+    {key:'availabilitypref'}, {key:'origin'}
+  ]
+});
+SV.watch('#quizSteps');
 
 const state = {
   discipline:null, experience:null, suspensionType:null, dropper:null,
@@ -529,7 +538,7 @@ document.getElementById('height').addEventListener('input', e => {
   state.riderHeight = Number(e.target.value);
 });
 document.getElementById('budget').addEventListener('input', e => {
-  document.getElementById('budget-out').textContent = '$' + e.target.value;
+  document.getElementById('budget-out').textContent = 'C$' + e.target.value;
 });
 
 const sizeKnownBlock = document.getElementById('sizeKnownBlock');
@@ -570,6 +579,28 @@ document.querySelectorAll('.opt').forEach(btn => {
   });
 });
 
+const disciplineNameMtb = {xc:'cross-country', trail:'trail riding', enduro:'enduro', downhill:'downhill', dirt_jump:'dirt jump and park'};
+// Plain-language reasons for each match, mirroring the factors the scoring actually uses.
+function explainMatch(b, c){
+  const why = [], watch = [];
+  const gap = Math.abs(disciplinePosition[c.discipline] - disciplinePosition[b.discipline]);
+  if (gap === 0) why.push(`Built for ${disciplineNameMtb[b.discipline]}, the riding you do most`);
+  else if (gap === 1) why.push(`Close to ${disciplineNameMtb[c.discipline]}: it is built for ${disciplineNameMtb[b.discipline]}`);
+  else watch.push(`Built for ${disciplineNameMtb[b.discipline]}, which is quite different from ${disciplineNameMtb[c.discipline]}`);
+  if (c.experience === 'new' && ['enduro', 'downhill', 'dirt_jump'].includes(b.discipline)) watch.push('Aggressive-terrain bike: more capable than a new rider needs, and harder to pedal uphill');
+  if (c.suspensionType && c.suspensionType !== 'none') { if (b.suspensionType === c.suspensionType) why.push(c.suspensionType === 'hardtail' ? 'Hardtail, as you wanted' : 'Full suspension, as you wanted'); else watch.push(`${b.suspensionType === 'hardtail' ? 'Hardtail' : 'Full suspension'}, not the ${c.suspensionType === 'hardtail' ? 'hardtail' : 'full-suspension'} you asked for`); }
+  if (c.sizemode === 'known' && c.size) {
+    const sizes = (b.sizes || []).map(normSize).filter(Boolean);
+    if (sizes.includes(c.size)) why.push(`Comes in your size (${c.size})`); else if (sizes.length) watch.push(`No ${c.size} in this model. Sizes: ${(b.sizes || []).join(', ')}`);
+  } else if (c.sizemode === 'height' && c.height) {
+    if (c.height >= b.minH && c.height <= b.maxH) why.push(`Fits a ${c.height} cm rider (made for ${b.minH}–${b.maxH} cm)`); else watch.push(`Made for riders ${b.minH}–${b.maxH} cm, and you're ${c.height} cm`);
+  }
+  if (c.dropper === 'want_it') { if (b.dropperPost) why.push('Dropper post included'); else watch.push('No dropper post, which you wanted'); }
+  if (c.wheelsize && c.wheelsize !== 'none') { if (b.wheel === Number(c.wheelsize)) why.push(`${b.wheel}" wheels, as you prefer`); else watch.push(`${b.wheel}" wheels, not the ${c.wheelsize}" you prefer`); }
+  if (SV.scoringPrice(b) <= c.budget) why.push(`Within your C$${c.budget} budget (${SV.money(SV.bestPrice(b).amount, SV.bestPrice(b).currency)})`);
+  return {why: why.slice(0, 5), watch: watch.slice(0, 3)};
+}
+
 document.getElementById('submit').addEventListener('click', () => {
   const err = document.getElementById('err');
   if (!state.discipline) {
@@ -590,8 +621,10 @@ document.getElementById('submit').addEventListener('click', () => {
   const groupsetPref = state.groupset || 'none';
   const colorPrefs = (state.color || []).filter(c => c !== 'none');
 
-  const scored = bikes.map(b => {
+  const sellable = SV.split(bikes);
+  const scored = sellable.keep.map(b => {
     let score = 0;
+    const price = SV.scoringPrice(b);
 
     // Discipline is the single biggest factor — an XC race bike and an
     // enduro sled solve different problems, weighted heavily but with
@@ -623,6 +656,9 @@ document.getElementById('submit').addEventListener('click', () => {
       else score -= Math.min(30, Math.abs(h - (b.minH + b.maxH) / 2) * 0.6);
     }
 
+    // the experience question used to be asked and never used: aggressive bikes are a real step up for a new rider
+    if (state.experience === 'new' && ['enduro', 'downhill', 'dirt_jump'].includes(b.discipline)) score -= 6;
+
     if (state.wheelsize && state.wheelsize !== 'none') {
       score += b.wheel === Number(state.wheelsize) ? 8 : -3;
     }
@@ -630,9 +666,9 @@ document.getElementById('submit').addEventListener('click', () => {
     // Budget is honored, not just nudged: bikes up to $500 over get a gentle
     // penalty (still surface if genuinely the better fit), anything further
     // over budget drops off the results almost entirely.
-    if (b.price <= budget) score += 10;
+    if (price <= budget) score += 10;
     else {
-      const over = b.price - budget;
+      const over = price - budget;
       score -= over <= 500 ? over * 0.015 : 500 * 0.015 + (over - 500) * 3;
     }
 
@@ -654,40 +690,34 @@ document.getElementById('submit').addEventListener('click', () => {
 
     if (state.availabilitypref !== 'open' && b.availability === 'mainstream') score += 6;
 
+    score += SV.confidence(b);
     return {...b, score};
   }).sort((a,b) => b.score - a.score).slice(0,6);
 
-  document.getElementById('placeholder').style.display = 'none';
   const results = document.getElementById('results');
-  results.style.display = 'grid';
-  results.innerHTML = scored.map((b,i) => `
-    <div class="result-card ${i===0?'top':''}">
-      ${i===0 ? '<span class="badge">Top pick</span>' : ''}
-      <div class="result-media">
-        ${b.image ? `<img src="${escapeHtml(b.image)}" alt="${escapeHtml(b.name)}" loading="lazy">` : resultPlaceholderMarkup(b)}
-      </div>
-      <div class="result-top">
-        <span class="result-name">${escapeHtml(b.name)}</span>
-        <span class="result-price">$${b.price}${b.currency && b.currency !== 'USD' ? ' ' + escapeHtml(b.currency) : ''}</span>
-      </div>
-      <p class="result-meta">${b.wheel}" wheels · sizes ${b.sizes.join('/')} · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)} · ${b.origin}<br>${b.suspensionType === 'hardtail' ? 'Hardtail' : 'Full suspension'} · ${b.travelFront}mm front${b.suspensionType === 'full_suspension' ? ' / ' + b.travelRear + 'mm rear' : ''} travel${b.dropperPost ? ' · dropper post' : ''}<br>${b.discipline.replace('_',' ')} · ${b.availability === 'boutique' ? 'boutique/small-builder' : 'widely available'}</p>
-      ${budgetNote(b, budget)}
-      ${priceCheckLink(b)}
-    </div>
-  `).join('');
-
-  results.querySelectorAll('.result-media').forEach((mediaEl, i) => {
-    const img = mediaEl.querySelector('img');
-    if (!img) return;
-    img.addEventListener('error', () => {
-      mediaEl.innerHTML = resultPlaceholderMarkup(scored[i]);
-    }, {once: true});
+  const ctx = {discipline: state.discipline, experience: state.experience, suspensionType: state.suspensionType, sizemode: state.sizemode, size: state.framesize,
+               height: state.riderHeight, dropper: state.dropper, wheelsize: state.wheelsize, budget};
+  SV.render({
+    results, root: '#quizSteps', items: scored, excluded: sellable.out,
+    summary: [
+      {label:'Riding', value: disciplineNameMtb[state.discipline], group:'discipline'}, {label:'Experience', value: {new:'New to it', some:'Rides sometimes', experienced:'Very experienced'}[state.experience] || '', group:'experience'},
+      {label:'Fit', value: state.sizemode === 'known' && state.framesize ? 'size ' + state.framesize : state.riderHeight ? state.riderHeight + ' cm tall' : '', group:'sizemode'},
+      {label:'Budget', value: 'C$' + budget, group:'budget'}
+    ],
+    describe: b => {
+      const r = explainMatch(b, ctx);
+      return {
+        meta: `${b.wheel}" wheels · ${b.sizes && b.sizes.length ? 'sizes ' + b.sizes.join('/') : 'sizes: see the brand'} · ${b.frameMaterial} frame · ${escapeHtml(b.groupset)}<br>${b.suspensionType === 'hardtail' ? 'Hardtail' : 'Full suspension'} · ${b.travelFront}mm front${b.suspensionType === 'full_suspension' ? ' / ' + b.travelRear + 'mm rear' : ''} travel${b.dropperPost ? ' · dropper post' : ''}<br>${disciplineNameMtb[b.discipline] || b.discipline}`,
+        why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget)
+      };
+    },
+    compareRows: [
+      ['Built for', b => disciplineNameMtb[b.discipline] || b.discipline], ['Frame type', b => b.suspensionType === 'hardtail' ? 'hardtail' : 'full suspension'],
+      ['Front travel', b => b.travelFront + ' mm'], ['Rear travel', b => b.suspensionType === 'full_suspension' ? b.travelRear + ' mm' : 'none'], ['Wheels', b => b.wheel + '"'],
+      ['Frame', b => b.frameMaterial], ['Drivetrain', b => b.groupset], ['Dropper post', b => b.dropperPost ? 'yes' : 'no'], ['Sizes', b => b.sizes.join(' / ')]
+    ]
   });
-
-  results.scrollIntoView({behavior: 'smooth', block: 'start'});
-  results.focus();
 });
-
 const letterOverlay = document.getElementById('letterOverlay');
 const openLetterBtn = document.getElementById('openLetter');
 const closeLetterBtn = document.getElementById('closeLetter');
