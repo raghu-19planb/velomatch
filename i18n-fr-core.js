@@ -29,6 +29,8 @@
     'new bikes': 'les nouveaux vélos',
     'Check out new bikes, in the Showcase': 'Découvrez les nouveaux vélos, dans la Vitrine',
     'Close': 'Fermer',
+    'Open menu': 'Ouvrir le menu',
+    'Close menu': 'Fermer le menu',
     'Start matching': 'Trouver mon vélo',
     'Close explanation': 'Fermer l’explication',
   });

@@ -18,18 +18,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@600;700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3ea00f4a">
+<link rel="stylesheet" href="style.css?v=826c41dd">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="quiz-flow.js?v=d06f0503"></script>
-<script src="match-ui.js?v=ade6fb97"></script>
+<script src="match-ui.js?v=277fef3a"></script>
 <script src="affiliate.js?v=404729a3"></script>
 <script src="info-tips.js?v=d63f39a8"></script>
-<script src="nav-transition.js?v=bdc893c2"></script>
+<script src="nav-transition.js?v=ddf7b18b"></script>
 <script src="flag-banner.js?v=0744c1be" defer></script>
 <script src="i18n.js?v=d9197a30"></script>
-<script src="i18n-fr-core.js?v=0513de57" defer></script>
-<script src="i18n-fr-quiz.js?v=b92f4807" defer></script>
+<script src="i18n-fr-core.js?v=799c5762" defer></script>
+<script src="i18n-fr-quiz.js?v=8c79617d" defer></script>
 <script src="i18n-fr-racing.js?v=9e5c2142" defer></script>
+<script src="nav-menu.js?v=5d71bc06" defer></script>
 </head>
 <body>
 
@@ -727,6 +728,11 @@ document.getElementById('submit').addEventListener('click', () => {
         why: r.why, watch: r.watch, budgetNote: budgetNote(b, budget)
       };
     },
+    musts: [
+      {label: 'Fits your height', applies: ctx.sizemode === 'height' && !!ctx.height, test: b => ctx.height >= b.minH && ctx.height <= b.maxH},
+      {label: 'Built for your kind of racing', applies: !!(ctx.discipline && ctx.discipline.length), test: b => ctx.discipline.some(d => disciplineScore(d, b) > 0)},
+      {label: 'Close to your budget', applies: true, test: b => SV.scoringPrice(b) <= ctx.budget + 500}
+    ],
     compareRows: [
       ['Built for', b => T(disciplineName[b.discipline])], ['Character', b => T(charPref[b.character] || b.character)], ['Frame', b => b.frameMaterial], ['Drivetrain', b => b.groupset],
       ['Shifting', b => b.electronicShifting ? 'electronic' : 'mechanical'], ['Brakes', b => b.brakeType], ['Wheels', b => b.wheelDepth === 'deep' ? 'deep aero' : 'lightweight'],

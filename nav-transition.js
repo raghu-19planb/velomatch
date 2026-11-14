@@ -2,6 +2,16 @@
 // nav link, so every page-to-page hop in the top nav gets the same crossing
 // animation, not just the homepage's quiz-start cards. Duplicated nowhere —
 // one shared file, included on every page.
+// Endless animations (the spinning wheel, the pulsing card) rest while the page is scrolling and resume 150 ms after it stops.
+(function () {
+  var timer = null, root = document.documentElement;
+  window.addEventListener('scroll', function () {
+    if (!root.classList.contains('is-scrolling')) root.classList.add('is-scrolling');
+    clearTimeout(timer);
+    timer = setTimeout(function () { root.classList.remove('is-scrolling'); }, 150);
+  }, { passive: true });
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
   var curtain = document.querySelector('.page-transition');
   if (!curtain) return;

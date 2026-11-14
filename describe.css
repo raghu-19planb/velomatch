@@ -1,0 +1,42 @@
+/* "Describe your ride" preview (describe.js). Loaded on the home page only. */
+.describe{padding:56px 0 8px;}
+.describe .wrap{max-width:820px;}
+.describe h2{font-size:clamp(26px,3.4vw,36px); line-height:1.15; margin:10px 0 12px; letter-spacing:-0.015em;}
+.describe-lede{margin:0 0 18px; color:var(--fog); font-size:16.5px; line-height:1.6; max-width:62ch;}
+.describe textarea{
+  display:block; width:100%; box-sizing:border-box; min-height:92px; resize:vertical; padding:14px 16px;
+  font:inherit; font-size:16px; line-height:1.55; color:var(--ink); background:rgba(255,255,255,0.55);
+  border:1.5px solid var(--line); border-radius:10px;
+}
+.describe textarea:focus-visible{outline:3px solid var(--signal); outline-offset:2px; border-color:var(--signal);}
+.describe-actions{margin:14px 0 0; display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
+.describe-examples{margin:14px 0 4px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:13.5px; color:var(--fog);}
+.describe-ex{font:inherit; font-size:13px; padding:5px 12px; color:var(--ink); background:none; border:1px solid var(--line); border-radius:999px; cursor:pointer;}
+.describe-ex:hover{border-color:var(--teal); color:var(--teal);}
+.describe-ex:focus-visible{outline:3px solid var(--signal); outline-offset:2px;}
+.describe-out{margin-top:22px;}
+.describe-out:empty{display:none;}
+.describe-cat{display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding:12px 14px; background:rgba(26,110,98,0.08); border:1px solid rgba(26,110,98,0.25); border-radius:10px; font-size:15px;}
+.describe-cat select, .describe-chips select, .describe-chips input{font:inherit; font-size:14.5px; color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:7px; padding:5px 8px; max-width:100%;}
+.describe-chips input[type=number]{width:96px;}
+.describe-conf{color:var(--fog); font-size:13.5px;}
+.describe-h{margin:20px 0 8px; font-weight:600; font-size:15px;}
+.describe-chips{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+.describe-chips li{display:flex; flex-wrap:wrap; gap:8px 10px; align-items:center; padding:9px 12px; border:1px solid var(--line); border-radius:10px; background:rgba(255,255,255,0.4);}
+.chip-k{font-size:13.5px; color:var(--fog); min-width:11ch;}
+.chip-u{font-size:13.5px; color:var(--fog);}
+.chip-ev{font-size:12.5px; color:var(--fog); font-style:italic; flex:1 1 160px; min-width:0; overflow-wrap:anywhere;}
+.chip-x{font:inherit; font-size:18px; line-height:1; width:30px; height:30px; border-radius:50%; border:1px solid var(--line); background:none; color:var(--fog); cursor:pointer;}
+.chip-x:hover{border-color:var(--signal-deep); color:var(--signal-deep);}
+.chip-x:focus-visible{outline:3px solid var(--signal); outline-offset:2px;}
+.chip-empty{color:var(--fog); font-size:14px;}
+.describe-notes{margin:12px 0 0; padding-left:20px; color:var(--signal-deep); font-size:14px; line-height:1.5;}
+.describe-missing{margin:12px 0 0; font-size:14.5px; color:var(--ink);}
+.describe-none{margin:0; color:var(--signal-deep);}
+.describe-fine{margin:22px 0 0; font-size:12.5px; color:var(--fog); line-height:1.55; max-width:70ch;}
+@media (max-width:640px){ .describe{padding-top:40px;} .chip-k{min-width:0; flex-basis:100%;} .describe-chips li{padding:10px;} }
+@media (max-width:640px){
+  .describe-chips li{position:relative; padding-right:48px;}
+  .chip-x{position:absolute; top:8px; right:8px;}
+  .chip-ev{flex-basis:100%;}
+}

@@ -126,13 +126,51 @@
     const root = document.querySelector(rootSel);
     (data.o || []).forEach(([g, v]) => { const b = root.querySelector('.opt[data-group="' + g + '"][data-value="' + v + '"]'); if (b) b.click(); });
     Object.entries(data.r || {}).forEach(([id, v]) => { const r = document.getElementById(id); if (r) { r.value = v; r.dispatchEvent(new Event('input')); } });
+    // a link can ask for the answers to be filled in without scoring (s: 0), e.g. when some are still missing: the visitor then
+    // finishes the quiz. Nothing is guessed to fill the gap.
+    if (data.s === 0) { const q = document.getElementById('quiz'); if (q) q.scrollIntoView(); return true; }
     SV.quiet = true;
     setTimeout(() => { document.getElementById(submitId || 'submit').click(); SV.quiet = false; }, 50);
     return true;
   };
 
-  // ---- the results block
+  // ---- the "curating" pause: when someone presses the button, a short loading screen (the spinning wheel and "Curating
+  // bikes for your ride") shows before the matches, instead of the results popping in with no sign anything happened.
+  // A live refresh after an answer changes, and a restored share link, skip it and show the matches at once.
+  const CURATE_MS = 1100;
+  SV.pending = 0;
   SV.render = function (o) {
+    const token = ++SV.pending;
+    const results = o.results;
+    let box = document.getElementById('svCurating');
+    if (SV.quiet) { if (box) box.hidden = true; return SV.renderNow(o); }
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'svCurating'; box.className = 'curating'; box.setAttribute('role', 'status'); box.setAttribute('aria-live', 'polite');
+      const wheel = document.createElement('span'); wheel.className = 'wheel-o curating-wheel'; wheel.setAttribute('aria-hidden', 'true');
+      const src = document.querySelector('nav .wheel-o svg');
+      if (src) wheel.appendChild(src.cloneNode(true)); else wheel.className += ' curating-ring';
+      const title = document.createElement('p'); title.className = 'curating-title'; title.textContent = T('Curating bikes for your ride…');
+      const sub = document.createElement('p'); sub.className = 'curating-sub'; sub.textContent = T('Scoring every bike against your answers.');
+      box.append(wheel, title, sub);
+      results.parentNode.insertBefore(box, results);
+    }
+    const ph = document.getElementById('placeholder');
+    if (ph) ph.style.display = 'none';
+    results.style.display = 'none';
+    box.hidden = false;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    box.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    Promise.all([wait(reduce ? 300 : CURATE_MS), Promise.race([SV.fxReady, wait(2500)])]).then(() => {
+      if (token !== SV.pending) return;      // a newer press or refresh took over
+      box.hidden = true;
+      SV.renderNow(o);
+    });
+  };
+
+  // ---- the results block
+  SV.renderNow = function (o) {
     const results = o.results;
     const items = o.items;
     SV.lastItems = items;
@@ -143,9 +181,21 @@
     if (ex.discontinued.length) exLines.push(esc(T(ex.discontinued.length === 1 ? '1 no longer sold new ({names})' : '{n} no longer sold new ({names})', { n: ex.discontinued.length, names: ex.discontinued.map(b => b.name).join(', ') })));
     if (ex['not-canada'].length) exLines.push(esc(T(ex['not-canada'].length === 1 ? '1 that the seller says it cannot ship to Canada ({names})' : '{n} that the seller says it cannot ship to Canada ({names})', { n: ex['not-canada'].length, names: ex['not-canada'].map(b => b.name).join(', ') })));
     if (ex['dead-link'].length) exLines.push(esc(T(ex['dead-link'].length === 1 ? '1 whose seller page no longer loads' : '{n} whose seller page no longer loads', { n: ex['dead-link'].length })));
+    // Must-haves: things the visitor asked for that a bike either has or does not (height range, electric assist, budget...).
+    // The page passes them in as o.musts. If no bike we can recommend meets one of them, say so plainly instead of showing a
+    // confident-looking top pick, and mark on each card what it misses.
+    const musts = (o.musts || []).filter(m => m && m.applies);
+    const missOf = b => musts.filter(m => !m.test(b));
+    const unmetByAll = items.length ? musts.filter(m => items.every(b => !m.test(b))) : [];
+    let notice = '';
+    if (!items.length) {
+      notice = `<div class="result-notice no-match" role="note"><b>${esc(T('We could not find a bike to recommend'))}</b><p>${esc(T('Every bike in our catalog was left out or ruled out for your answers. Change an answer above (a bigger budget, a different size or fewer must-haves) and the list updates.'))}</p></div>`;
+    } else if (unmetByAll.length) {
+      notice = `<div class="result-notice" role="note"><b>${esc(T('No bike we list meets everything you asked for'))}</b><p>${esc(T('None of the bikes we can recommend right now meets: {list}. The closest matches are below, and each one says what it misses. You can change an answer above.', { list: unmetByAll.map(m => T(m.label)).join(', ') }))}</p></div>`;
+    }
     const head = `
       <div class="result-head">
-        <h3>${esc(T('Your top {n} matches', { n: items.length }))}</h3>
+        <h3>${esc(items.length ? T(unmetByAll.length ? 'Your {n} closest matches' : 'Your top {n} matches', { n: items.length }) : T('No bike we list matches your answers yet'))}</h3>
         ${chips ? `<div class="ans-chips" aria-label="${esc(T('Your answers. Select one to change it'))}"><span class="ans-lead">${esc(T('Based on:'))}</span> ${chips}</div>` : ''}
         <p class="result-live">${T('Change any answer and the matches update. The order is by how well each bike fits <em>your</em> answers.')}</p>
         <div class="result-actions">
@@ -171,7 +221,7 @@
           <div class="result-media">${b.image ? `<img src="${esc(b.image)}" alt="${esc(b.name)}" loading="lazy">` : SV.photo(b)}</div>
           <div class="result-top"><span class="result-name">${esc(b.name)}</span><span class="result-pricebox">${SV.priceHtml(b)}</span></div>
           <p class="result-meta">${d.meta || ''}</p>
-          ${why}${watch}
+          ${why}${watch}${musts.length && missOf(b).length ? `<p class="result-miss"><b>${esc(T('Misses:'))}</b> ${esc(missOf(b).map(m => T(m.label)).join(', '))}</p>` : ''}
           ${d.budgetNote || ''}
           ${recall}
           ${trust}
@@ -196,7 +246,7 @@
     }
     const fxNote = SV.rate ? ' ' + esc(T("US prices are converted at the Bank of Canada's rate for {d} (1 US$ = C${r}) only to compare against your budget.", { d: SV.rateDate, r: FR() ? SV.rate.toFixed(4).replace('.', ',') : SV.rate.toFixed(4) })) : ' ' + esc(T('The exchange rate could not be loaded, so your budget was compared to each listed number as it is.'));
     const foot = `<p class="result-footnote">${esc(T('Prices are in the currency the brand or retailer lists, before tax.'))}${fxNote} ${esc(T("Bikes whose seller page we have confirmed get a small ranking boost, because we know you can really buy them. “Catalog price” means we have not re-checked it on the seller's page."))}${o.note ? ' ' + esc(o.note) : ''} ${esc(T('Specifications come from our catalog and can be out of date. Always confirm size, price, specifications and stock with the seller before you buy.'))}</p>`;
-    results.innerHTML = head + cards + compare + foot;
+    results.innerHTML = head + notice + cards + compare + foot;
 
     results.querySelectorAll('.result-media').forEach((el, i) => {
       const img = el.querySelector('img');

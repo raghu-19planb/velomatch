@@ -7,7 +7,7 @@
   const E = I.exact;
   const add = o => Object.assign(E, o);
   const P = (re, fn) => I.patterns.push([re, fn]);
-  I.keep.push(/^(Shimano|SRAM|Campagnolo|microSHIFT|Microshift|Tektro|Box|Rotor|Gevenalle)\b/, /\d+x\d+$/, /^[XSML\/ ]+$/);
+  I.keep.push(/ (GBP|EUR)$/, /^(Gates|Rohloff|Pinion)/, /^(Shimano|SRAM|Campagnolo|microSHIFT|Microshift|Tektro|Box|Rotor|Gevenalle)\b/, /\d+x\d+$/, /^[XSML\/ ]+$/);
   I.keep.push(/^(Woom|Trek|Cleary|Norco|Islabikes|Specialized|Frog Bikes|Huffy|Schwinn|Decathlon|Supercycle|Cannondale|Giant|Surly|Kona|Canyon|Devinci|Rocky Mountain|Cervélo|Shimano|SRAM)$/);
 
   // ---------------------------------------------------------------- page furniture
@@ -70,6 +70,7 @@
   P(/^Question (\d+) of (\d+)$/, (m, a, b) => 'Question ' + a + ' de ' + b);
   P(/^The remaining (\d+) questions are optional\. Answer any that matter to you\.$/, (m, n) => 'Les ' + n + ' questions restantes sont facultatives. Répondez à celles qui comptent pour vous.');
   P(/^(\d+)cm$/, (m, n) => n + ' cm');
+  P(/^Single speed (\d+T)$/, (m, t) => 'Monovitesse ' + t);
   P(/^(.+?) (\d+)-speed$/, (m, g, n) => g + ' ' + n + ' vitesses');
   P(/^WHEELBASE (.+)$/, (m, v) => 'EMPATTEMENT ' + v);
   P(/^C\$([\d,]+)(\+?)$/, (m, n, plus) => Number(n.replace(/,/g, '')).toLocaleString('fr-CA') + ' $ CA' + plus);
@@ -126,6 +127,26 @@
 
   // ---------------------------------------------------------------- the results layer (match-ui.js)
   add({
+    'Single speed': 'Monovitesse',
+    'Short / Medium / Long': 'Court / Moyen / Long',
+    'Your {n} closest matches': 'Vos {n} choix les plus proches',
+    'No bike we list matches your answers yet': 'Aucun vélo de notre liste ne correspond encore à vos réponses',
+    'We could not find a bike to recommend': 'Nous n’avons trouvé aucun vélo à recommander',
+    'Every bike in our catalog was left out or ruled out for your answers. Change an answer above (a bigger budget, a different size or fewer must-haves) and the list updates.': 'Tous les vélos de notre catalogue ont été écartés ou exclus selon vos réponses. Modifiez une réponse ci-dessus (un budget plus grand, une autre taille ou moins d’exigences) et la liste se met à jour.',
+    'No bike we list meets everything you asked for': 'Aucun vélo de notre liste ne répond à tout ce que vous avez demandé',
+    'None of the bikes we can recommend right now meets: {list}. The closest matches are below, and each one says what it misses. You can change an answer above.': 'Aucun des vélos que nous pouvons recommander en ce moment ne répond à : {list}. Les choix les plus proches figurent plus bas, et chacun indique ce qui lui manque. Vous pouvez modifier une réponse ci-dessus.',
+    'Misses:': 'Ne répond pas à :',
+    'Electric assist': 'Assistance électrique',
+    'Pedal-only': 'Pédalage seulement',
+    'Fits your height': 'Convient à votre taille',
+    'Fits your child’s height': 'Convient à la taille de votre enfant',
+    'Rated for your distance': 'Prévu pour votre distance',
+    'Carries your load': 'Capacité de charge suffisante',
+    'Close to your budget': 'Près de votre budget',
+    'The suspension you chose': 'La suspension que vous avez choisie',
+    'Built for your kind of racing': 'Conçu pour votre type de course',
+    'Curating bikes for your ride…': 'Nous sélectionnons des vélos pour votre parcours…',
+    'Scoring every bike against your answers.': 'Chaque vélo est évalué selon vos réponses.',
     'Seller page confirmed on {d}': 'Page du vendeur confirmée le {d}',
     'Seller page confirmed on {d}, but it shows no price we can read': 'Page du vendeur confirmée le {d}, mais elle n’affiche aucun prix lisible',
     'Seller page confirmed': 'Page du vendeur confirmée',
