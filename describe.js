@@ -86,10 +86,33 @@
   const LEX = {
     kids: /\b(child|children|kid|kids|son|daughter|boy|girl|toddler|enfant|enfants|fils|fille|garcon|bambin|balance bike|draisienne|training wheels|stabilisat\w*|years? old|ans)\b/g,
     commute: /\b(commut\w*|to work|work|office|bureau|travail|travailler|boulot|navett\w*|trajet|daily|quotidien\w*|errands?|groceries|epicerie|school run|city|ville|urban\w*|every day|tous les jours|velotaf)\b/g,
-    bikepacking: /\b(bikepack\w*|cyclocamp\w*|camping|camp|overnight|multi-?day|touring|tour|voyage|panniers?|sacoches?|trip|gaspesie|route verte|gravel trip|nuit|tente|tent|iceland|islande|ring road|patagonia|patagonie|tour divide)\b/g,
+    bikepacking: /\b(\d{1,3}\s?(?:days?|jours?|nights?|nuits?)|week-?long|bikepack\w*|cyclocamp\w*|camping|camp|overnight|multi-?day|touring|tour|voyage|panniers?|sacoches?|trip|gaspesie|route verte|gravel trip|nuit|tente|tent|iceland|islande|ring road|patagonia|patagonie|tour divide)\b/g,
     mountainbiking: /\b(mountain|mtb|trail|trails|singletrack|enduro|downhill|vtt|sentiers?|montagne|forest|foret|jump|bike park|xc|cross-?country|hardtail|semi-?rigide|dropper|telescopique|full[- ]?sus\w*|suspension)\b/g,
     racing: /\b(race|races|racing|crit|criterium|triathlon|ironman|audax|randonneu\w*|gran fondo|pbp|lel|course|competition|competitive|time trial|contre-la-montre)\b/g,
   };
+  // typo tolerance: a word close to a distinctive keyword is read as that keyword ("backpicking" -> "bikepacking").
+  // Kept narrow on purpose: only long, distinctive words, and one edit at most, so ordinary words ("overweight", "facing") are never rewritten.
+  const FUZZY_LONG = ['bikepacking', 'bikepacker', 'cyclocamping', 'cyclotourisme'];   // long enough to allow several slips
+  const FUZZY = ['commuting', 'commuter', 'mountain', 'triathlon', 'downhill', 'overnight', 'panniers', 'touring', 'bikepack', 'singletrack', 'randonneur', 'experienced', 'beginner', 'weekend', 'neighbourhood', 'groceries', 'hardtail', 'training'];
+  const dist = (a, b) => {   // Damerau-Levenshtein (adjacent swaps count as one slip)
+    const d = Array.from({ length: a.length + 1 }, (_, i) => [i]); for (let j = 1; j <= b.length; j++) d[0][j] = j;
+    for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) {
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+    }
+    return d[a.length][b.length];
+  };
+  const SKIP = new Set(['overweight', 'mountains', 'trainer', 'trainers']);
+  function fixTypos(t) {
+    return t.replace(/[a-z]{7,}/g, w => {
+      if (FUZZY_LONG.includes(w) || FUZZY.includes(w) || SKIP.has(w)) return w;
+      let best = null;
+      FUZZY_LONG.forEach(k => { if (!best && Math.abs(k.length - w.length) <= 3 && w[0] === k[0] && dist(w, k) <= Math.floor(k.length * 0.4)) best = k; });
+      if (best) return best;
+      FUZZY.forEach(k => { if (!best && Math.abs(k.length - w.length) <= 1 && dist(w, k) === 1) best = k; });
+      return best || w;
+    });
+  }
   const count = (t, re) => (t.match(re) || []).length;
   const first = (t, re) => { const m = t.match(re); return m ? m[0].trim() : null; };
   const num = s => { s = String(s).replace(/\s/g, ''); if (/,\d{1,2}$/.test(s) && !/,\d{3}/.test(s)) s = s.replace(',', '.'); return parseFloat(s.replace(/,(?=\d{3})/g, '')); };
@@ -119,7 +142,7 @@
 
   function interpret(text) {
     const orig = String(text || '').trim();
-    const t = norm(orig);
+    const t = fixTypos(norm(orig));
     const out = { category: null, confidence: 'low', scores: {}, answers: [], ranges: {}, extras: [], unusable: [], unused: [], missing: [], missingKeys: [], notes: [], alternatives: [], original: orig };
     if (t.length < 3) return out;
     for (const c of Object.keys(LEX)) out.scores[c] = count(t, LEX[c]);
@@ -137,7 +160,7 @@
 
   // read the text as a given quiz (also used when the visitor picks a different quiz)
   function fillFor(out, cat) {
-    const orig = out.original, t = norm(orig);
+    const orig = out.original, t = fixTypos(norm(orig));
     out.category = cat; out.answers = []; out.ranges = {}; out.extras = []; out.unusable = []; out.notes = out.notes.filter(n => /age/.test(n) === false ? false : false);
     const evidence = [];
     // wishes the quiz has no question for: criteria scored against the catalog
@@ -206,6 +229,8 @@
       rule('triplength', 'overnight', /overnight|weekend|week-end|fin de semaine|one night|une nuit|1 night/);
       rule('triplength', 'week', /\b(?:a|one|1) week\b|une semaine|7 days|sept jours|1 week/);
       rule('triplength', 'multiweek', /\b(?:two|three|four|2|3|4|several|few|plusieurs) (?:weeks|semaines)|multi-?week/);
+      // a number of days: up to 3 is a weekend, up to 9 about a week, ten or more several weeks (shown with its words, so it can be changed)
+      { const dd = t.match(/\b(\d{1,3})\s?(?:-|\s)?(?:days?|jours?|nights?|nuits?)\b/); if (dd && !out.answers.some(a => a.group === 'triplength')) { const n = +dd[1]; add('triplength', n <= 3 ? 'overnight' : n <= 9 ? 'week' : n < 60 ? 'multiweek' : 'expedition', dd[0]); } }
       rule('triplength', 'expedition', /months?|mois|continent|round the world|tour du monde/);
       rule('terrain', 'trail_mountain', /singletrack|rough trail|technical|trail\b|sentiers?|backcountry|tout-?terrain/);
       rule('terrain', 'gravel', /gravel|gravier/);
@@ -215,7 +240,7 @@
       rule('purpose', 'touring', /touring|relaxed|comfortabl\w*|leisure|cyclotourisme|tranquille/);
       rule('purpose', 'adventure', /adventure|aventure/);
       rule('purpose', 'ultra_race', /ultra|tour divide|transcontinental|self-supported race|course d'ultra|bikepacking race/);
-      rule('experience', 'new', /first (?:ever )?(?:trip|time|tour|overnight)|never (?:done|tried)|beginner|premiere (?:sortie|fois)|debutant\w*|je debute/);
+      rule('experience', 'new', /first (?:ever )?(?:\w+ )?(?:trip|time|tour|overnight|ride|bikepacking|cyclocamping|adventure)|never (?:done|tried)|beginner|premiere (?:sortie|fois)|debutant\w*|je debute/);
       rule('experience', 'some', /a few trips|done a few|some experience|quelques sorties/);
       rule('experience', 'experienced', /experienced|veteran|many trips|done many|experimente\w*|beaucoup de sorties/);
       rule('carrystyle', 'rack_panniers', /panniers?|\bracks?\b|sacoches?|porte-?bagages?/);
@@ -262,7 +287,7 @@
     }
     // clauses that contributed nothing: shown, never scored
     out.unused = String(out.original).split(/[,.;!?]+|\band\b|\bet\b|\bbut\b|\bmais\b/i).map(s => s.trim()).filter(c => {
-      const nc = norm(c); if (nc.length < 5 || /^(i'?m|i am|je suis|i want|i would|j'ai|je veux|my|ma|mon)\b/.test(nc) && nc.split(' ').length < 4) return false;
+      const nc = fixTypos(norm(c)); if (nc.length < 5 || /^(i'?m|i am|je suis|i want|i would|j'ai|je veux|my|ma|mon)\b/.test(nc) && nc.split(' ').length < 4) return false;
       return !evidence.some(e => e && (nc.includes(e) || e.includes(nc)));
     }).slice(0, 4);
   }
