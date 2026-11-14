@@ -1022,6 +1022,8 @@ body.rm-page{
   animation:nav-new-bob 2.6s ease-in-out infinite;
 }
 .nav-link.has-new-flag:hover::after{background:var(--signal-deep);}
+/* the old hanging flag no longer exists; if a browser still runs a cached copy of the old script, never show what it builds */
+.flag-banner, .flag-rope{display:none !important;}
 @keyframes nav-new-bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-1.5px); } }
 @media (prefers-reduced-motion: reduce){ .nav-link.has-new-flag::after{animation:none;} }
 
